@@ -159,32 +159,33 @@ const MakePurchase = () => {
           <Col md={17} >
             <Row gutter={[16, 16]} justify="center">
               {filteredProducts.map((product, key) => (
-                <Col xs={24} sm={12} md={8} lg={8} key={key}>
-                  <Card
-                    style={{
-                      width: 300,
-                      height: 278.33,
-                      margin: '10px',
-                      borderColor: '#E8E8E8',
-                      borderRadius: '20px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    <div>
-                      <img
-                        src={product.image}
-                        className="img-fluid"
-                        width={90}
-                        height={90}
-                        alt={product.name}
-                        style={{ margin: 'auto', cursor: 'pointer' }}
-                        onClick={() => showDrawer(product)}
-                      />
-                    </div>
-                    <p style={{ fontWeight: 'bold', color: '#3B3A82', font: 'Poppins', fontSize: '14px' }}>{product.title}</p>
-                    <p style={{ fontWeight: 'bold', color: '#3B3A82', font: 'Poppins', fontSize: '15px' }}>₱{product.price}</p>
-                  </Card>
-                </Col>
+    <Col xs={24} sm={12} md={8} lg={8} key={key} style={{ display: 'flex', alignItems: 'center' }}>
+    <Card
+      style={{
+        width: 300,
+        height: 278.33,
+        margin: '10px',
+        borderColor: '#E8E8E8',
+        borderRadius: '20px',
+        textAlign: 'center',
+      }}
+    >
+      <div>
+        <img
+          src={product.image}
+          className="img-fluid"
+          width={90}
+          height={90}
+          alt={product.name}
+          style={{ margin: 'auto', cursor: 'pointer' }}
+          onClick={() => showDrawer(product)}
+        />
+      </div>
+      <p style={{ fontWeight: 'bold', color: '#3B3A82', font: 'Poppins', fontSize: '14px' }}>{product.title}</p>
+      <p style={{ fontWeight: 'bold', color: '#3B3A82', font: 'Poppins', fontSize: '15px' }}>₱{product.price}</p>
+    </Card>
+  </Col>
+  
               ))}
               {selectedProduct && (
                 <Drawer
