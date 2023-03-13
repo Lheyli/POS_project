@@ -1,10 +1,142 @@
-import React from "react";
-const ScanQrCode = () => {
-    return (
-      <>
-      <h1>ScanQrCode </h1></>
-    );
+import React, { useState } from 'react';
+import { Button, Modal } from 'antd';
+import QRCode from 'qrcode.react';
+import scanImage from './scan.png';
+import { FaAngleRight } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+const h1Styles = {
+  font: 'Poppins',
+  color: '#3B3A82',
+  fontStyle: 'normal',
+  fontWeight: '600',
+  fontSize: '20px',
+  lineHeight: '45px'
+};
+const h2Styles = {
+  font: 'Poppins',
+  color: '#30304D',
+  textAlign: 'left',
+  marginBottom: '1rem',
+  fontStyle: 'normal',
+  fontWeight: '400',
+  fontSize: '15px',
+  lineHeight: '42px',
+};
+
+function ScanQrCode() {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [productDetails, setProductDetails] = useState({});
+  const [qrCodeValue] = useState('');
+
+  const showModal = () => {
+    setIsModalVisible(true);
+    setProductDetails({
+      name: 'Sample Product',
+      price: '$10.00',
+      description: 'This is a sample product description',
+    });
   };
-  
-  export default ScanQrCode;
-  
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  return (
+    <div>
+      <h1 style={h1Styles}>Scan QR Code </h1>
+      <div style={{ position: 'relative' }}>
+        <img src={scanImage} alt="scan" style={{ position: 'absolute', width: '665px', height: '472px', left: '688px', top: '100px' }} />
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Button
+          onClick={showModal}
+          style={{
+            width: '350px',
+            height: '100px',
+            marginRight: '20px',
+            top: '600px',
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: '500',
+            fontSize: '30px',
+            lineHeight: '50px',
+            display: 'flex',
+            alignItems: 'center',
+            textAlign: 'center',
+            color: '#38384D',
+            left: '90px',
+            justifyContent: 'center',
+          }}
+        >
+          View Product Details
+        </Button>
+        <Link to='/makeorders'><Button
+          style={{
+            width: '350px',
+            height: '100px',
+            top: '600px',
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: '500',
+            fontSize: '30px',
+            lineHeight: '50px',
+            display: 'flex',
+            alignItems: 'center',
+            textAlign: 'center',
+            color: '#38384D',
+            left: '90px',
+            justifyContent: 'center',
+          }}
+        >Make Orders
+        </Button></Link>
+      </div>
+      <Modal
+        visible={isModalVisible}
+        footer={null} // remove the footer with cancel and ok button
+        onCancel={handleCancel}
+        centered
+        width={900}
+        bodyStyle={{ height: '600px' }} // add height to the modal body
+      >
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          font: 'Poppins',
+          fontStyle: 'normal',
+          fontWeight: 300,
+          fontSize: '12px',
+          lineHeight: '30px',
+          color: '#9494B3',
+        }}>
+          <h3>Scan QR Code</h3>
+          &nbsp; <FaAngleRight />  &nbsp;
+          <h3>View Product Details</h3>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div style={{ flex: 1, padding: '20px' }}>
+            <center>
+              <QRCode value={qrCodeValue} />
+              <br />
+              <br />
+              <h2>{productDetails.name}</h2>
+            </center>
+          </div>
+          <div style={{ flex: 1, padding: '20px', boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)', background: '#F9F9FF', borderRadius: '24px', height: '475px' }}>
+            <div style={{ width: '200px', height: '200px', backgroundColor: '#FFFFFF' }}>
+              <h1 style={h1Styles}>Details:</h1>
+              <h1 style={h2Styles}>Price:</h1>
+              <h1 style={h2Styles}>Category:</h1>
+              <h1 style={h2Styles}>Expiration Date:</h1>
+              <h1 style={h2Styles}>Quantity:</h1>
+              <h1 style={h2Styles}>Created by:</h1>
+              <h1 style={h2Styles}>Updated at:</h1>
+              <h1 style={h2Styles}>Updated by:</h1>
+            </div>
+          </div>
+        </div>
+      </Modal>
+    </div>
+  );
+}
+export default ScanQrCode;
+
