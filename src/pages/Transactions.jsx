@@ -4,60 +4,15 @@ import dayjs from 'dayjs';
 import { CalendarOutlined, RightOutlined, CaretDownOutlined, MoreOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../reducers/productSlice';
-import axios from 'axios';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import styles from './Transactions.module.css';
 dayjs.extend(customParseFormat);
-
-const data = [
-  {
-    key: '1',
-    productname: 'SkyFlakes Crackers',
-    price: '(199.00)',
-    quantity: 'x2',
-    total: '₱398.00',
-  },
-  {
-    key: '2',
-    productname: 'Jack n Jill V-Cut Spicy Ba...',
-    price: '(34.25)',
-    quantity: 'x1',
-    total: '₱34.25',
-  },
-  {
-    key: '3',
-    productname: 'Del Monte 100% Pineapple...',
-    price: '(96.50)',
-    quantity: 'x2',
-    total: '₱193.00',
-  },
-];
 
 const dateFormatList = ['MM/DD/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
 
 
 const Transactions = () => {
   const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-
-  const [tableData, setTableData] = useState(data);
-
-  const handleDelete = (record) => {
-    const newData = tableData.filter((item) => item.key !== record.key);
-    setTableData(newData);
-  };
-  const [product, setProduct] = useState(null);
-  useEffect(() => {
-    async function fetchProduct() {
-      try {
-        const response = await axios.get('https://fakestoreapi.com/products/2');
-        setProduct(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchProduct();
-  }, []);
-
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -231,11 +186,11 @@ const Transactions = () => {
         fontSize: '28px',
         color: '#30304D',
       }}>
-        <span style={{ marginLeft: '270px', }}>
+        <span style={{ marginLeft: '350px', }}>
           {today}</span></div>
       <br></br>
       <div justify='start' style={{ display: 'flex', flexDirection: 'row', marginTop: '10px' }}>
-        <span style={{ marginLeft: '270px', }}>
+        <span style={{ marginLeft: '350px', }}>
           <DatePicker
             id={styles["input123"]}
             style={{
@@ -288,9 +243,15 @@ const Transactions = () => {
         </Button>
       </div>
       <br></br>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', background: '#F9F9FF'  }}>
         <Card
-          style={{ backgroundColor: '#FFFFFF', width: '1350px', height: '500px' }}
+          style={{
+            width: '1000px',
+            height: '1250px',
+            background: '#F9F9FF',
+            boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
+            borderRadius: '24px',
+          }}
         >
           <Table
             columns={columns}

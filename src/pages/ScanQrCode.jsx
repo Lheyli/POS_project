@@ -43,9 +43,19 @@ function ScanQrCode() {
 
   return (
     <div>
-      <h1 style={h1Styles}>Scan QR Code </h1>
+   <div justify='start' style={{
+        marginTop: '120px',
+        width: '100%',
+        font: 'Poppins',
+        fontStyle: 'normal',
+        fontWeight: '700',
+        fontSize: '35px',
+        color: '#3B3A82',
+      }}>
+        <span style={{ marginLeft: '270px', }}>
+          Scan QR Code</span></div>
       <div style={{ position: 'relative' }}>
-        <img src={scanImage} alt="scan" style={{ position: 'absolute', width: '665px', height: '472px', left: '688px', top: '100px' }} />
+        <img src={scanImage} alt="scan" style={{ position: 'absolute', width: '600px', height: '472px', left: '688px'}} />
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button
@@ -54,7 +64,7 @@ function ScanQrCode() {
             width: '350px',
             height: '100px',
             marginRight: '20px',
-            top: '600px',
+            top: '500px',
             font: 'Poppins',
             fontStyle: 'normal',
             fontWeight: '500',
@@ -74,7 +84,7 @@ function ScanQrCode() {
           style={{
             width: '350px',
             height: '100px',
-            top: '600px',
+            top: '500px',
             font: 'Poppins',
             fontStyle: 'normal',
             fontWeight: '500',
