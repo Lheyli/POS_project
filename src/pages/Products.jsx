@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Table, Space, Button, Modal, Input, DatePicker} from 'antd';
+import { Table, Space, Button, Modal, DatePicker} from 'antd';
 import { fetchProducts } from '../reducers/productSlice';
 import { Link } from "react-router-dom";
 import { ShoppingCartOutlined, RightOutlined } from '@ant-design/icons';
