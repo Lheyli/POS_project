@@ -12,7 +12,6 @@ import Members from './pages/Members';
 import ScanQrCode from './pages/ScanQrCode';
 import MakePurchase from './pages/MakePurchase';
 import Purchase from './pages/Purchase';
-import Checkout from './pages/Checkout';
 
 function App() {
   return (
@@ -31,12 +30,11 @@ function App() {
       <Route path= "qr" element={<Layout><ScanQrCode /></Layout> } />
       <Route path= "purchase" element={<Layout><MakePurchase /></Layout> } />
       <Route path= "make" element={<Purchase /> } />
-      <Route path= "cart" element={<Checkout /> } />
   
       
     </Routes>
 
-  </Router>
+    </Router>
   );
 }
 

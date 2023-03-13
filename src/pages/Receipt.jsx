@@ -1,46 +1,14 @@
 
 import { Card, Table, Button } from 'antd';
 import { TbCircle1Filled, TbCircle2Filled, TbCircle3Filled, TbChevronRight } from "react-icons/tb";
-import { DeleteOutlined } from '@ant-design/icons';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Divider } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../reducers/productSlice';
 import { Link } from 'react-router-dom';
-const data = [
-    {
-        key: '1',
-        productname: 'SkyFlakes Crackers',
-        price: '(199.00)',
-        quantity: 'x2',
-        total: '₱398.00',
-    },
-    {
-        key: '2',
-        productname: 'Jack n Jill V-Cut Spicy Ba...',
-        price: '(34.25)',
-        quantity: 'x1',
-        total: '₱34.25',
-    },
-    {
-        key: '3',
-        productname: 'Del Monte 100% Pineapple...',
-        price: '(96.50)',
-        quantity: 'x2',
-        total: '₱193.00',
-    },
-];
 
 const MakeOrders = () => {
     const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-
-    const [tableData, setTableData] = useState(data);
-
-    const handleDelete = (record) => {
-        const newData = tableData.filter((item) => item.key !== record.key);
-        setTableData(newData);
-    };
-
 
     const dispatch = useDispatch();
     const products = useSelector((state) => state.products.products);
@@ -120,14 +88,6 @@ const MakeOrders = () => {
                     lineHeight: '36px',
                     color: '#6A6A80',
                 }}>{`₱${record.price * record.quantity}`}</span> // add bold font weight to total
-            ),
-        },
-        {
-            key: 'action',
-            render: (text, record) => (
-                <Button style={{ color: '#3B3A82' }} type="link" danger onClick={() => handleDelete(record)}>
-                    <DeleteOutlined />
-                </Button>
             ),
         },
     ];
