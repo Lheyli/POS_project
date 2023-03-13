@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Table, Space, Button, Modal, Input, Menu, Dropdown } from 'antd';
+import { Table, Space, Button, Modal, Input, DatePicker} from 'antd';
 import { fetchProducts } from '../reducers/productSlice';
 import { Link } from "react-router-dom";
 import { ShoppingCartOutlined, RightOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
+import '../pages/DateRangePicker.css';
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -12,9 +13,10 @@ const Products = () => {
   const loading = useSelector((state) => state.products.loading);
   const error = useSelector((state) => state.products.error);
   const [showModal, setShowModal] = useState(false); // add state for controlling modal visibility
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
 
   const CreateModal = () => {
     setIsModalVisible(true);
@@ -36,13 +38,16 @@ const Products = () => {
   const handleModalCancel = () => {
     setShowModal(false);
   };
-
-  const handleStartDateChange = (event) => {
-    setStartDate(event.target.value);
+  const handleStartDateChange = (date, dateString) => {
+    setStartDate(date);
   };
 
-  const handleEndDateChange = (event) => {
-    setEndDate(event.target.value);
+  const handleEndDateChange = (date, dateString) => {
+    setEndDate(date);
+  };
+
+  const disabledEndDate = (current) => {
+    return current && current < startDate;
   };
 
   const handleFilterClick = () => {
@@ -155,12 +160,24 @@ const Products = () => {
   return (
     <>
       <div style={{ display: 'flex', marginBottom: '16px' }}>
-        <Input type="date" style={{ width: '150px', marginLeft: '230px', background: '#5250B4', color: '#ffffff', font: "Poppins" }} value={startDate} onChange={handleStartDateChange} />&nbsp;
+      <DatePicker
+        value={startDate}
+        onChange={handleStartDateChange}
+        placeholder="Start Date"
+        style={{ width: '150px', marginLeft: '230px', background: '#5250B4', color: '#ffffff', font: "Poppins" }}
+        format="YYYY-MM-DD"
+      />&nbsp;
         <span style={{ color: '#3B3A82', font: "Poppins", fontWeight: 'bold' }}> to </span>&nbsp;
-        <Input type="date" style={{ width: '150px', background: '#5250B4', color: '#ffffff', font: "Poppins" }} value={endDate} onChange={handleEndDateChange} /> &nbsp; &nbsp;
-        <Button style={{ background: '#5250B4', display: 'flex', justifyContent: 'flex-start', color: '#ffffff', font: "Poppins" }} onClick={handleFilterClick}>
-          Filter Date
-        </Button>
+        <DatePicker
+        value={endDate}
+        onChange={handleEndDateChange}
+        placeholder="End Date"
+        disabledDate={disabledEndDate}
+        format="YYYY-MM-DD"
+        style={{ width: '150px', background: '#5250B4', color: '#ffffff', font: "Poppins" }}
+      />
+
+    
       </div>
       <div justify="end" style={{ display: 'flex', marginBottom: '16px', marginLeft: '1000px' }}>
         <Button onClick={CreateModal} style={{ borderColor: '#5250B4', borderRadius: '50px', display: 'inline-block', color: '#3B3A82', font: "Poppins", fontWeight: 'bold' }}>

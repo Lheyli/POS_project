@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import Products from './pages/Products';
 import Transactions from './pages/Transactions';
 import Sales from './pages/Sales';
+import User from './pages/User';
 import Accounting from './pages/Accounting';
 import Members from './pages/Members';
 import ScanQrCode from './pages/ScanQrCode';
@@ -19,7 +20,24 @@ function App() {
   return (
     <Router>
 
+<<<<<<< HEAD
       <Routes>
+=======
+      <Route path="/" element={<SignIn />} />
+      <Route path= "dashboard" element={<Layout><Dashboard /></Layout> } />
+      <Route path= "products" element={<Layout><Products /></Layout> } />
+      <Route path= "transactions" element={<Layout><Transactions /></Layout> } />
+      <Route path= "sales-report" element={<Layout><Sales/></Layout> } />
+      <Route path= "accounting-report" element={<Layout><Accounting /></Layout> } />
+      <Route path= "user-logs" element={<Layout><User /></Layout> } />
+      <Route path= "clients" element={<Layout><Members /></Layout> } />
+      <Route path= "qr" element={<Layout><ScanQrCode /></Layout> } />
+      <Route path= "purchase" element={<Layout><MakePurchase /></Layout> } />
+      <Route path= "make" element={<Purchase /> } />
+  
+      
+    </Routes>
+>>>>>>> 877092283e39ec76cd73ca5a0f23d8077439909b
 
         <Route path="/" element={<SignIn />} />
         <Route path="dashboard" element={<Layout><Dashboard /></Layout>} />

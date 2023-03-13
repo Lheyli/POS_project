@@ -245,13 +245,7 @@ const Transactions = () => {
       <br></br>
       <div style={{ display: 'flex', justifyContent: 'center', background: '#F9F9FF'  }}>
         <Card
-          style={{
-            width: '1000px',
-            height: '1250px',
-            background: '#F9F9FF',
-            boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
-            borderRadius: '24px',
-          }}
+          style={{ backgroundColor: '#FFFFFF', width: '1000px', height: '500px' }}
         >
           <Table
             columns={columns}

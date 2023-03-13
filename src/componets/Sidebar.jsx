@@ -12,6 +12,7 @@ import {
   TagOutlined,
   MenuOutlined,
   ShoppingCartOutlined,
+  UsergroupAddOutlined,
 } from "@ant-design/icons";
 
 const StyledSider = styled.div`
@@ -119,6 +120,10 @@ function Sidebar() {
           </StyledLink>
           <StyledLink to="/user-logs"style={{ fontWeight: 'bold'  }}>
             <UserOutlined />
+            &nbsp; User Logs
+          </StyledLink>
+          <StyledLink to="/clients"style={{ fontWeight: 'bold'  }}>
+          <UsergroupAddOutlined />
             &nbsp; Members/Clients
           </StyledLink>
           <StyledLink to="/qr"style={{ fontWeight: 'bold'  }}>
