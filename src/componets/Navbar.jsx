@@ -80,7 +80,7 @@ const Navbar = () => {
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </StyledContainer>
         <StyledSearch
-        placeholder="Search..."  style={{ fontFamily: "Poppins" }}
+        placeholder="Search..."  style={{ font: "Poppins" }}
       />
     </StyledHeader>
   );

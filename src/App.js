@@ -9,6 +9,8 @@ import Sales from './pages/Sales';
 import Accounting from './pages/Accounting';
 import Members from './pages/Members';
 import ScanQrCode from './pages/ScanQrCode';
+import MakePurchase from './pages/MakePurchase';
+import Purchase from './pages/Purchase';
 
 function App() {
   return (
@@ -24,6 +26,9 @@ function App() {
       <Route path= "accounting-report" element={<Layout><Accounting /></Layout> } />
       <Route path= "user-logs" element={<Layout><Members /></Layout> } />
       <Route path= "qr" element={<Layout><ScanQrCode /></Layout> } />
+      <Route path= "purchase" element={<Layout><MakePurchase /></Layout> } />
+      <Route path= "make" element={<Purchase /> } />
+  
       
     </Routes>
 

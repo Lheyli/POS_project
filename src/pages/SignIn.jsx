@@ -23,36 +23,36 @@ const SignInPage = () => {
          <br></br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <img src={signin} alt="img1" height={300} width={300} />
-          <h2 style={{ textAlign: 'center', color: '#6A6A80', fontSize: "20px", fontStyle: "Poppins" }}>Manage Sales, Inventory and other Transactions</h2>
+          <h2 style={{ textAlign: 'center', color: '#6A6A80', fontSize: "20px", font: "Poppins" }}>Manage Sales, Inventory and other Transactions</h2>
         </Card>
         <div style={{ display: 'flex', width: '500px', height: '500px' }}>
           <Card style={{ width: 400, backgroundImage: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)', borderRadius: '0px 50px 50px 0px' }}>
             <br></br> <br></br>
-            <h2 style={{ textAlign: 'left', color: 'white', fontSize: "24px", fontStyle: "Poppins" }}>Welcome!</h2>
+            <h2 style={{ textAlign: 'left', color: 'white', fontSize: "24px", font: "Poppins" }}>Welcome!</h2>
             <Form name="signin" onFinish={onFinish}>
-              <label style={{ textAlign: 'left', color: '#F9F9FF', fontSize: "15px", fontStyle: "Poppins" }}>Username</label>
+              <label style={{ textAlign: 'left', color: '#F9F9FF', fontSize: "15px", font: "Poppins" }}>Username</label>
               <Form.Item name="username" rules={[{ required: true, message: 'Please input your username!' }]}>
                 <Input placeholder="Username" style={{  borderRadius: '30px', border: "1px solid #9494B"}} />
               </Form.Item>
-              <label style={{ textAlign: 'left', color: '#F9F9FF', fontSize: "15px", fontStyle: "Poppins" }}>Password</label>
+              <label style={{ textAlign: 'left', color: '#F9F9FF', fontSize: "15px", font: "Poppins" }}>Password</label>
               <Form.Item name="password" rules={[{ required: true, message: 'Please input your password!' }]}>
 
    <Input.Password
           placeholder="Password"
-          style={{ borderRadius: '30px', 
+          style={{ borderRadius: '30px', font: 'Poppins',
           border: "1px solid #9494B"}}
           iconRender={visible => (visible ? <EyeTwoTone /> : <EyeTwoTone twoToneColor="#A9A9CC" />)}
         />
 </Form.Item>
 
               <Form.Item name="remember" valuePropName="checked">
-                <Checkbox style={{ color: "#F9F9FF" }}>Remember me</Checkbox>
-                <a href="/forgot-password" style={{ float: 'right', color: "#A9A9CC" }}>Forgot password?</a>
+                <Checkbox style={{ color: "#F9F9FF", font: 'Poppins' }}>Remember me</Checkbox>
+                <a href="/forgot-password" style={{ float: 'right', color: "#A9A9CC", font: 'Poppins' }}>Forgot password?</a>
               </Form.Item>
 
               <Form.Item>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <Button htmlType="submit" style={{ width: '50%', backgroundImage: 'linear-gradient(55.91deg, #D6D6E5 9.64%, #A9A9CC 77.84%)',fontWeight: 'bold', borderRadius: '50px', color: "#3B3A82" }}>SIGN IN</Button>
+              <Button htmlType="submit" style={{ width: '50%', backgroundImage: 'linear-gradient(55.91deg, #D6D6E5 9.64%, #A9A9CC 77.84%)',fontWeight: 'bold', borderRadius: '50px', color: "#3B3A82", font: 'Poppins' }}>SIGN IN</Button>
 
               </Form.Item>
             </Form>

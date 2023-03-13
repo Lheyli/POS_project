@@ -11,13 +11,14 @@ import {
   UserOutlined,
   TagOutlined,
   MenuOutlined,
+  ShoppingCartOutlined,
 } from "@ant-design/icons";
 
 const StyledSider = styled.div`
   background-color: #eeeeff;
   height: 100vh;
   position: fixed;
-  width: 200px;
+  width: 205px;
   box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
   transform: ${({ isOpen }) =>
     isOpen ? "translateX(0)" : "translateX(-200px)"};
@@ -35,8 +36,8 @@ const StyledLink = styled(Link)`
   padding: 16px;
   color: #3b3a82;
   font-weight: 600px;
-  font-size: 16px;
-  font-family: "Poppins";
+  font-size: 14px;
+  font: "Poppins";
   cursor: pointer;
   text-decoration: none;
 
@@ -55,10 +56,10 @@ const StyledMenuSignout = styled(Link)`
   width: 254px;
   height: 31px;
 
-  font-family: "Poppins";
+  font: "Poppins";
   font-style: normal;
   font-weight: 600px;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 36px;
   margin-top: 200px;
   margin-left: 80px;
@@ -92,36 +93,40 @@ function Sidebar() {
       </StyledToggle>
       <StyledSider isOpen={isOpen}>
         <StyledMenu>
-          <StyledLink to="/dashboard">
+          <StyledLink to="/dashboard" style={{ fontWeight: 'bold'  }}>
             <HomeOutlined />
             &nbsp; Dashboard
           </StyledLink>
-          <StyledLink to="/products">
+          <StyledLink to="/products" style={{ fontWeight: 'bold'  }}>
             <TagOutlined />
             &nbsp; Products
           </StyledLink>
-          <StyledLink to="/transactions">
+          <StyledLink to="/purchase" style={{ fontWeight: 'bold'  }}>
+            <ShoppingCartOutlined />
+            &nbsp; Make Purchase
+          </StyledLink>
+          <StyledLink to="/transactions"style={{ fontWeight: 'bold'  }}>
             <SwapOutlined />
             &nbsp; Transactions
           </StyledLink>
-          <StyledLink to="/sales-report">
+          <StyledLink to="/sales-report"style={{ fontWeight: 'bold'  }}>
             <FundOutlined />
             &nbsp; Sales Report
           </StyledLink>
-          <StyledLink to="/accounting-report">
+          <StyledLink to="/accounting-report"style={{ fontWeight: 'bold'  }}>
             <CalculatorOutlined />
             &nbsp; Accounting Report
           </StyledLink>
-          <StyledLink to="/user-logs">
+          <StyledLink to="/user-logs"style={{ fontWeight: 'bold'  }}>
             <UserOutlined />
             &nbsp; Members/Clients
           </StyledLink>
-          <StyledLink to="/qr">
+          <StyledLink to="/qr"style={{ fontWeight: 'bold'  }}>
             <QrcodeOutlined />&nbsp;
                     Scan QR Code
                 </StyledLink>
                 <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br><br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br><br></br>
-                <StyledMenuSignout to="/out" >
+                <StyledMenuSignout to="/out" style={{ fontWeight: 'bold'  }}>
                     Sign out
                     &nbsp;<PoweroffOutlined /></StyledMenuSignout>
             </StyledMenu>

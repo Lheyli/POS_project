@@ -8,7 +8,7 @@ const productSlice = createSlice({
       user: null,
       products: [],
     cart: [],
-    items: [],
+    item: [],
     product: [],
     cartTotalQuantity: 0,
     cartTotalAmount: 0,
