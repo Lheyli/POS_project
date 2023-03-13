@@ -15,6 +15,8 @@ import Purchase from './pages/Purchase';
 import MakeOrders from './pages/MakeOrders';
 import Payment from './pages/Payment';
 import Receipt from './pages/Receipt';
+import CreateNewMember from './pages/CreateNewMember';
+
 
 function App() {
   return (
@@ -33,6 +35,7 @@ function App() {
         <Route path="makeorders" element={<Layout><MakeOrders /></Layout>} />
         <Route path="payment" element={<Layout><Payment /></Layout>} />
         <Route path="receipt" element={<Layout><Receipt /></Layout>} />
+        <Route path="createnewmember" element={<Layout><CreateNewMember /></Layout>} />
 
       </Routes>
 
