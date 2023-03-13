@@ -186,11 +186,11 @@ const Transactions = () => {
         fontSize: '28px',
         color: '#30304D',
       }}>
-        <span style={{ marginLeft: '350px', }}>
+        <span style={{ marginLeft: '430px', }}>
           {today}</span></div>
       <br></br>
       <div justify='start' style={{ display: 'flex', flexDirection: 'row', marginTop: '10px' }}>
-        <span style={{ marginLeft: '350px', }}>
+        <span style={{ marginLeft: '430px', }}>
           <DatePicker
             id={styles["input123"]}
             style={{
@@ -243,9 +243,16 @@ const Transactions = () => {
         </Button>
       </div>
       <br></br>
-      <div style={{ display: 'flex', justifyContent: 'center', background: '#F9F9FF'  }}>
+      <div style={{ display: 'flex', justifyContent: 'center', background: '#F9F9FF' }}>
         <Card
-          style={{ backgroundColor: '#FFFFFF', width: '1000px', height: '500px' }}
+          style={{
+            backgroundColor: '#FFFFFF',
+            width: '1000px',
+            height: '1250px',
+            background: '#F9F9FF',
+            boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
+            borderRadius: '24px',
+          }}
         >
           <Table
             columns={columns}
