@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Card, Button, Modal, Space } from 'antd';
+import { Table, Card, Button, Modal, Dropdown, Menu } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { FaAngleDown } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
@@ -183,34 +183,40 @@ const Members = () => {
   const [showModal, setShowModal] = useState(false); // add state for controlling modal visibility
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  
-const CreateModal = () => {
-  setIsModalVisible(true);
-};
+  const menu = (
+    <Menu>
+      <Menu.Item key="1">Option 1</Menu.Item>
+      <Menu.Item key="2">Option 2</Menu.Item>
+      <Menu.Item key="3">Option 3</Menu.Item>
+    </Menu>
+  );
+  const CreateModal = () => {
+    setIsModalVisible(true);
+  };
 
-const handleCancel = () => {
-  setIsModalVisible(false);
-};
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
 
-const handleShowModal = () => {
-  setShowModal(!showModal);
-};
+  const handleShowModal = () => {
+    setShowModal(!showModal);
+  };
 
-const handleModalOk = () => {
-  setShowModal(false);
-};
+  const handleModalOk = () => {
+    setShowModal(false);
+  };
 
-const handleModalCancel = () => {
-  setShowModal(false);
-};
+  const handleModalCancel = () => {
+    setShowModal(false);
+  };
 
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button
-            onClick={CreateModal}
-            style={{
+          onClick={CreateModal}
+          style={{
             top: '20px',
             width: 191,
             height: 48,
@@ -241,7 +247,7 @@ const handleModalCancel = () => {
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
           <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#30304D', font: "Poppins", fontWeight: 'bold' }}>CREATE NEW MEMBER</p>
-          <Link to='/createnewmember'><Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold',  width: '150px' }}>
+          <Link to='/createnewmember'><Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', width: '150px' }}>
             SINGLE
           </Button></Link>&nbsp;&nbsp;
           <Button style={{
@@ -253,9 +259,9 @@ const handleModalCancel = () => {
             fontWeight: 'bold',
             width: '150px'
           }}>
-           BATCH
+            BATCH
           </Button>
-          </Modal>
+        </Modal>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Card
@@ -271,11 +277,15 @@ const handleModalCancel = () => {
             borderRadius: '24px',
           }}
         >   <div style={containerStyle}>
-            
-            <Button style={buttonStyle}>BATCH 1 <FaAngleDown /> </Button>
-           
+
+            <Dropdown overlay={menu}>
+              <Button>
+                BATCH 1 <DownOutlined />
+              </Button>
+            </Dropdown>
+
           </div>
-          <br/>
+          <br />
           <Table columns={columns} dataSource={data} style={{ width: '100%', height: 300, justifyContent: 'center' }} />
         </Card>
       </div>
