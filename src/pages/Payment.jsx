@@ -8,7 +8,7 @@ import { fetchProducts } from '../reducers/productSlice';
 import { Link } from 'react-router-dom';
 
 
-const MakeOrders = () => {
+const Payment = () => {
     const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
     const dispatch = useDispatch();
@@ -257,4 +257,4 @@ const MakeOrders = () => {
     );
 };
 
-export default MakeOrders;
+export default Payment;
