@@ -43,7 +43,7 @@ function ScanQrCode() {
 
   return (
     <div>
-      <div justify='start' style={{
+   <div justify='start' style={{
         marginTop: '120px',
         width: '100%',
         font: 'Poppins',
@@ -55,7 +55,7 @@ function ScanQrCode() {
         <span style={{ marginLeft: '270px', }}>
           Scan QR Code</span></div>
       <div style={{ position: 'relative' }}>
-        <img src={scanImage} alt="scan" style={{ position: 'absolute', width: '600px', height: '472px', left: '688px' }} />
+        <img src={scanImage} alt="scan" style={{ position: 'absolute', width: '600px', height: '472px', left: '688px'}} />
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button
@@ -64,7 +64,7 @@ function ScanQrCode() {
             width: '350px',
             height: '100px',
             marginRight: '20px',
-            top: '500px',
+            top: '400px',
             font: 'Poppins',
             fontStyle: 'normal',
             fontWeight: '500',
@@ -76,6 +76,7 @@ function ScanQrCode() {
             color: '#38384D',
             left: '90px',
             justifyContent: 'center',
+            borderRadius: '24px',
           }}
         >
           View Product Details
@@ -84,7 +85,7 @@ function ScanQrCode() {
           style={{
             width: '350px',
             height: '100px',
-            top: '500px',
+            top: '400px',
             font: 'Poppins',
             fontStyle: 'normal',
             fontWeight: '500',
@@ -96,6 +97,7 @@ function ScanQrCode() {
             color: '#38384D',
             left: '90px',
             justifyContent: 'center',
+            borderRadius: '24px',
           }}
         >Make Orders
         </Button></Link>

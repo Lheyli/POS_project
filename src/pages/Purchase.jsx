@@ -19,6 +19,15 @@ const MakePurchase = () => {
 
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const cartItems = useSelector(state => state.products.cartItems);
+
+
+  const totalItems = cartItems.reduce((total, item) => {
+    console.log("🚀 ~ file: Purchase.jsx:26 ~ totalItems ~ item:", item)
+    
+    return   total + item.cartQuantity
+  }, 0);
+
 
   const showDrawer = (product) => {
     setSelectedProduct(product);
@@ -33,17 +42,18 @@ const MakePurchase = () => {
   const handleDecreaseCart = (product) => {
     if (quantity > 0) {
       setQuantity(quantity - 1);
-      dispatch(decreaseCart(product));
+      // dispatch(decreaseCart(product));
     }
   };
 
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
+    dispatch(addToCart({ ...product, quantity }));
+    setQuantity(1);
   };
 
   const handleIncreaseCart = (product) => {
     setQuantity(quantity + 1);
-    dispatch(increaseCart(product));
+    // dispatch(increaseCart(product));
   };
 
 
@@ -61,10 +71,10 @@ const MakePurchase = () => {
 
   const filteredProducts = products.filter((product) => {
 
-    console.log({
-      selectedAll: selectedCategory === 'All',
-      selectedCategory: product.category === selectedCategory,
-    })
+    // console.log({
+    //   selectedAll: selectedCategory === 'All',
+    //   selectedCategory: product.category === selectedCategory,
+    // })
     return (selectedCategory === 'All' || product.category === selectedCategory?.toLowerCase()) &&
       product.title.toLowerCase().includes(searchValue.toLowerCase())
   });
@@ -93,6 +103,7 @@ const MakePurchase = () => {
         <Col>
           <Link to="/cart" >
             <ShoppingCartOutlined style={{ color: '#5250B4', fontSize: '30px'  }} />
+            {totalItems}
           </Link>
 &nbsp;&nbsp;
         </Col>

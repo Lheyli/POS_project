@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Table, Space, Button, Modal, DatePicker} from 'antd';
+import { Table, Space, Button, Modal, DatePicker, Row, Col } from 'antd';
 import { fetchProducts } from '../reducers/productSlice';
 import { Link } from "react-router-dom";
 import { ShoppingCartOutlined, RightOutlined } from '@ant-design/icons';
@@ -50,7 +50,7 @@ const Products = () => {
     return current && current < startDate;
   };
 
- 
+
   const modalContent = (
     <Modal
       open={showModal}
@@ -152,76 +152,100 @@ const Products = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
-
+const BREAKPOINTS = {
+  xs: 24,
+  sm: 24,
+  md: 12,
+  lg: 12,
+  xl: 12,
+  xxl: 12,
+}
   return (
-    <>
-      <div style={{ display: 'flex', marginBottom: '16px' }}>
-      <DatePicker
-        value={startDate}
-        onChange={handleStartDateChange}
-        placeholder="Start Date"
-        style={{ width: '150px', marginLeft: '230px', background: '#5250B4', color: '#ffffff', font: "Poppins" }}
-        format="YYYY-MM-DD"
-      />&nbsp;
-        <span style={{ color: '#3B3A82', font: "Poppins", fontWeight: 'bold' }}> to </span>&nbsp;
-        <DatePicker
-        value={endDate}
-        onChange={handleEndDateChange}
-        placeholder="End Date"
-        disabledDate={disabledEndDate}
-        format="YYYY-MM-DD"
-        style={{ width: '150px', background: '#5250B4', color: '#ffffff', font: "Poppins" }}
-      />
+    <div style={{
+      display:'flex',
+      flexDirection:'column',
+      justifyContent:'center',
+      alignItems:'center'
+    }}>
+      <Row gutter={[16, 16]} style={{width:'50vw', maxWidth:1000}}>
+        <Col
 
-    
-      </div>
-      <div justify="end" style={{ display: 'flex', marginBottom: '16px', marginLeft: '1000px' }}>
-        <Button onClick={CreateModal} style={{ borderColor: '#5250B4', borderRadius: '50px', display: 'inline-block', color: '#3B3A82', font: "Poppins", fontWeight: 'bold' }}>
-          CREATE NEW
-        </Button>
-        <Modal
-          open={isModalVisible}
-          onCancel={handleCancel}
-          footer={null}
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          {...BREAKPOINTS}
+          style={{ display: 'flex', marginBottom: '16px', justifyContent: 'flex-start' }}
         >
-          <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#30304D', font: "Poppins", fontWeight: 'bold' }}>CREATE NEW PRODUCT</p>
-          <Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold',  width: '150px' }}>
-            SINGLE
-          </Button>&nbsp;&nbsp;
-          <Button style={{
-            background: '#5250B4',
-            borderRadius: '50px',
-            display: 'inline-block',
-            color: '#ffffff',
-            font: "Poppins",
-            fontWeight: 'bold',
-            width: '150px'
-          }}>
-           MULTIPLE
+          <DatePicker
+            value={startDate}
+            onChange={handleStartDateChange}
+            placeholder="Start Date"
+            style={{ width: '150px', background: '#5250B4', color: '#ffffff', font: "Poppins" }}
+            format="YYYY-MM-DD"
+          />&nbsp;
+          <span style={{ color: '#3B3A82', font: "Poppins", fontWeight: 'bold' }}> to </span>&nbsp;
+          <DatePicker
+            value={endDate}
+            onChange={handleEndDateChange}
+            placeholder="End Date"
+            disabledDate={disabledEndDate}
+            format="YYYY-MM-DD"
+            style={{ width: '150px', background: '#5250B4', color: '#ffffff', font: "Poppins" }}
+          />
+
+
+        </Col>
+
+        <Col 
+        
+        {...BREAKPOINTS}
+       style={{ display: 'flex', marginBottom: '16px', justifyContent: 'flex-end' }}>
+          <Button onClick={CreateModal} style={{ borderColor: '#5250B4', borderRadius: '50px', display: 'inline-block', color: '#3B3A82', font: "Poppins", fontWeight: 'bold' }}>
+            CREATE NEW
           </Button>
-        </Modal>
+          <Modal
+            open={isModalVisible}
+            onCancel={handleCancel}
+            footer={null}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#30304D', font: "Poppins", fontWeight: 'bold' }}>CREATE NEW PRODUCT</p>
+            <Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', width: '150px' }}>
+              SINGLE
+            </Button>&nbsp;&nbsp;
+            <Button style={{
+              background: '#5250B4',
+              borderRadius: '50px',
+              display: 'inline-block',
+              color: '#ffffff',
+              font: "Poppins",
+              fontWeight: 'bold',
+              width: '150px'
+            }}>
+              MULTIPLE
+            </Button>
+          </Modal>
 
 
-        &nbsp; &nbsp;
-        <Button
-          style={{
-            background: '#5250B4',
-            borderRadius: '50px',
-            display: 'inline-block',
-            color: '#ffffff',
-            font: "Poppins",
-            fontWeight: 'bold'
-          }}
-          icon={<ShoppingCartOutlined />}
-        > &nbsp;
-          <Link to="/make">MAKE PURCHASE</Link>
-        </Button>
-      </div>
+          &nbsp; &nbsp;
+          <Button
+            style={{
+              background: '#5250B4',
+              borderRadius: '50px',
+              display: 'inline-block',
+              color: '#ffffff',
+              font: "Poppins",
+              fontWeight: 'bold'
+            }}
+            icon={<ShoppingCartOutlined />}
+          > &nbsp;
+            <Link to="/make">MAKE PURCHASE</Link>
+          </Button>
+        </Col>
+      </Row>
+
+
 
       <StyledTable columns={columns} dataSource={products} rowKey="id" />
       {modalContent}
-    </>
+    </div>
   );
 };
 
