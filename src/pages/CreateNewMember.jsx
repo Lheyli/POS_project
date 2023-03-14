@@ -104,7 +104,7 @@ function CreateNewMember() {
               showSearch
               style={{
                 width: 200,
-                marginLeft: '320px',
+                marginLeft: '350px',
                 color: '#A9A9CC',
                 border: '2px solid #A9A9CC',
                 borderRadius: '8px'
