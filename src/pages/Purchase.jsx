@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const MakePurchase = () => {
   const dispatch = useDispatch();
-  const { products, loading, error, cart } = useSelector(state => state.products);
+  const { products, loading, error } = useSelector(state => state.products);
   console.log({ products })
   const [quantity, setQuantity] = useState(1);
   const [searchValue, setSearchValue] = useState('');

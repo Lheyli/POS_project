@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from 'antd';
 import image from '../pages/image.png';
 import { Link } from 'react-router-dom';
@@ -60,7 +60,7 @@ function MakePurchase() {
             textAlign: 'center',
             color: '#3B3A82',
             borderRadius: '24px',
-            textAlign: 'center' // added property to center text
+
           }}
         >
          &nbsp;&nbsp;  <Link to="/makeorders">Scan QR Code</Link>

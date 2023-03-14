@@ -1,25 +1,7 @@
 import React, { useState } from 'react';
 import { Table, Card, Button, Modal, Dropdown, Menu } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
-import { FaAngleDown } from 'react-icons/fa'
+import { PlusOutlined, DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-
-const buttonStyle = {
-  borderRadius: '0px',
-  background: '#EEEEFF',
-  font: 'Poppins',
-  fontStyle: 'normal',
-  fontWeight: 700,
-  fontSize: '18px',
-  lineHeight: '28px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  textAlign: 'center',
-  color: '#3B3A82',
-  width: '120px',
-  height: '32px',
-};
 
 const containerStyle = {
   display: 'flex',
@@ -185,9 +167,9 @@ const Members = () => {
 
   const menu = (
     <Menu>
-      <Menu.Item key="1">Option 1</Menu.Item>
-      <Menu.Item key="2">Option 2</Menu.Item>
-      <Menu.Item key="3">Option 3</Menu.Item>
+      <Menu.Item key="1">BATCH 1</Menu.Item>
+      <Menu.Item key="2">BATCH 2</Menu.Item>
+      <Menu.Item key="3">BATCH 3</Menu.Item>
     </Menu>
   );
   const CreateModal = () => {
@@ -279,8 +261,24 @@ const Members = () => {
         >   <div style={containerStyle}>
 
             <Dropdown overlay={menu}>
-              <Button>
-                BATCH 1 <DownOutlined />
+              <Button style={{
+                marginLeft: '50px',
+                borderRadius: '5px',
+                background: '#EEEEFF',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 700,
+                fontSize: '18px',
+                lineHeight: '28px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textAlign: 'center',
+                color: '#3B3A82',
+                width: '150px',
+                height: '40px',
+              }}>
+                BATCH 1 &nbsp; <DownOutlined style={{ fontSize: '14px' }} />
               </Button>
             </Dropdown>
 
