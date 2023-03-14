@@ -178,7 +178,7 @@ const Transactions = () => {
     <>
 
       <div justify='start' style={{
-        marginTop: '120px',
+        marginTop: '50px',
         width: '100%',
         font: 'Poppins',
         fontStyle: 'normal',
@@ -186,11 +186,11 @@ const Transactions = () => {
         fontSize: '28px',
         color: '#30304D',
       }}>
-        <span style={{ marginLeft: '430px', }}>
+        <span style={{ marginLeft: '250px', }}>
           {today}</span></div>
       <br></br>
       <div justify='start' style={{ display: 'flex', flexDirection: 'row', marginTop: '10px' }}>
-        <span style={{ marginLeft: '430px', }}>
+        <span style={{ marginLeft: '250px', }}>
           <DatePicker
             id={styles["input123"]}
             style={{

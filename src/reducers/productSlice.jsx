@@ -7,11 +7,9 @@ const productSlice = createSlice({
     initialState: {
       user: null,
       products: [],
-    cart: [],
+    cartItems: [],
     item: [],
     product: [],
-    cartTotalQuantity: 0,
-    cartTotalAmount: 0,
     loading: false,
     error: null
     },
@@ -37,18 +35,25 @@ const productSlice = createSlice({
         state.error = action.payload;
       },
       addToCart: (state, action) => {
-        const existingIndex = state.product.findIndex(
+        console.log("🚀 ~ file: productSlice.jsx:38 ~ action:", action)
+        console.log({state: state?.products})
+
+        // check if existing in cart
+        const existingIndex = state.cartItems.findIndex(
           (item) => item.id === action.payload.id
         );
+        console.log("🚀 ~ file: productSlice.jsx:42 ~ existingIndex:", existingIndex)
       
+        //if exisiting in cart increase quantity of item
         if (existingIndex >= 0) {
-          state.product[existingIndex].cartQuantity += 1;
+          state.cartItems[existingIndex].quantity += action?.payload?.quantity;
           toast.info("Increased product quantity", {
             position: "bottom-left",
           });
         } else {
+          //else add new item
           let tempProductItem = { ...action.payload, cartQuantity: 1 };
-          state.product.push(tempProductItem);
+          state?.cartItems?.push(tempProductItem);
           toast.success("Product added to cart", {
             position: "bottom-left",
           });
@@ -57,12 +62,12 @@ const productSlice = createSlice({
       },
       
       increaseCart(state, action) {
-        const existingIndex = state.product.findIndex(
+        const existingIndex = state.cartItems.findIndex(
           (item) => item.id === action.payload.id
         );
       
         if (existingIndex >= 0) {
-          state.product[existingIndex].cartQuantity += 1;
+          state.cartItems[existingIndex].quantity += 1;
           toast.info("Increased product quantity", {
             position: "bottom-left",
           });
@@ -71,12 +76,12 @@ const productSlice = createSlice({
       },
       
       decreaseCart(state, action) {
-        const itemIndex = state.product.findIndex(
+        const itemIndex = state.cartItems.findIndex(
           (item) => item.id === action.payload.id
         );
       
-        if (state.product[itemIndex].cartQuantity > 1) {
-          state.product[itemIndex].cartQuantity -= 1;
+        if (state.cartItems[itemIndex].quantity > 1) {
+          state.cartItems[itemIndex].quantity -= 1;
       
           toast.info("Decreased product quantity", {
             position: "bottom-left",

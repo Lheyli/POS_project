@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import { Table, Card, Button, Modal} from 'antd';
-import { PlusOutlined, RightOutlined, LeftOutlined } from '@ant-design/icons';
 import { Table, Card, Button, Modal, Space } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
-import { FaAngleDown } from 'react-icons/fa'
+import { PlusOutlined, RightOutlined, LeftOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
 const buttonStyle = {
@@ -182,6 +179,7 @@ const data = [
 
 const Members = () => {
 
+  const [showModal, setShowModal] = useState(false); // add state for controlling modal visibility
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   
@@ -194,6 +192,17 @@ const handleCancel = () => {
 };
 
 
+const handleShowModal = () => {
+  setShowModal(!showModal);
+};
+
+const handleModalOk = () => {
+  setShowModal(false);
+};
+
+const handleModalCancel = () => {
+  setShowModal(false);
+};
 
   return (
     <>
@@ -261,9 +270,9 @@ const handleCancel = () => {
             borderRadius: '24px',
           }}
         >   <div style={containerStyle}>
-            
-            <Button style={buttonStyle}>BATCH 1 <FaAngleDown /> </Button>
-           
+            <Button style={{ borderRadius: '5px 0px 0px 5px', background: '#EEEEFF' }}><LeftOutlined style={iconStyle}/></Button>
+            <Button style={buttonStyle}>BATCH 1 </Button>
+            <Button style={{ borderRadius: '0px 5px 5px 0px', background: '#EEEEFF' }}><RightOutlined style={iconStyle}/></Button>
           </div>
           <br/>
           <Table columns={columns} dataSource={data} style={{ width: '100%', height: 300, justifyContent: 'center' }} />

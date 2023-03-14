@@ -17,6 +17,7 @@ import CreateNewMember from './pages/CreateNewMember';
 import Receipt from './pages/Receipt';
 import Payment from './pages/Payment';
 import MakeOrders from './pages/MakeOrders';
+import CheckRec from './pages/CheckRec';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
       <Route path= "purchase" element={<Layout><MakePurchase /></Layout> } />
       <Route path= "make" element={<Purchase /> } />
       <Route path= "cart" element={<Checkout /> } />
+      <Route path= "cartreceipt" element={<CheckRec /> } />
       <Route path="makeorders" element={<Layout><MakeOrders /></Layout>} />
       <Route path="payment" element={<Layout><Payment /></Layout>} />
       <Route path="receipt" element={<Layout><Receipt /></Layout>} />
