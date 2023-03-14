@@ -13,6 +13,10 @@ import ScanQrCode from './pages/ScanQrCode';
 import MakePurchase from './pages/MakePurchase';
 import Purchase from './pages/Purchase';
 import Checkout from './pages/Checkout';
+import CreateNewMember from './pages/CreateNewMember';
+import Receipt from './pages/Receipt';
+import Payment from './pages/Payment';
+import MakeOrders from './pages/MakeOrders';
 
 function App() {
   return (
@@ -32,6 +36,10 @@ function App() {
       <Route path= "purchase" element={<Layout><MakePurchase /></Layout> } />
       <Route path= "make" element={<Purchase /> } />
       <Route path= "cart" element={<Checkout /> } />
+      <Route path="makeorders" element={<Layout><MakeOrders /></Layout>} />
+      <Route path="payment" element={<Layout><Payment /></Layout>} />
+      <Route path="receipt" element={<Layout><Receipt /></Layout>} />
+      <Route path="createnewmember" element={<Layout><CreateNewMember /></Layout>} />
   
       
     </Routes>
