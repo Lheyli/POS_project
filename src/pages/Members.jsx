@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Table, Card, Button, Modal, Space } from 'antd';
-import { PlusOutlined, RightOutlined, LeftOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
+import { FaAngleDown } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 
 const buttonStyle = {
@@ -270,9 +271,9 @@ const handleModalCancel = () => {
             borderRadius: '24px',
           }}
         >   <div style={containerStyle}>
-            <Button style={{ borderRadius: '5px 0px 0px 5px', background: '#EEEEFF' }}><LeftOutlined style={iconStyle}/></Button>
-            <Button style={buttonStyle}>BATCH 1 </Button>
-            <Button style={{ borderRadius: '0px 5px 5px 0px', background: '#EEEEFF' }}><RightOutlined style={iconStyle}/></Button>
+            
+            <Button style={buttonStyle}>BATCH 1 <FaAngleDown /> </Button>
+           
           </div>
           <br/>
           <Table columns={columns} dataSource={data} style={{ width: '100%', height: 300, justifyContent: 'center' }} />

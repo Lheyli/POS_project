@@ -28,7 +28,8 @@ function App() {
         <Route path="transactions" element={<Layout><Transactions /></Layout>} />
         <Route path="sales-report" element={<Layout><Sales /></Layout>} />
         <Route path="accounting-report" element={<Layout><Accounting /></Layout>} />
-        <Route path="user-logs" element={<Layout><Members /></Layout>} />
+        <Route path="clients" element={<Layout><Members /></Layout>} />
+        <Route path= "user-logs" element={<Layout><User /></Layout> } />
         <Route path="qr" element={<Layout><ScanQrCode /></Layout>} />
         <Route path="purchase" element={<Layout><MakePurchase /></Layout>} />
         <Route path="make" element={<Purchase />} />
