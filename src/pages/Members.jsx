@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Card, Button, Modal, Space } from 'antd';
+import { Table, Card, Button, Modal} from 'antd';
 import { PlusOutlined, RightOutlined, LeftOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
@@ -179,7 +179,6 @@ const data = [
 
 const Members = () => {
 
-  const [showModal, setShowModal] = useState(false); // add state for controlling modal visibility
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   
@@ -192,17 +191,6 @@ const handleCancel = () => {
 };
 
 
-const handleShowModal = () => {
-  setShowModal(!showModal);
-};
-
-const handleModalOk = () => {
-  setShowModal(false);
-};
-
-const handleModalCancel = () => {
-  setShowModal(false);
-};
 
   return (
     <>

@@ -38,11 +38,11 @@ const Products = () => {
   const handleModalCancel = () => {
     setShowModal(false);
   };
-  const handleStartDateChange = (date, dateString) => {
+  const handleStartDateChange = (date) => {
     setStartDate(date);
   };
 
-  const handleEndDateChange = (date, dateString) => {
+  const handleEndDateChange = (date) => {
     setEndDate(date);
   };
 
@@ -50,11 +50,7 @@ const Products = () => {
     return current && current < startDate;
   };
 
-  const handleFilterClick = () => {
-    // Do something with startDate and endDate values, such as filtering a list of data
-    console.log(`Filtering data between ${startDate} and ${endDate}`);
-  };
-
+ 
   const modalContent = (
     <Modal
       open={showModal}
