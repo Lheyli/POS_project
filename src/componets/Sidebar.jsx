@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Modal, Carousel } from 'antd';
+import React, { useState } from "react";
+import choose from './choose.png';
+import createupload from './createupload.png';
+import member from './member.png';
+import addmembers from './addmembers.png';
 import {
   HomeOutlined,
   PoweroffOutlined,
@@ -14,6 +20,14 @@ import {
   ShoppingCartOutlined,
   UsergroupAddOutlined,
 } from "@ant-design/icons";
+
+const contentStyle = {
+  height: '160px',
+  color: '#fff',
+  lineHeight: '160px',
+  textAlign: 'center',
+  background: '#364d79',
+};
 
 const StyledSider = styled.div`
   background-color: #eeeeff;
@@ -80,11 +94,44 @@ const StyledToggle = styled.button`
   cursor: pointer;
 `;
 
+
+
+
 function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
+  };
+
+  const images = [''];
+  const [visible, setVisible] = useState(false);
+
+  const handleSidebarClick = () => {
+    setVisible(true);
+  };
+
+  const handleModalOk = () => {
+    setVisible(false);
+  };
+
+  const handleModalCancel = () => {
+    setVisible(false);
+  };
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+
+    slidesToScroll: 1,
+    dotStyle: {
+      borderColor: 'gray',
+      borderWidth: 2,
+    },
+    dotActiveStyle: {
+      borderColor: 'blue',
+    },
   };
 
   return (
@@ -94,51 +141,81 @@ function Sidebar() {
       </StyledToggle>
       <StyledSider isOpen={isOpen}>
         <StyledMenu>
-          <StyledLink to="/dashboard" style={{ fontWeight: 'bold'  }}>
+          <StyledLink to="/dashboard" style={{ fontWeight: 'bold' }}>
             <HomeOutlined />
             &nbsp; Dashboard
           </StyledLink>
-          <StyledLink to="/products" style={{ fontWeight: 'bold'  }}>
+          <StyledLink to="/products" style={{ fontWeight: 'bold' }}>
             <TagOutlined />
             &nbsp; Products
           </StyledLink>
-          <StyledLink to="/purchase" style={{ fontWeight: 'bold'  }}>
+          <StyledLink to="/purchase" style={{ fontWeight: 'bold' }}>
             <ShoppingCartOutlined />
             &nbsp; Make Purchase
           </StyledLink>
-          <StyledLink to="/transactions"style={{ fontWeight: 'bold'  }}>
+          <StyledLink to="/transactions" style={{ fontWeight: 'bold' }}>
             <SwapOutlined />
             &nbsp; Transactions
           </StyledLink>
-          <StyledLink to="/sales-report"style={{ fontWeight: 'bold'  }}>
+          <StyledLink to="/sales-report" style={{ fontWeight: 'bold' }}>
             <FundOutlined />
             &nbsp; Sales Report
           </StyledLink>
-          <StyledLink to="/accounting-report"style={{ fontWeight: 'bold'  }}>
+          <StyledLink to="/accounting-report" style={{ fontWeight: 'bold' }}>
             <CalculatorOutlined />
             &nbsp; Accounting Report
           </StyledLink>
-          <StyledLink to="/user-logs"style={{ fontWeight: 'bold'  }}>
+          <StyledLink to="/user-logs" style={{ fontWeight: 'bold' }}>
             <UserOutlined />
             &nbsp; User Logs
           </StyledLink>
-          <StyledLink to="/clients"style={{ fontWeight: 'bold'  }}>
-          <UsergroupAddOutlined />
+          <StyledLink to="/clients" style={{ fontWeight: 'bold' }} onClick={handleSidebarClick}>
+            <UsergroupAddOutlined />
             &nbsp; Members/Clients
           </StyledLink>
-          <StyledLink to="/qr"style={{ fontWeight: 'bold'  }}>
+          <Modal
+            visible={visible}
+            footer={null}
+            onOk={handleModalOk}
+            onCancel={handleModalCancel}
+            width={800} height={1500}
+          >
+            <Carousel autoplay {...settings}>
+              {images.map(image => (
+                <div key={image}>
+                  <img src={choose} alt={image} />
+                </div>
+              ))}
+              {images.map(image => (
+                <div key={image}>
+                  <img src={createupload} alt={image} />
+                </div>
+              ))}
+              {images.map(image => (
+                <div key={image}>
+                  <img src={member} alt={image} />
+                </div>
+              ))}
+              {images.map(image => (
+                <div key={image}>
+                  <img src={addmembers} alt={image} />
+                </div>
+              ))}
+            </Carousel>
+          </Modal>
+          <StyledLink to="/qr" style={{ fontWeight: 'bold' }}>
             <QrcodeOutlined />&nbsp;
-                    Scan QR Code
-                </StyledLink>
-                <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br><br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br><br></br>
-                <StyledMenuSignout to="/out" style={{ fontWeight: 'bold'  }}>
-                    Sign out
-                    &nbsp;<PoweroffOutlined /></StyledMenuSignout>
-            </StyledMenu>
+            Scan QR Code
+          </StyledLink>
+          <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br><br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br><br></br>
+          <StyledMenuSignout to="/out" style={{ fontWeight: 'bold' }}>
+            Sign out
+            &nbsp;<PoweroffOutlined /></StyledMenuSignout>
+        </StyledMenu>
 
-        </StyledSider>
-        </>
-    );
+      </StyledSider>
+    </>
+  );
 }
 
 export default Sidebar;

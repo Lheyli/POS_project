@@ -1,24 +1,7 @@
 import React, { useState } from 'react';
-import { Table, Card, Button, Modal} from 'antd';
+import { Table, Card, Button, Modal, Space } from 'antd';
 import { PlusOutlined, RightOutlined, LeftOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-
-const buttonStyle = {
-  borderRadius: '0px',
-  background: '#EEEEFF',
-  font: 'Poppins',
-  fontStyle: 'normal',
-  fontWeight: 700,
-  fontSize: '18px',
-  lineHeight: '28px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  textAlign: 'center',
-  color: '#3B3A82',
-  width: '120px',
-  height: '32px',
-};
 
 const containerStyle = {
   display: 'flex',
@@ -182,34 +165,40 @@ const Members = () => {
   const [showModal, setShowModal] = useState(false); // add state for controlling modal visibility
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  
-const CreateModal = () => {
-  setIsModalVisible(true);
-};
+  const menu = (
+    <Menu>
+      <Menu.Item key="1">BATCH 1</Menu.Item>
+      <Menu.Item key="2">BATCH 2</Menu.Item>
+      <Menu.Item key="3">BATCH 3</Menu.Item>
+    </Menu>
+  );
+  const CreateModal = () => {
+    setIsModalVisible(true);
+  };
 
-const handleCancel = () => {
-  setIsModalVisible(false);
-};
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
 
-const handleShowModal = () => {
-  setShowModal(!showModal);
-};
+  const handleShowModal = () => {
+    setShowModal(!showModal);
+  };
 
-const handleModalOk = () => {
-  setShowModal(false);
-};
+  const handleModalOk = () => {
+    setShowModal(false);
+  };
 
-const handleModalCancel = () => {
-  setShowModal(false);
-};
+  const handleModalCancel = () => {
+    setShowModal(false);
+  };
 
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button
-            onClick={CreateModal}
-            style={{
+          onClick={CreateModal}
+          style={{
             top: '20px',
             width: 191,
             height: 48,
@@ -240,7 +229,7 @@ const handleModalCancel = () => {
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
           <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#30304D', font: "Poppins", fontWeight: 'bold' }}>CREATE NEW MEMBER</p>
-          <Link to='/createnewmember'><Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold',  width: '150px' }}>
+          <Link to='/createnewmember'><Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', width: '150px' }}>
             SINGLE
           </Button></Link>&nbsp;&nbsp;
           <Button style={{
@@ -252,9 +241,9 @@ const handleModalCancel = () => {
             fontWeight: 'bold',
             width: '150px'
           }}>
-           BATCH
+            BATCH
           </Button>
-          </Modal>
+        </Modal>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Card
@@ -270,11 +259,31 @@ const handleModalCancel = () => {
             borderRadius: '24px',
           }}
         >   <div style={containerStyle}>
-            <Button style={{ borderRadius: '5px 0px 0px 5px', background: '#EEEEFF' }}><LeftOutlined style={iconStyle}/></Button>
-            <Button style={buttonStyle}>BATCH 1 </Button>
-            <Button style={{ borderRadius: '0px 5px 5px 0px', background: '#EEEEFF' }}><RightOutlined style={iconStyle}/></Button>
+
+            <Dropdown overlay={menu}>
+              <Button style={{
+                marginLeft: '50px',
+                borderRadius: '5px',
+                background: '#EEEEFF',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 700,
+                fontSize: '18px',
+                lineHeight: '28px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textAlign: 'center',
+                color: '#3B3A82',
+                width: '150px',
+                height: '40px',
+              }}>
+                BATCH 1 &nbsp; <DownOutlined style={{ fontSize: '14px' }} />
+              </Button>
+            </Dropdown>
+
           </div>
-          <br/>
+          <br />
           <Table columns={columns} dataSource={data} style={{ width: '100%', height: 300, justifyContent: 'center' }} />
         </Card>
       </div>

@@ -19,12 +19,11 @@ import Payment from './pages/Payment';
 import MakeOrders from './pages/MakeOrders';
 import CheckRec from './pages/CheckRec';
 
-
 function App() {
   return (
     <Router>
-  
-    <Routes>
+
+      <Routes>
 
       <Route path="/" element={<SignIn />} />
       <Route path= "dashboard" element={<Layout><Dashboard /></Layout> } />
@@ -43,11 +42,11 @@ function App() {
       <Route path="payment" element={<Layout><Payment /></Layout>} />
       <Route path="receipt" element={<Layout><Receipt /></Layout>} />
       <Route path="createnewmember" element={<Layout><CreateNewMember /></Layout>} />
-   
+  
       
     </Routes>
 
-  </Router>
+    </Router>
   );
 }
 
