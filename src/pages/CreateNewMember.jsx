@@ -1,15 +1,11 @@
+
 import { Card, Select, Typography, Input, Form, Row, Col, Button, } from "antd";
 import React, { useState } from 'react';
 import { EyeInvisibleOutlined, EyeTwoTone, DownOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 
-const { Text } = Typography;
-const MyFormItemContext = React.createContext([]);
-function toArr(str) {
-  return Array.isArray(str) ? str : [str];
-}
-
-function CreateNewMember() {
+const CreateNewMember = () => { 
+  const { Text } = Typography;
 
   const [form] = Form.useForm();
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -36,8 +32,10 @@ function CreateNewMember() {
     textAlign: "center",
     color: "#30304D",
   };
+
   return (
-    <Card style={{ width: "1000px", margin: "0 auto" }}>
+  
+  <Card style={{ width: "1000px", margin: "0 auto" }}>
       <h2 style={headingStyle}>CREATE NEW MEMBER</h2>
       <div
         style={{
@@ -349,7 +347,8 @@ function CreateNewMember() {
         </div>
       </div>
     </Card >
-  );
-}
+
+    );
+};
 
 export default CreateNewMember;
