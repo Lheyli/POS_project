@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Table, Space, Button, Modal, DatePicker, Row, Col } from 'antd';
+import { Table, Space, Button, Modal, DatePicker, Row, Col, Drawer, Typography } from 'antd';
 import { fetchProducts } from '../reducers/productSlice';
 import { Link } from "react-router-dom";
-import { ShoppingCartOutlined, RightOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined, RightOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import '../pages/DateRangePicker.css';
+import axios from 'axios';
 
-const Products = () => {
+const Products = ({ dataSource }) => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
   const loading = useSelector((state) => state.products.loading);
@@ -16,7 +17,29 @@ const Products = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
+  const fetchProductDetails = async () => {
+    try {
+      const response = await axios.get('https://fakestoreapi.com/products');
+      setSelectedProduct(response.data[0]); // assuming you want to display details for the first product in the response array
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const [isDrawerVisible, setIsDrawerVisible] = useState(false);
+
+  const handleButtonClick = () => {
+    fetchProductDetails();
+    setIsDrawerVisible(true);
+  };
+
+  const onDetailsClose = () => {
+    setIsDrawerVisible(false);
+  };
+
+  <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }} onClick={handleButtonClick}>View Details {<RightOutlined />} </Button>
 
   const CreateModal = () => {
     setIsModalVisible(true);
@@ -58,8 +81,95 @@ const Products = () => {
       onCancel={handleModalCancel}
       footer={null}
     >
-      <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>View Details {<RightOutlined />} </Button><br></br>
-      <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>Delete {<RightOutlined />} </Button><br></br>
+      <Button className="btn-arrow" onClick={handleButtonClick} style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>View Details {<RightOutlined />} </Button>
+      {selectedProduct && (
+        <Drawer
+          placement="right"
+          closable={false}
+          open={isDrawerVisible}
+          onClose={onDetailsClose}
+
+          width={500}
+          style={{ borderRadius: '40px 0px 0px 40px' }} // Add border radius of 20px
+        >
+          {/* New content for the "View Details" drawer */}
+          <Row justify="end">
+            <Col>
+              <Link to="/edit" >
+                <EditOutlined style={{ color: '#9494B2', fontSize: '30px' }} />
+              </Link>
+              &nbsp;&nbsp;
+            </Col>
+          </Row>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '50px' }}>
+            <img
+              src={selectedProduct.image}
+              className="img-fluid"
+              width={230}
+              height={230}
+              alt={selectedProduct.name}
+              style={{ display: 'block', margin: 'auto' }}
+            />
+
+          </div>
+          <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3B3A82', font: 'Poppins', fontWeight: 'bold', marginLeft: '10px', fontSize: '23px', marginTop: '0px' }}>
+
+            {selectedProduct.title}
+          </p>
+          <br></br>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Price</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>₱{selectedProduct.price}</Typography.Text>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Category</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.category}</Typography.Text>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Variation</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Expiration Date</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Quantity</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Created At</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Updated At</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Updated By</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
+          </div>
+          <br></br>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Button style={{ borderRadius: '50px', borderColor: '#5250B4', color: '#5250B4', font: 'Poppins', fontWeight: 'bold', height: '55px', width: '205px' }} onClick={() => (selectedProduct)}>
+              GENERATE QR CODE
+            </Button>
+          </div>
+
+          <Row justify="end">
+            <Col>
+
+              <DeleteOutlined style={{ color: '#9494B2', fontSize: '30px' }} />
+
+              &nbsp;&nbsp;
+            </Col>
+          </Row>
+
+
+        </Drawer>
+      )}
+      <br></br>
+      <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>Edit {<RightOutlined />} </Button><br></br>
       <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>Generate QR Code{<RightOutlined />} </Button>
     </Modal>
   );
@@ -152,22 +262,22 @@ const Products = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
-const BREAKPOINTS = {
-  xs: 24,
-  sm: 24,
-  md: 12,
-  lg: 12,
-  xl: 12,
-  xxl: 12,
-}
+  const BREAKPOINTS = {
+    xs: 24,
+    sm: 24,
+    md: 12,
+    lg: 12,
+    xl: 12,
+    xxl: 12,
+  }
   return (
     <div style={{
-      display:'flex',
-      flexDirection:'column',
-      justifyContent:'center',
-      alignItems:'center'
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
     }}>
-      <Row gutter={[16, 16]} style={{width:'50vw', maxWidth:1000}}>
+      <Row gutter={[16, 16]} style={{ width: '50vw', maxWidth: 1000 }}>
         <Col
 
           {...BREAKPOINTS}
@@ -193,10 +303,10 @@ const BREAKPOINTS = {
 
         </Col>
 
-        <Col 
-        
-        {...BREAKPOINTS}
-       style={{ display: 'flex', marginBottom: '16px', justifyContent: 'flex-end' }}>
+        <Col
+
+          {...BREAKPOINTS}
+          style={{ display: 'flex', marginBottom: '16px', justifyContent: 'flex-end' }}>
           <Button onClick={CreateModal} style={{ borderColor: '#5250B4', borderRadius: '50px', display: 'inline-block', color: '#3B3A82', font: "Poppins", fontWeight: 'bold' }}>
             CREATE NEW
           </Button>
@@ -209,7 +319,8 @@ const BREAKPOINTS = {
             <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#30304D', font: "Poppins", fontWeight: 'bold' }}>CREATE NEW PRODUCT</p>
             <Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', width: '150px' }}>
               SINGLE
-            </Button>&nbsp;&nbsp;
+            </Button>
+            &nbsp;&nbsp;
             <Button style={{
               background: '#5250B4',
               borderRadius: '50px',

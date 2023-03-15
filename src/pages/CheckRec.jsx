@@ -6,7 +6,7 @@ import {
 import { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
-import { Button, Row, Card, Typography, Table, InputNumber } from 'antd';
+import { Button, Row, Card, Typography, Table} from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import { TbCircle1Filled, TbCircle2Filled, TbChevronRight } from "react-icons/tb";
 const StyledHeader = styled.header`
@@ -34,7 +34,7 @@ const CheckRec = () => {
     const currentDateTime = now.toLocaleString(); // e.g. "3/14/2023, 3:30:15 PM"
     const { product, cartItems } = useSelector(state => state.products);
     const dispatch = useDispatch();
-    const [tenderedAmount, setTenderedAmount] = useState(0);
+    const [tenderedAmount] = useState(0);
     const totalPrice = cartItems.reduce((acc, product) => acc + (product.quantity * product.price), 0);
     const change = tenderedAmount - totalPrice;
 
@@ -46,6 +46,7 @@ const CheckRec = () => {
     useEffect(() => {
         dispatch(getTotals());
     }, [product, dispatch]);
+
 
     return (
         <>
@@ -184,60 +185,63 @@ const CheckRec = () => {
 
                     <br></br><br></br>
 
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <div>
-                            {`${currentDateTime}`}
-                            <br></br>
-                            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: 'red' }}>Receipt #</Typography.Text>
+                    <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
 
-                        </div>
+                        {`${currentDateTime}`}
+
                     </div>
+                    <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+
+
+                        <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: 'red' }}>Receipt #</Typography.Text>
+
+                    </div>
+
 
                 </Card>
 
             </center>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px', alignItems: 'center' }}>
-                <Button
+            <div style={{ justifyContent: 'center', marginTop: '20px', alignItems: 'center' }}>
+                <div style={{ display: 'flex', width: '90%', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Button
+                        style={{
+                            borderColor: '#5250B4',
+                            borderRadius: '50px',
+                            display: 'flex',
+                            color: '#5250B4',
+                            font: "Poppins",
+                            fontWeight: 'bold',
+                            width: '200px',
+                            height: '50px',
+                            fontSize: '23px',
+                            justifyContent: 'flex-start',
+                            marginLeft: '150px'
+                        }}>
+                        &nbsp;
+                        <Link to="">PRINT RECEIPT</Link>
+                    </Button>
 
-                    style={{
-                        borderColor: '#5250B4',
-                        borderRadius: '50px',
-                        display: 'flex',
-                        color: '#5250B4',
-                        font: "Poppins",
-                        fontWeight: 'bold',
-                        width: '200px',
-                        height: '50px',
-                        fontSize: '23px'
-
-
-                    }}
-
-                > &nbsp;
-                    <Link to="">PRINT RECEIPT</Link>
-                </Button>
-                <Button
-
-                    style={{
-                        background: '#5250B4',
-                        borderRadius: '50px',
-                        display: 'flex',
-                        color: '#ffffff',
-                        font: "Poppins",
-                        fontWeight: 'bold',
-                        width: '150px',
-                        height: '50px',
-                        fontSize: '23px'
-
-
-                    }}
-
-                > &nbsp;
-                    <Link to="">CONFIRM</Link>
-                </Button>
-
+                    <Button
+                        style={{
+                            background: '#5250B4',
+                            borderRadius: '50px',
+                            display: 'flex',
+                            color: '#ffffff',
+                            font: "Poppins",
+                            fontWeight: 'bold',
+                            width: '150px',
+                            height: '50px',
+                            fontSize: '23px',
+                            justifyContent: 'flex-end'
+                        }}>
+                        &nbsp;
+                        <Link to="/rec">CONFIRM</Link>
+                    </Button>
+                </div>
+                <br />
             </div>
-            <br></br>
+
+
 
         </>
 

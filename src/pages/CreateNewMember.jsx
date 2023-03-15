@@ -6,27 +6,7 @@ const { Text } = Typography;
 
 
 const CreateNewMember = () => {
-    const headingStyle = {
-        font: 'Poppins',
-        fontStyle: 'normal',
-        fontWeight: 700,
-        fontSize: '24px',
-        lineHeight: '48px',
-        textAlign: 'center',
-        color: '#30304D'
-        
-    };
 
-    const contentStyle = {
-        marginLeft: '100px',
-        fontFamily: 'Poppins',
-        fontStyle: 'normal',
-        fontWeight: 400,
-        fontSize: '18px',
-        lineHeight: '27px',
-        textAlign: 'left',
-        color: '#30304D'
-    };
 
     return (
         <Card style={{ width: '1200px', margin: '0 auto' }}>
