@@ -18,6 +18,7 @@ import Receipt from './pages/Receipt';
 import Payment from './pages/Payment';
 import MakeOrders from './pages/MakeOrders';
 import CreateUpload from './pages/CreateUpload';
+import Batch from './pages/Batch';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route path="receipt" element={<Layout><Receipt /></Layout>} />
         <Route path="createnewmember" element={<Layout><CreateNewMember /></Layout>} />
         <Route path="createupload" element={<Layout><CreateUpload /></Layout>} />
+        <Route path="batch" element={<Layout><Batch /></Layout>} />
 
 
       </Routes>

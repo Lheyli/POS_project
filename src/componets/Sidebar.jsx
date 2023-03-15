@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Modal, Carousel } from 'antd';
 import React, { useState } from "react";
-import choose from './choose.png';
-import createupload from './createupload.png';
-import member from './member.png';
-import addmembers from './addmembers.png';
+import C1 from './C1.png';
+import C2 from './C2.png';
+import C3 from './C3.png';
+import C4 from './C4.png';
 import {
   HomeOutlined,
   PoweroffOutlined,
@@ -183,22 +183,22 @@ function Sidebar() {
             <Carousel autoplay {...settings}>
               {images.map(image => (
                 <div key={image}>
-                  <img src={choose} alt={image} />
+                  <img src={C1} alt={image} width={750} height={700}/>
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={createupload} alt={image} />
+                  <img src={C2} alt={image} width={750} height={700}/>
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={member} alt={image} />
+                  <img src={C3} alt={image} width={750} height={700}/>
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={addmembers} alt={image} />
+                  <img src={C4} alt={image} width={750} height={700}/>
                 </div>
               ))}
             </Carousel>

@@ -232,7 +232,7 @@ const Members = () => {
           <Link to='/createnewmember'><Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', width: '150px' }}>
             SINGLE
           </Button></Link>&nbsp;&nbsp;
-          <Button style={{
+          <Link to='/batch'><Button style={{
             background: '#5250B4',
             borderRadius: '50px',
             display: 'inline-block',
@@ -242,7 +242,7 @@ const Members = () => {
             width: '150px'
           }}>
             BATCH
-          </Button>
+          </Button></Link>
         </Modal>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>

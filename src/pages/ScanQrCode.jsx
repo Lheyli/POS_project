@@ -120,7 +120,7 @@ function ScanQrCode() {
           lineHeight: '30px',
           color: '#9494B3',
         }}>
-          <h3>Scan QR Code</h3>
+          <h3 style={{color: '#9494B2', font: 'Poppins', cursor: 'pointer'}} onClick={handleCancel}>Scan QR Code</h3>
           &nbsp; <FaAngleRight />  &nbsp;
           <h3>View Product Details</h3>
         </div>
