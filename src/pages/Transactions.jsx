@@ -177,7 +177,7 @@ const Transactions = () => {
   return (
     <>
 
-      <div justify='start' style={{
+      <div  style={{
         marginTop: '50px',
         width: '100%',
         font: 'Poppins',
@@ -243,30 +243,31 @@ const Transactions = () => {
         </Button>
       </div>
       <br></br>
-      <div style={{ display: 'flex', justifyContent: 'center', background: '#F9F9FF' }}>
-        <Card
-          style={{
-            backgroundColor: '#FFFFFF',
-            width: '1000px',
-            height: '1250px',
-            background: '#F9F9FF',
-            boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
-            borderRadius: '24px',
-          }}
-        >
-          <Table
-            columns={columns}
-            dataSource={products}
-            rowKey="id"
-            onRow={(record) => ({
-              onClick: () => {
-                showDrawer(record);
-              },
-            })}
-            style={{ margin: 'auto', background: '#F9F9FF' }}
-          />
-        </Card>
-      </div>
+
+      <Card
+        style={{
+          backgroundColor: '#FFFFFF',
+          width: '1000px',
+          height: '1250px',
+          background: '#F9F9FF',
+          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
+          borderRadius: '24px',
+          margin: '0 auto'
+        }}
+      >
+        <Table
+          columns={columns}
+          dataSource={products}
+          rowKey="id"
+          onRow={(record) => ({
+            onClick: () => {
+              showDrawer(record);
+            },
+          })}
+          style={{ margin: 'auto', background: '#F9F9FF' }}
+        />
+      </Card>
+
       <Drawer
         placement="right"
         closable={false}

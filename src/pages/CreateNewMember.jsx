@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { EyeInvisibleOutlined, EyeTwoTone, DownOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 
-const CreateNewMember = () => { 
+const CreateNewMember = () => {
   const { Text } = Typography;
 
   const [form] = Form.useForm();
@@ -34,12 +34,27 @@ const CreateNewMember = () => {
   };
 
   return (
-  
-  <Card style={{ width: "1000px", margin: "0 auto" }}>
+
+    <Card style={{
+      width: "1000px",
+      margin: "0 auto",
+      marginTop: '50px',
+      height: '850px',
+      boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
+      border: '1px solid #ccc',
+      borderRadius: '10px',
+      backgroundColor: '#fff',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+
+
+
       <h2 style={headingStyle}>CREATE NEW MEMBER</h2>
       <div
         style={{
-          marginBottom: "100px",
+          marginBottom: "50px",
           marginLeft: "50px",
           display: "flex",
           flexDirection: "row",
@@ -348,7 +363,7 @@ const CreateNewMember = () => {
       </div>
     </Card >
 
-    );
+  );
 };
 
 export default CreateNewMember;

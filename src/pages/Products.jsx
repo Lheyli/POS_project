@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { ShoppingCartOutlined, RightOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import '../pages/DateRangePicker.css';
-import axios from 'axios';
+import styles from './Transactions.module.css';
+
 
 const Products = ({ dataSource }) => {
   const dispatch = useDispatch();
@@ -18,20 +19,9 @@ const Products = ({ dataSource }) => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
-
-  const fetchProductDetails = async () => {
-    try {
-      const response = await axios.get('https://fakestoreapi.com/products');
-      setSelectedProduct(response.data[0]); // assuming you want to display details for the first product in the response array
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
 
   const handleButtonClick = () => {
-    fetchProductDetails();
     setIsDrawerVisible(true);
   };
 
@@ -39,7 +29,7 @@ const Products = ({ dataSource }) => {
     setIsDrawerVisible(false);
   };
 
-  <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }} onClick={handleButtonClick}>View Details {<RightOutlined />} </Button>
+ 
 
   const CreateModal = () => {
     setIsModalVisible(true);
@@ -170,15 +160,22 @@ const Products = ({ dataSource }) => {
       )}
       <br></br>
       <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>Edit {<RightOutlined />} </Button><br></br>
+      <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>Delete {<RightOutlined />} </Button><br></br>
       <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>Generate QR Code{<RightOutlined />} </Button>
     </Modal>
   );
 
-  const actionsContent = (
-    <Space>
-      <Button onClick={handleShowModal} style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'bold', font: 'Poppins' }}>...</Button>
-    </Space>
-  );
+  const ActionsContent = ({ record }) => {
+    console.log("🚀 ~ file: Products.jsx:183 ~ ActionsContent ~ record: sett", record)
+    return (
+      <Space>
+        <Button onClick={() => {
+          setSelectedProduct(record)
+          handleShowModal()
+        }} style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'bold', font: 'Poppins' }}>...</Button>
+      </Space>
+    )
+  };
 
   const columns = [
     {
@@ -238,7 +235,7 @@ const Products = ({ dataSource }) => {
       title: <span style={{ fontWeight: 'bold', color: '#3B3A82', fontSize: '18px', font: 'Poppins' }}>Actions</span>,
       dataIndex: 'id',
       key: 'id',
-      render: () => actionsContent,
+      render: (text, record,) => <ActionsContent record={record} />,
     },
   ];
 
@@ -284,6 +281,7 @@ const Products = ({ dataSource }) => {
           style={{ display: 'flex', marginBottom: '16px', justifyContent: 'flex-start' }}
         >
           <DatePicker
+             id={styles["input123"]}
             value={startDate}
             onChange={handleStartDateChange}
             placeholder="Start Date"
@@ -292,6 +290,7 @@ const Products = ({ dataSource }) => {
           />&nbsp;
           <span style={{ color: '#3B3A82', font: "Poppins", fontWeight: 'bold' }}> to </span>&nbsp;
           <DatePicker
+           id={styles["input123"]}
             value={endDate}
             onChange={handleEndDateChange}
             placeholder="End Date"
@@ -317,11 +316,11 @@ const Products = ({ dataSource }) => {
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           >
             <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#30304D', font: "Poppins", fontWeight: 'bold' }}>CREATE NEW PRODUCT</p>
-            <Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', width: '150px' }}>
+            <Link to='/singleprod'><Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', width: '150px' }}>
               SINGLE
-            </Button>
+            </Button></Link>
             &nbsp;&nbsp;
-            <Button style={{
+            <Link to='/multiple'><Button style={{
               background: '#5250B4',
               borderRadius: '50px',
               display: 'inline-block',
@@ -331,7 +330,7 @@ const Products = ({ dataSource }) => {
               width: '150px'
             }}>
               MULTIPLE
-            </Button>
+            </Button></Link>
           </Modal>
 
 

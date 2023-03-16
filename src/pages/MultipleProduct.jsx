@@ -1,6 +1,6 @@
 import { Card, Typography, Input, Form, Row, Col, Button, Divider, } from "antd";
 import React, { useState } from 'react';
-import {FileAddOutlined } from '@ant-design/icons';
+import { DownOutlined, PlusOutlined, LoadingOutlined, FileAddOutlined } from '@ant-design/icons';
 import { message, Upload } from 'antd';
 const { Text } = Typography;
 
@@ -19,8 +19,38 @@ const csvProps = {
         return false;
     },
 };
-function Batch() {
+function MultipleProduct() {
 
+    const [form] = Form.useForm();
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    };
+
+    const toggleConfirmPasswordVisibility = () => {
+        setConfirmPasswordVisible(!confirmPasswordVisible);
+    };
+
+    const handleFormSubmit = (values) => {
+        console.log('Form values:', values);
+    };
+
+    const [loading, setLoading] = useState(false);
+
+    const uploadButton = (
+        <div>
+            {loading ? <LoadingOutlined /> : <PlusOutlined />}
+            <div
+                style={{
+                    marginTop: 8,
+                }}
+            >
+                Upload
+            </div>
+        </div>
+    );
 
 
     const headingStyle = {
@@ -44,9 +74,7 @@ function Batch() {
             borderRadius: '10px',
             backgroundColor: '#fff'
         }}>
-
-
-            <h2 style={headingStyle}>CREATE  NEW BATCH MEMBERS</h2>
+            <h2 style={headingStyle}>CREATE MULTIPLE PRODUCTS</h2>
             <Row gutter={16}>
                 <Typography.Text style={{
                     font: 'Poppins',
@@ -75,7 +103,7 @@ function Batch() {
                     BATCH
                 </Text>
                 <Input
-                 
+                    
                     style={{
                         marginLeft: '20px',
                         boxSizing: 'border-box',
@@ -84,7 +112,7 @@ function Batch() {
                         height: '50px',
                         width: '795px'
                     }}
-                
+           
                 />
             </div>
             <br />
@@ -195,4 +223,4 @@ function Batch() {
     );
 }
 
-export default Batch;
+export default MultipleProduct;

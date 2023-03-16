@@ -124,6 +124,17 @@ const productSlice = createSlice({
         state.cartTotalAmount = total;
       }
     },
+    setLoading: (state) => {
+      state.loading = true;
+    },
+    setProduct: (state, action) => {
+      state.product = action.payload;
+      state.loading = false;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    },
   });
   
   export const { login, logout, fetchProductsStart,

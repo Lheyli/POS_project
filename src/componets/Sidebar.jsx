@@ -7,6 +7,10 @@ import C1 from './C1.png';
 import C2 from './C2.png';
 import C3 from './C3.png';
 import C4 from './C4.png';
+import i1 from './i1.png';
+import i2 from './i2.png';
+import i3 from './i3.png';
+import i4 from './i4.png';
 import {
   HomeOutlined,
   PoweroffOutlined,
@@ -21,13 +25,6 @@ import {
   UsergroupAddOutlined,
 } from "@ant-design/icons";
 
-const contentStyle = {
-  height: '160px',
-  color: '#fff',
-  lineHeight: '160px',
-  textAlign: 'center',
-  background: '#364d79',
-};
 
 const StyledSider = styled.div`
   background-color: #eeeeff;
@@ -106,10 +103,12 @@ function Sidebar() {
 
   const images = [''];
   const [visible, setVisible] = useState(false);
+  const [isvis, issetVis] = useState(false);
 
   const handleSidebarClick = () => {
     setVisible(true);
   };
+  
 
   const handleModalOk = () => {
     setVisible(false);
@@ -117,6 +116,33 @@ function Sidebar() {
 
   const handleModalCancel = () => {
     setVisible(false);
+  };
+  const handleClick = () => {
+    issetVis(true);
+  };
+  
+
+  const handleOk = () => {
+    issetVis(false);
+  };
+
+  const Cancel = () => {
+    issetVis(false);
+  };
+
+  const [isvisible, issetVisible] = useState(false);
+
+  const handleSideClick = () => {
+    issetVisible(true);
+  };
+  
+
+  const handleModalOkay = () => {
+    issetVisible(false);
+  };
+
+  const handleCancel = () => {
+    issetVisible(false);
   };
 
   const settings = {
@@ -145,14 +171,74 @@ function Sidebar() {
             <HomeOutlined />
             &nbsp; Dashboard
           </StyledLink>
-          <StyledLink to="/products" style={{ fontWeight: 'bold' }}>
+          <StyledLink to="/products" style={{ fontWeight: 'bold' }} onClick={handleSideClick}>
             <TagOutlined />
             &nbsp; Products
           </StyledLink>
-          <StyledLink to="/purchase" style={{ fontWeight: 'bold' }}>
+          <Modal
+            open={isvisible}
+            footer={null}
+            onOk={handleModalOkay}
+            onCancel={handleCancel}
+            width={800} height={1500}
+          >
+            <Carousel autoplay {...settings}>
+              {images.map(image => (
+                <div key={image}>
+                  <img src={C1} alt={image} width={750} height={700}/>
+                </div>
+              ))}
+              {images.map(image => (
+                <div key={image}>
+                  <img src={C2} alt={image} width={750} height={700}/>
+                </div>
+              ))}
+              {images.map(image => (
+                <div key={image}>
+                  <img src={C3} alt={image} width={750} height={700}/>
+                </div>
+              ))}
+              {images.map(image => (
+                <div key={image}>
+                  <img src={C4} alt={image} width={750} height={700}/>
+                </div>
+              ))}
+            </Carousel>
+          </Modal>
+          <StyledLink to="/purchase" style={{ fontWeight: 'bold' }} onClick={handleClick}>
             <ShoppingCartOutlined />
             &nbsp; Make Purchase
           </StyledLink>
+          <Modal
+            open={isvis}
+            footer={null}
+            onOk={handleOk}
+            onCancel={Cancel}
+            width={800} height={1500}
+          >
+            <Carousel autoplay {...settings}>
+              {images.map(image => (
+                <div key={image}>
+                  <img src={i1} alt={image} width={750} height={700}/>
+                </div>
+              ))}
+              {images.map(image => (
+                <div key={image}>
+                  <img src={i2} alt={image} width={750} height={700}/>
+                </div>
+              ))}
+              {images.map(image => (
+                <div key={image}>
+                  <img src={i3} alt={image} width={750} height={700}/>
+                </div>
+              ))}
+              {images.map(image => (
+                <div key={image}>
+                  <img src={i4} alt={image} width={750} height={700}/>
+                </div>
+              ))}
+            </Carousel>
+          </Modal>
           <StyledLink to="/transactions" style={{ fontWeight: 'bold' }}>
             <SwapOutlined />
             &nbsp; Transactions
