@@ -44,7 +44,7 @@ function ScanQrCode() {
   return (
     <div>
    <div justify='start' style={{
-        marginTop: '120px',
+        marginTop: '30px',
         width: '100%',
         font: 'Poppins',
         fontStyle: 'normal',
@@ -52,10 +52,10 @@ function ScanQrCode() {
         fontSize: '35px',
         color: '#3B3A82',
       }}>
-        <span style={{ marginLeft: '270px', }}>
+        <span style={{ display: 'flex', justifyContent: 'center' }}>
           Scan QR Code</span></div>
-      <div style={{ position: 'relative' }}>
-        <img src={scanImage} alt="scan" style={{ position: 'absolute', width: '600px', height: '472px', left: '688px'}} />
+      <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
+        <img src={scanImage} alt="scan" style={{ position: 'absolute', width: '600px', height: '472px'}} />
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button
@@ -64,7 +64,7 @@ function ScanQrCode() {
             width: '350px',
             height: '100px',
             marginRight: '20px',
-            top: '400px',
+            top: '450px',
             font: 'Poppins',
             fontStyle: 'normal',
             fontWeight: '500',
@@ -74,7 +74,7 @@ function ScanQrCode() {
             alignItems: 'center',
             textAlign: 'center',
             color: '#38384D',
-            left: '90px',
+         
             justifyContent: 'center',
             borderRadius: '24px',
           }}
@@ -85,7 +85,7 @@ function ScanQrCode() {
           style={{
             width: '350px',
             height: '100px',
-            top: '400px',
+            top: '450px',
             font: 'Poppins',
             fontStyle: 'normal',
             fontWeight: '500',
@@ -95,7 +95,7 @@ function ScanQrCode() {
             alignItems: 'center',
             textAlign: 'center',
             color: '#38384D',
-            left: '90px',
+      
             justifyContent: 'center',
             borderRadius: '24px',
           }}

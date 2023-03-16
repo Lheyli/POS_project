@@ -200,7 +200,7 @@ const Checkout = () => {
           }}
 
         > &nbsp;
-          <Link to="/rec">CONFIRM</Link>
+          <Link to="/cartreceipt">CONFIRM</Link>
         </Button>
 
       </div>

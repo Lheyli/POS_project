@@ -235,7 +235,7 @@ const CheckRec = () => {
                             justifyContent: 'flex-end'
                         }}>
                         &nbsp;
-                        <Link to="/rec">CONFIRM</Link>
+                        CONFIRM
                     </Button>
                 </div>
                 <br />

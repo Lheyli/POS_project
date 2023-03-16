@@ -101,7 +101,7 @@ const MakePurchase = () => {
     <>
       <Row justify="start" style={{ marginTop: '50px', marginLeft: '130px' }}>
         <Button style={{ background: '#DBDFFD' }}>
-          <Link to="/purchase">
+          <Link to="/products">
             <LeftOutlined style={{ color: '#1A2163' }} />
           </Link>
         </Button>
@@ -140,7 +140,7 @@ const MakePurchase = () => {
                 borderStyle: 'none',
                 borderRadius: '50px',
                 color: '#A9A9CC',
-                fontFamily: 'Poppins',
+                font: 'Poppins',
                 fontWeight: 'bold',
                 fontSize: '30px',
                 height: '50px',

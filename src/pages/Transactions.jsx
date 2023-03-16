@@ -213,7 +213,7 @@ const Transactions = () => {
         </Button>
       </div>
       <br></br>
-      <div style={{ display: 'flex', justifyContent: 'center', background: '#F9F9FF' }}>
+    
         <Card
           style={{
             backgroundColor: '#FFFFFF',
@@ -222,20 +222,15 @@ const Transactions = () => {
             background: '#F9F9FF',
             boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
             borderRadius: '24px',
+            margin: '0 auto'
           }}
         >
           <Table
             columns={columns}
-
             rowKey="id"
-
-
             style={{ margin: 'auto', background: '#F9F9FF' }}
           />
         </Card>
-      </div>
-
-
 
     </>
 

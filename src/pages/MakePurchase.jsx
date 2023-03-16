@@ -21,6 +21,7 @@ function MakePurchase() {
 
 
       <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', marginTop: '230px' }}>
+        
         <img src={image} alt="scan" style={{ position: 'absolute', width: '665px', height: '450px', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }} />
       </div>
 

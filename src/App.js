@@ -13,6 +13,7 @@ import ScanQrCode from './pages/ScanQrCode';
 import MakePurchase from './pages/MakePurchase';
 import Purchase from './pages/Purchase';
 import Checkout from './pages/Checkout';
+import CheckRec from './pages/CheckRec';
 import CreateNewMember from './pages/CreateNewMember';
 import Receipt from './pages/Receipt';
 import Payment from './pages/Payment';
@@ -20,7 +21,9 @@ import MakeOrders from './pages/MakeOrders';
 import CreateUpload from './pages/CreateUpload';
 import Batch from './pages/Batch';
 import NetIncome from './pages/NetIncome';
-import SalesReport from './pages/Sales';
+import SalesReport from './pages/SalesReport';
+import SingleProduct from './pages/SingleProduct';
+import MultipleProduct from './pages/MultipleProduct';
 
 function App() {
   return (
@@ -40,14 +43,18 @@ function App() {
         <Route path="purchase" element={<Layout><MakePurchase /></Layout>} />
         <Route path="make" element={<Purchase />} />
         <Route path="cart" element={<Checkout />} />
+        <Route path="cartreceipt" element={<CheckRec />} />
         <Route path="makeorders" element={<Layout><MakeOrders /></Layout>} />
         <Route path="payment" element={<Layout><Payment /></Layout>} />
         <Route path="receipt" element={<Layout><Receipt /></Layout>} />
-        <Route path="createnewmember" element={<Layout><CreateNewMember /></Layout>} />
+        <Route path="createnewmember" element={<CreateNewMember />} />
         <Route path="createupload" element={<Layout><CreateUpload /></Layout>} />
         <Route path="batch" element={<Layout><Batch /></Layout>} />
         <Route path="netincome" element={<Layout><NetIncome /></Layout>} />
         <Route path="salesreport" element={<Layout><SalesReport /></Layout>} />
+        <Route path="batch" element={<Batch />} />
+        <Route path="singleprod" element={<SingleProduct />} />
+        <Route path="multiple" element={<MultipleProduct />} />
 
 
       </Routes>
