@@ -234,7 +234,7 @@ const MakeOrders = () => {
           <br />
           <br />
           <br />
-          <Button style={{
+          <Link to='/payment'><Button style={{
             background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
             borderRadius: '50px',
             font: 'Poppins',
@@ -249,7 +249,7 @@ const MakeOrders = () => {
             marginLeft: '790px',
             height: '40px',
             width: '135px'
-          }} type="primary">CHECKOUT</Button>
+          }} type="primary">CHECKOUT</Button></Link>
         </div>
       </Card>
     </center>

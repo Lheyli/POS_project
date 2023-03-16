@@ -235,7 +235,7 @@ const Payment = () => {
                     color: '#3B3A82',
                     borderRadius: 50,
                 }}>
-                    <Button style={{
+                    <Link to='/receipt'><Button style={{
                         background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
                         borderRadius: '50px',
                         font: 'Poppins',
@@ -250,7 +250,7 @@ const Payment = () => {
                         marginLeft: '790px',
                         height: '40px',
                         width: '135px'
-                    }} type="primary">CONFIRM</Button>
+                    }} type="primary">CONFIRM</Button></Link>
                 </div>
             </Card>
         </center >

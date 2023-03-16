@@ -19,6 +19,8 @@ import Payment from './pages/Payment';
 import MakeOrders from './pages/MakeOrders';
 import CreateUpload from './pages/CreateUpload';
 import Batch from './pages/Batch';
+import NetIncome from './pages/NetIncome';
+import SalesReport from './pages/Sales';
 
 function App() {
   return (
@@ -44,6 +46,8 @@ function App() {
         <Route path="createnewmember" element={<Layout><CreateNewMember /></Layout>} />
         <Route path="createupload" element={<Layout><CreateUpload /></Layout>} />
         <Route path="batch" element={<Layout><Batch /></Layout>} />
+        <Route path="netincome" element={<Layout><NetIncome /></Layout>} />
+        <Route path="salesreport" element={<Layout><SalesReport /></Layout>} />
 
 
       </Routes>

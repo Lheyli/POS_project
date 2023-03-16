@@ -127,8 +127,12 @@ function Batch() {
                     <Upload {...csvProps}>
 
                         <FileAddOutlined style={{ color: '#53B8F1', fontSize: 100 }} />
+                        <br/>
+
                     </Upload>
                 </div>
+                <br/>
+                <br/>
                 <Typography.Text style={{
                     font: 'Poppins',
                     fontStyle: 'normal',
