@@ -112,7 +112,7 @@ const Checkout = () => {
           <div style={{ display: 'flex', justifyContent: 'flex-start', width: '100%' }}>
             <Typography.Title level={1} style={{ color: 'black', textAlign: 'left', justifyContent: 'flex-start' }}>Your Order</Typography.Title>
           </div>
-          <Table dataSource={cartItems} style={{ maxWidth: '1300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Table dataSource={cartItems || [{}]} style={{ maxWidth: '1300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Table.Column title="" key="image" render={(text, record) => (
               <img alt={record.time} src={record.image} width={200} height={150} />
             )} />
