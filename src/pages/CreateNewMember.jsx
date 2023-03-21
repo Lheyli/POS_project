@@ -1,28 +1,21 @@
-
-import { Card, Select, Typography, Input, Form, Row, Col, Button, } from "antd";
+import { Card, Typography, Input, Form, Row, Col, Button, } from "antd";
 import React, { useState } from 'react';
 import { EyeInvisibleOutlined, EyeTwoTone, DownOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
-
 const CreateNewMember = () => {
   const { Text } = Typography;
-
   const [form] = Form.useForm();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
-
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
-
   const toggleConfirmPasswordVisibility = () => {
     setConfirmPasswordVisible(!confirmPasswordVisible);
   };
-
   const handleFormSubmit = (values) => {
     console.log('Form values:', values);
   };
-
   const headingStyle = {
     font: "Poppins",
     fontStyle: "normal",
@@ -32,9 +25,7 @@ const CreateNewMember = () => {
     textAlign: "center",
     color: "#30304D",
   };
-
   return (
-
     <Card style={{
       width: "1000px",
       margin: "0 auto",
@@ -48,9 +39,6 @@ const CreateNewMember = () => {
       justifyContent: 'center',
       alignItems: 'center',
     }}>
-
-
-
       <h2 style={headingStyle}>CREATE NEW MEMBER</h2>
       <div
         style={{
@@ -125,10 +113,6 @@ const CreateNewMember = () => {
             <Input
               showSearch
               style={{
-                width: 200,
-                marginLeft: '320px',
-                border: '2px solid #A9A9CC',
-                borderRadius: '8px',
                 marginLeft: '258px',
                 boxSizing: 'border-box', border: '2px solid #A9A9CC', borderRadius: '30px', height: '50px', width: '250px'
               }}
@@ -362,8 +346,6 @@ const CreateNewMember = () => {
         </div>
       </div>
     </Card >
-
   );
 };
-
 export default CreateNewMember;

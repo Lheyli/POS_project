@@ -1,4 +1,3 @@
-
 import { DatePicker, Card, Table, Button, Typography, Modal, Divider } from 'antd';
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
@@ -6,9 +5,7 @@ import { CalendarOutlined, EyeOutlined } from '@ant-design/icons'
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import styles from './Transactions.module.css';
 dayjs.extend(customParseFormat);
-
 const dateFormatList = ['MM/DD/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
-
 const Transactions = () => {
   const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   const [selectedRow, setSelectedRow] = useState(null);
@@ -139,7 +136,6 @@ const Transactions = () => {
       ),
     },
   ];
-
   const data = [
     {
       key: '1',
@@ -184,11 +180,8 @@ const Transactions = () => {
       name: 'Josh Garcia',
     },
   ];
-
-
   return (
     <>
-
       <div justify='start' style={{
         marginTop: '50px',
         width: '100%',
@@ -309,7 +302,7 @@ const Transactions = () => {
         </Card>
         <Modal
           title=""
-          visible={visible}
+          open={visible}
           footer={null}
           onOk={handleOk}
           onCancel={handleCancel}
@@ -327,7 +320,6 @@ const Transactions = () => {
             }}>
               {selectedRow && selectedRow.date}
             </p>
-
             <p style={{
               font: 'Poppins',
               fontStyle: 'normal',
@@ -349,36 +341,30 @@ const Transactions = () => {
               color: '#656565',
             }}>{selectedRow && selectedRow.time}</p>
           </div>
-          <Divider style={{ borderColor: '#D6D6E5', borderWidth: '.5px'}} />
+          <Divider style={{ borderColor: '#D6D6E5', borderWidth: '.5px' }} />
           <p style={{
-              font: 'Poppins',
-              fontStyle: 'normal',
-              fontWeight: 700,
-              fontSize: '30px',
-              lineHeight: '27px',
-              display: 'flex',
-              alignItems: 'center',
-              color: '#656565',
-            }}>{selectedRow && selectedRow.name}</p>
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: 700,
+            fontSize: '30px',
+            lineHeight: '27px',
+            display: 'flex',
+            alignItems: 'center',
+            color: '#656565',
+          }}>{selectedRow && selectedRow.name}</p>
           <p style={{
-              font: 'Poppins',
-              fontStyle: 'normal',
-              fontWeight: 400,
-              fontSize: '16px',
-              lineHeight: '27px',
-              display: 'flex',
-              alignItems: 'center',
-              color: '#656565',
-            }}>{selectedRow && selectedRow.userId}</p>
-
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            fontSize: '16px',
+            lineHeight: '27px',
+            display: 'flex',
+            alignItems: 'center',
+            color: '#656565',
+          }}>{selectedRow && selectedRow.userId}</p>
         </Modal>
       </div>
-
-
-
     </>
-
   );
 };
-
 export default Transactions;

@@ -22,12 +22,10 @@ const h2Styles = {
   fontSize: '15px',
   lineHeight: '42px',
 };
-
 function ScanQrCode() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [productDetails, setProductDetails] = useState({});
   const [qrCodeValue] = useState('');
-
   const showModal = () => {
     setIsModalVisible(true);
     setProductDetails({
@@ -36,14 +34,12 @@ function ScanQrCode() {
       description: 'This is a sample product description',
     });
   };
-
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-
   return (
     <div>
-   <div justify='start' style={{
+      <div justify='start' style={{
         marginTop: '30px',
         width: '100%',
         font: 'Poppins',
@@ -55,7 +51,7 @@ function ScanQrCode() {
         <span style={{ display: 'flex', justifyContent: 'center' }}>
           Scan QR Code</span></div>
       <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
-        <img src={scanImage} alt="scan" style={{ position: 'absolute', width: '600px', height: '472px'}} />
+        <img src={scanImage} alt="scan" style={{ position: 'absolute', width: '600px', height: '472px' }} />
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button
@@ -74,7 +70,6 @@ function ScanQrCode() {
             alignItems: 'center',
             textAlign: 'center',
             color: '#38384D',
-         
             justifyContent: 'center',
             borderRadius: '24px',
           }}
@@ -95,7 +90,6 @@ function ScanQrCode() {
             alignItems: 'center',
             textAlign: 'center',
             color: '#38384D',
-      
             justifyContent: 'center',
             borderRadius: '24px',
           }}
@@ -103,12 +97,12 @@ function ScanQrCode() {
         </Button></Link>
       </div>
       <Modal
-        visible={isModalVisible}
-        footer={null} // remove the footer with cancel and ok button
+        open={isModalVisible}
+        footer={null}
         onCancel={handleCancel}
         centered
         width={900}
-        bodyStyle={{ height: '600px' }} // add height to the modal body
+        bodyStyle={{ height: '600px' }}
       >
         <div style={{
           display: 'flex',
@@ -120,7 +114,7 @@ function ScanQrCode() {
           lineHeight: '30px',
           color: '#9494B3',
         }}>
-          <h3 style={{color: '#9494B2', font: 'Poppins', cursor: 'pointer'}} onClick={handleCancel}>Scan QR Code</h3>
+          <h3 style={{ color: '#9494B2', font: 'Poppins', cursor: 'pointer' }} onClick={handleCancel}>Scan QR Code</h3>
           &nbsp; <FaAngleRight />  &nbsp;
           <h3>View Product Details</h3>
         </div>

@@ -6,9 +6,7 @@ import { CalendarOutlined } from '@ant-design/icons'
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import styles from './Transactions.module.css';
 dayjs.extend(customParseFormat);
-
 const dateFormatList = ['MM/DD/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
-
 const Accounting = () => {
   return (
     <>
@@ -97,44 +95,40 @@ const Accounting = () => {
               textAlign: 'center',
               color: '#FFFFFF',
               justifyContent: 'center',
-
             }}
           >
             EXPORT
           </Button></span>
       </div>
-
-<Card  style={{
-            top: '50px',
-            backgroundColor: '#FFFFFF',
-            width: '1000px',
-            height: '610px',
-            marginLeft: '425px',
-            background: '#F9F9FF',
-            boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
-            borderRadius: '24px',
-          }}>
-      <div style={{ marginLeft: '50px', display: 'flex', }}>
-        
-        <Card style={{ width: '500px', height: '200px', top: '30px'}}>
-          <Typography.Text
-            style={{
-              font: 'Poppins',
-              fontStyle: 'normal',
-              fontWeight: 700,
-              fontSize: 20,
-              display: 'flex',
-              color: '#3B3A82',
-              justifyContent: 'center',
-              marginTop: '10px',
-            }}
-          >
-            NET Income
-          </Typography.Text>
-          <NetIncome />
-        </Card>
-      </div></Card></>
+      <Card style={{
+        top: '50px',
+        backgroundColor: '#FFFFFF',
+        width: '1000px',
+        height: '610px',
+        marginLeft: '425px',
+        background: '#F9F9FF',
+        boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
+        borderRadius: '24px',
+      }}>
+        <div style={{ marginLeft: '50px', display: 'flex', }}>
+          <Card style={{ width: '500px', height: '200px', top: '30px' }}>
+            <Typography.Text
+              style={{
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 700,
+                fontSize: 20,
+                display: 'flex',
+                color: '#3B3A82',
+                justifyContent: 'center',
+                marginTop: '10px',
+              }}
+            >
+              NET Income
+            </Typography.Text>
+            <NetIncome />
+          </Card>
+        </div></Card></>
   );
 };
-
 export default Accounting;

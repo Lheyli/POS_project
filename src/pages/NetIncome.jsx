@@ -9,7 +9,6 @@ const data = [
     { month: 'JAN 2023', netIncome: 5 },
     { month: 'FEB 2023', netIncome: 31 },
 ];
-
 const NetIncome = () => {
     const config = {
         data,
@@ -24,9 +23,6 @@ const NetIncome = () => {
             lineWidth: 7, // Add a lineWidth property to set the width of the line chart
         },
     };
-
-
-
     return (
         <div >
             <Line {...config} />
@@ -51,5 +47,4 @@ const NetIncome = () => {
         </div >
     );
 };
-
 export default NetIncome;
