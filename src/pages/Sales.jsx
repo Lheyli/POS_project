@@ -7,11 +7,8 @@ import styles from './Transactions.module.css';
 import './net.css'
 import SalesReport from './SalesReport';
 dayjs.extend(customParseFormat);
-
 const dateFormatList = ['MM/DD/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
-
 const Sales = () => {
-
   const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   return (
     <>
@@ -63,13 +60,11 @@ const Sales = () => {
               textAlign: 'center',
               color: '#FFFFFF',
               justifyContent: 'center',
-
             }}
           >
             EXPORT
           </Button></span>
       </div>
-
       <Card style={{
         top: '50px',
         backgroundColor: '#FFFFFF',
@@ -129,7 +124,6 @@ const Sales = () => {
             This Month
           </h3>&nbsp;
         </div>
-
         <div justify='start' style={{
           marginTop: '20px',
           width: '100%',
@@ -142,7 +136,6 @@ const Sales = () => {
           <span style={{ marginLeft: '50px', }}>
             {today}</span></div>
         <div style={{ marginLeft: '50px', display: 'flex', }}>
-
           <Typography.Text style={{
             font: 'Poppins',
             fontStyle: 'normal',
@@ -153,7 +146,6 @@ const Sales = () => {
           }}>Sales Report</Typography.Text>
           <br />
           <Card style={{ width: '600px', height: '300px', top: '50px', right: '100px' }}>
-
             <SalesReport />
             <h2 style={{
               font: '20px',
@@ -220,5 +212,4 @@ const Sales = () => {
         </div></Card></>
   );
 };
-
 export default Sales;

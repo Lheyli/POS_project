@@ -30,35 +30,26 @@ const data = [
     total: '₱193.00',
   },
 ];
-
 const MakeOrders = () => {
   const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-
   const [tableData, setTableData] = useState(data);
-
   const handleDelete = (record) => {
     const newData = tableData.filter((item) => item.key !== record.key);
     setTableData(newData);
   };
-
-
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
   const loading = useSelector((state) => state.products.loading);
   const error = useSelector((state) => state.products.error);
-
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-
   if (loading) {
     return <div>Loading...</div>;
   }
-
   if (error) {
     return <div>Error: {error}</div>;
   }
-
   const columns = [
     {
       key: 'image',
@@ -80,7 +71,6 @@ const MakeOrders = () => {
         }}>{record.title}</span>
       ),
     },
-
     {
       dataIndex: 'price',
       key: 'price',
@@ -119,21 +109,23 @@ const MakeOrders = () => {
           fontSize: '15px',
           lineHeight: '36px',
           color: '#6A6A80',
-        }}>{`₱${record.price * record.quantity}`}</span> // add bold font weight to total
+        }}>{`₱${record.price * record.quantity}`}</span> 
       ),
     },
     {
       key: 'action',
       render: (text, record) => (
-        <Button style={{ color: '#3B3A82' }} type="link" danger onClick={() => handleDelete(record)}>
+        <Button
+          style={{ color: '#3B3A82' }}
+          type="link"
+          onClick={() => handleDelete(record.id)}
+        >
           <DeleteOutlined />
         </Button>
       ),
     },
+    
   ];
-
-
-
   return (
     <center>
       <Card style={{ backgroundColor: '#FFFFFF', width: '1000px', height: '1425px' }}>
@@ -180,7 +172,6 @@ const MakeOrders = () => {
           }}>
             <TbCircle3Filled style={{ color: '#D6D6E5' }} /> &nbsp; Receipt
           </h3></Link> &nbsp;
-
         </div>
         <div style={{
           marginLeft: '1px',
@@ -255,5 +246,4 @@ const MakeOrders = () => {
     </center>
   );
 };
-
 export default MakeOrders;

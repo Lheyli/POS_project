@@ -2,7 +2,6 @@ import { Card, Typography, Input, Form, Row, Col, Button, Modal, Upload, DatePic
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { PlusOutlined } from '@ant-design/icons';
-
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -10,7 +9,6 @@ const getBase64 = (file) =>
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
-
 const SingleProduct = () => {
   const [form] = Form.useForm();
   const [variations, setVariations] = useState(['']); // state to store all variations
@@ -18,11 +16,9 @@ const SingleProduct = () => {
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
   const [quantity, setQuantity] = useState(1);
-
   const handleQuantityIncrement = () => {
     setQuantity(quantity + 1);
   };
-
   const handleQuantityDecrement = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
@@ -54,14 +50,11 @@ const SingleProduct = () => {
   const addVariation = () => {
     setVariations([...variations, '']); // add an empty string to the variations array
   };
-
   const handleVariationChange = (index, event) => {
     const newVariations = [...variations]; // create a copy of the variations array
     newVariations[index] = event.target.value; // update the value of the variation at the given index
     setVariations(newVariations); // update the variations state
   };
-
-
   const headingStyle = {
     font: "Poppins",
     fontStyle: "normal",
@@ -71,9 +64,7 @@ const SingleProduct = () => {
     textAlign: "center",
     color: "#30304D",
   };
-
   return (
-
     <Card style={{
       width: "950px",
       margin: "0 auto",
@@ -88,7 +79,6 @@ const SingleProduct = () => {
       alignItems: 'center',
       display: 'flex'
     }}>
-
       <h2 style={headingStyle}>CREATE NEW PRODUCT</h2>
       <Row gutter={16}>
         <Typography.Text style={{
@@ -101,7 +91,6 @@ const SingleProduct = () => {
           marginLeft: '10px'
         }}>Details</Typography.Text>
       </Row>
-
       <Row gutter={16}>
         <Col span={12}>
           <Upload
@@ -122,8 +111,6 @@ const SingleProduct = () => {
               src={previewImage}
             />
           </Modal>
-
-
         </Col>
         <Col span={12}>
           <Typography.Text style={{
@@ -145,7 +132,6 @@ const SingleProduct = () => {
           }}>CATEGORY</Typography.Text>
           <Input style={{ boxSizing: 'border-box', border: '2px solid #A9A9CC', borderRadius: '30px', height: '50px', width: '400px' }} placeholder="Category" />
         </Col>
-
       </Row>
       <Row gutter={16}>
         <Typography.Text style={{
@@ -169,7 +155,6 @@ const SingleProduct = () => {
             color: '#1A2163'
           }}>QUANTITY</Typography.Text>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-
             <Input
               style={{ boxSizing: 'border-box', border: '2px solid #A9A9CC', borderRadius: '30px', height: '50px', width: '300px', textAlign: 'center' }}
               value={quantity}
@@ -254,12 +239,9 @@ const SingleProduct = () => {
               value={variation}
               onChange={(event) => handleVariationChange(index, event)}
             />
-
           </Col>
-
         </Row>
       ))}
-
       <Button style={{
         boxSizing: 'border-box',
         border: '2px solid #A9A9CC',
@@ -274,7 +256,6 @@ const SingleProduct = () => {
         onClick={addVariation}>
         ADD VARIATION
       </Button>
-
       <div style={{
         display: 'flex',
         right: 65,
@@ -320,10 +301,7 @@ const SingleProduct = () => {
           </Form.Item>
         </Form>
       </div>
-
     </Card >
-
   );
 };
-
 export default SingleProduct;

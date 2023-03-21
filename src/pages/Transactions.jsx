@@ -5,12 +5,9 @@ import { CalendarOutlined, RightOutlined, CaretDownOutlined } from '@ant-design/
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import styles from './Transactions.module.css';
 dayjs.extend(customParseFormat);
-
 const dateFormatList = ['MM/DD/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
-
 const Transactions = () => {
   const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-
   const columns = [
     {
       title: <span style={{
@@ -34,7 +31,6 @@ const Transactions = () => {
         color: '#3B3A82',
       }}>{new Date(time).toLocaleTimeString()}</span>
     },
-
     {
       title: <span style={{
         font: 'Poppins',
@@ -59,10 +55,8 @@ const Transactions = () => {
         }}>{record.title}</span>
       ),
     },
-
     {
       title: <span style={{
-
         font: 'Poppins',
         fontStyle: 'normal',
         fontWeight: 700,
@@ -110,7 +104,6 @@ const Transactions = () => {
           color: '#3B3A82',
         }}>{`X${Math.floor(Math.random()) + 1}`}</span>
       ),
-
     },
     {
       title: <span style={{
@@ -146,7 +139,6 @@ const Transactions = () => {
   ];
   return (
     <>
-
       <div justify='start' style={{
         marginTop: '50px',
         width: '100%',
@@ -213,28 +205,24 @@ const Transactions = () => {
         </Button>
       </div>
       <br></br>
-    
-        <Card
-          style={{
-            backgroundColor: '#FFFFFF',
-            width: '1000px',
-            height: '500px',
-            background: '#F9F9FF',
-            boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
-            borderRadius: '24px',
-            margin: '0 auto'
-          }}
-        >
-          <Table
-            columns={columns}
-            rowKey="id"
-            style={{ margin: 'auto', background: '#F9F9FF' }}
-          />
-        </Card>
-
+      <Card
+        style={{
+          backgroundColor: '#FFFFFF',
+          width: '1000px',
+          height: '500px',
+          background: '#F9F9FF',
+          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
+          borderRadius: '24px',
+          margin: '0 auto'
+        }}
+      >
+        <Table
+          columns={columns}
+          rowKey="id"
+          style={{ margin: 'auto', background: '#F9F9FF' }}
+        />
+      </Card>
     </>
-
   );
 };
-
 export default Transactions;

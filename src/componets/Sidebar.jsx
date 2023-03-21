@@ -11,6 +11,10 @@ import i1 from './i1.png';
 import i2 from './i2.png';
 import i3 from './i3.png';
 import i4 from './i4.png';
+import m1 from './m1.png';
+import m2 from './m2.png';
+import m3 from './m3.png';
+import m4 from './m4.png';
 import {
   HomeOutlined,
   PoweroffOutlined,
@@ -108,7 +112,7 @@ function Sidebar() {
   const handleSidebarClick = () => {
     setVisible(true);
   };
-  
+
 
   const handleModalOk = () => {
     setVisible(false);
@@ -120,7 +124,7 @@ function Sidebar() {
   const handleClick = () => {
     issetVis(true);
   };
-  
+
 
   const handleOk = () => {
     issetVis(false);
@@ -135,7 +139,7 @@ function Sidebar() {
   const handleSideClick = () => {
     issetVisible(true);
   };
-  
+
 
   const handleModalOkay = () => {
     issetVisible(false);
@@ -185,22 +189,22 @@ function Sidebar() {
             <Carousel autoplay {...settings}>
               {images.map(image => (
                 <div key={image}>
-                  <img src={C1} alt={image} width={750} height={700}/>
+                  <img src={C1} alt={image} width={750} height={700} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={C2} alt={image} width={750} height={700}/>
+                  <img src={C2} alt={image} width={750} height={700} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={C3} alt={image} width={750} height={700}/>
+                  <img src={C3} alt={image} width={750} height={700} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={C4} alt={image} width={750} height={700}/>
+                  <img src={C4} alt={image} width={750} height={700} />
                 </div>
               ))}
             </Carousel>
@@ -219,22 +223,22 @@ function Sidebar() {
             <Carousel autoplay {...settings}>
               {images.map(image => (
                 <div key={image}>
-                  <img src={i1} alt={image} width={750} height={700}/>
+                  <img src={i1} alt={image} width={750} height={700} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={i2} alt={image} width={750} height={700}/>
+                  <img src={i2} alt={image} width={750} height={700} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={i3} alt={image} width={750} height={700}/>
+                  <img src={i3} alt={image} width={750} height={700} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={i4} alt={image} width={750} height={700}/>
+                  <img src={i4} alt={image} width={750} height={700} />
                 </div>
               ))}
             </Carousel>
@@ -269,22 +273,22 @@ function Sidebar() {
             <Carousel autoplay {...settings}>
               {images.map(image => (
                 <div key={image}>
-                  <img src={C1} alt={image} width={750} height={700}/>
+                  <img src={m1} alt={image} width={750} height={700} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={C2} alt={image} width={750} height={700}/>
+                  <img src={m2} alt={image} width={750} height={700} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={C3} alt={image} width={750} height={700}/>
+                  <img src={m3} alt={image} width={750} height={700} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={C4} alt={image} width={750} height={700}/>
+                  <img src={m4} alt={image} width={750} height={700} />
                 </div>
               ))}
             </Carousel>

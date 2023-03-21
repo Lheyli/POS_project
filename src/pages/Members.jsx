@@ -2,17 +2,11 @@ import React, { useState } from 'react';
 import { Table, Card, Button, Modal, Menu, Dropdown } from 'antd';
 import { PlusOutlined,DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-
 const containerStyle = {
   display: 'flex',
   flexDirection: 'row',
   marginLeft: '50px'
 };
-
-const iconStyle = {
-  color: '#3B3A82'
-};
-
 const columns = [
   {
     title: (
@@ -114,7 +108,6 @@ const columns = [
     )
   },
 ];
-
 const data = [
   {
     id: '1535',
@@ -156,15 +149,9 @@ const data = [
     name: 'Camila De Leon',
     email: 'afi@yahoo.com',
   },
-
 ];
-
-
 const Members = () => {
-
-  const [showModal, setShowModal] = useState(false); // add state for controlling modal visibility
   const [isModalVisible, setIsModalVisible] = useState(false);
-
   const menu = (
     <Menu>
       <Menu.Item key="1">BATCH 1</Menu.Item>
@@ -175,24 +162,9 @@ const Members = () => {
   const CreateModal = () => {
     setIsModalVisible(true);
   };
-
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-
-
-  const handleShowModal = () => {
-    setShowModal(!showModal);
-  };
-
-  const handleModalOk = () => {
-    setShowModal(false);
-  };
-
-  const handleModalCancel = () => {
-    setShowModal(false);
-  };
-
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -247,7 +219,6 @@ const Members = () => {
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Card
-
           style={{
             top: '50px',
             backgroundColor: '#FFFFFF',
@@ -259,7 +230,6 @@ const Members = () => {
             borderRadius: '24px',
           }}
         >   <div style={containerStyle}>
-
             <Dropdown overlay={menu}>
               <Button style={{
                 marginLeft: '50px',
@@ -281,7 +251,6 @@ const Members = () => {
                 BATCH 1 &nbsp; <DownOutlined style={{ fontSize: '14px' }} />
               </Button>
             </Dropdown>
-
           </div>
           <br />
           <Table columns={columns} dataSource={data} style={{ width: '100%', height: 300, justifyContent: 'center' }} />
@@ -290,5 +259,4 @@ const Members = () => {
     </>
   );
 };
-
 export default Members;

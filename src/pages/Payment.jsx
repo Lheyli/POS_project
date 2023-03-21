@@ -6,28 +6,21 @@ import { Divider } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../reducers/productSlice';
 import { Link } from 'react-router-dom';
-
-
 const Payment = () => {
     const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-
     const dispatch = useDispatch();
     const products = useSelector((state) => state.products.products);
     const loading = useSelector((state) => state.products.loading);
     const error = useSelector((state) => state.products.error);
-
     useEffect(() => {
         dispatch(fetchProducts());
     }, [dispatch]);
-
     if (loading) {
         return <div>Loading...</div>;
     }
-
     if (error) {
         return <div>Error: {error}</div>;
     }
-
     const columns = [
         {
             key: 'image',
@@ -49,7 +42,6 @@ const Payment = () => {
                 }}>{record.title}</span>
             ),
         },
-
         {
             dataIndex: 'price',
             key: 'price',
@@ -92,8 +84,6 @@ const Payment = () => {
             ),
         },
     ];
-
-
     return (
         <center>
             <Card style={{ backgroundColor: '#FFFFFF', width: '1000px', height: '1525px' }}>
@@ -256,5 +246,4 @@ const Payment = () => {
         </center >
     );
 };
-
 export default Payment;

@@ -1,12 +1,9 @@
 import { Card, Typography, Input, Form, Row, Col, Button, Divider, } from "antd";
-import React, { useState } from 'react';
 import {FileAddOutlined } from '@ant-design/icons';
 import { message, Upload } from 'antd';
 const { Text } = Typography;
-
 function handleUpload(file) {
 }
-
 const csvProps = {
     accept: '.csv',
     beforeUpload: (file) => {
@@ -20,9 +17,6 @@ const csvProps = {
     },
 };
 function Batch() {
-
-
-
     const headingStyle = {
         font: "Poppins",
         fontStyle: "normal",
@@ -44,8 +38,6 @@ function Batch() {
             borderRadius: '10px',
             backgroundColor: '#fff'
         }}>
-
-
             <h2 style={headingStyle}>CREATE  NEW BATCH MEMBERS</h2>
             <Row gutter={16}>
                 <Typography.Text style={{
@@ -75,7 +67,6 @@ function Batch() {
                     BATCH
                 </Text>
                 <Input
-                 
                     style={{
                         marginLeft: '20px',
                         boxSizing: 'border-box',
@@ -84,7 +75,6 @@ function Batch() {
                         height: '50px',
                         width: '795px'
                     }}
-                
                 />
             </div>
             <br />
@@ -95,10 +85,8 @@ function Batch() {
                 <br />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Upload {...csvProps}>
-
                         <FileAddOutlined style={{ color: '#53B8F1', fontSize: 100 }} />
                         <br/>
-
                     </Upload>
                 </div>
                 <br/>
@@ -164,7 +152,6 @@ function Batch() {
                                     type="url"
                                 />
                             </Form.Item>
-
                             <Form.Item>
                                 <Button
                                     style={{
@@ -191,12 +178,8 @@ function Batch() {
                         </Form>
                     </Col>
                 </Row>
-
             </div>
-
-
         </Card >
     );
 }
-
 export default Batch;

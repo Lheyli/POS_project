@@ -1,7 +1,5 @@
 import React from 'react';
 import { Column } from '@ant-design/charts';
-
-
 const data = [
   { time: '8AM', sales: 10 },
   { time: '9AM', sales: 100 },
@@ -14,7 +12,6 @@ const data = [
   { time: '4PM', sales: 100 },
   { time: '5PM', sales: 247 },
 ];
-
 const config = {
   data,
   xField: 'time',
@@ -32,16 +29,13 @@ const config = {
   },
   color: '#3B3A82',
   columnStyle: {
-    height: 50, // Add a height property to set the height of the column bars
-    width: 10, // Add a width property to set the width of the column bars
-    borderRadius: 50, // Add a borderRadius property to set the border radius of the column bars
+    height: 50, 
+    width: 10, 
+    borderRadius: 50, 
   },
 };
-
-
 const SalesReport = () => {
-  return  <Column {...config} />
-  
-};
+  return <Column {...config} />
 
+};
 export default SalesReport;

@@ -7,8 +7,6 @@ import { ShoppingCartOutlined, RightOutlined, EditOutlined, DeleteOutlined } fro
 import styled from 'styled-components';
 import '../pages/DateRangePicker.css';
 import styles from './Transactions.module.css';
-
-
 const Products = ({ dataSource }) => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
@@ -20,34 +18,24 @@ const Products = ({ dataSource }) => {
   const [endDate, setEndDate] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
-
   const handleButtonClick = () => {
     setIsDrawerVisible(true);
   };
-
   const onDetailsClose = () => {
     setIsDrawerVisible(false);
   };
-
- 
-
   const CreateModal = () => {
     setIsModalVisible(true);
   };
-
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-
-
   const handleShowModal = () => {
     setShowModal(!showModal);
   };
-
   const handleModalOk = () => {
     setShowModal(false);
   };
-
   const handleModalCancel = () => {
     setShowModal(false);
   };
@@ -62,8 +50,6 @@ const Products = ({ dataSource }) => {
   const disabledEndDate = (current) => {
     return current && current < startDate;
   };
-
-
   const modalContent = (
     <Modal
       open={showModal}
@@ -100,7 +86,6 @@ const Products = ({ dataSource }) => {
               alt={selectedProduct.name}
               style={{ display: 'block', margin: 'auto' }}
             />
-
           </div>
           <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3B3A82', font: 'Poppins', fontWeight: 'bold', marginLeft: '10px', fontSize: '23px', marginTop: '0px' }}>
 
@@ -145,17 +130,12 @@ const Products = ({ dataSource }) => {
               GENERATE QR CODE
             </Button>
           </div>
-
           <Row justify="end">
             <Col>
-
               <DeleteOutlined style={{ color: '#9494B2', fontSize: '30px' }} />
-
               &nbsp;&nbsp;
             </Col>
           </Row>
-
-
         </Drawer>
       )}
       <br></br>
@@ -164,7 +144,6 @@ const Products = ({ dataSource }) => {
       <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>Generate QR Code{<RightOutlined />} </Button>
     </Modal>
   );
-
   const ActionsContent = ({ record }) => {
     console.log("🚀 ~ file: Products.jsx:183 ~ ActionsContent ~ record: sett", record)
     return (
@@ -176,7 +155,6 @@ const Products = ({ dataSource }) => {
       </Space>
     )
   };
-
   const columns = [
     {
       title: '',
@@ -213,7 +191,6 @@ const Products = ({ dataSource }) => {
           default:
             color = 'default';
         }
-
         return <Button type="primary" ghost style={{ borderColor: color, color: color }}>{text}</Button>;
       },
     },
@@ -238,8 +215,6 @@ const Products = ({ dataSource }) => {
       render: (text, record,) => <ActionsContent record={record} />,
     },
   ];
-
-
   const StyledTable = styled(Table)`
     background-color: #F9F9FF;
     border-color: #E8E8E8;
@@ -247,7 +222,6 @@ const Products = ({ dataSource }) => {
     margin: auto;
     border-radius: 20px;
   `;
-
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
@@ -276,7 +250,6 @@ const Products = ({ dataSource }) => {
     }}>
       <Row gutter={[16, 16]} style={{ width: '50vw', maxWidth: 1000 }}>
         <Col
-
           {...BREAKPOINTS}
           style={{ display: 'flex', marginBottom: '16px', justifyContent: 'flex-start' }}
         >
@@ -298,12 +271,8 @@ const Products = ({ dataSource }) => {
             format="YYYY-MM-DD"
             style={{ width: '150px', background: '#5250B4', color: '#ffffff', font: "Poppins" }}
           />
-
-
         </Col>
-
         <Col
-
           {...BREAKPOINTS}
           style={{ display: 'flex', marginBottom: '16px', justifyContent: 'flex-end' }}>
           <Button onClick={CreateModal} style={{ borderColor: '#5250B4', borderRadius: '50px', display: 'inline-block', color: '#3B3A82', font: "Poppins", fontWeight: 'bold' }}>
@@ -332,8 +301,6 @@ const Products = ({ dataSource }) => {
               MULTIPLE
             </Button></Link>
           </Modal>
-
-
           &nbsp; &nbsp;
           <Button
             style={{
@@ -350,13 +317,9 @@ const Products = ({ dataSource }) => {
           </Button>
         </Col>
       </Row>
-
-
-
       <StyledTable columns={columns} dataSource={products} rowKey="id" />
       {modalContent}
     </div>
   );
 };
-
 export default Products;

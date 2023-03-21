@@ -6,27 +6,21 @@ import { Divider } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../reducers/productSlice';
 import { Link } from 'react-router-dom';
-
 const Receipt = () => {
     const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-
     const dispatch = useDispatch();
     const products = useSelector((state) => state.products.products);
     const loading = useSelector((state) => state.products.loading);
     const error = useSelector((state) => state.products.error);
-
     useEffect(() => {
         dispatch(fetchProducts());
     }, [dispatch]);
-
     if (loading) {
         return <div>Loading...</div>;
     }
-
     if (error) {
         return <div>Error: {error}</div>;
     }
-
     const columns = [
         {
             key: 'image',
@@ -48,7 +42,6 @@ const Receipt = () => {
                 }}>{record.title}</span>
             ),
         },
-
         {
             dataIndex: 'price',
             key: 'price',
@@ -91,8 +84,6 @@ const Receipt = () => {
             ),
         },
     ];
-
-
     return (
         <center>
             <Card style={{ backgroundColor: '#FFFFFF', width: '1000px', height: '1555px' }}>
@@ -252,7 +243,6 @@ const Receipt = () => {
                     }}>
                         {`${today}`} 3:33 pm
                     </p>
-
                     <p style={{
                         font: 'Poppins',
                         fontStyle: 'normal',
@@ -262,7 +252,6 @@ const Receipt = () => {
                         color: '#AC4425'
                     }}>Receipt #122DFSR69</p>
                 </div>
-
                 <div style={{
                     display: 'flex',
                     right: 65,
@@ -308,5 +297,4 @@ const Receipt = () => {
         </center >
     );
 };
-
 export default Receipt;

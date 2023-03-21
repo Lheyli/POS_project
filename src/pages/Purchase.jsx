@@ -4,7 +4,6 @@ import { Card, Row, Col, Button, Input, Drawer, Typography } from 'antd';
 import { LeftOutlined, RightOutlined, ShoppingCartOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
 const MakePurchase = () => {
   const dispatch = useDispatch();
   const { products, loading, error } = useSelector(state => state.products);
@@ -16,69 +15,49 @@ const MakePurchase = () => {
     selectedCategory,
     setSelectedCategory
   })
-
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const cartItems = useSelector(state => state.products.cartItems);
-
-
   const totalItems = cartItems.reduce((total, item) => {
     console.log("🚀 ~ file: Purchase.jsx:26 ~ totalItems ~ item:", item)
-
     return total + item.cartQuantity
   }, 0);
-  
-
-
   const showDrawer = (product) => {
     setSelectedProduct(product);
     setIsDrawerVisible(true);
   };
-
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
   const onDetailsClose = () => {
     setIsDetailsVisible(false);
   };
-
-
-
   const onClose = () => {
     setSelectedProduct(null);
     setIsDrawerVisible(false);
   };
-
   const handleDecreaseCart = (product) => {
     if (quantity > 0) {
       setQuantity(quantity - 1);
       // dispatch(decreaseCart(product));
     }
   };
-
   const handleAddToCart = (product) => {
     dispatch(addToCart({ ...product, quantity }));
     setQuantity(1);
   };
-
   const handleIncreaseCart = (product) => {
     setQuantity(quantity + 1);
     // dispatch(increaseCart(product));
   };
-
-
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
   };
-
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
-
   const filteredProducts = products.filter((product) => {
-
     // console.log({
     //   selectedAll: selectedCategory === 'All',
     //   selectedCategory: product.category === selectedCategory,
@@ -86,17 +65,13 @@ const MakePurchase = () => {
     return (selectedCategory === 'All' || product.category === selectedCategory?.toLowerCase()) &&
       product.title.toLowerCase().includes(searchValue.toLowerCase())
   });
-
   const categories = ['All', "Men's Clothing", 'Jewelery', 'Electronics', "Women's Clothing"];
-
   if (loading) {
     return <div>Loading...</div>;
   }
-
   if (error) {
     return <div>{error}</div>;
   }
-
   return (
     <>
       <Row justify="start" style={{ marginTop: '50px', marginLeft: '130px' }}>
@@ -124,10 +99,6 @@ const MakePurchase = () => {
           />
         </Col>
       </Row>
-
-
-
-
       <Row justify="center" style={{ marginLeft: '100px', marginTop: '50px' }}>
         <Col>
           {categories.map((category) => (
@@ -150,7 +121,6 @@ const MakePurchase = () => {
             >
               {category}
             </Button>
-
           ))}
         </Col>
         <br></br> <br></br> <br></br> <br></br> <br></br>
@@ -184,7 +154,6 @@ const MakePurchase = () => {
                     <p style={{ fontWeight: 'bold', color: '#3B3A82', font: 'Poppins', fontSize: '15px' }}>₱{product.price}</p>
                   </Card>
                 </Col>
-
               ))}
               {selectedProduct && (
                 <Drawer
@@ -204,9 +173,7 @@ const MakePurchase = () => {
                       alt={selectedProduct.name}
                       style={{ display: 'block', margin: 'auto' }}
                     />
-
                     <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3B3A82', font: 'Poppins', fontWeight: 'bold', marginLeft: '10px', fontSize: '23px', marginTop: '0px' }}>
-
                       {selectedProduct.title}
                     </p>
                     <br></br>
@@ -235,11 +202,9 @@ const MakePurchase = () => {
                     <Button className="btn btn-outline-dark" style={{ borderRadius: '50px', background: '#5250B4', color: '#ffffff', font: 'Poppins', fontWeight: 'bold', height: '55px', width: '205px' }} onClick={() => handleAddToCart(selectedProduct)}>
                       {<ShoppingCartOutlined />} ADD TO CART
                     </Button>
-
                   </div>
                 </Drawer>
               )}
-
               {selectedProduct && (
                 <Drawer
                   placement="right"
@@ -267,10 +232,8 @@ const MakePurchase = () => {
                       alt={selectedProduct.name}
                       style={{ display: 'block', margin: 'auto' }}
                     />
-
                   </div>
                   <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3B3A82', font: 'Poppins', fontWeight: 'bold', marginLeft: '10px', fontSize: '23px', marginTop: '0px' }}>
-
                     {selectedProduct.title}
                   </p>
                   <br></br>
@@ -312,27 +275,19 @@ const MakePurchase = () => {
                       GENERATE QR CODE
                     </Button>
                   </div>
-
                   <Row justify="end">
                     <Col>
-               
                       <DeleteOutlined style={{ color: '#9494B2', fontSize: '30px' }} />
-                    
                       &nbsp;&nbsp;
                     </Col>
                   </Row>
-
-
                 </Drawer>
               )}
             </Row>
-
           </Col>
         </Row>
-
       </Row>
     </>
   );
 };
-
 export default MakePurchase;

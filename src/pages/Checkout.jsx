@@ -25,10 +25,6 @@ const StyledHeader = styled.header`
     box-shadow: 0 0 0 2px #e6f7ff;
   }
 `;
-
-
-
-
 const Checkout = () => {
   const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   const { product, cartItems } = useSelector(state => state.products);
@@ -36,27 +32,21 @@ const Checkout = () => {
   const [tenderedAmount, setTenderedAmount] = useState(0);
   const totalPrice = cartItems.reduce((acc, product) => acc + (product.quantity * product.price), 0);
   const change = tenderedAmount - totalPrice;
-
-
   const handleDecreaseCart = (product) => {
     dispatch(decreaseCart(product));
   };
   const handleIncreaseCart = (product) => {
     dispatch(increaseCart(product));
   };
-
   const handleTenderedAmountChange = (value) => {
     setTenderedAmount(value);
   };
-
   useEffect(() => {
     dispatch(getTotals());
   }, [product, dispatch]);
-
   return (
     <>
       <StyledHeader>
-
         <Row justify="start" style={{ marginTop: '10px', marginLeft: '30px' }}>
           <Button style={{ background: '#DBDFFD' }}>
             <Link to="/purchase">
@@ -103,8 +93,6 @@ const Checkout = () => {
               <TbCircle2Filled style={{ color: '#D6D6E5' }} /> &nbsp; Receipt
             </h3>
           </Link>
-
-
         </div>
         <div style={{
           marginLeft: '1px',
@@ -119,18 +107,11 @@ const Checkout = () => {
           {`${today}`}
         </div>
       </div>
-
-
-
       <center>
-
         <Card style={{ maxWidth: '1300px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '30px' }}>
-
           <div style={{ display: 'flex', justifyContent: 'flex-start', width: '100%' }}>
             <Typography.Title level={1} style={{ color: 'black', textAlign: 'left', justifyContent: 'flex-start' }}>Your Order</Typography.Title>
           </div>
-
-
           <Table dataSource={cartItems} style={{ maxWidth: '1300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Table.Column title="" key="image" render={(text, record) => (
               <img alt={record.time} src={record.image} width={200} height={150} />
@@ -147,7 +128,6 @@ const Checkout = () => {
                 </span>
               )}
             />
-
             <Table.Column title="" key="cartQuantity" render={(text, record) => (
               <>
                 <Button style={{ borderColor: "gray" }} col-md-3 onClick={() => handleDecreaseCart(record)}>
@@ -158,33 +138,25 @@ const Checkout = () => {
               </>
             )} />
           </Table>
-
           <br /><br />
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
             <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
-
               <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold' }}>Total: ₱{totalPrice.toFixed(2)}</Typography.Text>
             </div>
-
             <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
               <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold' }}>Tendered Amount:</Typography.Text>
               <InputNumber min={0} onChange={handleTenderedAmountChange} style={{ width: '200px' }} />
-
             </div>
             <Typography.Text style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>Please enter customer tendered amount</Typography.Text>
             <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
               <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold' }}>Change:</Typography.Text>
               <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold' }}>₱{change.toFixed(2)}</Typography.Text>
             </div>
-
-
           </div>
         </Card>
-
       </center>
       <div style={{ display: 'flex', justifyContent: 'flex-end', width: '90%', marginTop: '20px', alignItems: 'center' }}>
         <Button
-
           style={{
             background: '#5250B4',
             borderRadius: '50px',
@@ -195,20 +167,13 @@ const Checkout = () => {
             width: '150px',
             height: '50px',
             fontSize: '23px'
-
-
           }}
-
         > &nbsp;
           <Link to="/cartreceipt">CONFIRM</Link>
         </Button>
-
       </div>
       <br></br>
-
     </>
-
   );
 };
-
 export default Checkout;
