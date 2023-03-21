@@ -2,48 +2,23 @@
 import { Card, Table, Button } from 'antd';
 import { TbCircle1Filled, TbCircle2Filled, TbCircle3Filled, TbChevronRight } from "react-icons/tb";
 import { DeleteOutlined } from '@ant-design/icons';
-import React, { useState, useEffect } from 'react';
+import React, {  useEffect } from 'react';
 import { Divider } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProducts } from '../reducers/productSlice';
+import { fetchProducts, removeFromCart } from '../reducers/productSlice';
 import { Link } from 'react-router-dom';
-const data = [
-  {
-    key: '1',
-    productname: 'SkyFlakes Crackers',
-    price: '(199.00)',
-    quantity: 'x2',
-    total: '₱398.00',
-  },
-  {
-    key: '2',
-    productname: 'Jack n Jill V-Cut Spicy Ba...',
-    price: '(34.25)',
-    quantity: 'x1',
-    total: '₱34.25',
-  },
-  {
-    key: '3',
-    productname: 'Del Monte 100% Pineapple...',
-    price: '(96.50)',
-    quantity: 'x2',
-    total: '₱193.00',
-  },
-];
+
 
 const MakeOrders = () => {
   const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-
-  const [tableData, setTableData] = useState(data);
-
   const handleDelete = (record) => {
-    const newData = tableData.filter((item) => item.key !== record.key);
-    setTableData(newData);
+    dispatch(removeFromCart(record.id));
   };
 
 
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.products.products);
+  const { cartItems } = useSelector(state => state.products);
+  const totalPrice = cartItems.reduce((acc, product) => acc + (product.quantity * product.price), 0);
   const loading = useSelector((state) => state.products.loading);
   const error = useSelector((state) => state.products.error);
 
@@ -58,80 +33,6 @@ const MakeOrders = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
-
-  const columns = [
-    {
-      key: 'image',
-      render: (text, record) => (
-        <img src={record.image} alt={record.name} style={{ width: '50px', height: '50px' }} />
-      ),
-    },
-    {
-      dataIndex: 'title',
-      key: 'productname',
-      render: (text, record) => (
-        <span style={{
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 500,
-          fontSize: '15px',
-          lineHeight: '36px',
-          color: '#6A6A80',
-        }}>{record.title}</span>
-      ),
-    },
-
-    {
-      dataIndex: 'price',
-      key: 'price',
-      render: (text) => (
-        <span style={{
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 500,
-          fontSize: '15px',
-          lineHeight: '36px',
-          color: ' #9494B3',
-        }}>{`(${text})`}</span> // add bold font weight to price
-      ),
-    },
-    {
-      dataIndex: 'quantity',
-      key: 'quantity',
-      render: (text, record) => (
-        <span style={{
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 500,
-          fontSize: '15px',
-          lineHeight: '36px',
-          color: '#6A6A80',
-        }}>{`X${Math.floor(Math.random() * 10) + 1}`}</span>
-      ),
-    },
-    {
-      key: 'total',
-      render: (text, record) => (
-        <span style={{
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 600,
-          fontSize: '15px',
-          lineHeight: '36px',
-          color: '#6A6A80',
-        }}>{`₱${record.price * record.quantity}`}</span> // add bold font weight to total
-      ),
-    },
-    {
-      key: 'action',
-      render: (text, record) => (
-        <Button style={{ color: '#3B3A82' }} type="link" danger onClick={() => handleDelete(record)}>
-          <DeleteOutlined />
-        </Button>
-      ),
-    },
-  ];
-
 
 
   return (
@@ -207,7 +108,52 @@ const MakeOrders = () => {
           {`${today}`}
         </div>
         <br />
-        <Table columns={columns} dataSource={products} rowKey="id" style={{ margin: 'auto', maxWidth: '900px', background: '#F9F9FF' }} />
+        <Table dataSource={cartItems} style={{ margin: 'auto', maxWidth: '900px', background: '#F9F9FF' }}>
+          <Table.Column title="" key="image" render={(text, record) => (
+            <img alt={record.time} src={record.image} width={50} height={50} />
+          )} />
+          <Table.Column title="" dataIndex="title" key="title" />
+          <Table.Column
+            title=""
+            dataIndex="price"
+            key="price"
+            style={{ fontWeight: 'bold' }}
+            render={(text) => (
+              <span>
+                ₱{text}
+              </span>
+            )}
+          />
+
+          <Table.Column title="" key="cartQuantity" render={(text, record) => (
+            < >
+              x{record.quantity}
+
+            </>
+
+          )} />
+          <Table.Column title="" key="cartQuantity" render={(text, record) => (
+            < >
+
+              &#8369;{record.quantity * record.price}
+            </>
+
+          )} />
+          <Table.Column
+            key='action'
+            render={(text, record) => (
+              <Button
+                style={{ color: '#3B3A82' }}
+                type='link'
+                danger
+                onClick={() => handleDelete(record)}
+              >
+                <DeleteOutlined />
+              </Button>
+            )}
+          />
+
+        </Table>
         <Divider />
         <div style={{
           marginLeft: '625px',
@@ -218,7 +164,7 @@ const MakeOrders = () => {
           lineHeight: '48px',
           color: '#38384D',
         }}>
-          TOTAL: &nbsp; ₱123.45
+          TOTAL:  ₱{totalPrice.toFixed(2)}
         </div>
         <div style={{
           display: 'flex',

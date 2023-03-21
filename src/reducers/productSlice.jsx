@@ -79,6 +79,7 @@ const productSlice = createSlice({
         const itemIndex = state.cartItems.findIndex(
           (item) => item.id === action.payload.id
         );
+        console.log("🚀 ~ file: productSlice.jsx:82 ~ decreaseCart ~ itemIndex:", itemIndex)
       
         if (state.cartItems[itemIndex].quantity > 1) {
           state.cartItems[itemIndex].quantity -= 1;
@@ -86,12 +87,12 @@ const productSlice = createSlice({
           toast.info("Decreased product quantity", {
             position: "bottom-left",
           });
-        } else if (state.product[itemIndex].cartQuantity === 1) {
-          const nextCart = state.product.filter(
+        } else if (state.cartItems[itemIndex].cartQuantity === 1) {
+          const nextCart = state.cartItems.filter(
             (item) => item.id !== action.payload.id
           );
       
-          state.product = nextCart;
+          state.cartItems = nextCart;
       
           toast.error("Product removed from cart", {
             position: "bottom-left",

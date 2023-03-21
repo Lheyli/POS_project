@@ -131,7 +131,7 @@ const Checkout = () => {
           </div>
 
 
-          <Table dataSource={cartItems} style={{ maxWidth: '1300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Table dataSource={cartItems || [{}]} style={{ maxWidth: '1300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Table.Column title="" key="image" render={(text, record) => (
               <img alt={record.time} src={record.image} width={200} height={150} />
             )} />
