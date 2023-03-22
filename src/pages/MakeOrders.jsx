@@ -7,34 +7,25 @@ import { Divider } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts, removeFromCart } from '../reducers/productSlice';
 import { Link } from 'react-router-dom';
-
-
 const MakeOrders = () => {
   const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   const handleDelete = (record) => {
     dispatch(removeFromCart(record.id));
   };
-
-
   const dispatch = useDispatch();
   const { cartItems } = useSelector(state => state.products);
   const totalPrice = cartItems.reduce((acc, product) => acc + (product.quantity * product.price), 0);
   const loading = useSelector((state) => state.products.loading);
   const error = useSelector((state) => state.products.error);
-
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-
   if (loading) {
     return <div>Loading...</div>;
   }
-
   if (error) {
     return <div>Error: {error}</div>;
   }
-
-
   return (
     <center>
       <Card style={{ backgroundColor: '#FFFFFF', width: '1000px', height: '1425px' }}>
@@ -81,7 +72,6 @@ const MakeOrders = () => {
           }}>
             <TbCircle3Filled style={{ color: '#D6D6E5' }} /> &nbsp; Receipt
           </h3></Link> &nbsp;
-
         </div>
         <div style={{
           marginLeft: '1px',
@@ -124,20 +114,15 @@ const MakeOrders = () => {
               </span>
             )}
           />
-
           <Table.Column title="" key="cartQuantity" render={(text, record) => (
             < >
               x{record.quantity}
-
             </>
-
           )} />
           <Table.Column title="" key="cartQuantity" render={(text, record) => (
             < >
-
               &#8369;{record.quantity * record.price}
             </>
-
           )} />
           <Table.Column
             key='action'
@@ -146,13 +131,12 @@ const MakeOrders = () => {
                 style={{ color: '#3B3A82' }}
                 type='link'
                 danger
-                onClick={() => handleDelete(record)}
+                onClick={() => handleDelete(record.id)}
               >
                 <DeleteOutlined />
               </Button>
             )}
           />
-
         </Table>
         <Divider />
         <div style={{
@@ -201,5 +185,4 @@ const MakeOrders = () => {
     </center>
   );
 };
-
 export default MakeOrders;

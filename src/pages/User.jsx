@@ -279,7 +279,6 @@ const Transactions = () => {
               textAlign: 'center',
               color: '#FFFFFF',
               justifyContent: 'center',
-
             }}
           >
             EXPORT
@@ -311,6 +310,44 @@ const Transactions = () => {
             <p style={{
               font: 'Poppins',
               fontStyle: 'normal',
+              fontWeight: 700,
+              fontSize: '18px',
+              lineHeight: '27px',
+              display: 'flex',
+              alignItems: 'center',
+              color: '#656565',
+              marginBottom: '0px'
+            }}>
+              ACTIVITY
+            </p>
+          </div>
+          <Divider style={{ borderColor: '#D6D6E5', borderWidth: '.5px', marginTop: '0px'}} />
+          <p style={{
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: 700,
+            fontSize: '30px',
+            lineHeight: '27px',
+            display: 'flex',
+            alignItems: 'center',
+            color: '#30304D',
+            marginBottom: '0px'
+          }}>{selectedRow && selectedRow.name}</p>
+          <p style={{
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            fontSize: '16px',
+            lineHeight: '27px',
+            display: 'flex',
+            alignItems: 'center',
+            color: '#656565',
+            marginTop: '0px'
+          }}>UserID: {selectedRow && selectedRow.userId}</p>
+       <div style={{ display: 'flex', alignItems: 'center' }}> 
+  <p style={{
+              font: 'Poppins',
+              fontStyle: 'normal',
               fontWeight: 600,
               fontSize: '18px',
               lineHeight: '27px',
@@ -340,28 +377,7 @@ const Transactions = () => {
               alignItems: 'center',
               color: '#656565',
             }}>{selectedRow && selectedRow.time}</p>
-          </div>
-          <Divider style={{ borderColor: '#D6D6E5', borderWidth: '.5px' }} />
-          <p style={{
-            font: 'Poppins',
-            fontStyle: 'normal',
-            fontWeight: 700,
-            fontSize: '30px',
-            lineHeight: '27px',
-            display: 'flex',
-            alignItems: 'center',
-            color: '#656565',
-          }}>{selectedRow && selectedRow.name}</p>
-          <p style={{
-            font: 'Poppins',
-            fontStyle: 'normal',
-            fontWeight: 400,
-            fontSize: '16px',
-            lineHeight: '27px',
-            display: 'flex',
-            alignItems: 'center',
-            color: '#656565',
-          }}>{selectedRow && selectedRow.userId}</p>
+            </div>
         </Modal>
       </div>
     </>

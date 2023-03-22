@@ -28,8 +28,6 @@ import {
   ShoppingCartOutlined,
   UsergroupAddOutlined,
 } from "@ant-design/icons";
-
-
 const StyledSider = styled.div`
   background-color: #eeeeff;
   height: 100vh;
@@ -40,13 +38,11 @@ const StyledSider = styled.div`
     isOpen ? "translateX(0)" : "translateX(-200px)"};
   transition: transform 0.3s ease-in-out;
 `;
-
 const StyledMenu = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
 `;
-
 const StyledLink = styled(Link)`
   display: block;
   padding: 16px;
@@ -56,17 +52,14 @@ const StyledLink = styled(Link)`
   font: "Poppins";
   cursor: pointer;
   text-decoration: none;
-
   &:hover {
     background-image: linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%);
     color: #cccccc;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     width: 90%;
-    
   }
 `;
-
 const StyledMenuSignout = styled(Link)`
   color: #3b3a82;
   width: 254px;
@@ -81,7 +74,6 @@ const StyledMenuSignout = styled(Link)`
   margin-left: 80px;
   cursor: pointer;
 `;
-
 const StyledToggle = styled.button`
   position: absolute;
   top: 10px;
@@ -94,66 +86,47 @@ const StyledToggle = styled.button`
   padding: 8px 16px;
   cursor: pointer;
 `;
-
-
-
-
 function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
-
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
-
   const images = [''];
   const [visible, setVisible] = useState(false);
   const [isvis, issetVis] = useState(false);
-
   const handleSidebarClick = () => {
     setVisible(true);
   };
-
-
   const handleModalOk = () => {
     setVisible(false);
   };
-
   const handleModalCancel = () => {
     setVisible(false);
   };
   const handleClick = () => {
     issetVis(true);
   };
-
-
   const handleOk = () => {
     issetVis(false);
   };
-
   const Cancel = () => {
     issetVis(false);
   };
-
   const [isvisible, issetVisible] = useState(false);
 
   const handleSideClick = () => {
     issetVisible(true);
   };
-
-
   const handleModalOkay = () => {
     issetVisible(false);
   };
-
   const handleCancel = () => {
     issetVisible(false);
   };
-
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-
     slidesToScroll: 1,
     dotStyle: {
       borderColor: 'gray',
@@ -163,7 +136,6 @@ function Sidebar() {
       borderColor: 'blue',
     },
   };
-
   return (
     <>
       <StyledToggle onClick={handleToggle}>
@@ -302,10 +274,8 @@ function Sidebar() {
             Sign out
             &nbsp;<PoweroffOutlined /></StyledMenuSignout>
         </StyledMenu>
-
       </StyledSider>
     </>
   );
 }
-
 export default Sidebar;

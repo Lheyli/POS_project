@@ -108,48 +108,7 @@ const columns = [
     )
   },
 ];
-const data = [
-  {
-    id: '1535',
-    name: 'Vic Tinaliga',
-    email: 'tinaliga@gmail.com',
-  },
-  {
-    id: '14652',
-    name: 'Lhey Cruz',
-    email: 'perez@gmail.com',
-  },
-  {
-    id: '487568',
-    name: 'Rica De Vera',
-    email: 'cruz@yahoo.com',
-  },
-  {
-    id: '31424',
-    name: 'Jen Fernandez',
-    email: 'dvera@ymail.com',
-  },
-  {
-    id: '98947',
-    name: 'Gab Fernandez',
-    email: 'pf@yahoo.com',
-  },
-  {
-    id: '67967',
-    name: 'Josh Garcia',
-    email: 'fer@gmail.com',
-  },
-  {
-    id: '12412',
-    name: 'Willard Perez',
-    email: 'garcia@ymail.com',
-  },
-  {
-    id: '68865',
-    name: 'Camila De Leon',
-    email: 'afi@yahoo.com',
-  },
-];
+
 const Members = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const menu = (
@@ -253,7 +212,7 @@ const Members = () => {
             </Dropdown>
           </div>
           <br />
-          <Table columns={columns} dataSource={data} style={{ width: '100%', height: 300, justifyContent: 'center' }} />
+          <Table columns={columns}  style={{ width: '100%', height: 300, justifyContent: 'center' }} />
         </Card>
       </div>
     </>

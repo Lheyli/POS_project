@@ -11,34 +11,27 @@
     margin-left: auto;
     margin-right: 100;
 }
-
 .net-income-month {
     margin: 0;
     font: 'Poppins';
-    /* Added a fallback font */
     font-style: normal;
     font-weight: 400;
-    font-size: 15px;
-    line-height: 18px;
+    font-size: 12px;
+    line-height: 3px;
     letter-spacing: 0.451506px;
     text-transform: capitalize;
     color: #D6D6E5;
-    text-align: left;
-    /* Added this line to align the text to the left */
+    text-align: center;
 }
-
 .net-income-amount {
     font-size: 25px;
     margin: 10px 0;
     font: 'Poppins';
-    /* Added a fallback font */
     font-style: normal;
     font-weight: 400;
     color: #D6D6E5;
     text-align: left;
 }
-
-
 .net-income-description {
     font-size: 14px;
     margin: 0;
