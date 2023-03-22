@@ -139,7 +139,7 @@ const Transactions = () => {
   ];
   return (
     <>
-      <div justify='start' style={{
+      <div style={{
         marginTop: '50px',
         width: '100%',
         font: 'Poppins',
@@ -147,12 +147,16 @@ const Transactions = () => {
         fontWeight: 'bold',
         fontSize: '28px',
         color: '#30304D',
+              display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
       }}>
-        <span style={{ marginLeft: '450px', }}>
-          {today}</span></div>
+        <span style={{ marginLeft: '-750px', }}>
+          {today}</span>
       <br></br>
       <div justify='start' style={{ display: 'flex', flexDirection: 'row', marginTop: '10px' }}>
-        <span style={{ marginLeft: '450px', }}>
+        <span style={{ marginLeft: '-480px', }}>
           <DatePicker
             id={styles["input123"]}
             style={{
@@ -203,6 +207,7 @@ const Transactions = () => {
         >
           EXPORT
         </Button>
+      </div>
       </div>
       <br></br>
       <Card

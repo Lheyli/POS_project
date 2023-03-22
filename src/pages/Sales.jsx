@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { DatePicker, Card, Button, Typography } from 'antd';
 import dayjs from 'dayjs';
 import { CalendarOutlined } from '@ant-design/icons'
@@ -10,10 +10,37 @@ dayjs.extend(customParseFormat);
 const dateFormatList = ['MM/DD/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
 const Sales = () => {
   const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  const [todayClicked, setTodayClicked] = useState(true);
+  const [weekClicked, setWeekClicked] = useState(false);
+  const [monthClicked, setMonthClicked] = useState(false);
+
+  const handleClick = (button) => {
+    if (button === 'today') {
+      setTodayClicked(true);
+      setWeekClicked(false);
+      setMonthClicked(false);
+    } else if (button === 'week') {
+      setTodayClicked(false);
+      setWeekClicked(true);
+      setMonthClicked(false);
+    } else if (button === 'month') {
+      setTodayClicked(false);
+      setWeekClicked(false);
+      setMonthClicked(true);
+    }
+  };
+ 
+ 
   return (
     <>
+        <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }}>
       <div justify='start' style={{ display: 'flex', flexDirection: 'row', marginTop: '10px' }}>
-        <span style={{ marginLeft: '430px', }}>
+        <span style={{ marginLeft: '-450px', }}>
           <DatePicker
             id={styles["input123"]}
             style={{
@@ -70,7 +97,6 @@ const Sales = () => {
         backgroundColor: '#FFFFFF',
         width: '1000px',
         height: '710px',
-        marginLeft: '425px',
         background: '#F9F9FF',
         boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
         borderRadius: '24px',
@@ -80,49 +106,72 @@ const Sales = () => {
           justifyContent: 'center',
           alignItems: 'center'
         }}>
-          <Button style={{
-            display: 'flex',
-            height: '40px',
-            width: '120px',
-            textAlign: 'center',
-            alignItems: 'center',
-            font: 'Poppins',
-            fontStyle: 'normal',
-            fontWeight: 600,
-            fontSize: '22px',
-            lineHeight: '50px',
-            color: '#F9F9FF',
-            background: '#5250B4',
-            borderRadius: '20px'
-          }}>
-            <span style={{ marginLeft: '15px' }}>Today</span>
-          </Button> &nbsp;
-          &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          <h3 style={{
-            display: 'flex',
-            alignItems: 'center',
-            font: 'Poppins',
-            fontStyle: 'normal',
-            fontWeight: 600,
-            fontSize: '25px',
-            lineHeight: '50px',
-            color: '#D6D6E5'
-          }}>
-            Next Week
-          </h3> &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          <h3 style={{
-            display: 'flex',
-            alignItems: 'center',
-            font: 'Poppins',
-            fontStyle: 'normal',
-            fontWeight: 600,
-            fontSize: '25px',
-            lineHeight: '50px',
-            color: '#D6D6E5'
-          }}>
-            This Month
-          </h3>&nbsp;
+          <Button
+        onClick={() => handleClick('today')}
+        style={{
+          display: 'flex',
+          height: '40px',
+          width: '120px',
+          textAlign: 'center',
+          alignItems: 'center',
+          font: 'Poppins',
+          fontStyle: 'normal',
+          justifyContent: 'center',
+          fontWeight: 600,
+          fontSize: '22px',
+          lineHeight: '50px',
+          color: todayClicked ? '#F9F9FF' : '#A9A9CC',
+          background: todayClicked ? '#5250B4' : 'none',
+          borderRadius: '20px'
+        }}
+      >
+        <span style={{ marginLeft: '15px' }}>Today</span>
+      </Button>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <Button
+        onClick={() => handleClick('week')}
+        style={{
+        display: 'flex',
+        height: '40px',
+        width: '150px',
+        textAlign: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        font: 'Poppins',
+        fontStyle: 'normal',
+        fontWeight: 600,
+        fontSize: '22px',
+        lineHeight: '50px',
+        color: weekClicked ? '#F9F9FF' : '#A9A9CC',
+        background: weekClicked ? '#5250B4' : 'none',
+        borderRadius: '20px'
+      }}
+    >
+      <span style={{ marginLeft: '15px' }}>Next week</span>
+    </Button>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <Button
+        onClick={() => handleClick('month')}
+        style={{
+        display: 'flex',
+        height: '40px',
+        width: '150px',
+        justifyContent: 'center',
+        textAlign: 'center',
+        alignItems: 'center',
+        font: 'Poppins',
+        fontStyle: 'normal',
+        fontWeight: 600,
+        fontSize: '22px',
+        lineHeight: '50px',
+        color: monthClicked ? '#F9F9FF' : '#A9A9CC',
+        background: monthClicked ? '#5250B4' : 'none',
+        borderRadius: '20px'
+      }}
+    >
+      <span style={{ marginLeft: '15px' }}>This Month</span>
+    </Button>
+        &nbsp;
         </div>
         <div justify='start' style={{
           marginTop: '20px',
@@ -209,7 +258,10 @@ const Sales = () => {
             </div>
            
           </Card>
-        </div></Card></>
+        </div>
+        </Card>
+        </div>
+        </>
   );
 };
 export default Sales;

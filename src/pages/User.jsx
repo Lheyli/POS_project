@@ -190,12 +190,16 @@ const Transactions = () => {
         fontWeight: 'bold',
         fontSize: '28px',
         color: '#30304D',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
       }}>
-        <span style={{ marginLeft: '430px', }}>
-          {today}</span></div>
+        <span style={{ marginLeft: '-800px', }}>
+          {today}</span>
       <br></br>
       <div justify='start' style={{ display: 'flex', flexDirection: 'row', marginTop: '10px' }}>
-        <span style={{ marginLeft: '430px', }}>
+        <span style={{ marginLeft: '-20px', }}>
           <DatePicker
             id={styles["input123"]}
             style={{
@@ -284,6 +288,7 @@ const Transactions = () => {
           >
             EXPORT
           </Button></span>
+      </div>
       </div>
       <br></br>
       <div style={{ display: 'flex', justifyContent: 'center' }}>

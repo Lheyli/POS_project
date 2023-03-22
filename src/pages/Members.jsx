@@ -167,7 +167,12 @@ const Members = () => {
   };
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }}>
         <Button
           onClick={CreateModal}
           style={{
@@ -189,7 +194,7 @@ const Members = () => {
             textAlign: 'center',
             color: '#FFFFFF',
             justifyContent: 'center',
-            marginRight: '150px',
+            marginRight: '-800px',
           }}
         >
           <PlusOutlined /> &nbsp; &nbsp;CREATE NEW &nbsp;
@@ -217,14 +222,13 @@ const Members = () => {
           </Button></Link>
         </Modal>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Card
           style={{
             top: '50px',
             backgroundColor: '#FFFFFF',
-            width: '1500px',
+            width: '1000px',
             height: '810px',
-            marginLeft: '150px',
             background: '#F9F9FF',
             boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
             borderRadius: '24px',
@@ -232,7 +236,7 @@ const Members = () => {
         >   <div style={containerStyle}>
             <Dropdown overlay={menu}>
               <Button style={{
-                marginLeft: '50px',
+                marginLeft: '10px',
                 borderRadius: '5px',
                 background: '#EEEEFF',
                 font: 'Poppins',
@@ -253,7 +257,7 @@ const Members = () => {
             </Dropdown>
           </div>
           <br />
-          <Table columns={columns} dataSource={data} style={{ width: '100%', height: 300, justifyContent: 'center' }} />
+          <Table columns={columns} dataSource={data} style={{ width: '100%', justifyContent: 'center' }} />
         </Card>
       </div>
     </>

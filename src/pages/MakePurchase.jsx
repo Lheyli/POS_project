@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 function MakePurchase() {
   return (
     <>
-      <div justify='start' style={{
+    
+      <div style={{
         marginTop: '10px',
         width: '100%',
         font: 'Poppins',
@@ -13,8 +14,12 @@ function MakePurchase() {
         fontWeight: '700',
         fontSize: '35px',
         color: '#3B3A82',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
       }}>
-        <span style={{ marginLeft: '270px', }}>
+        <span style={{ marginLeft: '-650px', }}>
           Make Purchase</span></div>
       <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', marginTop: '230px' }}>
         <img src={image} alt="scan" style={{ position: 'absolute', width: '665px', height: '450px', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }} />

@@ -5,9 +5,10 @@ import {
 import { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
-import { Button, Row, Card, Typography, Table} from 'antd';
+import { Button, Row, Card, Typography, Table } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import { TbCircle1Filled, TbCircle2Filled, TbChevronRight } from "react-icons/tb";
+import { updateReceiptNumber } from '../reducers/receiptSlice';
 const StyledHeader = styled.header`
   background-image: linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%);
   border-bottom: 0.5px solid #656565;
@@ -31,9 +32,20 @@ const CheckRec = () => {
     const [tenderedAmount] = useState(0);
     const totalPrice = cartItems.reduce((acc, product) => acc + (product.quantity * product.price), 0);
     const change = tenderedAmount - totalPrice;
+    const receiptNumber = useSelector(state => state.receipt.receiptNumber);
     useEffect(() => {
-        dispatch(getTotals());
+        dispatch(getTotals(), updateReceiptNumber());
     }, [product, dispatch]);
+
+    const handlePrint = () => {
+        const receiptElement = document.getElementById('receipt-info');
+        const printWindow = window.open('', 'Print', 'height=600,width=800');
+        printWindow.document.write(receiptElement.innerHTML);
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+        printWindow.close();
+    };
     return (
         <>
             <StyledHeader>
@@ -98,13 +110,13 @@ const CheckRec = () => {
                 </div>
             </div>
             <center>
-                <Card style={{ maxWidth: '1300px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '30px' }}>
+                <Card id="receipt-info" style={{ maxWidth: '1000px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '30px' }}>
                     <div style={{ display: 'flex', justifyContent: 'flex-start', width: '100%' }}>
                         <Typography.Title level={1} style={{ font: 'Poppins', fontWeight: 'bold' }}> ₱{totalPrice.toFixed(2)} Payment</Typography.Title>
                     </div>
-                    <Table dataSource={cartItems} style={{ maxWidth: '1300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Table dataSource={cartItems} style={{ maxWidth: '900px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <Table.Column title="" key="image" render={(text, record) => (
-                            <img alt={record.time} src={record.image} width={200} height={150} />
+                            <img alt={record.time} src={record.image} width={50} height={50} />
                         )} />
                         <Table.Column title="" dataIndex="title" key="title" />
                         <Table.Column
@@ -153,48 +165,53 @@ const CheckRec = () => {
                         {`${currentDateTime}`}
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                        <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: 'red' }}>Receipt #</Typography.Text>
+                        <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: 'red' }}>Receipt #{receiptNumber}</Typography.Text>
+                    </div>
+                    <div style={{
+                        display: 'flex',
+                        right: 65,
+                        color: '#3B3A82',
+                        borderRadius: 50,
+                    }}> <Button
+                    onClick={handlePrint}
+                    style={{
+                       background: '#FFFFFF',
+                       border: '4px solid #5250B4',
+                       borderRadius: '50px',
+                       font: 'Poppins',
+                       fontStyle: 'normal',
+                       fontWeight: 'bold',
+                       fontSize: '15px',
+                       textAlign: 'center',
+                       color: '#5250B4',
+                       display: 'block',
+                       marginTop: '30px',
+                       marginLeft: '30px',
+                       marginRight: '625px',
+                       height: '40px',
+                       width: '145px'
+                   }} >PRINT </Button>
+                        
+                        <Button style={{
+                            background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
+                            borderRadius: '50px',
+                            font: 'Poppins',
+                            fontStyle: 'normal',
+                            fontWeight: 700,
+                            fontSize: '15px',
+                            lineHeight: '25px',
+                            textAlign: 'center',
+                            color: '#E8E8E8',
+                            display: 'block',
+                            marginTop: '30px',
+                            marginLeft: '0px',
+                            height: '40px',
+                            width: '135px'
+                        }} type="primary">CONFIRM</Button>
                     </div>
                 </Card>
             </center>
-            <div style={{ justifyContent: 'center', marginTop: '20px', alignItems: 'center' }}>
-                <div style={{ display: 'flex', width: '90%', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Button
-                        style={{
-                            borderColor: '#5250B4',
-                            borderRadius: '50px',
-                            display: 'flex',
-                            color: '#5250B4',
-                            font: "Poppins",
-                            fontWeight: 'bold',
-                            width: '200px',
-                            height: '50px',
-                            fontSize: '23px',
-                            justifyContent: 'flex-start',
-                            marginLeft: '150px'
-                        }}>
-                        &nbsp;
-                        <Link to="">PRINT RECEIPT</Link>
-                    </Button>
-                    <Button
-                        style={{
-                            background: '#5250B4',
-                            borderRadius: '50px',
-                            display: 'flex',
-                            color: '#ffffff',
-                            font: "Poppins",
-                            fontWeight: 'bold',
-                            width: '150px',
-                            height: '50px',
-                            fontSize: '23px',
-                            justifyContent: 'flex-end'
-                        }}>
-                        &nbsp;
-                        CONFIRM
-                    </Button>
-                </div>
-                <br />
-            </div>
+         
         </>
     );
 };

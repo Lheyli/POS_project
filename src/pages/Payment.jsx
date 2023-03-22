@@ -1,7 +1,6 @@
-
-import { Card, Table, Button, Input } from 'antd';
+import { Card, Table, Button, InputNumber } from 'antd';
 import { TbCircle1Filled, TbCircle2Filled, TbCircle3Filled, TbChevronRight } from "react-icons/tb";
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Divider } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../reducers/productSlice';
@@ -9,9 +8,16 @@ import { Link } from 'react-router-dom';
 const Payment = () => {
     const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
     const dispatch = useDispatch();
-    const products = useSelector((state) => state.products.products);
+    const { cartItems } = useSelector(state => state.products);
+    const [tenderedAmount, setTenderedAmount] = useState(0);
+    const totalPrice = cartItems.reduce((acc, product) => acc + (product.quantity * product.price), 0);
+    const change = tenderedAmount - totalPrice;
     const loading = useSelector((state) => state.products.loading);
     const error = useSelector((state) => state.products.error);
+
+    const handleTenderedAmountChange = (value) => {
+        setTenderedAmount(value);
+      };
     useEffect(() => {
         dispatch(fetchProducts());
     }, [dispatch]);
@@ -21,130 +27,102 @@ const Payment = () => {
     if (error) {
         return <div>Error: {error}</div>;
     }
-    const columns = [
-        {
-            key: 'image',
-            render: (text, record) => (
-                <img src={record.image} alt={record.name} style={{ width: '50px', height: '50px' }} />
-            ),
-        },
-        {
-            dataIndex: 'title',
-            key: 'productname',
-            render: (text, record) => (
-                <span style={{
-                    font: 'Poppins',
-                    fontStyle: 'normal',
-                    fontWeight: 500,
-                    fontSize: '15px',
-                    lineHeight: '36px',
-                    color: '#6A6A80',
-                }}>{record.title}</span>
-            ),
-        },
-        {
-            dataIndex: 'price',
-            key: 'price',
-            render: (text) => (
-                <span style={{
-                    font: 'Poppins',
-                    fontStyle: 'normal',
-                    fontWeight: 500,
-                    fontSize: '15px',
-                    lineHeight: '36px',
-                    color: ' #9494B3',
-                }}>{`(${text})`}</span> // add bold font weight to price
-            ),
-        },
-        {
-            dataIndex: 'quantity',
-            key: 'quantity',
-            render: (text, record) => (
-                <span style={{
-                    font: 'Poppins',
-                    fontStyle: 'normal',
-                    fontWeight: 500,
-                    fontSize: '15px',
-                    lineHeight: '36px',
-                    color: '#6A6A80',
-                }}>{`X${Math.floor(Math.random() * 10) + 1}`}</span>
-            ),
-        },
-        {
-            key: 'total',
-            render: (text, record) => (
-                <span style={{
-                    font: 'Poppins',
-                    fontStyle: 'normal',
-                    fontWeight: 600,
-                    fontSize: '15px',
-                    lineHeight: '36px',
-                    color: '#6A6A80',
-                }}>{`₱${record.price * record.quantity}`}</span> // add bold font weight to total
-            ),
-        },
-    ];
+
     return (
+        <> <div style={{
+            display: 'flex',
+            justifyContent: 'flex-start',
+            alignItems: 'center'
+        }}>
+            <Link to='/makeorders'><h3 style={{
+                display: 'flex',
+                alignItems: 'center',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: '25px',
+                lineHeight: '50px',
+                color: '#D6D6E5'
+            }}>
+                <TbCircle1Filled style={{ color: '#D6D6E5' }} /> &nbsp; Make orders
+            </h3></Link> &nbsp;
+            &nbsp; &nbsp; <TbChevronRight /> &nbsp;
+            <Link to='/payment'><h3 style={{
+                display: 'flex',
+                alignItems: 'center',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: '25px',
+                lineHeight: '50px',
+                color: '#3B3A82'
+            }}>
+                <TbCircle2Filled style={{ color: '#3B3A82' }} /> &nbsp; Payment
+            </h3></Link> &nbsp;
+            &nbsp; &nbsp; <TbChevronRight /> &nbsp;
+            <Link to='/receipt'><h3 style={{
+                display: 'flex',
+                alignItems: 'center',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: '25px',
+                lineHeight: '50px',
+                color: '#D6D6E5'
+            }}>
+                <TbCircle3Filled style={{ color: '#D6D6E5' }} /> &nbsp; Receipt
+            </h3></Link> &nbsp;
+        </div>
+        <div style={{
+            marginLeft: '50px',
+            textAlign: 'left',
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: 600,
+            fontSize: '18px',
+            lineHeight: '48px',
+            color: '#6A6A80',
+        }}>
+            {`${today}`}
+        </div>
+        <br />
         <center>
-            <Card style={{ backgroundColor: '#FFFFFF', width: '1000px', height: '1525px' }}>
-                <div style={{
-                    display: 'flex',
-                    justifyContent: 'flex-start',
-                    alignItems: 'center'
-                }}>
-                    <Link to='/makeorders'><h3 style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        font: 'Poppins',
-                        fontStyle: 'normal',
-                        fontWeight: 500,
-                        fontSize: '25px',
-                        lineHeight: '50px',
-                        color: '#D6D6E5'
-                    }}>
-                        <TbCircle1Filled style={{ color: '#D6D6E5' }} /> &nbsp; Make orders
-                    </h3></Link> &nbsp;
-                    &nbsp; &nbsp; <TbChevronRight /> &nbsp;
-                    <Link to='/payment'><h3 style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        font: 'Poppins',
-                        fontStyle: 'normal',
-                        fontWeight: 500,
-                        fontSize: '25px',
-                        lineHeight: '50px',
-                        color: '#3B3A82'
-                    }}>
-                        <TbCircle2Filled style={{ color: '#3B3A82' }} /> &nbsp; Payment
-                    </h3></Link> &nbsp;
-                    &nbsp; &nbsp; <TbChevronRight /> &nbsp;
-                    <Link to='/receipt'><h3 style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        font: 'Poppins',
-                        fontStyle: 'normal',
-                        fontWeight: 500,
-                        fontSize: '25px',
-                        lineHeight: '50px',
-                        color: '#D6D6E5'
-                    }}>
-                        <TbCircle3Filled style={{ color: '#D6D6E5' }} /> &nbsp; Receipt
-                    </h3></Link> &nbsp;
-                </div>
-                <div style={{
-                    marginLeft: '50px',
-                    textAlign: 'left',
-                    font: 'Poppins',
-                    fontStyle: 'normal',
-                    fontWeight: 600,
-                    fontSize: '18px',
-                    lineHeight: '48px',
-                    color: '#6A6A80',
-                }}>
-                    {`${today}`}
-                </div>
-                <br />
-                <Table columns={columns} dataSource={products} rowKey="id" style={{ margin: 'auto', maxWidth: '900px', background: '#F9F9FF' }} />
+            <Card style={{ backgroundColor: '#FFFFFF', width: '1000px' }}>
+               
+                <Table dataSource={cartItems} style={{ margin: 'auto', maxWidth: '900px', background: '#F9F9FF' }}>
+                    <Table.Column title="" key="image" render={(text, record) => (
+                        <img alt={record.time} src={record.image} width={50} height={50} />
+                    )} />
+                    <Table.Column title="" dataIndex="title" key="title" />
+                    <Table.Column
+                        title=""
+                        dataIndex="price"
+                        key="price"
+                        style={{ fontWeight: 'bold' }}
+                        render={(text) => (
+                            <span>
+                                ₱{text}
+                            </span>
+                        )}
+                    />
+
+                    <Table.Column title="" key="cartQuantity" render={(text, record) => (
+                        < >
+                            x{record.quantity}
+
+                        </>
+
+                    )} />
+                    <Table.Column title="" key="cartQuantity" render={(text, record) => (
+                        < >
+
+                            &#8369;{record.quantity * record.price}
+                        </>
+
+                    )} />
+
+
+                </Table>
                 <Divider />
                 <div style={{
                     marginLeft: '625px',
@@ -155,7 +133,7 @@ const Payment = () => {
                     lineHeight: '48px',
                     color: '#38384D',
                 }}>
-                    TOTAL: &nbsp; ₱123.45
+                    TOTAL:  ₱{totalPrice.toFixed(2)}
                 </div>
                 <div style={{
                     marginLeft: '30px',
@@ -167,7 +145,7 @@ const Payment = () => {
                     lineHeight: '42px',
                     color: '#555566',
                 }}>
-                    Tendered Amount: <Input style={{
+                    Tendered Amount: <InputNumber style={{
                         marginLeft: '520px',
                         border: '1px solid #A9A9CC',
                         borderRadius: '12px',
@@ -180,7 +158,8 @@ const Payment = () => {
                         fontSize: '14px',
                         lineHeight: '42px',
                     }}
-                        placeholder="₱0.00" />
+                        placeholder="₱0.00"
+                        min={0} onChange={handleTenderedAmountChange}  />
                     <div style={{
                         textAlign: 'left',
                         font: 'Poppins',
@@ -208,7 +187,7 @@ const Payment = () => {
                 }}>
                     Change:
                     <div style={{
-                        marginLeft: '730px', // optional, adds space between the two elements
+                        marginLeft: '680px', // optional, adds space between the two elements
                         font: 'Poppins',
                         fontStyle: 'normal',
                         fontWeight: 600,
@@ -216,7 +195,7 @@ const Payment = () => {
                         lineHeight: '48px',
                         color: '#38384D',
                     }}>
-                        ₱0
+                        ₱{change.toFixed(2)}
                     </div>
                 </div>
                 <div style={{
@@ -244,6 +223,7 @@ const Payment = () => {
                 </div>
             </Card>
         </center >
+        </>
     );
 };
 export default Payment;
