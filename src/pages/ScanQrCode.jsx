@@ -39,17 +39,21 @@ function ScanQrCode() {
   };
   return (
     <div>
-      <div justify='start' style={{
-        marginTop: '30px',
+     <div style={{
+        marginTop: '10px',
         width: '100%',
         font: 'Poppins',
         fontStyle: 'normal',
         fontWeight: '700',
         fontSize: '35px',
         color: '#3B3A82',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
       }}>
-        <span style={{ display: 'flex', justifyContent: 'center' }}>
-          Scan QR Code</span></div>
+        <span style={{ marginLeft: '-650px', }}>
+          Scan Qr Code</span></div>
       <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
         <img src={scanImage} alt="scan" style={{ position: 'absolute', width: '600px', height: '472px' }} />
       </div>

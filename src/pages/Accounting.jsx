@@ -10,8 +10,14 @@ const dateFormatList = ['MM/DD/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
 const Accounting = () => {
   return (
     <>
+     <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }}>
       <div justify='start' style={{ display: 'flex', flexDirection: 'row', marginTop: '10px' }}>
-        <span style={{ marginLeft: '430px', }}>
+        <span style={{ marginLeft: '-20px', }}>
           <DatePicker
             id={styles["input123"]}
             style={{
@@ -105,7 +111,6 @@ const Accounting = () => {
         backgroundColor: '#FFFFFF',
         width: '1000px',
         height: '610px',
-        marginLeft: '425px',
         background: '#F9F9FF',
         boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
         borderRadius: '24px',
@@ -128,7 +133,10 @@ const Accounting = () => {
             </Typography.Text>
             <NetIncome />
           </Card>
-        </div></Card></>
+        </div>
+        </Card>
+        </div>
+        </>
   );
 };
 export default Accounting;

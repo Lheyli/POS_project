@@ -108,13 +108,13 @@ const Checkout = () => {
         </div>
       </div>
       <center>
-        <Card style={{ maxWidth: '1300px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '30px' }}>
+        <Card style={{ maxWidth: '1000px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '30px' }}>
           <div style={{ display: 'flex', justifyContent: 'flex-start', width: '100%' }}>
             <Typography.Title level={1} style={{ color: 'black', textAlign: 'left', justifyContent: 'flex-start' }}>Your Order</Typography.Title>
           </div>
-          <Table dataSource={cartItems || [{}]} style={{ maxWidth: '1300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Table dataSource={cartItems || [{}]} style={{ maxWidth: '900px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Table.Column title="" key="image" render={(text, record) => (
-              <img alt={record.time} src={record.image} width={200} height={150} />
+              <img alt={record.time} src={record.image} width={50} height={50} />
             )} />
             <Table.Column title="" dataIndex="title" key="title" />
             <Table.Column
@@ -152,27 +152,27 @@ const Checkout = () => {
               <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold' }}>Change:</Typography.Text>
               <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold' }}>₱{change.toFixed(2)}</Typography.Text>
             </div>
-          </div>
+        
+          <Button style={{
+            background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
+            borderRadius: '50px',
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: 700,
+            fontSize: '15px',
+            lineHeight: '25px',
+            textAlign: 'center',
+            color: '#E8E8E8',
+            display: 'block',
+            marginTop: '50px',
+            marginLeft: '790px',
+            height: '40px',
+            width: '135px'
+          }} type="primary">CONFIRM</Button>
+        </div>
         </Card>
       </center>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', width: '90%', marginTop: '20px', alignItems: 'center' }}>
-        <Button
-          style={{
-            background: '#5250B4',
-            borderRadius: '50px',
-            display: 'flex',
-            color: '#ffffff',
-            font: "Poppins",
-            fontWeight: 'bold',
-            width: '150px',
-            height: '50px',
-            fontSize: '23px'
-          }}
-        > &nbsp;
-          <Link to="/cartreceipt">CONFIRM</Link>
-        </Button>
-      </div>
-      <br></br>
+
     </>
   );
 };
