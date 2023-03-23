@@ -4,7 +4,7 @@ import logo from "./logo.png";
 import { notification } from 'antd';
 import { Modal, Divider, Carousel } from 'antd';
 import React, { useState } from 'react';
-
+import { Link } from "react-router-dom";
 
 import v1 from './v1.png';
 import s1 from './s1.png';
@@ -490,9 +490,9 @@ const Navbar = () => {
         placeholder="Search..." style={{ font: "Poppins" }}
       />
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <StyledBadge>
-        <PoweroffOutlined style={{ fontSize: "24px", color: "#30304D" }} />
-    </StyledBadge>
+        <StyledBadge >
+          <PoweroffOutlined to="/out"  style={{ fontSize: "24px", color: "#30304D" }} />
+        </StyledBadge>
     </StyledHeader>
   );
 };
