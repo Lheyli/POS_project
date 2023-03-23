@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Modal, Carousel } from 'antd';
 import React, { useState } from "react";
+import v1 from './v1.png';
+import s1 from './s1.png';
+import s2 from './s2.png';
+import s3 from './s3.png';
 import C1 from './C1.png';
 import C2 from './C2.png';
 import C3 from './C3.png';
@@ -17,7 +21,6 @@ import m3 from './m3.png';
 import m4 from './m4.png';
 import {
   HomeOutlined,
-  PoweroffOutlined,
   CalculatorOutlined,
   QrcodeOutlined,
   FundOutlined,
@@ -60,20 +63,7 @@ const StyledLink = styled(Link)`
     width: 90%;
   }
 `;
-const StyledMenuSignout = styled(Link)`
-  color: #3b3a82;
-  width: 254px;
-  height: 31px;
 
-  font: "Poppins";
-  font-style: normal;
-  font-weight: 600px;
-  font-size: 16px;
-  line-height: 36px;
-  margin-top: 200px;
-  margin-left: 80px;
-  cursor: pointer;
-`;
 const StyledToggle = styled.button`
   position: absolute;
   top: 10px;
@@ -123,6 +113,19 @@ function Sidebar() {
   const handleCancel = () => {
     issetVisible(false);
   };
+
+  const [vis, setVis] = useState(false);
+  const handleC = () => {
+    setVis(true);
+  };
+  const handle = () => {
+    setVis(false);
+  };
+  const cel = () => {
+    setVis(false);
+  };
+
+
   const settings = {
     dots: true,
     infinite: true,
@@ -265,14 +268,44 @@ function Sidebar() {
               ))}
             </Carousel>
           </Modal>
-          <StyledLink to="/qr" style={{ fontWeight: 'bold' }}>
+          <StyledLink to="/qr" style={{ fontWeight: 'bold' }} onClick={handleC}>
             <QrcodeOutlined />&nbsp;
             Scan QR Code
           </StyledLink>
+          <Modal
+            open={vis}
+            footer={null}
+            onOk={handle}
+            onCancel={cel}
+            width={800} height={1500}
+          >
+            <Carousel autoplay {...settings}>
+              {images.map(image => (
+                <div key={image}>
+                  <img src={v1} alt={image} width={750} height={700} />
+                </div>
+              ))}
+
+              {images.map(image => (
+                <div key={image}>
+                  <img src={s1} alt={image} width={750} height={700} />
+                </div>
+              ))}
+              {images.map(image => (
+                <div key={image}>
+                  <img src={s2} alt={image} width={750} height={700} />
+                </div>
+              ))}
+              {images.map(image => (
+                <div key={image}>
+                  <img src={s3} alt={image} width={750} height={700} />
+                </div>
+              ))}
+
+            </Carousel>
+          </Modal>
           <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br><br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br><br></br>
-          <StyledMenuSignout to="/out" style={{ fontWeight: 'bold' }}>
-            Sign out
-            &nbsp;<PoweroffOutlined /></StyledMenuSignout>
+
         </StyledMenu>
       </StyledSider>
     </>

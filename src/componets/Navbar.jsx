@@ -1,10 +1,26 @@
 import styled from "styled-components";
-import { BellOutlined, QuestionCircleOutlined, RightOutlined } from "@ant-design/icons";
+import { BellOutlined, QuestionCircleOutlined, RightOutlined, PoweroffOutlined } from "@ant-design/icons";
 import logo from "./logo.png";
 import { notification } from 'antd';
-import { Modal, Divider } from 'antd';
+import { Modal, Divider, Carousel } from 'antd';
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+
+import v1 from './v1.png';
+import s1 from './s1.png';
+import s2 from './s2.png';
+import s3 from './s3.png';
+import C1 from './C1.png';
+import C2 from './C2.png';
+import C3 from './C3.png';
+import C4 from './C4.png';
+import i1 from './i1.png';
+import i2 from './i2.png';
+import i3 from './i3.png';
+import i4 from './i4.png';
+import m1 from './m1.png';
+import m2 from './m2.png';
+import m3 from './m3.png';
+import m4 from './m4.png';
 const StyledHeader = styled.header`
   background-color: #f9f9ff;
   display: flex;
@@ -33,6 +49,7 @@ const StyledSearch = styled.input`
     box-shadow: 0 0 0 0.5px #3B3A82;
   }
 `;
+
 const StyledBadge = styled.span`
   display: inline-block;
   margin-right: 16px;
@@ -52,23 +69,17 @@ const StyledBadge = styled.span`
     right: -8px;
   }
 `;
+
 const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: right;
   width: 100%;
 `;
-const handleClick = () => {
-  notification.open({
-    message: 'Notifications',
-    description:
-      '',
-    icon: <BellOutlined style={{ color: '#108ee9' }} />,
-    
-  });
-};
+
+
 const Navbar = () => {
-  const handleClick = () => {
+  const handleCli = () => {
     notification.open({
       message: 'Notification Title',
       description:
@@ -76,12 +87,83 @@ const Navbar = () => {
       icon: <BellOutlined style={{ color: '#108ee9' }} />,
     });
   };
+
   const [isModalVisible, setIsModalVisible] = useState(false);
+
   const showModal = () => {
     setIsModalVisible(true);
   };
-  const handleOk = () => {
+  const handleOks = () => {
     setIsModalVisible(false);
+  };
+
+
+  const images = [''];
+  const [visible, setVisible] = useState(false);
+  const [isvis, issetVis] = useState(false);
+  const handleSidebarClick = () => {
+    setVisible(true);
+  };
+  const handleModalOk = () => {
+    setVisible(false);
+  };
+  const handleModalCancel = () => {
+    setVisible(false);
+  };
+  const handleClick = () => {
+    issetVis(true);
+  };
+  const handleOk = () => {
+    issetVis(false);
+  };
+  const Cancel = () => {
+    issetVis(false);
+  };
+
+  const [isvisible, issetVisible] = useState(false);
+
+  const handleSideClick = () => {
+    issetVisible(true);
+  };
+  const handleModalOkay = () => {
+    issetVisible(false);
+  };
+  const handleCancel = () => {
+    issetVisible(false);
+  };
+
+  const [vis, setVis] = useState(false);
+  const handleC = () => {
+    setVis(true);
+  };
+  const handle = () => {
+    setVis(false);
+  };
+  const cel = () => {
+    setVis(false);
+  };
+  const [is, set] = useState(false);
+  const hand = () => {
+    set(true);
+  };
+  const han = () => {
+    set(false);
+  };
+  const c = () => {
+    set(false);
+  };
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToScroll: 1,
+    dotStyle: {
+      borderColor: 'gray',
+      borderWidth: 2,
+    },
+    dotActiveStyle: {
+      borderColor: 'blue',
+    },
   };
 
   return (
@@ -106,8 +188,8 @@ const Navbar = () => {
           }}>User Guides</h3>}
           open={isModalVisible}
           footer={null}
-          onOk={handleOk}
-          onCancel={handleOk}
+          onOk={handleOks}
+          onCancel={handleOks}
         >
           <h1 style={{
             marginBottom: '0px',
@@ -133,11 +215,41 @@ const Navbar = () => {
               display: 'flex',
               alignItems: 'center',
               color: '#1A2163'
-            }}>Create New Product <Link to='/products'><RightOutlined style={{
+            }}>Create New Product <RightOutlined onClick={handleSidebarClick} style={{
               marginLeft: '225px',
               color: '#A9A9CC',
               fontSize: '20px'
-            }} /></Link>
+            }} />
+              <Modal
+                visible={visible}
+                footer={null}
+                onOk={handleModalOk}
+                onCancel={handleModalCancel}
+                width={800} height={1500}
+              >
+                <Carousel autoplay {...settings}>
+                  {images.map(image => (
+                    <div key={image}>
+                      <img src={C1} alt={image} width={750} height={700} />
+                    </div>
+                  ))}
+                  {images.map(image => (
+                    <div key={image}>
+                      <img src={C2} alt={image} width={750} height={700} />
+                    </div>
+                  ))}
+                  {images.map(image => (
+                    <div key={image}>
+                      <img src={C3} alt={image} width={750} height={700} />
+                    </div>
+                  ))}
+                  {images.map(image => (
+                    <div key={image}>
+                      <img src={C4} alt={image} width={750} height={700} />
+                    </div>
+                  ))}
+                </Carousel>
+              </Modal>
             </h1>
           </div>
           <Divider style={{ borderColor: '#9494B2', borderWidth: '0.5px', marginBottom: '0px', marginTop: '0px' }} />
@@ -163,11 +275,41 @@ const Navbar = () => {
               display: 'flex',
               alignItems: 'center',
               color: '#1A2163'
-            }}>Make Purchase (Manual) <Link to='/make'> <RightOutlined style={{
+            }}>Make Purchase (Manual) <RightOutlined onClick={handleClick} style={{
               marginLeft: '178px',
               color: '#A9A9CC',
               fontSize: '20px'
-            }} /></Link>
+            }} />
+              <Modal
+                open={isvis}
+                footer={null}
+                onOk={handleOk}
+                onCancel={Cancel}
+                width={800} height={1500}
+              >
+                <Carousel autoplay {...settings}>
+                  {images.map(image => (
+                    <div key={image}>
+                      <img src={i1} alt={image} width={750} height={700} />
+                    </div>
+                  ))}
+                  {images.map(image => (
+                    <div key={image}>
+                      <img src={i2} alt={image} width={750} height={700} />
+                    </div>
+                  ))}
+                  {images.map(image => (
+                    <div key={image}>
+                      <img src={i3} alt={image} width={750} height={700} />
+                    </div>
+                  ))}
+                  {images.map(image => (
+                    <div key={image}>
+                      <img src={i4} alt={image} width={750} height={700} />
+                    </div>
+                  ))}
+                </Carousel>
+              </Modal>
             </h1>
           </div>
           <Divider style={{ borderColor: '#9494B2', borderWidth: '0.5px', marginBottom: '0px', marginTop: '0px' }} />
@@ -193,11 +335,41 @@ const Navbar = () => {
               display: 'flex',
               alignItems: 'center',
               color: '#1A2163'
-            }}>Create New Member <Link to='/clients'><RightOutlined style={{
+            }}>Create New Member <RightOutlined onClick={handleSideClick} style={{
               marginLeft: '220px',
               color: '#A9A9CC',
               fontSize: '20px'
-            }} /></Link>
+            }} />
+              <Modal
+                open={isvisible}
+                footer={null}
+                onOk={handleModalOkay}
+                onCancel={handleCancel}
+                width={800} height={1500}
+              >
+                <Carousel autoplay {...settings}>
+                  {images.map(image => (
+                    <div key={image}>
+                      <img src={m1} alt={image} width={750} height={700} />
+                    </div>
+                  ))}
+                  {images.map(image => (
+                    <div key={image}>
+                      <img src={m2} alt={image} width={750} height={700} />
+                    </div>
+                  ))}
+                  {images.map(image => (
+                    <div key={image}>
+                      <img src={m3} alt={image} width={750} height={700} />
+                    </div>
+                  ))}
+                  {images.map(image => (
+                    <div key={image}>
+                      <img src={m4} alt={image} width={750} height={700} />
+                    </div>
+                  ))}
+                </Carousel>
+              </Modal>
             </h1>
           </div>
           <Divider style={{ borderColor: '#9494B2', borderWidth: '0.5px', marginBottom: '0px', marginTop: '0px' }} />
@@ -224,11 +396,27 @@ const Navbar = () => {
               display: 'flex',
               alignItems: 'center',
               color: '#1A2163'
-            }}>View Product Details <Link to='/qr'><RightOutlined style={{
+            }}>View Product Details <RightOutlined onClick={handleC} style={{
               marginLeft: '220px',
               color: '#A9A9CC',
               fontSize: '20px'
-            }} /></Link>
+            }} />
+              <Modal
+                open={vis}
+                footer={null}
+                onOk={handle}
+                onCancel={cel}
+                width={800} height={1500}
+              >
+                <Carousel autoplay {...settings}>
+                  {images.map(image => (
+                    <div key={image}>
+                      <img src={v1} alt={image} width={750} height={700} />
+                    </div>
+                  ))}
+
+                </Carousel>
+              </Modal>
             </h1>
           </div>
           <Divider style={{ borderColor: '#9494B2', borderWidth: '0.5px', marginBottom: '0px', marginTop: '0px' }} />
@@ -255,18 +443,44 @@ const Navbar = () => {
               display: 'flex',
               alignItems: 'center',
               color: '#1A2163'
-            }}>Make Purchase (Scan QR Code) <Link to='/makeorders'><RightOutlined style={{
+            }}>Make Purchase (Scan QR Code) <RightOutlined onClick={hand} style={{
               marginLeft: '105px',
               color: '#A9A9CC',
               fontSize: '20px'
-            }} /></Link>
+            }} />
+              <Modal
+                open={is}
+                footer={null}
+                onOk={han}
+                onCancel={c}
+                width={800} height={1500}
+              >
+                <Carousel autoplay {...settings}>
+                  {images.map(image => (
+                    <div key={image}>
+                      <img src={s1} alt={image} width={750} height={700} />
+                    </div>
+                  ))}
+                  {images.map(image => (
+                    <div key={image}>
+                      <img src={s2} alt={image} width={750} height={700} />
+                    </div>
+                  ))}
+                  {images.map(image => (
+                    <div key={image}>
+                      <img src={s3} alt={image} width={750} height={700} />
+                    </div>
+                  ))}
+
+                </Carousel>
+              </Modal>
             </h1>
           </div>
           <Divider style={{ borderColor: '#9494B2', borderWidth: '0.5px', marginBottom: '30px', marginTop: '0px' }} />
         </Modal>
 
 
-        <StyledBadge onClick={handleClick} >
+        <StyledBadge onClick={handleCli} >
           <BellOutlined style={{ fontSize: "24px", color: "#30304D" }} />
         </StyledBadge>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -274,6 +488,10 @@ const Navbar = () => {
       <StyledSearch
         placeholder="Search..." style={{ font: "Poppins" }}
       />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <StyledBadge>
+        <PoweroffOutlined style={{ fontSize: "24px", color: "#30304D" }} />
+    </StyledBadge>
     </StyledHeader>
   );
 };
