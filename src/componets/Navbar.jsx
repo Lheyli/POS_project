@@ -58,10 +58,11 @@ const StyledContainer = styled.div`
 `;
 const handleClick = () => {
   notification.open({
-    message: 'Notification Title',
+    message: 'Notifications',
     description:
-      'This is the content of the notification. This can be a longer text if needed.',
+      '',
     icon: <BellOutlined style={{ color: '#108ee9' }} />,
+    
   });
 };
 const Navbar = () => {

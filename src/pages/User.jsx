@@ -180,6 +180,18 @@ const Transactions = () => {
       name: 'Josh Garcia',
     },
   ];
+
+  const handlePrint = () => {
+    const receiptElement = document.getElementById('receipt-info');
+    const printWindow = window.open('', 'Print', 'height=600,width=800');
+    printWindow.document.write(receiptElement.innerHTML);
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+    printWindow.close();
+  };
+
+
   return (
     <>
       <div justify='start' style={{
@@ -197,9 +209,47 @@ const Transactions = () => {
       }}>
         <span style={{ marginLeft: '-800px', }}>
           {today}</span>
-      <br></br>
-      <div justify='start' style={{ display: 'flex', flexDirection: 'row', marginTop: '10px' }}>
-        <span style={{ marginLeft: '-20px', }}>
+        <br></br>
+        <div justify='start' style={{ display: 'flex', flexDirection: 'row', marginTop: '10px' }}>
+          <span style={{ marginLeft: '-20px', }}>
+            <DatePicker
+              id={styles["input123"]}
+              style={{
+                width: 191,
+                height: 48,
+                flex: "none",
+                order: 0,
+                flexGrow: 0,
+                background: '#5250B4',
+                borderRadius: '10px',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: 27,
+                display: 'flex',
+                alignItems: 'center',
+                textAlign: 'center',
+                color: '#FFFFFF',
+                justifyContent: 'center'
+              }}
+              suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
+              defaultValue={dayjs("01/01/2023", dateFormatList[0])}
+              format={dateFormatList[0]}
+            />
+          </span>
+          <Typography.Text style={{
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: 500,
+            fontSize: 20,
+            display: 'flex',
+            color: '#3B3A82',
+            marginLeft: '20px',
+            marginRight: '20px',
+            justifyContent: 'center',
+            top: '10px'
+          }}> to </Typography.Text>
           <DatePicker
             id={styles["input123"]}
             style={{
@@ -225,73 +275,36 @@ const Transactions = () => {
             defaultValue={dayjs("01/01/2023", dateFormatList[0])}
             format={dateFormatList[0]}
           />
-        </span>
-        <Typography.Text style={{
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 500,
-          fontSize: 20,
-          display: 'flex',
-          color: '#3B3A82',
-          marginLeft: '20px',
-          marginRight: '20px',
-          justifyContent: 'center',
-          top: '10px'
-        }}> to </Typography.Text>
-        <DatePicker
-          id={styles["input123"]}
-          style={{
-            width: 191,
-            height: 48,
-            flex: "none",
-            order: 0,
-            flexGrow: 0,
-            background: '#5250B4',
-            borderRadius: '10px',
-            font: 'Poppins',
-            fontStyle: 'normal',
-            fontWeight: 500,
-            fontSize: 18,
-            lineHeight: 27,
-            display: 'flex',
-            alignItems: 'center',
-            textAlign: 'center',
-            color: '#FFFFFF',
-            justifyContent: 'center'
-          }}
-          suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
-          defaultValue={dayjs("01/01/2023", dateFormatList[0])}
-          format={dateFormatList[0]}
-        />
-        <span style={{ marginLeft: '350px', }}>
-          <Button
-            style={{
-              width: 191,
-              height: 48,
-              flex: "none",
-              order: 0,
-              flexGrow: 0,
-              background: '#5250B4',
-              borderRadius: '10px',
-              font: 'Poppins',
-              fontStyle: 'normal',
-              fontWeight: 500,
-              fontSize: 18,
-              lineHeight: 27,
-              display: 'flex',
-              alignItems: 'center',
-              textAlign: 'center',
-              color: '#FFFFFF',
-              justifyContent: 'center',
-            }}
-          >
-            EXPORT
-          </Button></span>
-      </div>
+          <span style={{ marginLeft: '350px', }}>
+            <Button
+              onClick={handlePrint}
+              style={{
+                width: 191,
+                height: 48,
+                flex: "none",
+                order: 0,
+                flexGrow: 0,
+                background: '#5250B4',
+                borderRadius: '10px',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: 27,
+                display: 'flex',
+                alignItems: 'center',
+                textAlign: 'center',
+                color: '#FFFFFF',
+                justifyContent: 'center',
+              }}
+            >
+              EXPORT
+            </Button></span>
+        </div>
       </div>
       <br></br>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Card
+        <Card id="receipt-info"
           style={{
             width: 1100,
             height: 600,
@@ -326,7 +339,7 @@ const Transactions = () => {
               ACTIVITY
             </p>
           </div>
-          <Divider style={{ borderColor: '#D6D6E5', borderWidth: '.5px', marginTop: '0px'}} />
+          <Divider style={{ borderColor: '#D6D6E5', borderWidth: '.5px', marginTop: '0px' }} />
           <p style={{
             font: 'Poppins',
             fontStyle: 'normal',
@@ -349,8 +362,8 @@ const Transactions = () => {
             color: '#656565',
             marginTop: '0px'
           }}>UserID: {selectedRow && selectedRow.userId}</p>
-       <div style={{ display: 'flex', alignItems: 'center' }}> 
-  <p style={{
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <p style={{
               font: 'Poppins',
               fontStyle: 'normal',
               fontWeight: 600,
@@ -382,7 +395,7 @@ const Transactions = () => {
               alignItems: 'center',
               color: '#656565',
             }}>{selectedRow && selectedRow.time}</p>
-            </div>
+          </div>
         </Modal>
       </div>
     </>

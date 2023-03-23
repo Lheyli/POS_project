@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, Button, Menu, Table,Select, Row, Col, Badge, Tabs } from 'antd';
+import { Card, Button, Menu, Table,Select, Row, Col, Tabs } from 'antd';
 import { CaretDownOutlined, CalendarOutlined  } from '@ant-design/icons';
 import {
   fetchPopularProducts,
@@ -32,18 +32,6 @@ const events = [
 ];
 function getEventsForDay(date) {
   return events.filter(event => moment(event.date).isSame(date, 'day'));
-}
-function dateCellRender(date) {
-  const events = getEventsForDay(date);
-  return (
-    <ul className="events">
-      {events.map((event, index) => (
-        <li key={index}>
-          <Badge status={event.type} text={event.title} />
-        </li>
-      ))}
-    </ul>
-  );
 }
 
 const { Option } = Select;
@@ -132,7 +120,7 @@ function Dashboard() {
     data,
     xField: selectedTimeFrame === 'daily' ? 'date' : selectedTimeFrame === 'weekly' ? 'week' : 'month',
     yField: 'sales',
-    height: 400,
+    height: 250,
     tooltip: {
       title: 'Sales',
     },
@@ -143,9 +131,11 @@ function Dashboard() {
     <>
 <div style={{
   display: 'flex',
-  justifyContent: 'space-between'
+  justifyContent: 'center',
+  margin: '50px 0'
+
 }}>
-   <div style={{ width: 'calc(50% - 16px)', marginRight: '16px' }}>
+   
  
 <Card style={{
       background: 'linear-gradient(258.36deg, #9695E8 1.29%, #5250B4 97.24%)',
@@ -164,15 +154,16 @@ function Dashboard() {
     
       <Line {...chartConfig} style={{ color: 'none', strokeWidth: 0 }} />
     </Card>
-    </div>
-    <div style={{ width: 'calc(50% - 16px)', marginLeft: '16px' }}>
+   
+    <div style={{ width: 50 }}></div>
       <Card style={{
         width: 400,
-        height: 350,
+        height: 400,
         background: '#EEEEFF',
         border: '0.5px solid #E8E8E8',
         boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.25)',
         borderRadius: '20px',
+        display: 'flex'
   
       }}>
         <h1 style={{ color: '#30304D', font: 'Poppins', fontStyle: 'normal', fontWeight: '700', fontSize: '21px', lineHeight: '38px' }}>Calendar</h1>
@@ -225,7 +216,7 @@ function Dashboard() {
           </Tabs>
         </div>
       </Card>
-</div>
+
 </div>
    
 <div style={{
@@ -235,7 +226,7 @@ function Dashboard() {
       alignItems: 'center'
     }}>
  
-      <Card style={{ maxWidth: '800px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '30px', borderRadius: '20px' }}>
+      <Card style={{ width: '960px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '30px', borderRadius: '20px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
           <h1 style={{ margin: '0', color: '#30304D', font: 'Poppins', fontWeight: 'bold' }}>Most Popular Products</h1>
           <Button
