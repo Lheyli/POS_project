@@ -133,10 +133,10 @@ const Navbar = () => {
               display: 'flex',
               alignItems: 'center',
               color: '#1A2163'
-            }}>Create New Product <Link to='/products'><RightOutlined style={{
+            }}>Create New Product <Link to='/products'><RightOutlined  style={{
               marginLeft: '225px',
               color: '#A9A9CC',
-              fontSize: '20px'
+              fontSize: '20px', 
             }} /></Link>
             </h1>
           </div>
