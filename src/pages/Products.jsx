@@ -7,7 +7,7 @@ import { ShoppingCartOutlined, RightOutlined, EditOutlined, DeleteOutlined } fro
 import styled from 'styled-components';
 import '../pages/DateRangePicker.css';
 import styles from './Transactions.module.css';
-const Products = ({ dataSource }) => {
+const Products = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
   const loading = useSelector((state) => state.products.loading);

@@ -137,6 +137,16 @@ const Transactions = () => {
       ),
     },
   ];
+
+  const handlePrint = () => {
+    const receiptElement = document.getElementById('receipt-info');
+    const printWindow = window.open('', 'Print', 'height=600,width=800');
+    printWindow.document.write(receiptElement.innerHTML);
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+    printWindow.close();
+  };
   return (
     <>
       <div style={{
@@ -147,18 +157,44 @@ const Transactions = () => {
         fontWeight: 'bold',
         fontSize: '28px',
         color: '#30304D',
-              display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center'
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
       }}>
         <span style={{ marginLeft: '-750px', }}>
           {today}</span>
-      <br></br>
-      <div justify='start' style={{ display: 'flex', flexDirection: 'row', marginTop: '10px' }}>
-        <span style={{ marginLeft: '-480px', }}>
-          <DatePicker
-            id={styles["input123"]}
+        <br></br>
+        <div justify='start' style={{ display: 'flex', flexDirection: 'row', marginTop: '10px' }}>
+          <span style={{ marginLeft: '-480px', }}>
+            <DatePicker
+              id={styles["input123"]}
+              style={{
+                width: 191,
+                height: 48,
+                flex: "none",
+                order: 0,
+                flexGrow: 0,
+                background: '#5250B4',
+                borderRadius: '10px',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: 27,
+                display: 'flex',
+                alignItems: 'center',
+                textAlign: 'center',
+                color: '#FFFFFF',
+                justifyContent: 'center'
+              }}
+              suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
+              defaultValue={dayjs("01/01/2023", dateFormatList[0])}
+              format={dateFormatList[0]}
+            />
+          </span>
+          <Button
+          onClick={handlePrint}
             style={{
               width: 191,
               height: 48,
@@ -176,41 +212,17 @@ const Transactions = () => {
               alignItems: 'center',
               textAlign: 'center',
               color: '#FFFFFF',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              marginLeft: '10px'
             }}
-            suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
-            defaultValue={dayjs("01/01/2023", dateFormatList[0])}
-            format={dateFormatList[0]}
-          />
-        </span>
-        <Button
-          style={{
-            width: 191,
-            height: 48,
-            flex: "none",
-            order: 0,
-            flexGrow: 0,
-            background: '#5250B4',
-            borderRadius: '10px',
-            font: 'Poppins',
-            fontStyle: 'normal',
-            fontWeight: 500,
-            fontSize: 18,
-            lineHeight: 27,
-            display: 'flex',
-            alignItems: 'center',
-            textAlign: 'center',
-            color: '#FFFFFF',
-            justifyContent: 'center',
-            marginLeft: '10px'
-          }}
-        >
-          EXPORT
-        </Button>
-      </div>
+          >
+            EXPORT
+          </Button>
+        </div>
       </div>
       <br></br>
       <Card
+        id="receipt-info"
         style={{
           backgroundColor: '#FFFFFF',
           width: '1000px',

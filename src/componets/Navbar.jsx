@@ -58,7 +58,15 @@ const StyledContainer = styled.div`
   justify-content: right;
   width: 100%;
 `;
-
+const handleClick = () => {
+  notification.open({
+    message: 'Notifications',
+    description:
+      '',
+    icon: <BellOutlined style={{ color: '#108ee9' }} />,
+    
+  });
+};
 const Navbar = () => {
   const handleClick = () => {
     notification.open({
