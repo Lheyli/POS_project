@@ -1,15 +1,23 @@
 import { login } from '../reducers/productSlice';
-import React from 'react';
+import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { Card, Form, Input, Button, Checkbox } from 'antd';
 import logo from "../pages/logo.png";
 import signin from "../pages/signin.jpg";
 import { EyeTwoTone } from '@ant-design/icons';
+import { loginUser } from '../reducers/usersAPI';
 const SignInPage = () => {
   const dispatch = useDispatch();
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
   const onFinish = (values) => {
     dispatch(login(values));
   };
+
+  const handleLogin = () => {
+    dispatch(loginUser({ userName, password }));
+  };
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#D6D6E5', width: '100vw', overflow: 'hidden' }}>
       {/* <div style={{ width: 600 }}> */}
@@ -28,7 +36,7 @@ const SignInPage = () => {
             <Form name="signin" onFinish={onFinish}>
               <label style={{ textAlign: 'left', color: '#F9F9FF', fontSize: "15px", font: "Poppins" }}>Username</label>
               <Form.Item name="username" rules={[{ required: true, message: 'Please input your username!' }]}>
-                <Input placeholder="Username" style={{ borderRadius: '30px', border: "1px solid #9494B" }} />
+                <Input placeholder="Username" style={{ borderRadius: '30px', border: "1px solid #9494B" }} type="userName" value={userName} onChange={(e) => setUserName(e.target.value)} />
               </Form.Item>
               <label style={{ textAlign: 'left', color: '#F9F9FF', fontSize: "15px", font: "Poppins" }}>Password</label>
               <Form.Item name="password" rules={[{ required: true, message: 'Please input your password!' }]}>
@@ -39,6 +47,7 @@ const SignInPage = () => {
                     border: "1px solid #9494B"
                   }}
                   iconRender={visible => (visible ? <EyeTwoTone /> : <EyeTwoTone twoToneColor="#A9A9CC" />)}
+                  type="password" value={password} onChange={(e) => setPassword(e.target.value)}
                 />
               </Form.Item>
               <Form.Item name="remember" valuePropName="checked">
@@ -47,7 +56,7 @@ const SignInPage = () => {
               </Form.Item>
               <Form.Item>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <Button htmlType="submit" style={{ width: '50%', backgroundImage: 'linear-gradient(55.91deg, #D6D6E5 9.64%, #A9A9CC 77.84%)', fontWeight: 'bold', borderRadius: '50px', color: "#3B3A82", font: 'Poppins' }}>SIGN IN</Button>
+                <Button htmlType="submit" style={{ width: '50%', backgroundImage: 'linear-gradient(55.91deg, #D6D6E5 9.64%, #A9A9CC 77.84%)', fontWeight: 'bold', borderRadius: '50px', color: "#3B3A82", font: 'Poppins' }} onClick={handleLogin} >SIGN IN</Button>
               </Form.Item>
             </Form>
           </Card>

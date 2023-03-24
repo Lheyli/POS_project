@@ -2,11 +2,18 @@ import { Card, Typography, Input, Form, Row, Col, Button, } from "antd";
 import React, { useState } from 'react';
 import { EyeInvisibleOutlined, EyeTwoTone, DownOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
+import { createUser } from '../reducers/usersAPI';
+import { useDispatch } from 'react-redux';
 const CreateNewMember = () => {
   const { Text } = Typography;
   const [form] = Form.useForm();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleRegister = (userData) => {
+    dispatch(createUser(userData));
+  };
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
@@ -324,7 +331,9 @@ const CreateNewMember = () => {
             }} type="primary">CANCEL</Button></Link>
             <Form form={form}>
               <Form.Item>
-                <Button style={{
+                <Button
+                onClick={handleRegister}
+                 style={{
                   background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
                   borderRadius: '50px',
                   font: 'Poppins',

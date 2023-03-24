@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Table, Space, Button, Modal, DatePicker, Row, Col, Drawer, Typography } from 'antd';
-import { fetchProducts } from '../reducers/productSlice';
+import { getProducts } from '../reducers/productsAPI';
 import { Link } from "react-router-dom";
 import { ShoppingCartOutlined, RightOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
@@ -223,7 +223,7 @@ const Products = () => {
     border-radius: 20px;
   `;
   useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(getProducts());
   }, [dispatch]);
 
   if (loading) {
