@@ -98,22 +98,22 @@ const usersAPI = createSlice({
                 state.error = action.payload || 'Unable to login user';
             })
             .addCase(createUser.pending, (state) => {
-                alert("createProduct.pending")
+                alert("createUser.pending")
                 state.status = 'loading';
                 state.error = null;
             })
             .addCase(createUser.fulfilled, (state, action) => {
-                alert("createProduct.fulfilled")
+                alert("createUser.fulfilled")
                 notification.success({
                   title: "Success",
-                  message: "Product created.",
+                  message: "User created.",
             })
             
           state.status = 'succeeded';
           state.products.push(action.payload);
         })
             .addCase(createUser.rejected, (state, action) => {
-                alert("createProduct.rejected")
+                alert("createUser.rejected")
                 state.status = 'failed';
                 state.error = action.payload;
             })
