@@ -35,14 +35,7 @@ export const createUser = createAsyncThunk(
                 headers: {
                   auth: localStorage.getItem('token')
                 },
-                data: {
-                  first_name: "fname3",
-                  middle_name: "mname3",
-                  last_name: "lname3",
-                  email: "name3@email.com",
-                  username: "username3",
-                  password: "password",
-                }
+                data: userData
               });
             return response.data;
         } catch (error) {
