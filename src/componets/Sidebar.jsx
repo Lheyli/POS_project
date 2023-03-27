@@ -144,7 +144,14 @@ function Sidebar() {
       <StyledToggle onClick={handleToggle}>
         {isOpen ? <MenuOutlined /> : <MenuOutlined />}
       </StyledToggle>
-      <StyledSider isOpen={isOpen}>
+      <StyledSider breakpoint="lg"
+        collapsedWidth="0"
+        onBreakpoint={(broken) => {
+          console.log(broken);
+        }}
+        onCollapse={(collapsed, type) => {
+          console.log(collapsed, type);
+        }} isOpen={isOpen}>
         <StyledMenu>
           <StyledLink to="/dashboard" style={{ fontWeight: 'bold' }}>
             <HomeOutlined />

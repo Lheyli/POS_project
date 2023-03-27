@@ -155,7 +155,8 @@ const Navbar = () => {
     },
   };
   return (
-    <StyledHeader>
+
+    <StyledHeader >
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img className="i" src={logo} alt="logo" height={50} width={80} />
       <StyledContainer>
         <StyledBadge onClick={showModal}>

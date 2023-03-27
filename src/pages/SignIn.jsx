@@ -1,7 +1,7 @@
 import { login } from '../reducers/productSlice';
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
-import { Card, Form, Input, Button, Checkbox } from 'antd';
+import { Card, Form, Input, Button, Checkbox, Row } from 'antd';
 import logo from "../pages/logo.png";
 import signin from "../pages/signin.jpg";
 import { EyeTwoTone } from '@ant-design/icons';
@@ -19,6 +19,7 @@ const SignInPage = () => {
   };
 
   return (
+    <Row>
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#D6D6E5', width: '100vw', overflow: 'hidden' }}>
       {/* <div style={{ width: 600 }}> */}
       <div style={{ display: 'flex', width: 'max-content', height: '500px' }} id="chenes">
@@ -62,7 +63,7 @@ const SignInPage = () => {
           </Card>
         </div>
       </div>
-    </div>
+    </div></Row>
   );
 };
 export default SignInPage;

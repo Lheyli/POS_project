@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal } from 'antd';
+import { Button, Modal, Row, Col } from 'antd';
 import QRCode from 'qrcode.react';
 import scanImage from './scan.png';
 import { FaAngleRight } from "react-icons/fa";
@@ -39,67 +39,82 @@ function ScanQrCode() {
   };
   return (
     <div>
-     <div style={{
-        marginTop: '10px',
-        width: '100%',
-        font: 'Poppins',
-        fontStyle: 'normal',
-        fontWeight: '700',
-        fontSize: '35px',
-        color: '#3B3A82',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
-        <span style={{ marginLeft: '-650px', }}>
-          Scan Qr Code</span></div>
-      <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
-        <img src={scanImage} alt="scan" style={{ position: 'absolute', width: '600px', height: '472px' }} />
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <Row>
+        <Col xs={2} sm={4} md={6} lg={8} xl={10}>
+          <div style={{
+            marginTop: '10px',
+            width: '100%',
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: '700',
+            fontSize: '35px',
+            color: '#3B3A82',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            <span style={{ marginLeft: '200px', }}>
+              Scan Qr Code</span></div></Col>
+      </Row>
+
+      <Col xs={24} sm={4} md={6} lg={8} xl={10}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <img
+            src={scanImage}
+            alt="scan"
+            style={{
+              position: 'absolute',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              maxWidth: '100%',
+              height: 'auto',
+              marginLeft: '525px'
+            }}
+          />
+        </div>
+      </Col>
+
+      <Row gutter={[16, 16]} justify="center">
+      <Col xs={24} sm={12} md={8} lg={6}>
         <Button
           onClick={showModal}
           style={{
-            width: '350px',
-            height: '100px',
-            marginRight: '20px',
             top: '450px',
+            width: '100%',
+            height: '100px',
             font: 'Poppins',
             fontStyle: 'normal',
             fontWeight: '500',
             fontSize: '30px',
             lineHeight: '50px',
-            display: 'flex',
-            alignItems: 'center',
-            textAlign: 'center',
             color: '#38384D',
-            justifyContent: 'center',
             borderRadius: '24px',
           }}
         >
           View Product Details
         </Button>
-        <Link to='/makeorders'><Button
-          style={{
-            width: '350px',
-            height: '100px',
-            top: '450px',
-            font: 'Poppins',
-            fontStyle: 'normal',
-            fontWeight: '500',
-            fontSize: '30px',
-            lineHeight: '50px',
-            display: 'flex',
-            alignItems: 'center',
-            textAlign: 'center',
-            color: '#38384D',
-            justifyContent: 'center',
-            borderRadius: '24px',
-          }}
-        >Make Orders
-        </Button></Link>
-      </div>
+      </Col>
+      <Col xs={24} sm={12} md={8} lg={6}>
+        <Link to='/makeorders'>
+          <Button
+            style={{
+              top:'450px',
+              width: '100%',
+              height: '100px',
+              font: 'Poppins',
+              fontStyle: 'normal',
+              fontWeight: '500',
+              fontSize: '30px',
+              lineHeight: '50px',
+              color: '#38384D',
+              borderRadius: '24px',
+            }}
+          >
+            Make Orders
+          </Button>
+        </Link>
+      </Col>
+    </Row>
       <Modal
         open={isModalVisible}
         footer={null}
