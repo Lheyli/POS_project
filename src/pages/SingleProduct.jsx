@@ -2,6 +2,8 @@ import { Card, Typography, Input, Form, Row, Col, Button, Modal, Upload, DatePic
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { PlusOutlined } from '@ant-design/icons';
+import { useDispatch } from "react-redux";
+import { createProduct } from "../reducers/productsAPI";
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -10,6 +12,7 @@ const getBase64 = (file) =>
     reader.onerror = (error) => reject(error);
   });
 const SingleProduct = () => {
+  const dispatch = useDispatch()
   const [form] = Form.useForm();
   const [variations, setVariations] = useState(['']); // state to store all variations
   const [previewOpen, setPreviewOpen] = useState(false);
@@ -280,7 +283,11 @@ const SingleProduct = () => {
           height: '40px',
           width: '145px'
         }} type="primary">CANCEL</Button></Link>
-        <Form form={form}>
+        <Form 
+        form={form} 
+        onFinish={() => {
+          dispatch(createProduct());
+        }}>
           <Form.Item>
             <Button style={{
               background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
@@ -297,7 +304,7 @@ const SingleProduct = () => {
               marginLeft: '0px',
               height: '40px',
               width: '135px'
-            }} type="primary">ADD PRODUCT</Button>
+            }} type="primary" htmlType="submit">ADD PRODUCT</Button>
           </Form.Item>
         </Form>
       </div>

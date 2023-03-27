@@ -3,6 +3,9 @@ import {FileAddOutlined } from '@ant-design/icons';
 import { message, Upload } from 'antd';
 const { Text } = Typography;
 function handleUpload(file) {
+    // const bodyFormData = new FormData();
+    // bodyFormData.append('csv', file);
+    // dispatch(chenes)
 }
 const csvProps = {
     accept: '.csv',

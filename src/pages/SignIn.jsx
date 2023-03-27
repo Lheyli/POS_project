@@ -8,14 +8,14 @@ import { EyeTwoTone } from '@ant-design/icons';
 import { loginUser } from '../reducers/usersAPI';
 const SignInPage = () => {
   const dispatch = useDispatch();
-  const [userName, setUserName] = useState('');
+  const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const onFinish = (values) => {
     dispatch(login(values));
   };
 
   const handleLogin = () => {
-    dispatch(loginUser({ userName, password }));
+    dispatch(loginUser({ username, password }));
   };
 
   return (
@@ -36,7 +36,7 @@ const SignInPage = () => {
             <Form name="signin" onFinish={onFinish}>
               <label style={{ textAlign: 'left', color: '#F9F9FF', fontSize: "15px", font: "Poppins" }}>Username</label>
               <Form.Item name="username" rules={[{ required: true, message: 'Please input your username!' }]}>
-                <Input placeholder="Username" style={{ borderRadius: '30px', border: "1px solid #9494B" }} type="userName" value={userName} onChange={(e) => setUserName(e.target.value)} />
+                <Input placeholder="Username" style={{ borderRadius: '30px', border: "1px solid #9494B" }} type="username" value={username} onChange={(e) => setUserName(e.target.value)} />
               </Form.Item>
               <label style={{ textAlign: 'left', color: '#F9F9FF', fontSize: "15px", font: "Poppins" }}>Password</label>
               <Form.Item name="password" rules={[{ required: true, message: 'Please input your password!' }]}>

@@ -1,16 +1,36 @@
 import { createAsyncThunk, createSlice  } from '@reduxjs/toolkit';
+import { notification } from 'antd';
 import axios from 'axios';
+import { API_PRODUCTS } from '../constants/api';
 
-
+// dispatch(createProduct({
+//   product_name
+// }))
 
 export const createProduct = createAsyncThunk(
     'products/create',
     async (product, thunkAPI) => {
       try {
-        const response = await axios.post('https://fakestoreapi.com/products', product);
+        // const response = await axios{post('https://fakestoreapi.com/products', product)};
+        const response = await axios({
+          method:'post',
+          url:API_PRODUCTS.create,
+          headers: {
+            auth: localStorage.getItem('token')
+          },
+          data:{
+            product_name: "product_name_03/27/2023",
+            product_price: 100,
+            product_category: "product_category",
+            expiration_date: "03/27/2023",
+            quantity: "15",
+            updated_by: "username1",
+          }
+        });
         return response.data;
       } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data);
+        // return thunkAPI.rejectWithValue(error.response.data);
+        return thunkAPI.rejectWithValue(error);
       }
     }
   );
@@ -77,14 +97,22 @@ export const createProduct = createAsyncThunk(
     extraReducers: (builder) => {
       builder
         .addCase(createProduct.pending, (state) => {
+          alert("createProduct.pending")
           state.status = 'loading';
           state.error = null;
         })
         .addCase(createProduct.fulfilled, (state, action) => {
+          alert("createProduct.fulfilled")
+          notification.success({
+            title: "Success",
+            message: "Product created.",
+          })
+
           state.status = 'succeeded';
           state.products.push(action.payload);
         })
         .addCase(createProduct.rejected, (state, action) => {
+          alert("createProduct.rejected")
           state.status = 'failed';
           state.error = action.payload;
         })

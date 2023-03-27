@@ -3,9 +3,18 @@ import axios from 'axios';
 
 export const loginUser = createAsyncThunk(
     'user/login',
-    async (userData, { rejectWithValue }) => {
+    async (userData, { rejectWithValue, dispatch }) => {
+        console.log("🚀 ~ file: usersAPI.jsx:7 ~ userData:", userData)
         try {
-            const response = await axios.post('https://fakestoreapi.com/auth/login', userData);
+            const response = await axios.post('/inventory/user/login', {
+                "username":"username2",
+                "password":"password"
+            });
+            axios.defaults.headers['auth'] = response.data?.token
+            const { token } = response.data;
+            dispatch(usersAPI.actions.setToken(token));
+            localStorage.setItem('token', response.data?.token)
+            console.log("🚀 ~ file: usersAPI.jsx:10 ~ response:", response)
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -17,7 +26,7 @@ export const createUser = createAsyncThunk(
     'user/create',
     async (userData, thunkAPI) => {
         try {
-            const response = await axios.post('https://fakestoreapi.com/users', userData);
+            const response = await axios.post('https://fakestoreapi.com/users', {userData});
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -41,7 +50,12 @@ const usersAPI = createSlice({
         loading: false,
         error: null,
     },
-    reducers: {},
+    reducers: {
+        setToken: (state, action) => {
+            state.loading = true;
+            state.token = action.payload;
+          }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(loginUser.pending, (state) => {

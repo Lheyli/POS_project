@@ -5,13 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './store';
+import axios from 'axios'
+import { BASE_API_URL } from './constants/api';
+
+
+axios.defaults.baseURL = BASE_API_URL;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
   <Provider store={store}>
     <App />
-    </Provider>
+  </Provider>
 
 
 );

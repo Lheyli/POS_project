@@ -8,10 +8,9 @@ import userReducer from './reducers/usersAPI';
 
 const store = configureStore({
   reducer: {
-    products: productSlice,
+    products: productSlice,productsReducer,
     popularProducts: popularProductsSlice,
     receipt: receiptSlice,
-    products: productsReducer,
     user: userReducer,
  
     

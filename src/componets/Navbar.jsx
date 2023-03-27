@@ -4,8 +4,6 @@ import logo from "./logo.png";
 import { notification } from 'antd';
 import { Modal, Divider, Carousel } from 'antd';
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
-
 import v1 from './v1.png';
 import s1 from './s1.png';
 import s2 from './s2.png';
@@ -50,7 +48,6 @@ const StyledSearch = styled.input`
     box-shadow: 0 0 0 0.5px #3B3A82;
   }
 `;
-
 const StyledBadge = styled.span`
   display: inline-block;
   margin-right: 16px;
@@ -70,15 +67,12 @@ const StyledBadge = styled.span`
     right: -8px;
   }
 `;
-
 const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: right;
   width: 100%;
 `;
-
-
 const Navbar = () => {
   const handleCli = () => {
     notification.open({
@@ -88,17 +82,13 @@ const Navbar = () => {
       icon: <BellOutlined style={{ color: '#108ee9' }} />,
     });
   };
-
   const [isModalVisible, setIsModalVisible] = useState(false);
-
   const showModal = () => {
     setIsModalVisible(true);
   };
   const handleOks = () => {
     setIsModalVisible(false);
   };
-
-
   const images = [''];
   const [visible, setVisible] = useState(false);
   const [isvis, issetVis] = useState(false);
@@ -120,9 +110,7 @@ const Navbar = () => {
   const Cancel = () => {
     issetVis(false);
   };
-
   const [isvisible, issetVisible] = useState(false);
-
   const handleSideClick = () => {
     issetVisible(true);
   };
@@ -166,7 +154,6 @@ const Navbar = () => {
       borderColor: 'blue',
     },
   };
-
   return (
     <StyledHeader>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img className="i" src={logo} alt="logo" height={50} width={80} />
@@ -200,12 +187,9 @@ const Navbar = () => {
             fontWeight: 400,
             fontSize: '19px',
             lineHeight: '24px',
-
             alignItems: 'center',
             color: '#555566',
-            fontSize: '20px'
           }}>Products</h1>
-
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <h1 style={{
               font: 'Poppins',
@@ -261,7 +245,6 @@ const Navbar = () => {
             fontWeight: 400,
             fontSize: '19px',
             lineHeight: '24px',
-
             alignItems: 'center',
             color: '#555566'
           }}>Make Purchase</h1>
@@ -321,11 +304,9 @@ const Navbar = () => {
             fontWeight: 400,
             fontSize: '19px',
             lineHeight: '24px',
-
             alignItems: 'center',
             color: '#555566'
           }}>Members/Clients</h1>
-
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <h1 style={{
               font: 'Poppins',
@@ -376,17 +357,14 @@ const Navbar = () => {
           <Divider style={{ borderColor: '#9494B2', borderWidth: '0.5px', marginBottom: '0px', marginTop: '0px' }} />
           <h1 style={{
             marginBottom: '0px',
-
             font: 'Poppins',
             fontStyle: 'normal',
             fontWeight: 400,
             fontSize: '19px',
             lineHeight: '24px',
-
             alignItems: 'center',
             color: '#555566'
           }}>Scan QR Code</h1>
-
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <h1 style={{
               font: 'Poppins',
@@ -415,7 +393,6 @@ const Navbar = () => {
                       <img src={v1} alt={image} width={750} height={700} />
                     </div>
                   ))}
-
                 </Carousel>
               </Modal>
             </h1>
@@ -423,17 +400,14 @@ const Navbar = () => {
           <Divider style={{ borderColor: '#9494B2', borderWidth: '0.5px', marginBottom: '0px', marginTop: '0px' }} />
           <h1 style={{
             marginBottom: '0px',
-
             font: 'Poppins',
             fontStyle: 'normal',
             fontWeight: 400,
             fontSize: '19px',
             lineHeight: '24px',
-
             alignItems: 'center',
             color: '#555566'
           }}>Make Purchase</h1>
-
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <h1 style={{
               font: 'Poppins',
@@ -472,15 +446,12 @@ const Navbar = () => {
                       <img src={s3} alt={image} width={750} height={700} />
                     </div>
                   ))}
-
                 </Carousel>
               </Modal>
             </h1>
           </div>
           <Divider style={{ borderColor: '#9494B2', borderWidth: '0.5px', marginBottom: '30px', marginTop: '0px' }} />
         </Modal>
-
-
         <StyledBadge onClick={handleCli} >
           <BellOutlined style={{ fontSize: "24px", color: "#30304D" }} />
         </StyledBadge>
