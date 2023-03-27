@@ -329,26 +329,29 @@ const CreateNewMember = () => {
               height: '40px',
               width: '145px'
             }} type="primary">CANCEL</Button></Link>
-            <Form form={form}>
+            <Form form={form}
+              onFinish={() => {
+                dispatch(createUser());
+              }}>
               <Form.Item>
                 <Button
-                onClick={handleRegister}
-                 style={{
-                  background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
-                  borderRadius: '50px',
-                  font: 'Poppins',
-                  fontStyle: 'normal',
-                  fontWeight: 700,
-                  fontSize: '15px',
-                  lineHeight: '25px',
-                  textAlign: 'center',
-                  color: '#E8E8E8',
-                  display: 'block',
-                  marginTop: '30px',
-                  marginLeft: '0px',
-                  height: '40px',
-                  width: '135px'
-                }} type="primary">ADD MEMBER</Button>
+                  onClick={handleRegister}
+                  style={{
+                    background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
+                    borderRadius: '50px',
+                    font: 'Poppins',
+                    fontStyle: 'normal',
+                    fontWeight: 700,
+                    fontSize: '15px',
+                    lineHeight: '25px',
+                    textAlign: 'center',
+                    color: '#E8E8E8',
+                    display: 'block',
+                    marginTop: '30px',
+                    marginLeft: '0px',
+                    height: '40px',
+                    width: '135px'
+                  }} type="primary">ADD MEMBER</Button>
               </Form.Item>
             </Form>
           </div>

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { API_USERS } from '../constants/api';
 
 export const loginUser = createAsyncThunk(
     'user/login',
@@ -26,7 +27,22 @@ export const createUser = createAsyncThunk(
     'user/create',
     async (userData, thunkAPI) => {
         try {
-            const response = await axios.post('https://fakestoreapi.com/users', {userData});
+            //const response = await axios.post('https://fakestoreapi.com/users', {userData});
+            const response = await axios({
+                method: 'post',
+                url: API_USERS.create,
+                headers: {
+                  auth: localStorage.getItem('token')
+                },
+                data: {
+                  first_name: "fname3",
+                  middle_name: "mname3",
+                  last_name: "lname3",
+                  email: "name3@email.com",
+                  username: "username3",
+                  password: "password",
+                }
+              });
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -51,6 +67,14 @@ const usersAPI = createSlice({
         error: null,
     },
     reducers: {
+        login: (state, action) => {
+            // Perform login logic here
+            state.user = action.payload;
+          },
+          logout: (state) => {
+            // Perform logout logic here
+            state.user = null;
+          },
         setToken: (state, action) => {
             state.loading = true;
             state.token = action.payload;
@@ -98,5 +122,8 @@ const usersAPI = createSlice({
               });
     },
 });
+
+export const { login, logout, } = usersAPI.actions;
+  
 
 export default usersAPI.reducer;

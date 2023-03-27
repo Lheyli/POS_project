@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProducts, addToCart } from '../reducers/productSlice';
+import { getProducts, addToCart, getOne  } from '../reducers/productSlice';
 import { Card, Row, Col, Button, Input, Drawer, Typography } from 'antd';
 import { LeftOutlined, RightOutlined, ShoppingCartOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
@@ -25,10 +25,13 @@ const MakePurchase = () => {
   const showDrawer = (product) => {
     setSelectedProduct(product);
     setIsDrawerVisible(true);
+
+    dispatch(getOne(product.id));
   };
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
   const onDetailsClose = () => {
     setIsDetailsVisible(false);
+    
   };
   const onClose = () => {
     setSelectedProduct(null);
@@ -49,7 +52,7 @@ const MakePurchase = () => {
     // dispatch(increaseCart(product));
   };
   useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(getProducts());
   }, [dispatch]);
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
