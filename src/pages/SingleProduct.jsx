@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { PlusOutlined } from '@ant-design/icons';
 import { useDispatch } from "react-redux";
-import { createProduct } from "../reducers/productsAPI";
+import { createProduct } from "../reducers/productSlice";
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
