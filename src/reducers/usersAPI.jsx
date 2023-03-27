@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API_USERS } from '../constants/api';
+import { notification } from 'antd';
 
 export const loginUser = createAsyncThunk(
     'user/login',
@@ -97,13 +98,22 @@ const usersAPI = createSlice({
                 state.error = action.payload || 'Unable to login user';
             })
             .addCase(createUser.pending, (state) => {
+                alert("createProduct.pending")
                 state.status = 'loading';
+                state.error = null;
             })
             .addCase(createUser.fulfilled, (state, action) => {
-                state.status = 'succeeded';
-                state.user = action.payload;
+                alert("createProduct.fulfilled")
+                notification.success({
+                  title: "Success",
+                  message: "Product created.",
             })
+            
+          state.status = 'succeeded';
+          state.products.push(action.payload);
+        })
             .addCase(createUser.rejected, (state, action) => {
+                alert("createProduct.rejected")
                 state.status = 'failed';
                 state.error = action.payload;
             })
