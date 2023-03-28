@@ -135,12 +135,9 @@ const Members = () => {
         <Button
           onClick={CreateModal}
           style={{
-            top: '20px',
+            top: '12%',
             width: 191,
             height: 48,
-            flex: "none",
-            order: 0,
-            flexGrow: 0,
             background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
             borderRadius: '50px',
             font: 'Poppins',
@@ -153,7 +150,9 @@ const Members = () => {
             textAlign: 'center',
             color: '#FFFFFF',
             justifyContent: 'center',
-            marginRight: '-800px',
+            right: '25%',
+
+            position: 'absolute'
           }}
         >
           <PlusOutlined /> &nbsp; &nbsp;CREATE NEW &nbsp;
@@ -182,9 +181,9 @@ const Members = () => {
         </Modal>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Card
+      <Card
           style={{
-            top: '50px',
+            top: '100px',
             backgroundColor: '#FFFFFF',
             width: '1000px',
             height: '810px',
@@ -192,7 +191,7 @@ const Members = () => {
             boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
             borderRadius: '24px',
           }}
-        >   <div style={containerStyle}>
+        >    <div style={containerStyle}>
             <Dropdown overlay={menu}>
               <Button style={{
                 marginLeft: '10px',
@@ -216,8 +215,8 @@ const Members = () => {
             </Dropdown>
           </div>
           <br />
-          
-          <Table columns={columns} style={{ width: '100%', justifyContent: 'center' }} />
+          <div style={{  justifyContent: 'center', maxWidth: '100%',  }}>
+          <Table columns={columns} style={{  justifyContent: 'center', maxWidth: '100%', }} /></div>
         </Card>
       </div>
     </>

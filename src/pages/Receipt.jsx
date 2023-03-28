@@ -2,7 +2,7 @@
 import { Card, Table, Button, Typography } from 'antd';
 import { TbCircle1Filled, TbCircle2Filled, TbCircle3Filled, TbChevronRight } from "react-icons/tb";
 import React, { useEffect, useState } from 'react';
-import { Divider } from 'antd';
+import { Divider, Row, Col } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../reducers/productSlice';
 import { Link } from 'react-router-dom';
@@ -144,7 +144,7 @@ const Receipt = () => {
                             <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold' }}>Tendered Amount:</Typography.Text>
                             <Typography.Text style={{ width: '200px' }} > {tenderedAmount}</Typography.Text>
                         </div>
-                       
+
                         <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                             <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold' }}>Change:</Typography.Text>
                             <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold' }}>₱{change.toFixed(2)}</Typography.Text>
@@ -161,49 +161,52 @@ const Receipt = () => {
                     <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                         <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: 'red' }}>Receipt #{receiptNumber}</Typography.Text>
                     </div>
-                    <div style={{
-                        display: 'flex',
-                        right: 65,
-                        color: '#3B3A82',
-                        borderRadius: 50,
-                    }}> <Button
-                        onClick={handlePrint}
-                        style={{
-                            background: '#FFFFFF',
-                            border: '4px solid #5250B4',
-                            borderRadius: '50px',
-                            font: 'Poppins',
-                            fontStyle: 'normal',
-                            fontWeight: 'bold',
-                            fontSize: '15px',
-                            textAlign: 'center',
-                            color: '#5250B4',
-                            display: 'block',
-                            marginTop: '30px',
-                            marginLeft: '30px',
-                            marginRight: '625px',
-                            height: '40px',
-                            width: '145px'
-                        }} >PRINT </Button>
-
-                        <Button style={{
-                            background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
-                            borderRadius: '50px',
-                            font: 'Poppins',
-                            fontStyle: 'normal',
-                            fontWeight: 700,
-                            fontSize: '15px',
-                            lineHeight: '25px',
-                            textAlign: 'center',
-                            color: '#E8E8E8',
-                            display: 'block',
-                            marginTop: '30px',
-                            marginLeft: '0px',
-                            height: '40px',
-                            width: '135px'
-                        }} type="primary">CONFIRM</Button>
-                    </div>
                 </Card>
+                <Row justify="flex-start">
+                    <Col span={6}>
+                        <Button
+                            onClick={handlePrint}
+                            style={{
+                                background: '#FFFFFF',
+                                border: '4px solid #5250B4',
+                                borderRadius: '50px',
+                                font: 'Poppins',
+                                fontStyle: 'normal',
+                                fontWeight: 'bold',
+                                fontSize: '15px',
+                                textAlign: 'center',
+                                color: '#5250B4',
+                                display: 'block',
+                                height: '40px',
+                                width: '30%'
+                            }}
+                        >
+                            PRINT
+                        </Button>
+                    </Col>
+                    <Col span={6} offset={1}>
+                        <Button
+                            style={{
+                                background:
+                                    'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
+                                borderRadius: '50px',
+                                font: 'Poppins',
+                                fontStyle: 'normal',
+                                fontWeight: 700,
+                                fontSize: '15px',
+                                lineHeight: '25px',
+                                textAlign: 'center',
+                                color: '#E8E8E8',
+                                display: 'block',
+                                height: '40px',
+                                width: '30%'
+                            }}
+                            type="primary"
+                        >
+                            CONFIRM
+                        </Button>
+                    </Col>
+                </Row>
             </center >
         </>
     );

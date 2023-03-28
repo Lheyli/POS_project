@@ -35,7 +35,7 @@ const config = {
   },
 };
 const SalesReport = () => {
-  return <Column {...config} />
+  return <Column  {...config} />
 
 };
 export default SalesReport;

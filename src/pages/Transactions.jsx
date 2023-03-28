@@ -1,5 +1,5 @@
 import React from 'react';
-import { DatePicker, Card, Table, Button } from 'antd';
+import { DatePicker, Card, Table, Button, Row, Col } from 'antd';
 import dayjs from 'dayjs';
 import { CalendarOutlined, RightOutlined, CaretDownOutlined } from '@ant-design/icons'
 import customParseFormat from 'dayjs/plugin/customParseFormat';
@@ -137,7 +137,6 @@ const Transactions = () => {
       ),
     },
   ];
-
   const handlePrint = () => {
     const receiptElement = document.getElementById('receipt-info');
     const printWindow = window.open('', 'Print', 'height=600,width=800');
@@ -150,7 +149,7 @@ const Transactions = () => {
   return (
     <>
       <div style={{
-        marginTop: '50px',
+        top: '15%',
         width: '100%',
         font: 'Poppins',
         fontStyle: 'normal',
@@ -158,49 +157,19 @@ const Transactions = () => {
         fontSize: '28px',
         color: '#30304D',
         display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
+        left: '27%',
+        position: 'absolute'
       }}>
-        <span style={{ marginLeft: '-750px', }}>
-          {today}</span>
-        <br></br>
-        <div justify='start' style={{ display: 'flex', flexDirection: 'row', marginTop: '10px' }}>
-          <span style={{ marginLeft: '-480px', }}>
-            <DatePicker
-              id={styles["input123"]}
-              style={{
-                width: 191,
-                height: 48,
-                flex: "none",
-                order: 0,
-                flexGrow: 0,
-                background: '#5250B4',
-                borderRadius: '10px',
-                font: 'Poppins',
-                fontStyle: 'normal',
-                fontWeight: 500,
-                fontSize: 18,
-                lineHeight: 27,
-                display: 'flex',
-                alignItems: 'center',
-                textAlign: 'center',
-                color: '#FFFFFF',
-                justifyContent: 'center'
-              }}
-              suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
-              defaultValue={dayjs("01/01/2023", dateFormatList[0])}
-              format={dateFormatList[0]}
-            />
-          </span>
-          <Button
-          onClick={handlePrint}
+        <span>
+          {today}</span></div>
+      <Row justify="center" align="middle" style={{ marginTop: '100px' }}>
+        <Col>
+          <DatePicker
+            id={styles["input123"]}
             style={{
+              left: '-255px',
               width: 191,
               height: 48,
-              flex: "none",
-              order: 0,
-              flexGrow: 0,
               background: '#5250B4',
               borderRadius: '10px',
               font: 'Poppins',
@@ -212,32 +181,58 @@ const Transactions = () => {
               alignItems: 'center',
               textAlign: 'center',
               color: '#FFFFFF',
+            }}
+            suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
+            defaultValue={dayjs("01/01/2023", dateFormatList[0])}
+            format={dateFormatList[0]}
+          />
+        </Col>
+        <Col>
+          <Button
+            style={{
+              left: '-250px',
+              width: 191,
+              height: 48,
+              background: '#5250B4',
+              borderRadius: '10px',
+              font: 'Poppins',
+              fontStyle: 'normal',
+              fontWeight: 500,
+              fontSize: 18,
+              lineHeight: 27,
+              display: 'flex',
               justifyContent: 'center',
-              marginLeft: '10px'
+              alignItems: 'center',
+              textAlign: 'center',
+              color: '#FFFFFF',
             }}
           >
             EXPORT
           </Button>
-        </div>
-      </div>
+        </Col>
+      </Row>
       <br></br>
       <Card
         id="receipt-info"
         style={{
           backgroundColor: '#FFFFFF',
-          width: '1000px',
+          width: '50%',
           height: '500px',
           background: '#F9F9FF',
           boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
           borderRadius: '24px',
-          margin: '0 auto'
+          justifyContent: 'center',
+          alignItems: 'center',
+          margin: 'auto'
         }}
       >
-        <Table
-          columns={columns}
-          rowKey="id"
-          style={{ margin: 'auto', background: '#F9F9FF' }}
-        />
+        <div style={{ justifyContent: 'center', maxWidth: '100%', }}>
+          <Table
+            columns={columns}
+            rowKey="id"
+            style={{ justifyContent: 'center', maxWidth: '100%', margin: 'auto', background: '#F9F9FF' }}
+          />
+        </div>
       </Card>
     </>
   );

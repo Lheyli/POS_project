@@ -39,11 +39,9 @@ function ScanQrCode() {
   };
   return (
     <div>
-
-
       <div style={{
         position: 'absolute',
-        left: '5%',
+        left: '20%',
         marginTop: '10px',
         width: '100%',
         font: 'Poppins',
@@ -59,9 +57,6 @@ function ScanQrCode() {
           Scan Qr Code
         </span>
       </div>
-
-
-
       <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center' }}>
         <img
           src={scanImage}
@@ -69,24 +64,21 @@ function ScanQrCode() {
           style={{
             maxWidth: '100%',
             height: 'auto',
+            marginTop: '50px'
           }}
         />
       </div>
-
-
       <Row gutter={[16, 16]} justify="center">
         <Col xs={24} sm={12} md={8} lg={6}>
           <Button
             onClick={showModal}
             style={{
-
               width: '100%',
               height: '100px',
               font: 'Poppins',
               fontStyle: 'normal',
               fontWeight: '500',
               fontSize: '27px',
-      
               color: '#38384D',
               borderRadius: '24px',
             }}
@@ -117,10 +109,10 @@ function ScanQrCode() {
         open={isModalVisible}
         footer={null}
         onCancel={handleCancel}
-        centered
+        
         width={900}
-        bodyStyle={{ height: '600px' }}
       >
+
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -135,17 +127,15 @@ function ScanQrCode() {
           &nbsp; <FaAngleRight />  &nbsp;
           <h3>View Product Details</h3>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <div style={{ flex: 1, padding: '20px' }}>
-            <center>
+        <Row>
+          <Col xs={24} md={12}>
+            <div style={{ padding: '20px', textAlign: 'center' }}>
               <QRCode value={qrCodeValue} />
-              <br />
-              <br />
-              <h2>{productDetails.name}</h2>
-            </center>
-          </div>
-          <div style={{ flex: 1, padding: '20px', boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)', background: '#F9F9FF', borderRadius: '24px', height: '475px' }}>
-            <div style={{ width: '200px', height: '200px', backgroundColor: '#FFFFFF' }}>
+              <h2 style={{ marginTop: '20px' }}>{productDetails.name}</h2>
+            </div>
+          </Col>
+          <Col xs={24} md={12}>
+            <div style={{ padding: '20px', boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)', background: '#F9F9FF', borderRadius: '24px', height: '475px' }}>
               <h1 style={h1Styles}>Details:</h1>
               <h1 style={h2Styles}>Price:</h1>
               <h1 style={h2Styles}>Category:</h1>
@@ -155,8 +145,8 @@ function ScanQrCode() {
               <h1 style={h2Styles}>Updated at:</h1>
               <h1 style={h2Styles}>Updated by:</h1>
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </Modal>
     </div>
   );

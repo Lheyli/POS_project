@@ -1,68 +1,77 @@
 import React from 'react';
-import { Button } from 'antd';
+import { Button, Row, Col } from 'antd';
 import image from '../pages/image.png';
 import { Link } from 'react-router-dom';
 function MakePurchase() {
   return (
     <>
-    
       <div style={{
-        marginTop: '10px',
+        position: 'absolute',
+        left: '20%',
+        marginTop: '20px',
         width: '100%',
         font: 'Poppins',
         fontStyle: 'normal',
         fontWeight: '700',
         fontSize: '35px',
         color: '#3B3A82',
-        display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center'
       }}>
-        <span style={{ marginLeft: '-650px', }}>
-          Make Purchase</span></div>
-      <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', marginTop: '230px' }}>
-        <img src={image} alt="scan" style={{ position: 'absolute', width: '665px', height: '450px', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }} />
+        <span>
+          Make Purchase
+        </span>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '250px' }}>
-        <Button
+      <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center' }}>
+        <img
+          src={image}
+          alt="scan"
           style={{
-            width: '270px',
-            height: '100px',
-            font: 'Poppins',
-            fontStyle: 'normal',
-            fontWeight: '500',
-            fontSize: '30px',
-            lineHeight: '50px',
-            display: 'flex',
-            alignItems: 'center',
-            textAlign: 'center',
-            color: '#3B3A82',
-            borderRadius: '24px',
+            maxWidth: '100%',
+            height: 'auto',
+            marginTop: '80px',
+            marginBottom: '20px',
+            width: '665px', height: '450px', left: '50%', 
           }}
-        >
-          <Link to="/make">Manual Purchase</Link>
-        </Button>
-        &nbsp;&nbsp;&nbsp;
-        <Button
-          style={{
-            width: '270px',
-            height: '100px',
-            font: 'Poppins',
-            fontStyle: 'normal',
-            fontWeight: '500',
-            fontSize: '30px',
-            lineHeight: '50px',
-            display: 'flex',
-            alignItems: 'center',
-            textAlign: 'center',
-            color: '#3B3A82',
-            borderRadius: '24px',
-          }}
-        >
-         &nbsp;&nbsp;  <Link to="/makeorders">Scan QR Code</Link>
-        </Button>
+        />
       </div>
+      <Row gutter={[16, 16]} justify="center">
+        <Col xs={24} sm={12} md={8} lg={6}>
+          <Button
+            style={{
+              width: '100%',
+              height: '100px',
+              font: 'Poppins',
+              fontStyle: 'normal',
+              fontWeight: '500',
+              fontSize: '27px',
+              color: '#38384D',
+              borderRadius: '24px',
+            }}
+          >
+            <Link to="/make">Manual Purchase</Link>
+          </Button>
+        </Col>
+        <Col xs={24} sm={12} md={8} lg={6}>
+
+          <Button
+            style={{
+              width: '100%',
+              height: '100px',
+              font: 'Poppins',
+              fontStyle: 'normal',
+              fontWeight: '500',
+              fontSize: '27px',
+              color: '#38384D',
+              borderRadius: '24px',
+            }}
+          >
+            <Link to='/makeorders'>Scan QR Code  </Link>
+          </Button>
+
+        </Col>
+      </Row>
     </>
   );
 }
