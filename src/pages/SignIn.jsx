@@ -13,8 +13,15 @@ const SignInPage = () => {
     dispatch(login(values));
   };
 
-  const handleLogin = () => {
-    dispatch(loginUser({ username, password }));
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await dispatch(loginUser({ username, password })).unwrap();
+      // Redirect to dashboard
+      window.location.href = '/dashboard';
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

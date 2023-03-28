@@ -11,7 +11,7 @@ import { API_PRODUCTS } from '../constants/api';
 
 export const createProduct = createAsyncThunk(
   'product/create',
-  async (product, thunkAPI) => {
+  async (productData, thunkAPI) => {
     try {
       // const response = await axios{post('https://fakestoreapi.com/products', product)};
       const response = await axios({
@@ -20,14 +20,7 @@ export const createProduct = createAsyncThunk(
         headers: {
           auth: localStorage.getItem('token')
         },
-        data: {
-          product_name: "product_name_03/27/2023",
-          product_price: 100,
-          product_category: "product_category",
-          expiration_date: "03/27/2023",
-          quantity: "15",
-          updated_by: "username1",
-        }
+        data: productData
       });
       return response.data;
     } catch (error) {
