@@ -334,7 +334,7 @@ const CreateNewMember = () => {
                   width: '145px'
                 }} type="primary">CANCEL</Button></Link>
                 <Button
-                  onClick={handleRegister}
+                  
                   style={{
                     background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
                     borderRadius: '50px',
