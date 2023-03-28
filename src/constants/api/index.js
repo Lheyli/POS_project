@@ -18,3 +18,7 @@ export const API_USERS = {
     getOne: "/inventory/user/getOne",
     countUsers: "/inventory/user/countUsers",
 }
+
+export const API_LOGS = {
+    getAll: "/inventory/userlogs/getAll",
+}

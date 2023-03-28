@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Table, Space, Button, Modal, DatePicker, Row, Col, Drawer, Typography } from 'antd';
-import { getProducts } from '../reducers/productSlice';
+import { getProducts, getOne } from '../reducers/productSlice';
 import { Link } from "react-router-dom";
 import { ShoppingCartOutlined, RightOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
@@ -18,8 +18,9 @@ const Products = () => {
   const [endDate, setEndDate] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
-  const handleButtonClick = () => {
+  const handleButtonClick = (product) => {
     setIsDrawerVisible(true);
+    dispatch(getOne(product.id));
   };
   const onDetailsClose = () => {
     setIsDrawerVisible(false);

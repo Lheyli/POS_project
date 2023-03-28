@@ -27,8 +27,8 @@ const columns = [
         User ID
       </span>
     ),
-    dataIndex: 'id',
-    key: 'id',
+    dataIndex: 'user_id',
+    key: 'user_id',
     align: 'center',
     render: (text) => (
       <span style={{
@@ -57,11 +57,77 @@ const columns = [
           justifyContent: 'center',
         }}
       >
-        Name
+        First Name
       </span>
     ),
-    dataIndex: 'name',
-    key: 'name',
+    dataIndex: 'first_name',
+    key: 'first_name',
+    align: 'center',
+    render: (text) => (
+      <span style={{
+        font: 'Poppins',
+        fontStyle: 'normal',
+        fontWeight: 500,
+        fontSize: '17px',
+        lineHeight: '36px',
+        color: '#38384D',
+      }}>{text}</span>
+    )
+  },
+  {
+    title: (
+      <span
+        style={{
+          font: 'Poppins',
+          fontStyle: 'normal',
+          fontWeight: 700,
+          fontSize: '20px',
+          lineHeight: '33px',
+          display: 'flex',
+          alignItems: 'center',
+          textAlign: 'center',
+          color: '#3B3A82',
+          justifyContent: 'center',
+        }}
+      >
+        Middle Name
+      </span>
+    ),
+    dataIndex: 'middle_name',
+    key: 'middle_name',
+    align: 'center',
+    render: (text) => (
+      <span style={{
+        font: 'Poppins',
+        fontStyle: 'normal',
+        fontWeight: 500,
+        fontSize: '17px',
+        lineHeight: '36px',
+        color: '#38384D',
+      }}>{text}</span>
+    )
+  },
+  {
+    title: (
+      <span
+        style={{
+          font: 'Poppins',
+          fontStyle: 'normal',
+          fontWeight: 700,
+          fontSize: '20px',
+          lineHeight: '33px',
+          display: 'flex',
+          alignItems: 'center',
+          textAlign: 'center',
+          color: '#3B3A82',
+          justifyContent: 'center',
+        }}
+      >
+        Last Name
+      </span>
+    ),
+    dataIndex: 'last_name',
+    key: 'last_name',
     align: 'center',
     render: (text) => (
       <span style={{
@@ -95,6 +161,39 @@ const columns = [
     ),
     dataIndex: 'email',
     key: 'email',
+    align: 'center',
+    render: (text) => (
+      <span style={{
+        font: 'Poppins',
+        fontStyle: 'normal',
+        fontWeight: 500,
+        fontSize: '17px',
+        lineHeight: '36px',
+        color: '#38384D',
+      }}>{text}</span>
+    )
+  },
+  {
+    title: (
+      <span
+        style={{
+          font: 'Poppins',
+          fontStyle: 'normal',
+          fontWeight: 700,
+          fontSize: '20px',
+          lineHeight: '33px',
+          display: 'flex',
+          alignItems: 'center',
+          textAlign: 'center',
+          color: '#3B3A82',
+          justifyContent: 'center',
+        }}
+      >
+       Username
+      </span>
+    ),
+    dataIndex: 'username',
+    key: 'username',
     align: 'center',
     render: (text) => (
       <span style={{
