@@ -29,7 +29,6 @@ function MakePurchase() {
           alt="scan"
           style={{
             maxWidth: '100%',
-            height: 'auto',
             marginTop: '80px',
             marginBottom: '20px',
             width: '665px', height: '450px', left: '50%', 
