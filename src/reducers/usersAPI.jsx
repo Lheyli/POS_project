@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API_USERS } from '../constants/api';
 import { notification } from 'antd';
+import jwtDecode from 'jwt-decode';
 
 
 export const loginUser = createAsyncThunk(
@@ -10,11 +11,11 @@ export const loginUser = createAsyncThunk(
     console.log("🚀 ~ file: usersAPI.jsx:7 ~ userData:", userData)
     try {
       const response = await axios.post('/inventory/user/login', {
-        "username": "username2",
-        "password": "password"
+        data: userData
       });
       axios.defaults.headers['auth'] = response.data?.token
       const { token } = response.data;
+      const decoded = jwtDecode(token);
       dispatch(usersAPI.actions.setToken(token));
       localStorage.setItem('token', response.data?.token)
       console.log("🚀 ~ file: usersAPI.jsx:10 ~ response:", response)
@@ -63,9 +64,9 @@ export const getOneUser = createAsyncThunk(
 export const getUsers = createAsyncThunk(
   '/user/getAll',
   async (thunkAPI) => {
-    try{
+    try {
       const response = await axios({
-         method: 'get',
+        method: 'get',
         url: API_USERS.getAll,
         headers: {
           auth: localStorage.getItem('token'),
@@ -84,7 +85,7 @@ export const getUsers = createAsyncThunk(
 const usersAPI = createSlice({
   name: 'user',
   initialState: {
-    user: null,
+    user: [],
     isLoggedIn: false,
     loading: false,
     error: null,
@@ -112,10 +113,10 @@ const usersAPI = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         alert("loginUser.fulfilled")
-          notification.success({
-            title: "Success",
-            message: " Login Successfully.",
-          })
+        notification.success({
+          title: "Success",
+          message: " Login Successfully.",
+        })
         state.isLoggedIn = true;
         state.user = action.payload;
         state.loading = false;

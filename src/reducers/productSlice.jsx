@@ -38,14 +38,14 @@ export const getProducts = createAsyncThunk(
      //const response = await axios.get('https://fakestoreapi.com/products');
     const response = await axios({
       method: 'get',
-      url: 'https://fakestoreapi.com/products',
+      url: API_PRODUCTS.getAll,
       headers: {
         auth: localStorage.getItem('token'),
         'Content-Type': 'application/json'
       }
       
     });
-    return response.data;
+    return response.data.result;
   } catch (error) {
     // return thunkAPI.rejectWithValue(error.response.data);
     return thunkAPI.rejectWithValue(error);
@@ -55,19 +55,16 @@ export const getProducts = createAsyncThunk(
 
 export const getOne = createAsyncThunk(
   'product/getOne/:product_id',
-  async (product_id) => {
-    const response = await axios.get(`https://fakestoreapi.com/products/${product_id}`);
-    return response.data;
+  async (product_id, {dispatch}) => {
+    const response = await axios.get(API_PRODUCTS.getOne(product_id),{headers:{
+      auth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6eyJ1c2VyX2lkIjoiYTg5YmZhODktNjY1YS00MzcyLTk4OTktMzAwMzQ2YTQ0NDBhIiwiYmF0Y2giOiJiYXRjaDIiLCJmaXJzdF9uYW1lIjoiZm5hbWU2IiwibWlkZGxlX25hbWUiOiJtbmFtZTYiLCJsYXN0X25hbWUiOiJsbmFtZTYiLCJlbWFpbCI6ImVtYWlsNiIsInVzZXJuYW1lIjoidXNlcm5hbWU2IiwicGFzc3dvcmQiOiIkMmIkMTAkL29XWWExbnQyc01QQUx4TVhjaGM3dWtvaHhxWUU3L3dJNVlqSFR0Nm04LkdHZ21nWTE1bDIiLCJjcmVhdGVkQXQiOiIyMDIzLTAzLTI5VDA4OjAyOjQwLjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIzLTAzLTI5VDA4OjAyOjQwLjAwMFoifSwiaWF0IjoxNjgwMDc2OTc3LCJleHAiOjE2ODAxNjMzNzd9.s80HK3PngEMAEp-KJBWfGZbGboekZIPr_e6FSnCYR-4"
+    }});
+    console.log("🚀 ~ file: productSlice.jsx:62 ~ response ~ response:", response.data?.result)
+    // dispatch(productSlice.actions.setProduct(response.data?.result))
+    return response.data?.result;
   }
 );
 
-export const countProducts = createAsyncThunk(
-  'product/countProducts',
-  async () => {
-    const response = await axios.get('https://fakestoreapi.com/products');
-    return response.data.length;
-  }
-);
 
 export const deleteOneProduct = createAsyncThunk(
   'products/deleteOne/:product_id',
@@ -80,7 +77,7 @@ export const deleteOneProduct = createAsyncThunk(
 export const updateProduct = createAsyncThunk(
   'product/update',
   async (updatedProduct) => {
-    const response = await axios.put(`https://fakestoreapi.com/products/${updatedProduct.id}`, updatedProduct);
+    const response = await axios.put(`/inventory/product/update`, updatedProduct);
     return response.data;
   }
 );
@@ -211,19 +208,21 @@ const productSlice = createSlice({
       total = parseFloat(total.toFixed(2));
       state.cartTotalQuantity = quantity;
       state.cartTotalAmount = total;
-    }
-  },
-  setLoading: (state) => {
-    state.loading = true;
-  },
-  setProduct: (state, action) => {
+    },
+    setLoading: (state) => {
+      state.loading = true;
+    },
+    setProduct: (state, action) => {
+    console.log("🚀 ~ file: productSlice.jsx:224 ~ action:", action)
     state.product = action.payload;
-    state.loading = false;
+      state.loading = false;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    },
   },
-  setError: (state, action) => {
-    state.error = action.payload;
-    state.loading = false;
-  },
+ 
  extraReducers: (builder) => {
       builder
         .addCase(createProduct.pending, (state) => {
@@ -267,18 +266,6 @@ const productSlice = createSlice({
           })
           .addCase(getOne.rejected, (state, action) => {
             state.status = 'failed';
-            state.error = action.error.message;
-          })
-          .addCase(countProducts.pending, (state) => {
-            state.loading = true;
-            state.error = null;
-          })
-          .addCase(countProducts.fulfilled, (state, action) => {
-            state.loading = false;
-            state.count = action.payload;
-          })
-          .addCase(countProducts.rejected, (state, action) => {
-            state.loading = false;
             state.error = action.error.message;
           })
           .addCase(deleteOneProduct.pending, (state) => {

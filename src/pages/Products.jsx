@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Table, Space, Button, Modal, DatePicker, Row, Col, Drawer, Typography } from 'antd';
 import { getProducts, getOne } from '../reducers/productSlice';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCartOutlined, RightOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import '../pages/DateRangePicker.css';
 import styles from './Transactions.module.css';
 const Products = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.products.products);
+  const products = useSelector((state) => state.products?.products);
   const loading = useSelector((state) => state.products.loading);
   const error = useSelector((state) => state.products.error);
   const [showModal, setShowModal] = useState(false); // add state for controlling modal visibility
@@ -72,15 +73,15 @@ const Products = () => {
           {/* New content for the "View Details" drawer */}
           <Row justify="end">
             <Col>
-              <Link to="/edit" >
-                <EditOutlined style={{ color: '#9494B2', fontSize: '30px' }} />
-              </Link>
+             
+                <EditOutlined  onClick={()=> navigate(`/singleprod/${selectedProduct.product_id}`) }  style={{ color: '#9494B2', fontSize: '30px' }} />
+             
               &nbsp;&nbsp;
             </Col>
           </Row>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '50px' }}>
             <img
-              src={selectedProduct.image}
+              src={selectedProduct.image || "https://picsum.photos/230/230/"}
               className="img-fluid"
               width={230}
               height={230}
@@ -90,40 +91,40 @@ const Products = () => {
           </div>
           <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3B3A82', font: 'Poppins', fontWeight: 'bold', marginLeft: '10px', fontSize: '23px', marginTop: '0px' }}>
 
-            {selectedProduct.title}
+            {selectedProduct.product_name}
           </p>
           <br></br>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Price</Typography.Text>
-            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>₱{selectedProduct.price}</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }} >Price</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>₱{selectedProduct.markup_price}</Typography.Text>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Category</Typography.Text>
-            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.category}</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.product_category}</Typography.Text>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Variation</Typography.Text>
-            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.variation }</Typography.Text>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Expiration Date</Typography.Text>
-            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.expiration_date}</Typography.Text>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Quantity</Typography.Text>
-            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ selectedProduct.quantity}</Typography.Text>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Created At</Typography.Text>
-            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.createdAt }</Typography.Text>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Updated At</Typography.Text>
-            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.updatedAt }</Typography.Text>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Updated By</Typography.Text>
-            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ selectedProduct.updated_by}</Typography.Text>
           </div>
           <br></br>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -140,7 +141,7 @@ const Products = () => {
         </Drawer>
       )}
       <br></br>
-      <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>Edit {<RightOutlined />} </Button><br></br>
+      <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }} onClick={()=> navigate(`/singleprod/${selectedProduct.product_id}`) } >Edit {<RightOutlined />} </Button><br></br>
       <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>Delete {<RightOutlined />} </Button><br></br>
       <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>Generate QR Code{<RightOutlined />} </Button>
     </Modal>
@@ -161,18 +162,18 @@ const Products = () => {
       title: '',
       dataIndex: 'image',
       key: 'image',
-      render: (text) => <img src={text} alt="product" style={{ height: '50px' }} />,
+      render: (text) => <img src={text || "https://picsum.photos/50/50/"} alt="product" style={{ height: '50px', width: '50px' }} />,
     },
     {
       title: <span style={{ fontWeight: 'bold', color: '#3B3A82', fontSize: '18px', font: 'Poppins' }}>Products</span>,
-      dataIndex: 'title',
-      key: 'title',
+      dataIndex: 'product_name',
+      key: 'product_name',
       render: (text) => <span style={{ fontWeight: 'bold', color: '#3B3A82', font: 'Poppins' }}>{text}</span>,
     },
     {
       title: <span style={{ fontWeight: 'bold', color: '#3B3A82', fontSize: '18px', font: 'Poppins' }}>Category</span>,
-      dataIndex: 'category',
-      key: 'category',
+      dataIndex: 'product_category',
+      key: 'product_category',
       render: (text) => {
         let color = '';
 
@@ -195,10 +196,11 @@ const Products = () => {
         return <Button type="primary" ghost style={{ borderColor: color, color: color }}>{text}</Button>;
       },
     },
+
     {
       title: <span style={{ fontWeight: 'bold', color: '#3B3A82', fontSize: '18px', font: 'Poppins' }}>Price</span>,
-      dataIndex: 'price',
-      key: 'price',
+      dataIndex: 'markup_price',
+      key: 'markup_price',
       render: (text) => <span style={{ fontWeight: 'bold', color: '#3B3A82', font: 'Poppins' }}>₱{text}</span>,
       sorter: (a, b) => a.price - b.price,
       sortDirections: ['descend', 'ascend'],

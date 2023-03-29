@@ -53,7 +53,7 @@ function App() {
         <Route path="netincome" element={<Layout><NetIncome /></Layout>} />
         <Route path="salesreport" element={<Layout><SalesReport /></Layout>} />
         <Route path="batch" element={<Batch />} />
-        <Route path="singleprod" element={<SingleProduct />} />
+        <Route path="singleprod/:isUpdate?" element={<SingleProduct />} />
         <Route path="multiple" element={<MultipleProduct />} />
 
 

@@ -6,7 +6,7 @@ export const API_PRODUCTS = {
     deleteOne: "/inventory/product/deleteOne",
     update: "/inventory/product/update",
     getAll: "/inventory/product/getAll",
-    getOne: "/inventory/product/getOne",
+    getOne: (id) => `/inventory/product/getOne/${id}`,
     countProducts: "/inventory/product/countProducts",
 }
 
@@ -21,4 +21,8 @@ export const API_USERS = {
 
 export const API_LOGS = {
     getAll: "/inventory/userlogs/getAll",
+}
+
+export const API_LOGIN = {
+    getAll: "/inventory/user/login",
 }
