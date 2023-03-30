@@ -1,4 +1,4 @@
-import { Card, Typography, Input, Form, Row, Col, Button, Divider, } from "antd";
+import { Card, Typography, Input, Row, Col, Button, Divider, } from "antd";
 import { FileAddOutlined } from '@ant-design/icons';
 import { message, Upload } from 'antd';
 const { Text } = Typography;
@@ -17,15 +17,7 @@ const csvProps = {
     },
 };
 function Batch() {
-    const headingStyle = {
-        font: "Poppins",
-        fontStyle: "normal",
-        fontWeight: 700,
-        fontSize: "24px",
-        lineHeight: "48px",
-        textAlign: "center",
-        color: "#30304D",
-    };
+
     return (
         <Row justify="center" style={{ marginTop: '40px', marginBottom: '40px' }}>
             <Col xs={24} sm={20} md={16} lg={12} xl={10}>
@@ -76,7 +68,7 @@ function Batch() {
                                     border: '2px solid #A9A9CC',
                                     borderRadius: '30px',
                                     height: '50px',
-                                    width: '112%',
+                                    width: '100%',
                                 }}
                             />
                         </Col>
@@ -114,52 +106,44 @@ function Batch() {
                     }}>
 
                         <Row justify="space-between" align="middle">
-                            <Col xs={24} md={4}>
-                                <Form style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', top: '10px' }}>
-                                    <Form.Item label="">
-                                        <Col xs={24} md={16} tyle={{ textAlign: 'center', }}>
-                                            <Input
-                                                style={{
-                                                    boxSizing: 'border-box',
-                                                    border: '2px solid #A9A9CC',
-                                                    borderRadius: '30px',
-                                                    height: '50px',
-                                                    width: '400px',
-                                                    display: 'flex',
-
-                                                    top: '20px'
-                                                }}
-                                                placeholder="Add the file URL"
-                                                type="url"
-                                            /></Col>
-                                    </Form.Item>
-                                    <Form.Item>
-                                        <Col xs={24} md={16} tyle={{ textAlign: 'center', }}>
-                                           
-                                        <Button
-                                            style={{
-                                                background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
-                                                borderRadius: '50px',
-                                                font: 'Poppins',
-                                                fontStyle: 'normal',
-                                                fontWeight: 700,
-                                                fontSize: '15px',
-                                                lineHeight: '25px',
-                                                textAlign: 'center',
-                                                color: '#E8E8E8',
-                                                display: 'block',
-                                                top: '20px',
-                                                marginLeft: '55px',
-                                                height: '50px',
-                                                width: '100%',
-
-                                            }}
-                                            type="primary"
-                                        >
-                                            UPLOAD
-                                        </Button></Col>
-                                    </Form.Item>
-                                </Form>
+                            <Col xs={24} md={12} style={{ textAlign: 'center' }}>
+                                <Input
+                                    style={{
+                                        boxSizing: 'border-box',
+                                        border: '2px solid #A9A9CC',
+                                        borderRadius: '30px',
+                                        height: '50px',
+                                        width: '170%',
+                                        display: 'flex',
+                                        marginTop: '20px',
+                                        left: 30
+                                    }}
+                                    placeholder="Add the file URL"
+                                    type="url"
+                                />
+                            </Col>
+                            <Col xs={24} md={12} style={{ textAlign: 'center' }}>
+                                <Button
+                                    style={{
+                                        background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
+                                        borderRadius: '50px',
+                                        font: 'Poppins',
+                                        fontStyle: 'normal',
+                                        fontWeight: 700,
+                                        fontSize: '15px',
+                                        lineHeight: '25px',
+                                        textAlign: 'center',
+                                        color: '#E8E8E8',
+                                        display: 'block',
+                                        marginTop: '20px',
+                                        height: '50px',
+                                        width: '70%',
+                                        marginLeft: '260px'
+                                    }}
+                                    type="primary"
+                                >
+                                    UPLOAD
+                                </Button>
                             </Col>
                         </Row>
 

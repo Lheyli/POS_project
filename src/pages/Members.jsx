@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Table, Card, Button, Modal, Menu, Dropdown } from 'antd';
-import { PlusOutlined,DownOutlined } from '@ant-design/icons';
+import { PlusOutlined, DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 const containerStyle = {
   display: 'flex',
@@ -189,7 +189,7 @@ const columns = [
           justifyContent: 'center',
         }}
       >
-       Username
+        Username
       </span>
     ),
     dataIndex: 'username',
@@ -226,11 +226,11 @@ const Members = () => {
   return (
     <>
       <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center'
-    }}>
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}>
         <Button
           onClick={CreateModal}
           style={{
@@ -280,12 +280,12 @@ const Members = () => {
         </Modal>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Card
+        <Card
           style={{
             top: '100px',
             backgroundColor: '#FFFFFF',
             width: '1000px',
-            height: '810px',
+            height: '700px',
             background: '#F9F9FF',
             boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
             borderRadius: '24px',
@@ -314,8 +314,8 @@ const Members = () => {
             </Dropdown>
           </div>
           <br />
-          <div style={{  justifyContent: 'center', maxWidth: '100%',  }}>
-          <Table columns={columns} style={{  justifyContent: 'center', maxWidth: '100%', }} /></div>
+          <div style={{ justifyContent: 'center', maxWidth: '100%', }}>
+            <Table columns={columns} style={{ justifyContent: 'center', maxWidth: '100%', }} /></div>
         </Card>
       </div>
     </>

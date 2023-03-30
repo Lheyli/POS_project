@@ -30,236 +30,226 @@ const Sales = () => {
     }
   };
 
-
+  const { Text } = Typography;
   return (
     <>
-      <Row justify="center" align="middle" style={{ marginTop: '10px' }}>
-        <Col>
-          <DatePicker
-            id={styles["input123"]}
-            style={{
-              left: '-250px',
-              width: 191,
-              height: 48,
-              background: '#5250B4',
-              borderRadius: '10px',
-              font: 'Poppins',
-              fontStyle: 'normal',
-              fontWeight: 500,
-              fontSize: 18,
-              lineHeight: 27,
-              display: 'flex',
-              alignItems: 'center',
-              textAlign: 'center',
-              color: '#FFFFFF',
-            }}
-            suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
-            defaultValue={dayjs("01/01/2023", dateFormatList[0])}
-            format={dateFormatList[0]}
-          />
-        </Col>
-        <Col>
-          <Button
-            style={{
-              left: '-200px',
-              width: 191,
-              height: 48,
-              background: '#5250B4',
-              borderRadius: '10px',
-              font: 'Poppins',
-              fontStyle: 'normal',
-              fontWeight: 500,
-              fontSize: 18,
-              lineHeight: 27,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              textAlign: 'center',
-              color: '#FFFFFF',
-            }}
-          >
-            EXPORT
-          </Button>
+      <Row justify="center">
+        <Col xs={24} lg={16}>
+          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '8%', marginLeft: 125 }}>
+            <DatePicker
+              id={styles["input123"]}
+              style={{
+                width: '100%',
+                height: 48,
+                background: '#5250B4',
+                borderRadius: '10px',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: 27,
+                display: 'flex',
+                alignItems: 'center',
+                textAlign: 'center',
+                color: '#FFFFFF',
+                justifyContent: 'center',
+              }}
+              suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
+              defaultValue={dayjs("01/01/2023", dateFormatList[0])}
+              format={dateFormatList[0]}
+            />
+            <Button
+              style={{
+                marginLeft: '5%',
+                width: '100%',
+                height: 48,
+                background: '#5250B4',
+                borderRadius: '10px',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: 27,
+                display: 'flex',
+                alignItems: 'center',
+                textAlign: 'center',
+                color: '#FFFFFF',
+                justifyContent: 'center',
+              }}
+            >
+              EXPORT
+            </Button>
+          </div>
         </Col>
       </Row>
-      <div style={{
-        display: 'flex',
-        left: '100px',
-        justifyContent: 'center',
+      <Card style={{
         alignItems: 'center',
+        justifyContent: 'center',
+        top: '50px',
+        backgroundColor: '#FFFFFF',
+        background: '#F9F9FF',
+        boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.15)',
+        borderRadius: '24px',
+        width: '50%',
+        height: '80%',
+        marginLeft: '23%',
+
       }}>
-        <Card style={{
-          top: '50px',
-          backgroundColor: '#FFFFFF',
-          width: '1000px',
-          height: '710px',
-          background: '#F9F9FF',
-          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
-          borderRadius: '24px',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-          <div>
-            <Row justify="center" align="middle" gutter={[16, 16]}>
-              <Col>
-                <Button
-                  onClick={() => handleClick('today')}
-                  style={{
-                    display: 'flex',
-                    height: '40px',
-                    width: '120px',
-                    textAlign: 'center',
-                    alignItems: 'center',
-                    font: 'Poppins',
-                    fontStyle: 'normal',
-                    fontWeight: 600,
-                    fontSize: '22px',
-                    lineHeight: '50px',
-                    color: todayClicked ? '#F9F9FF' : '#A9A9CC',
-                    background: todayClicked ? '#5250B4' : 'none',
-                    borderRadius: '20px'
-                  }}
-                >
-                  &nbsp; Today
-                </Button>
-              </Col>
-              <Col>
-                <Button
-                  onClick={() => handleClick('week')}
-                  style={{
-                    display: 'flex',
-                    height: '40px',
-                    width: '150px',
-                    textAlign: 'center',
-                    alignItems: 'center',
-                    font: 'Poppins',
-                    fontStyle: 'normal',
-                    fontWeight: 600,
-                    fontSize: '22px',
-                    lineHeight: '50px',
-                    color: weekClicked ? '#F9F9FF' : '#A9A9CC',
-                    background: weekClicked ? '#5250B4' : 'none',
-                    borderRadius: '20px'
-                  }}
-                >
-                &nbsp; Next week
-                </Button>
-              </Col>
-              <Col>
-                <Button
-                  onClick={() => handleClick('month')}
-                  style={{
-                    display: 'flex',
-                    height: '40px',
-                    width: '150px',
-                    textAlign: 'center',
-                    alignItems: 'center',
-                    font: 'Poppins',
-                    fontStyle: 'normal',
-                    fontWeight: 600,
-                    fontSize: '22px',
-                    lineHeight: '50px',
-                    color: monthClicked ? '#F9F9FF' : '#A9A9CC',
-                    background: monthClicked ? '#5250B4' : 'none',
-                    borderRadius: '20px'
-                  }}
-                >
-                  This Month
-                </Button>
-              </Col>
-            </Row>
-          </div>
-          <div style={{
-            marginTop: '30px',
-            display: 'flex',
-            width: '100%',
-            font: 'Poppins',
-            fontStyle: 'normal',
-            fontWeight: 'bold',
-            fontSize: '28px',
-            color: '#30304D',
-            
-          }}>
-            <span style={{ marginLeft: '50px', }}>
-              {today}</span></div>
-          <div style={{ marginLeft: '50px', display: 'flex', top: '100px' }}>
-            <Typography.Text style={{
-              top: '150px',
+        <Row justify="center" align="middle" gutter={[16, 16]}>
+          <Col style={{ marginRight: '40px' }}>
+            <Button
+              onClick={() => handleClick('today')}
+              style={{
+                display: 'flex',
+                height: '40px',
+                width: '120px',
+                textAlign: 'center',
+                alignItems: 'center',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 600,
+                fontSize: '22px',
+                lineHeight: '50px',
+                color: todayClicked ? '#F9F9FF' : '#A9A9CC',
+                background: todayClicked ? '#5250B4' : 'none',
+                borderRadius: '20px'
+              }}
+            >
+              &nbsp; Today
+            </Button>
+          </Col>
+          <Col style={{ marginRight: '40px' }}>
+            <Button
+              onClick={() => handleClick('week')}
+              style={{
+                display: 'flex',
+                height: '40px',
+                width: '150px',
+                textAlign: 'center',
+                alignItems: 'center',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 600,
+                fontSize: '22px',
+                lineHeight: '50px',
+                color: weekClicked ? '#F9F9FF' : '#A9A9CC',
+                background: weekClicked ? '#5250B4' : 'none',
+                borderRadius: '20px'
+              }}
+            >
+              &nbsp;Next week
+            </Button>
+          </Col>
+          <Col>
+            <Button
+              onClick={() => handleClick('month')}
+              style={{
+                display: 'flex',
+                height: '40px',
+                width: '150px',
+                textAlign: 'center',
+                alignItems: 'center',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 600,
+                fontSize: '22px',
+                lineHeight: '50px',
+                color: monthClicked ? '#F9F9FF' : '#A9A9CC',
+                background: monthClicked ? '#5250B4' : 'none',
+                borderRadius: '20px'
+              }}
+            >
+              This Month
+            </Button>
+          </Col>
+        </Row>
+        <Row gutter={[16, 16]}>
+          <Col span={24} md={12}>
+            <div style={{
+              marginTop: '30px',
               font: 'Poppins',
               fontStyle: 'normal',
-              fontWeight: 500,
-              fontSize: 20,
-              display: 'flex',
-              color: '#30304D'
-            }}>Sales Report</Typography.Text>
-            <br />
-            <Card style={{  maxWidth: '100%', height: '300px', top: '100px', right: '100px' }}>
-              <SalesReport />
-              <h2 style={{
-                font: '20px',
-                position: 'absolute',
-                padding: 20,
-                textAlign: 'center',
-                marginLeft: '500px', /* Updated marginLeft to marginRight */
-                left: 120, 
-                top: 0,
-              }}>Details</h2>
+              fontWeight: 'bold',
+              fontSize: '28px',
+              color: '#30304D',
+              marginLeft: 35
+            }}>
+              <span >{today}</span>
+            </div>
+            <div style={{ bottom: 0, right: 0 }}>
+              <Text style={{
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 20,
+                color: '#30304D',
+                marginLeft: 35
+              }}>Sales Report</Text>
+            </div>
+          </Col>
+        </Row>
+
+        <Row >
+          <Col span={24} md={12} style={{ marginLeft: 40, width: '100%', marginTop: 40 }}>
+            <SalesReport /> </Col>
+          <Col span={24} md={8} >
+            <h2 style={{
+              font: '20px',
+              padding: 20,
+              marginRight: 12,
+              textAlign: 'center',
+              marginBottom: 5
+            }}>Details</h2>
+            <Col span={24} md={18} style={{ marginLeft: 100, marginBottom: 10 }}>
               <div style={{
-                position: 'absolute',
                 backgroundColor: '#ffffff',
                 border: '1px solid #dddddd',
                 padding: 20,
                 textAlign: 'center',
                 background: 'linear-gradient(258.36deg, #25B054 1.29%, #1A5C61 97.24%)',
                 borderRadius: 10,
-                marginLeft: '500px', /* Updated marginLeft to marginRight */
-                width: 200,
+                width: '100%',
                 height: 100,
-                left: 135, /* Added right property */
-                top: 80,
               }}>
                 <h2 className="net-income-month">TOTAL SALES</h2>
                 <p className="net-income-amount">₱1,327</p>
               </div>
+            </Col>
+            <Col span={24} md={18} style={{ marginLeft: 100, marginBottom: 10 }}>
               <div style={{
-                position: 'absolute',
+
                 backgroundColor: '#ffffff',
                 border: '1px solid #dddddd',
                 padding: 20,
                 textAlign: 'center',
                 background: 'linear-gradient(258.36deg, #FFAA2C 1.29%, #C73C11 97.24%)',
                 borderRadius: 10,
-                marginLeft: '500px', /* Updated marginLeft to marginRight */
-                width: 200,
+                width: '100%',
                 height: 100,
-                left: 135, /* Added right property */
-                top: 200,
               }}>
                 <h2 className="net-income-month">TRANSACTIONS</h2>
                 <p className="net-income-amount">7</p>
               </div>
+            </Col>
+            <Col span={24} md={18} style={{ marginLeft: 100, marginBottom: 10 }}>
               <div style={{
-                position: 'absolute',
+
                 backgroundColor: '#ffffff',
                 border: '1px solid #dddddd',
                 padding: 20,
                 textAlign: 'center',
                 background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #9E1EB3 97.24%)',
                 borderRadius: 10,
-                marginLeft: '500px', /* Updated marginLeft to marginRight */
-                width: 200,
+                width: '100%',
                 height: 100,
-                left: 135, /* Added right property */
-                top: 320,
               }}>
                 <h2 className="net-income-month">TOTAL EXPENSES</h2>
                 <p className="net-income-amount">₱1,327</p>
               </div>
-
-            </Card>
-          </div>
-        </Card>
-      </div>
+            </Col>
+          </Col>
+        </Row>
+      </Card>
     </>
   );
 };

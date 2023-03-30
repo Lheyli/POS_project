@@ -1,8 +1,8 @@
 import React from 'react';
 import NetIncome from './NetIncome';
-import { DatePicker, Card, Button, Typography, Row, Col } from 'antd';
+import { DatePicker, Button, Row, Col } from 'antd';
 import dayjs from 'dayjs';
-import {BsArrowLeftRight } from "react-icons/bs";
+import { BsArrowLeftRight } from "react-icons/bs";
 import { CalendarOutlined } from '@ant-design/icons'
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import styles from './Transactions.module.css';
@@ -12,13 +12,13 @@ const Accounting = () => {
   return (
     <>
       <Row justify="center">
-        <Col xs={24} lg={8}>
-          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center', marginTop: '15%' }}>
+        <Col xs={24} lg={16}>
+          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '8%', marginLeft: 125 }}>
             <DatePicker
               id={styles["input123"]}
               style={{
-                left: '-150px',
-                width: '100%',
+                marginRight: '2%',
+                width: '50%',
                 height: 48,
                 background: '#5250B4',
                 borderRadius: '10px',
@@ -38,20 +38,20 @@ const Accounting = () => {
               format={dateFormatList[0]}
             />
             <BsArrowLeftRight style={{
-              left: 70,
+
               font: 'Poppins',
               fontStyle: 'normal',
               fontWeight: 500,
-              fontSize: 25,
-              display: 'flex',
+              fontSize: 30,
+
               color: '#3B3A82',
-              position: 'absolute'
+
             }} />
             <DatePicker
               id={styles["input123"]}
               style={{
-                left: '-100px',
-                width: '100%',
+                marginLeft: '2%',
+                width: '50%',
                 height: 48,
                 background: '#5250B4',
                 borderRadius: '10px',
@@ -72,7 +72,8 @@ const Accounting = () => {
             />
             <Button
               style={{
-                width: '100%',
+                marginLeft: '10%',
+                width: '50%',
                 height: 48,
                 background: '#5250B4',
                 borderRadius: '10px',
@@ -86,7 +87,6 @@ const Accounting = () => {
                 textAlign: 'center',
                 color: '#FFFFFF',
                 justifyContent: 'center',
-                right: '-150px'
               }}
             >
               EXPORT
@@ -94,42 +94,9 @@ const Accounting = () => {
           </div>
         </Col>
       </Row>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
-        <Card style={{
-          top: '50px',
-          backgroundColor: '#FFFFFF',
-          width: '1000px',
-          height: '610px',
-          background: '#F9F9FF',
-          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
-          borderRadius: '24px',
-        }}>
-          <div style={{ marginLeft: '50px', display: 'flex', }}>
-            <Card style={{ width: '500px', height: '200px', top: '30px' }}>
-              <Typography.Text
-                style={{
-                  font: 'Poppins',
-                  fontStyle: 'normal',
-                  fontWeight: 700,
-                  fontSize: 20,
-                  display: 'flex',
-                  color: '#3B3A82',
-                  justifyContent: 'center',
-                  marginTop: '10px',
-                }}
-              >
-                NET Income
-              </Typography.Text>
-              <NetIncome />
-            </Card>
-          </div>
-        </Card>
-      </div>
+
+      <NetIncome />
+
     </>
   );
 };
