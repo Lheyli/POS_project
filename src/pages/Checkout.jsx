@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {
   increaseCart, decreaseCart,
-  getTotals,
+  getOne,
 } from '../reducers/productSlice';
 import { useEffect, useState } from 'react';
 import styled from "styled-components";
@@ -30,7 +30,7 @@ const Checkout = () => {
   const { product, cartItems } = useSelector(state => state.products);
   const dispatch = useDispatch();
   const [tenderedAmount, setTenderedAmount] = useState(0);
-  const totalPrice = cartItems.reduce((acc, product) => acc + (product.quantity * product.price), 0);
+  const totalPrice = cartItems.reduce((acc, product) => acc + (product.quantity * product.markup_price), 0);
   const change = tenderedAmount - totalPrice;
   const handleDecreaseCart = (product) => {
     dispatch(decreaseCart(product));
@@ -42,7 +42,7 @@ const Checkout = () => {
     setTenderedAmount(value);
   };
   useEffect(() => {
-    dispatch(getTotals());
+    dispatch(getOne());
   }, [product, dispatch]);
   return (
     <>
@@ -113,14 +113,14 @@ const Checkout = () => {
             <Typography.Title level={1} style={{ color: 'black', textAlign: 'left', justifyContent: 'flex-start' }}>Your Order</Typography.Title>
           </div>
           <Table dataSource={cartItems || [{}]} style={{ maxWidth: '900px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <Table.Column title="" key="image" render={(text, record) => (
-              <img alt={record.time} src={record.image} width={50} height={50} />
+            <Table.Column title="" dataIndex="image" key="image" render={(text, record) => (
+              <img alt={record.image} src={record.image || "https://picsum.photos/50/50/" } width={50} height={50} />
             )} />
-            <Table.Column title="" dataIndex="title" key="title" />
+            <Table.Column title="" dataIndex="product_name" key="title" />
             <Table.Column
               title=""
-              dataIndex="price"
-              key="price"
+              dataIndex="markup_price"
+              key="markup_price"
               style={{ fontWeight: 'bold' }}
               render={(text) => (
                 <span>
@@ -128,7 +128,7 @@ const Checkout = () => {
                 </span>
               )}
             />
-            <Table.Column title="" key="cartQuantity" render={(text, record) => (
+            <Table.Column title="" dataIndex="quantity" key="cartQuantity" render={(text, record) => (
               <>
                 <Button style={{ borderColor: "gray" }} col-md-3 onClick={() => handleDecreaseCart(record)}>
                   -

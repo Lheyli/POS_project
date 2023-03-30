@@ -74,7 +74,6 @@ create 2 state arrays
 
 const SingleProduct = () => {
   const params = useParams()
-  console.log("🚀 ~ file: SingleProduct.jsx:77 ~ SingleProduct ~ params:", params)
   const dispatch = useDispatch()
   const [form] = Form.useForm();
   const [variations, setVariations] = useState(['']); // state to store all variations
@@ -83,7 +82,6 @@ const SingleProduct = () => {
   const [previewTitle, setPreviewTitle] = useState('');
   const [fileList, setFileList] = useState([]);
   const { product } = useSelector(state => state.products);
-  console.log("🚀 ~ file: SingleProduct.jsx:83 ~ SingleProduct ~ fileList:", fileList)
   const handleCancel = () => setPreviewOpen(false);
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
@@ -129,7 +127,7 @@ const SingleProduct = () => {
    useEffect(() => {
 
     if (params?.isUpdate) {
-      dispatch(getOne("75da67dd-0dc6-4e92-8662-c3050e03909b"))
+      dispatch(getOne("05c942e4-540f-4ccd-a374-a6b7bfb81a1c"))
     }
    }, [params?.isUpdate])
    useEffect(() => {
@@ -187,8 +185,6 @@ const SingleProduct = () => {
           bodyFormData.append('variations', Object.values(variations));
           if (fileList.length > 0) bodyFormData.append('image', fileList[0]);
 
-
-          console.log("🚀 ~ file: SingleProduct.jsx:316 ~ SingleProduct ~ value:", value)
          
           if (params?.isUpdate) {
             dispatch(updateProduct(bodyFormData));

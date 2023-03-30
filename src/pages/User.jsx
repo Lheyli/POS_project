@@ -1,16 +1,23 @@
 import { DatePicker, Card, Table, Button, Modal, Divider, Row, Col } from 'antd';
 import dayjs from 'dayjs';
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {BsArrowLeftRight } from "react-icons/bs";
 import { CalendarOutlined, EyeOutlined } from '@ant-design/icons'
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import styles from './Transactions.module.css';
+import { getUserlogs } from '../reducers/usersAPI';
 dayjs.extend(customParseFormat);
 const dateFormatList = ['MM/DD/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
 const Transactions = () => {
   const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   const [selectedRow, setSelectedRow] = useState(null);
   const [visible, setVisible] = useState(false);
+   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user?.user);
+  const status = useSelector((state) => state.user.status);
+  const error = useSelector((state) => state.user.error);
+
   const showModal = (record) => {
     setSelectedRow(record);
     setVisible(true);
@@ -23,6 +30,10 @@ const Transactions = () => {
     setSelectedRow(null);
     setVisible(false);
   };
+
+   useEffect(() => {
+    dispatch(getUserlogs());
+  }, [dispatch]);
   const columns = [
     {
       title: <span style={{
@@ -83,8 +94,8 @@ const Transactions = () => {
         alignItems: 'center',
         color: '#3B3A82'
       }}>User ID</span>,
-      dataIndex: 'userId',
-      key: 'userId',
+      dataIndex: 'user_id',
+      key: 'user_id',
       render: (text) => (
         <span style={{
           font: 'Poppins',
@@ -106,9 +117,33 @@ const Transactions = () => {
         display: 'flex',
         alignItems: 'center',
         color: '#3B3A82'
-      }}>Name</span>,
-      dataIndex: 'name',
-      key: 'name',
+      }}>First Name</span>,
+      dataIndex: 'first_name',
+      key: 'first_name',
+      render: (text) => (
+        <span style={{
+          font: 'Poppins',
+          fontStyle: 'normal',
+          fontWeight: 600,
+          fontSize: '15px',
+          lineHeight: '36px',
+          color: '#3B3A82',
+        }}>{text}</span>
+      )
+    },
+    {
+      title: <span style={{
+        font: 'Poppins',
+        fontStyle: 'normal',
+        fontWeight: 700,
+        fontSize: '17px',
+        lineHeight: '33px',
+        display: 'flex',
+        alignItems: 'center',
+        color: '#3B3A82'
+      }}>Last Name</span>,
+      dataIndex: 'last_name',
+      key: 'last_name',
       render: (text) => (
         <span style={{
           font: 'Poppins',
@@ -137,50 +172,7 @@ const Transactions = () => {
       ),
     },
   ];
-  const data = [
-    {
-      key: '1',
-      time: '11:56 am',
-      date: '2022-03-15',
-      userId: '1535',
-      name: 'Vic Tinaliga',
-    },
-    {
-      key: '2',
-      time: '11:33 am',
-      date: '2022-03-15',
-      userId: '14652',
-      name: 'Lhey Cruz',
-    },
-    {
-      key: '3',
-      time: '10:48 am',
-      date: '2022-03-15',
-      userId: '487568',
-      name: 'Rica De Vera',
-    },
-    {
-      key: '4',
-      time: '10:15 am',
-      date: '2022-03-15',
-      userId: '31424',
-      name: 'Jen Fernandez',
-    },
-    {
-      key: '5',
-      time: '9:46 am',
-      date: '2022-03-15',
-      userId: '98947',
-      name: 'Gab Fernandez',
-    },
-    {
-      key: '6',
-      time: '9:30 am',
-      date: '2022-03-15',
-      userId: '67967',
-      name: 'Josh Garcia',
-    },
-  ];
+
 
   const handlePrint = () => {
     const receiptElement = document.getElementById('receipt-info');
@@ -304,14 +296,13 @@ const Transactions = () => {
             maxWidth: '100%', 
             alignItems: 'center' ,
             width: 1100,
-            height: 600,
             background: '#F9F9FF',
             boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
             borderRadius: 24,
           }}
         >
           <div style={{  display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center'  }}>
-            <Table style={{ width: '90%' }} columns={columns} dataSource={data} />
+            <Table style={{ width: '90%' }} columns={columns} dataSource={user} />
           </div>
         </Card>
         <Modal
@@ -347,7 +338,7 @@ const Transactions = () => {
             alignItems: 'center',
             color: '#30304D',
             marginBottom: '0px'
-          }}>{selectedRow && selectedRow.name}</p>
+          }}>{selectedRow && selectedRow.first_name }  {selectedRow && selectedRow.last_name }</p>
           <p style={{
             font: 'Poppins',
             fontStyle: 'normal',
@@ -358,7 +349,7 @@ const Transactions = () => {
             alignItems: 'center',
             color: '#656565',
             marginTop: '0px'
-          }}>UserID: {selectedRow && selectedRow.userId}</p>
+          }}>UserID: {selectedRow && selectedRow.user_id}</p>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <p style={{
               font: 'Poppins',
@@ -391,7 +382,16 @@ const Transactions = () => {
               display: 'flex',
               alignItems: 'center',
               color: '#656565',
-            }}>{selectedRow && selectedRow.time}</p>
+            }}>{selectedRow && selectedRow.time} : </p> &nbsp; 
+            <p style={{
+              font: 'Poppins',
+              fontWeight: "bold",
+              fontSize: '18px',
+              lineHeight: '27px',
+              display: 'flex',
+              alignItems: 'center',
+              color: '#000000',
+            }}>{selectedRow && selectedRow.activity}</p>
           </div>
         </Modal>
       </div>

@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Card, Form, Input, Button, Checkbox, Row } from 'antd';
 import logo from "../pages/logo.png";
 import signin from "../pages/signin.jpg";
 import { EyeTwoTone } from '@ant-design/icons';
 import { loginUser, login } from '../reducers/usersAPI';
+
 const SignInPage = () => {
   const dispatch = useDispatch();
+ 
+  const onFinish = (values) => {
+    dispatch(loginUser(values))
+      .then(() => {
+        window.location.href = '/dashboard';
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
 
   return (
@@ -25,9 +36,8 @@ const SignInPage = () => {
             <Card style={{ width: 400, backgroundImage: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)', borderRadius: '0px 50px 50px 0px' }}>
               <br></br> <br></br>
               <h2 style={{ textAlign: 'left', color: 'white', fontSize: "24px", font: "Poppins" }}>Welcome!</h2>
-              <Form name="signin" onFinish={(value) => {
-                dispatch(loginUser(value));
-              }}>
+              <Form name="signin"  onFinish={onFinish}
+              >
                 <label style={{ textAlign: 'left', color: '#F9F9FF', fontSize: "15px", font: "Poppins" }}>Username</label>
                 <Form.Item name="username" rules={[{ required: true, message: 'Please input your username!' }]}>
                   <Input name="username" placeholder="Username" style={{ borderRadius: '30px', border: "1px solid #9494B" }} type="username" />

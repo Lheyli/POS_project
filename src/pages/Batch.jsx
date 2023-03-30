@@ -1,9 +1,19 @@
 import { Card, Typography, Input, Form, Row, Col, Button, Divider, } from "antd";
 import { FileAddOutlined } from '@ant-design/icons';
 import { message, Upload } from 'antd';
-const { Text } = Typography;
+import { upload_CSV } from "../reducers/productSlice";
+import { useDispatch } from "react-redux";
+
+function Batch() {
+    const { Text } = Typography;
+  
 function handleUpload(file) {
-}
+    if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        dispatch(upload_CSV(formData));
+      }
+    };
 const csvProps = {
     accept: '.csv',
     beforeUpload: (file) => {
@@ -16,16 +26,8 @@ const csvProps = {
         return false;
     },
 };
-function Batch() {
-    const headingStyle = {
-        font: "Poppins",
-        fontStyle: "normal",
-        fontWeight: 700,
-        fontSize: "24px",
-        lineHeight: "48px",
-        textAlign: "center",
-        color: "#30304D",
-    };
+
+const dispatch = useDispatch()
     return (
         <Row justify="center" style={{ marginTop: '40px', marginBottom: '40px' }}>
             <Col xs={24} sm={20} md={16} lg={12} xl={10}>
@@ -71,6 +73,7 @@ function Batch() {
                         </Col>
                         <Col xs={24} md={16} tyle={{ textAlign: 'center', }}>
                             <Input
+                            name="batch"
                                 style={{
                                     boxSizing: 'border-box',
                                     border: '2px solid #A9A9CC',
@@ -119,6 +122,7 @@ function Batch() {
                                     <Form.Item label="">
                                         <Col xs={24} md={16} tyle={{ textAlign: 'center', }}>
                                             <Input
+                                            name="csv"
                                                 style={{
                                                     boxSizing: 'border-box',
                                                     border: '2px solid #A9A9CC',
@@ -137,6 +141,7 @@ function Batch() {
                                         <Col xs={24} md={16} tyle={{ textAlign: 'center', }}>
                                            
                                         <Button
+                                         onClick={{handleUpload}}
                                             style={{
                                                 background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
                                                 borderRadius: '50px',

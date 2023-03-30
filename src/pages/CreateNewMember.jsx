@@ -1,13 +1,15 @@
 import { Card, Typography, Input, Form, Row, Col, Button, } from "antd";
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { EyeTwoTone } from '@ant-design/icons';
-import { Link } from "react-router-dom";
-import { createUser } from '../reducers/usersAPI';
-import { useDispatch } from 'react-redux';
+import { Link, useParams } from "react-router-dom";
+import { createUser, updateUser, getOneUser } from '../reducers/usersAPI';
+import { useDispatch, useSelector } from 'react-redux';
 import TextInput from "../componets/TextInput";
 import TextInput2 from "../componets/TextInput2";
 const CreateNewMember = () => {
+  const params = useParams()
   const { Text } = Typography;
+  const { user } = useSelector(state => state.user);
   const [form] = Form.useForm();
 
   const dispatch = useDispatch();
@@ -21,6 +23,27 @@ const CreateNewMember = () => {
     textAlign: "center",
     color: "#30304D",
   };
+
+  useEffect(() => {
+
+    if (params?.isUpdate) {
+      dispatch(getOneUser("05c942e4-540f-4ccd-a374-a6b7bfb81a1c"))
+    }
+  }, [params?.isUpdate])
+  useEffect(() => {
+
+    if (user) {
+      form.setFieldsValue({
+        batch: user.batch,
+        first_name: user.first_name,
+        middle_name: user.middle_name,
+        last_name: user.last_name,
+        email: user.email,
+        username: user.username,
+        password: user.password
+      })
+    }
+  }, [user])
   return (
     <Card style={{
       width: "950px",
@@ -38,20 +61,41 @@ const CreateNewMember = () => {
     }}>
 
       <Form form={form}
-        onFinish={({confirmPassword, ...value}) => {
-          /*
-          value = {
-            password, 
-            confirmPassword,
-            ...
-          }
-          const {confirmPassword, ...values} = value
-          */
-          dispatch(createUser(value));
-        }}>
-        <Form.Item>
-          <h2 style={headingStyle}>CREATE NEW MEMBER</h2>
+        onFinish={({ confirmPassword, ...value }) => {
+          const bodyFormData = new FormData();
 
+          const {
+            batch,
+            first_name,
+            middle_name,
+            last_name,
+            email,
+            username,
+            password } = value;
+
+
+          bodyFormData.append('batch', batch);
+          bodyFormData.append('first_name', first_name);
+          bodyFormData.append('middle_name', middle_name);
+          bodyFormData.append('last_name', last_name);
+          bodyFormData.append('email', email);
+          bodyFormData.append('username', username);
+          bodyFormData.append('password', password);
+
+
+
+          if (params?.isUpdate) {
+            dispatch(updateUser(bodyFormData));
+
+          }
+          else {
+            dispatch(createUser(bodyFormData));
+          }
+        }}
+      >
+        <Form.Item>
+         
+          <h2 style={headingStyle}>{(params?.isUpdate) ? "UPDATE MEMBER" : "CREATE NEW MEMBER"}</h2>
 
           <Row gutter={16}>
             <Col span={12}>
@@ -317,9 +361,9 @@ const CreateNewMember = () => {
       </Form>
 
 
-    
-      </Card >
-    
+
+    </Card >
+
   );
 };
 export default CreateNewMember;

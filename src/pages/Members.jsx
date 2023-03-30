@@ -1,215 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Table, Card, Button, Modal, Menu, Dropdown } from 'antd';
 import { PlusOutlined,DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-const containerStyle = {
-  display: 'flex',
-  flexDirection: 'row',
-  marginLeft: '50px'
-};
-const columns = [
-  {
-    title: (
-      <span
-        style={{
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 700,
-          fontSize: '20px',
-          lineHeight: '33px',
-          display: 'flex',
-          alignItems: 'center',
-          textAlign: 'center',
-          color: '#3B3A82',
-          justifyContent: 'center',
-        }}
-      >
-        User ID
-      </span>
-    ),
-    dataIndex: 'user_id',
-    key: 'user_id',
-    align: 'center',
-    render: (text) => (
-      <span style={{
-        font: 'Poppins',
-        fontStyle: 'normal',
-        fontWeight: 500,
-        fontSize: '17px',
-        lineHeight: '36px',
-        color: '#38384D',
-      }}>{text}</span>
-    )
-  },
-  {
-    title: (
-      <span
-        style={{
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 700,
-          fontSize: '20px',
-          lineHeight: '33px',
-          display: 'flex',
-          alignItems: 'center',
-          textAlign: 'center',
-          color: '#3B3A82',
-          justifyContent: 'center',
-        }}
-      >
-        First Name
-      </span>
-    ),
-    dataIndex: 'first_name',
-    key: 'first_name',
-    align: 'center',
-    render: (text) => (
-      <span style={{
-        font: 'Poppins',
-        fontStyle: 'normal',
-        fontWeight: 500,
-        fontSize: '17px',
-        lineHeight: '36px',
-        color: '#38384D',
-      }}>{text}</span>
-    )
-  },
-  {
-    title: (
-      <span
-        style={{
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 700,
-          fontSize: '20px',
-          lineHeight: '33px',
-          display: 'flex',
-          alignItems: 'center',
-          textAlign: 'center',
-          color: '#3B3A82',
-          justifyContent: 'center',
-        }}
-      >
-        Middle Name
-      </span>
-    ),
-    dataIndex: 'middle_name',
-    key: 'middle_name',
-    align: 'center',
-    render: (text) => (
-      <span style={{
-        font: 'Poppins',
-        fontStyle: 'normal',
-        fontWeight: 500,
-        fontSize: '17px',
-        lineHeight: '36px',
-        color: '#38384D',
-      }}>{text}</span>
-    )
-  },
-  {
-    title: (
-      <span
-        style={{
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 700,
-          fontSize: '20px',
-          lineHeight: '33px',
-          display: 'flex',
-          alignItems: 'center',
-          textAlign: 'center',
-          color: '#3B3A82',
-          justifyContent: 'center',
-        }}
-      >
-        Last Name
-      </span>
-    ),
-    dataIndex: 'last_name',
-    key: 'last_name',
-    align: 'center',
-    render: (text) => (
-      <span style={{
-        font: 'Poppins',
-        fontStyle: 'normal',
-        fontWeight: 500,
-        fontSize: '17px',
-        lineHeight: '36px',
-        color: '#38384D',
-      }}>{text}</span>
-    )
-  },
-  {
-    title: (
-      <span
-        style={{
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 700,
-          fontSize: '20px',
-          lineHeight: '33px',
-          display: 'flex',
-          alignItems: 'center',
-          textAlign: 'center',
-          color: '#3B3A82',
-          justifyContent: 'center',
-        }}
-      >
-        Email
-      </span>
-    ),
-    dataIndex: 'email',
-    key: 'email',
-    align: 'center',
-    render: (text) => (
-      <span style={{
-        font: 'Poppins',
-        fontStyle: 'normal',
-        fontWeight: 500,
-        fontSize: '17px',
-        lineHeight: '36px',
-        color: '#38384D',
-      }}>{text}</span>
-    )
-  },
-  {
-    title: (
-      <span
-        style={{
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 700,
-          fontSize: '20px',
-          lineHeight: '33px',
-          display: 'flex',
-          alignItems: 'center',
-          textAlign: 'center',
-          color: '#3B3A82',
-          justifyContent: 'center',
-        }}
-      >
-       Username
-      </span>
-    ),
-    dataIndex: 'username',
-    key: 'username',
-    align: 'center',
-    render: (text) => (
-      <span style={{
-        font: 'Poppins',
-        fontStyle: 'normal',
-        fontWeight: 500,
-        fontSize: '17px',
-        lineHeight: '36px',
-        color: '#38384D',
-      }}>{text}</span>
-    )
-  },
-];
+import { getUsers } from '../reducers/usersAPI';
 
 const Members = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user?.user);
+  const status = useSelector((state) => state.user.status);
+  const error = useSelector((state) => state.user.error);
+
   const menu = (
     <Menu>
       <Menu.Item key="1">BATCH 1</Menu.Item>
@@ -223,6 +25,226 @@ const Members = () => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+  const containerStyle = {
+    display: 'flex',
+    flexDirection: 'row',
+    marginLeft: '50px'
+  };
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
+
+  const columns = [
+    {
+      title: (
+        <span
+          style={{
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: 700,
+            fontSize: '20px',
+            lineHeight: '33px',
+            display: 'flex',
+            alignItems: 'center',
+            textAlign: 'center',
+            color: '#3B3A82',
+            justifyContent: 'center',
+          }}
+        >
+          User ID
+        </span>
+      ),
+      dataIndex: 'user_id',
+      key: 'user_id',
+      align: 'center',
+      render: (text) => (
+        <span style={{
+          font: 'Poppins',
+          fontStyle: 'normal',
+          fontWeight: 500,
+          fontSize: '17px',
+          lineHeight: '36px',
+          color: '#38384D',
+        }}>{text}</span>
+      )
+    },
+    {
+      title: (
+        <span
+          style={{
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: 700,
+            fontSize: '20px',
+            lineHeight: '33px',
+            display: 'flex',
+            alignItems: 'center',
+            textAlign: 'center',
+            color: '#3B3A82',
+            justifyContent: 'center',
+          }}
+        >
+          First Name
+        </span>
+      ),
+      dataIndex: 'first_name',
+      key: 'first_name',
+      align: 'center',
+      render: (text) => (
+        <span style={{
+          font: 'Poppins',
+          fontStyle: 'normal',
+          fontWeight: 500,
+          fontSize: '17px',
+          lineHeight: '36px',
+          color: '#38384D',
+        }}>{text}</span>
+      )
+    },
+    {
+      title: (
+        <span
+          style={{
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: 700,
+            fontSize: '20px',
+            lineHeight: '33px',
+            display: 'flex',
+            alignItems: 'center',
+            textAlign: 'center',
+            color: '#3B3A82',
+            justifyContent: 'center',
+          }}
+        >
+          Middle Name
+        </span>
+      ),
+      dataIndex: 'middle_name',
+      key: 'middle_name',
+      align: 'center',
+      render: (text) => (
+        <span style={{
+          font: 'Poppins',
+          fontStyle: 'normal',
+          fontWeight: 500,
+          fontSize: '17px',
+          lineHeight: '36px',
+          color: '#38384D',
+        }}>{text}</span>
+      )
+    },
+    {
+      title: (
+        <span
+          style={{
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: 700,
+            fontSize: '20px',
+            lineHeight: '33px',
+            display: 'flex',
+            alignItems: 'center',
+            textAlign: 'center',
+            color: '#3B3A82',
+            justifyContent: 'center',
+          }}
+        >
+          Last Name
+        </span>
+      ),
+      dataIndex: 'last_name',
+      key: 'last_name',
+      align: 'center',
+      render: (text) => (
+        <span style={{
+          font: 'Poppins',
+          fontStyle: 'normal',
+          fontWeight: 500,
+          fontSize: '17px',
+          lineHeight: '36px',
+          color: '#38384D',
+        }}>{text}</span>
+      )
+    },
+    {
+      title: (
+        <span
+          style={{
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: 700,
+            fontSize: '20px',
+            lineHeight: '33px',
+            display: 'flex',
+            alignItems: 'center',
+            textAlign: 'center',
+            color: '#3B3A82',
+            justifyContent: 'center',
+          }}
+        >
+          Email
+        </span>
+      ),
+      dataIndex: 'email',
+      key: 'email',
+      align: 'center',
+      render: (text) => (
+        <span style={{
+          font: 'Poppins',
+          fontStyle: 'normal',
+          fontWeight: 500,
+          fontSize: '17px',
+          lineHeight: '36px',
+          color: '#38384D',
+        }}>{text}</span>
+      )
+    },
+    {
+      title: (
+        <span
+          style={{
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: 700,
+            fontSize: '20px',
+            lineHeight: '33px',
+            display: 'flex',
+            alignItems: 'center',
+            textAlign: 'center',
+            color: '#3B3A82',
+            justifyContent: 'center',
+          }}
+        >
+         Username
+        </span>
+      ),
+      dataIndex: 'username',
+      key: 'username',
+      align: 'center',
+      render: (text) => (
+        <span style={{
+          font: 'Poppins',
+          fontStyle: 'normal',
+          fontWeight: 500,
+          fontSize: '17px',
+          lineHeight: '36px',
+          color: '#38384D',
+        }}>{text}</span>
+      )
+    },
+  ];
+
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
+
+  if (status === 'failed') {
+    return <div>{error}</div>;
+  }
+
+
   return (
     <>
       <div style={{
@@ -315,7 +337,7 @@ const Members = () => {
           </div>
           <br />
           <div style={{  justifyContent: 'center', maxWidth: '100%',  }}>
-          <Table columns={columns} style={{  justifyContent: 'center', maxWidth: '100%', }} /></div>
+          <Table columns={columns}  dataSource={user} style={{  justifyContent: 'center', maxWidth: '100%', }} /></div>
         </Card>
       </div>
     </>

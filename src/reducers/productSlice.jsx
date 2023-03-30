@@ -18,7 +18,28 @@ export const createProduct = createAsyncThunk(
         method: 'post',
         url: API_PRODUCTS.create,
         headers: {
-          auth: localStorage.getItem('token')
+          auth: localStorage.getItem('token'),
+        },
+        data: productData
+        
+      });
+      return response.data;
+    } catch (error) {
+      // return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const upload_CSV = createAsyncThunk(
+  'product/uploadCSV',
+  async (productData, thunkAPI) => {
+    try {
+      const response = await axios({
+        method: 'post',
+        url: API_PRODUCTS.upload_CSV,
+        headers: {
+          auth: localStorage.getItem('token'),
         },
         data: productData
       });
@@ -35,7 +56,6 @@ export const getProducts = createAsyncThunk(
   'product/getAll', 
   async (thunkAPI) => {
   try {
-     //const response = await axios.get('https://fakestoreapi.com/products');
     const response = await axios({
       method: 'get',
       url: API_PRODUCTS.getAll,
@@ -47,53 +67,65 @@ export const getProducts = createAsyncThunk(
     });
     return response.data.result;
   } catch (error) {
-    // return thunkAPI.rejectWithValue(error.response.data);
     return thunkAPI.rejectWithValue(error);
   }
 }
 );
 
+export const getCategory = createAsyncThunk(
+  'product/getCategory/product_category', 
+  async (product_category ) => {
+    const response = await axios.get(API_PRODUCTS.getCategory(product_category),{headers:{
+      auth: localStorage.getItem('token'),
+    }});
+    return response.data?.result;
+    
+  }
+    
+);
+
 export const getOne = createAsyncThunk(
   'product/getOne/:product_id',
-  async (product_id, {dispatch}) => {
+  async (product_id, ) => {
     const response = await axios.get(API_PRODUCTS.getOne(product_id),{headers:{
-      auth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6eyJ1c2VyX2lkIjoiYTg5YmZhODktNjY1YS00MzcyLTk4OTktMzAwMzQ2YTQ0NDBhIiwiYmF0Y2giOiJiYXRjaDIiLCJmaXJzdF9uYW1lIjoiZm5hbWU2IiwibWlkZGxlX25hbWUiOiJtbmFtZTYiLCJsYXN0X25hbWUiOiJsbmFtZTYiLCJlbWFpbCI6ImVtYWlsNiIsInVzZXJuYW1lIjoidXNlcm5hbWU2IiwicGFzc3dvcmQiOiIkMmIkMTAkL29XWWExbnQyc01QQUx4TVhjaGM3dWtvaHhxWUU3L3dJNVlqSFR0Nm04LkdHZ21nWTE1bDIiLCJjcmVhdGVkQXQiOiIyMDIzLTAzLTI5VDA4OjAyOjQwLjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIzLTAzLTI5VDA4OjAyOjQwLjAwMFoifSwiaWF0IjoxNjgwMDc2OTc3LCJleHAiOjE2ODAxNjMzNzd9.s80HK3PngEMAEp-KJBWfGZbGboekZIPr_e6FSnCYR-4"
+      auth: localStorage.getItem('token'),
     }});
-    console.log("🚀 ~ file: productSlice.jsx:62 ~ response ~ response:", response.data?.result)
-    // dispatch(productSlice.actions.setProduct(response.data?.result))
+    console.log("🚀 ~ file: productSlice.jsx:65 ~ response:", response)
     return response.data?.result;
+    
   }
+    
 );
 
 
 export const deleteOneProduct = createAsyncThunk(
-  'products/deleteOne/:product_id',
+  'product/deleteOne/:product_id',
   async (product_id) => {
-    const response = await axios.delete(`https://fakestoreapi.com/products/${product_id}`);
-    return response.data;
+    const response = await axios.delete(`/inventory/product/deleteOne/${product_id}`, {
+      headers: {
+        auth: localStorage.getItem('token'),
+      },
+    });
+    console.log("🚀 ~ file: productSlice.jsx:80 ~ response:", response)
+    return response.data?.result;
   }
+   
 );
+
 
 export const updateProduct = createAsyncThunk(
   'product/update',
   async (updatedProduct) => {
-    const response = await axios.put(`/inventory/product/update`, updatedProduct);
+    const response = await axios.put(`/inventory/product/update`, updatedProduct, {
+      headers: {
+        auth: localStorage.getItem('token'),
+      }
+    });
     return response.data;
   }
 );
 
-export const updateProductImage = createAsyncThunk(
-  'products/updateImage',
-  async (data, thunkAPI) => {
-    const { product_id, imageData } = data;
-    try {
-      const response = await axios.put(`https://fakestoreapi.com/products/${product_id}`, imageData);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
+
 
 const productSlice = createSlice({
   name: 'products',
@@ -101,6 +133,7 @@ const productSlice = createSlice({
     products: [],
     cartItems: [],
     item: [],
+    categories: [],
     count: 0,
     product: [],
     loading: false,
@@ -143,7 +176,7 @@ const productSlice = createSlice({
           position: "bottom-left",
         });
       }
-      localStorage.setItem("cart", JSON.stringify(state.product));
+      localStorage.setItem("cart", JSON.stringify(state.products));
     },
 
     increaseCart(state, action) {
@@ -245,6 +278,26 @@ const productSlice = createSlice({
           state.status = 'failed';
           state.error = action.payload;
         })
+        .addCase(upload_CSV.pending, (state) => {
+          alert("upload_CSV.pending")
+          state.status = 'loading';
+          state.error = null;
+        })
+        .addCase(upload_CSV.fulfilled, (state, action) => {
+          alert("upload_CSV.fulfilled")
+          notification.success({
+            title: "Success",
+            message: "CSV Uploaded.",
+          })
+
+          state.status = 'succeeded';
+          state.products.push(action.payload);
+        })
+        .addCase(upload_CSV.rejected, (state, action) => {
+          alert("upload_CSV.rejected")
+          state.status = 'failed';
+          state.error = action.payload;
+        })
         .addCase(getProducts.pending, (state) => {
             state.loading = true;
             state.error = null;
@@ -268,15 +321,29 @@ const productSlice = createSlice({
             state.status = 'failed';
             state.error = action.error.message;
           })
-          .addCase(deleteOneProduct.pending, (state) => {
+          .addCase(getCategory.pending, (state) => {
             state.loading = true;
             state.error = null;
           })
-          .addCase(deleteOneProduct.fulfilled, (state) => {
+          .addCase(getCategory.fulfilled, (state, action) => {
             state.loading = false;
+            state.categories = action.payload;
+          })
+          .addCase(getCategory.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+          })
+          .addCase(deleteOneProduct.pending, (state) => {
+            state.status = 'loading';
+          })
+          .addCase(deleteOneProduct.fulfilled, (state, action) => {
+            state.status = 'succeeded';
+            state.products = state.products.filter(
+              (product) => product.id !== action.payload
+            );
           })
           .addCase(deleteOneProduct.rejected, (state, action) => {
-            state.loading = false;
+            state.status = 'failed';
             state.error = action.error.message;
           })
           .addCase(updateProduct.pending, (state) => {
@@ -289,17 +356,6 @@ const productSlice = createSlice({
           .addCase(updateProduct.rejected, (state, action) => {
             state.status = 'failed';
             state.error = action.error.message;
-          })
-          .addCase(updateProductImage.pending, (state) => {
-            state.status = 'loading';
-          })
-          .addCase(updateProductImage.fulfilled, (state, action) => {
-            state.status = 'succeeded';
-            state.product = action.payload;
-          })
-          .addCase(updateProductImage.rejected, (state, action) => {
-            state.status = 'failed';
-            state.error = action.payload;
           });
            },
 });

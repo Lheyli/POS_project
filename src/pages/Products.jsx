@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Table, Space, Button, Modal, DatePicker, Row, Col, Drawer, Typography } from 'antd';
-import { getProducts, getOne } from '../reducers/productSlice';
+import { getProducts, getOne, deleteOneProduct } from '../reducers/productSlice';
 import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCartOutlined, RightOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
@@ -19,6 +19,10 @@ const Products = () => {
   const [endDate, setEndDate] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
+  const handleDeleteClick = (product_id) => {
+    dispatch(deleteOneProduct(product_id));
+  };
+
   const handleButtonClick = (product) => {
     setIsDrawerVisible(true);
     dispatch(getOne(product.id));
@@ -142,12 +146,12 @@ const Products = () => {
       )}
       <br></br>
       <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }} onClick={()=> navigate(`/singleprod/${selectedProduct.product_id}`) } >Edit {<RightOutlined />} </Button><br></br>
-      <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>Delete {<RightOutlined />} </Button><br></br>
+      <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }} onClick={handleDeleteClick}>Delete {<RightOutlined />} </Button><br></br>
       <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>Generate QR Code{<RightOutlined />} </Button>
     </Modal>
   );
   const ActionsContent = ({ record }) => {
-    console.log("🚀 ~ file: Products.jsx:183 ~ ActionsContent ~ record: sett", record)
+    
     return (
       <Space>
         <Button onClick={() => {
