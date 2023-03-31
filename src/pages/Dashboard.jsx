@@ -127,21 +127,17 @@ function Dashboard() {
           Dashboard
         </span>
       </div>
-      <Row gutter={[16, 16]} justify={'center'} style={{ marginTop: 30 }}>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          margin: '50px 0',
-          width: '100%',
-          maxWidth: '800px'
-        }}>
+      <Row justify={'center'} style={{ marginTop: 30 }}>
+        <Col xs={24} md={16} style={{ margin: '50px 0' }}>
           <Card style={{
             background: 'linear-gradient(258.36deg, #9695E8 1.29%, #5250B4 97.24%)',
             boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.25)',
             borderRadius: '20px',
+            width: 500,
+            height: 400,
           }}>
             <Row gutter={[16, 16]} justify="space-between" align="middle">
-              <Col xs={24} md={16}>
+              <Col xs={24} md={12}>
                 <h1 style={{ color: '#F9F9FF', font: 'Poppins', fontWeight: 'bold', fontSize: '18px' }}>Summary of Sales Report</h1>
               </Col>
               <Col xs={24} md={8}>
@@ -156,16 +152,15 @@ function Dashboard() {
               </Col>
             </Row>
           </Card>
-          <Col xs={24} lg={8} style={{ marginLeft: 50 }}>
-
+          <Col xs={24} md={16} style={{ margin: '50px 0' }}>
             <Card style={{
-              width: 400,
+              width: 500,
               height: 400,
               background: '#EEEEFF',
               border: '0.5px solid #E8E8E8',
               boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.25)',
               borderRadius: '20px',
-              display: 'flex'
+             
 
             }}>
               <h1 style={{ color: '#30304D', font: 'Poppins', fontStyle: 'normal', fontWeight: '700', fontSize: '21px', lineHeight: '38px' }}>Calendar</h1>
@@ -217,9 +212,9 @@ function Dashboard() {
                   </TabPane>
                 </Tabs>
               </div>
-            </Card></Col>
-
-        </div>
+            </Card>
+          </Col>
+          </Col>
       </Row >
 
       <Row justify="center" style={{ marginTop: '30px' }}>

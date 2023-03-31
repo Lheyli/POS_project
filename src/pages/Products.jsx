@@ -249,13 +249,15 @@ const Products = () => {
     xxl: 12,
   }
   return (
+    
     <div style={{
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center'
     }}>
-      <Row gutter={[16, 16]} style={{ width: '50vw', maxWidth: 1000 }}>
+      
+      <Row gutter={[16, 16]} style={{ width: 'max-content', maxWidth: 1000 }}>
         <Col
           {...BREAKPOINTS}
           style={{ display: 'flex', marginBottom: '16px', justifyContent: 'flex-start' }}

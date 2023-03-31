@@ -11,6 +11,24 @@ const dateFormatList = ['MM/DD/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
 const Accounting = () => {
   return (
     <>
+     <div style={{
+      position: 'absolute',
+      left: '20%',
+      marginTop: '10px',
+      width: '100%',
+      font: 'Poppins',
+      fontStyle: 'normal',
+      fontWeight: '700',
+      fontSize: '35px',
+      color: '#3B3A82',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <span>
+        Accounting Report
+      </span>
+    </div>
       <Row justify="center">
         <Col xs={24} lg={16}>
           <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '8%', marginLeft: 125 }}>

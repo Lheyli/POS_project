@@ -148,8 +148,26 @@ const Transactions = () => {
   };
   return (
     <>
+     <div style={{
+      position: 'absolute',
+      left: '20%',
+      marginTop: '10px',
+      width: '100%',
+      font: 'Poppins',
+      fontStyle: 'normal',
+      fontWeight: '700',
+      fontSize: '35px',
+      color: '#3B3A82',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <span>
+        Transactions
+      </span>
+    </div>
       <div style={{
-        top: '15%',
+        top: '18%',
         width: '100%',
         font: 'Poppins',
         fontStyle: 'normal',
@@ -164,7 +182,7 @@ const Transactions = () => {
           {today}</span></div>
       <Row justify="center">
         <Col xs={24} lg={16}>
-          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '8%', marginLeft: 155 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '10%', marginLeft: 155 }}>
             <DatePicker
               id={styles["input123"]}
               style={{

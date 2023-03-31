@@ -247,17 +247,35 @@ const Members = () => {
 
 
   return (
-    <>
+    <><div style={{
+      position: 'absolute',
+      left: '20%',
+      marginTop: '10px',
+      width: '100%',
+      font: 'Poppins',
+      fontStyle: 'normal',
+      fontWeight: '700',
+      fontSize: '35px',
+      color: '#3B3A82',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <span>
+        Members/Clients
+      </span>
+    </div>
       <div style={{
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        
       }}>
         <Button
           onClick={CreateModal}
           style={{
-            top: '12%',
+            top: '17%',
             width: 191,
             height: 48,
             background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
@@ -273,7 +291,7 @@ const Members = () => {
             color: '#FFFFFF',
             justifyContent: 'center',
             right: '25%',
-
+           
             position: 'absolute'
           }}
         >
@@ -305,7 +323,7 @@ const Members = () => {
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Card
           style={{
-            top: '100px',
+            top: '170px',
             backgroundColor: '#FFFFFF',
             width: '1000px',
             height: '700px',
