@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { Card, Typography, Row, Col, Table, Button, Divider, } from "antd";
-=======
-import { Card, Typography, Input, Row, Col, Button, Divider, } from "antd";
->>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
 import { FileAddOutlined } from '@ant-design/icons';
 import { message, Upload } from 'antd';
 import { upload_CSV } from "../reducers/usersAPI";
@@ -51,72 +47,8 @@ function Batch() {
                         fontWeight: 700,
                         lineHeight: '33px',
                         display: 'flex',
-<<<<<<< HEAD
                         alignItems: 'center',
                         textAlign: 'center',
-=======
-                        color: '#30304D',
-                        marginLeft: '50px'
-                    }}>Upload CSV</Typography.Text>
-                    <Divider style={{ borderColor: '#D6D6E5', borderWidth: '.5px' }} />
-                    <Row justify="center" align="middle">
-                        <Col xs={24} md={4} style={{ textAlign: 'center', right: 40 }}>
-                            <Text
-                                style={{
-                                    font: "Poppins",
-                                    fontStyle: "normal",
-                                    fontWeight: 700,
-                                    fontSize: "20px",
-                                    lineHeight: "48px",
-                                    textAlign: "center",
-                                    color: "#30304D",
-                                }}
-                            >
-                                BATCH
-                            </Text>
-                        </Col>
-                        <Col xs={24} md={16} tyle={{ textAlign: 'center', }}>
-                            <Input
-                            name="batch"
-                                style={{
-                                    boxSizing: 'border-box',
-                                    border: '2px solid #A9A9CC',
-                                    borderRadius: '30px',
-                                    height: '50px',
-                                    width: '100%',
-                                }}
-                            />
-                        </Col>
-                    </Row>
-
-                    <Card
-                        bordered={true}
-                        style={{ width: '100%', maxWidth: '600px', margin: '20px auto', textAlign: 'center' }}
-                    >
-                        <Upload {...csvProps}>
-                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <FileAddOutlined style={{ color: '#53B8F1', fontSize: 100 }} />
-                            </div>
-                            <br />
-                            <Typography.Title level={4} style={{ color: '#53B8F1', margin: 0 }}>Select a CSV file to upload</Typography.Title>
-                            <Typography.Text style={{ color: '#7F7F99' }}>or drag and drop here</Typography.Text>
-                        </Upload>
-                    </Card>
-                    <br />
-                    <Typography.Text style={{
-                        font: 'Poppins',
-                        fontStyle: 'normal',
-                        fontWeight: 700,
-                        fontSize: 22,
-                        display: 'flex',
-                        color: '#30304D',
-                        marginLeft: '40px',
-                        top: '30px'
-                    }}>or upload from a URL</Typography.Text>
-                    <div style={{
-                        display: 'flex',
-                        right: 65,
->>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
                         color: '#3B3A82',
                         justifyContent: 'center',
                     }}
@@ -326,7 +258,6 @@ function Batch() {
         
     ];
 
-<<<<<<< HEAD
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Row justify="center" style={{ marginTop: '40px', marginBottom: '40px' }}>
@@ -348,51 +279,6 @@ function Batch() {
                         <Typography.Title level={4} style={{ color: '#53B8F1', margin: 0 }}>Select a CSV file to upload</Typography.Title>
                         <Typography.Text style={{ color: '#7F7F99' }}>or drag and drop here</Typography.Text>
                     </Upload>
-=======
-                        <Row justify="space-between" align="middle">
-                            <Col xs={24} md={12} style={{ textAlign: 'center' }}>
-                                <Input
-                                    style={{
-                                        boxSizing: 'border-box',
-                                        border: '2px solid #A9A9CC',
-                                        borderRadius: '30px',
-                                        height: '50px',
-                                        width: '170%',
-                                        display: 'flex',
-                                        marginTop: '20px',
-                                        left: 30
-                                    }}
-                                    placeholder="Add the file URL"
-                                    type="url"
-                                />
-                            </Col>
-                            <Col xs={24} md={12} style={{ textAlign: 'center' }}>
-                                <Button
-                                    style={{
-                                        background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
-                                        borderRadius: '50px',
-                                        font: 'Poppins',
-                                        fontStyle: 'normal',
-                                        fontWeight: 700,
-                                        fontSize: '15px',
-                                        lineHeight: '25px',
-                                        textAlign: 'center',
-                                        color: '#E8E8E8',
-                                        display: 'block',
-                                        marginTop: '20px',
-                                        height: '50px',
-                                        width: '70%',
-                                        marginLeft: '260px'
-                                    }}
-                                    type="primary"
-                                >
-                                    UPLOAD
-                                </Button>
-                            </Col>
-                        </Row>
-
-                    </div>
->>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
                 </Card>
             </Card>
         </Col>

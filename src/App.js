@@ -50,13 +50,9 @@ function App() {
         <Route path="netincome" element={<Layout><NetIncome /></Layout>} />
         <Route path="salesreport" element={<Layout><SalesReport /></Layout>} />
         <Route path="singleprod/:isUpdate?" element={<SingleProduct />} />
-<<<<<<< HEAD
         <Route path="multiple" element={<Layout><MultipleProduct /></Layout>} />
 
 
-=======
-        <Route path="multiple" element={<MultipleProduct />} />
->>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
       </Routes>
     </Router>
   );
