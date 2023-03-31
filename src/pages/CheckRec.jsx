@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    getTotals,
+    getOne,
 } from '../reducers/productSlice';
 import { useEffect, useState } from 'react';
 import styled from "styled-components";
@@ -30,11 +30,11 @@ const CheckRec = () => {
     const { product, cartItems } = useSelector(state => state.products);
     const dispatch = useDispatch();
     const [tenderedAmount] = useState(0);
-    const totalPrice = cartItems.reduce((acc, product) => acc + (product.quantity * product.price), 0);
+    const totalPrice = cartItems.reduce((acc, product) => acc + (product.quantity * product.markup_price), 0);
     const change = tenderedAmount - totalPrice;
     const receiptNumber = useSelector(state => state.receipt.receiptNumber);
     useEffect(() => {
-        dispatch(getTotals(), updateReceiptNumber());
+        dispatch(getOne(), updateReceiptNumber());
     }, [product, dispatch]);
 
     const handlePrint = () => {
@@ -116,13 +116,13 @@ const CheckRec = () => {
                     </div>
                     <Table dataSource={cartItems} style={{ maxWidth: '900px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <Table.Column title="" key="image" render={(text, record) => (
-                            <img alt={record.time} src={record.image} width={50} height={50} />
+                            <img alt={record.image} src={record.image || "https://picsum.photos/50/50/"} width={50} height={50} />
                         )} />
-                        <Table.Column title="" dataIndex="title" key="title" />
+                        <Table.Column title="" dataIndex="product_name" key="title" />
                         <Table.Column
                             title=""
-                            dataIndex="price"
-                            key="price"
+                            dataIndex="markup_price"
+                            key="markup_price"
                             style={{ fontWeight: 'bold' }}
                             render={(text) => (
                                 <span>
@@ -130,14 +130,14 @@ const CheckRec = () => {
                                 </span>
                             )}
                         />
-                        <Table.Column title="" key="cartQuantity" render={(text, record) => (
+                        <Table.Column title="" dataIndex="quantity" key="cartQuantity" render={(text, record) => (
                             < >
                                 x{record.quantity}
                             </>
                         )} />
-                        <Table.Column title="" key="cartQuantity" render={(text, record) => (
+                        <Table.Column title=""  key="cartQuantity" render={(text, record) => (
                             < >
-                                &#8369;{record.quantity * record.price}
+                                &#8369;{record.quantity * record.markup_price}
                             </>
                         )} />
                     </Table>

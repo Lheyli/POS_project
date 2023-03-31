@@ -1,28 +1,25 @@
 import { Card, Typography, Input, Form, Row, Col, Button, } from "antd";
-import React, { useState } from 'react';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { Link } from "react-router-dom";
-import { createUser } from '../reducers/usersAPI';
-import { useDispatch } from 'react-redux';
-const { Title } = Typography;
+import React, { useEffect } from 'react';
+import { EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons';
+import { Link, useParams } from "react-router-dom";
+import { createUser, updateUser, getOneUser } from '../reducers/usersAPI';
+import { useDispatch, useSelector } from 'react-redux';
+import TextInput from "../componets/TextInput";
+import TextInput2 from "../componets/TextInput2";
 const CreateNewMember = () => {
-  const { Text } = Typography;
+  const params = useParams()
+  const { Text, Title } = Typography;
+  const { user } = useSelector(state => state.user);
   const [form] = Form.useForm();
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+
   const dispatch = useDispatch();
 
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
-  const toggleConfirmPasswordVisibility = () => {
-    setConfirmPasswordVisible(!confirmPasswordVisible);
-  };
   const handleFormSubmit = (values) => {
     console.log('Form values:', values);
   };
 
   return (
+    
 
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <Card style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)', borderRadius: '10px', }}>
@@ -188,15 +185,6 @@ const CreateNewMember = () => {
                         }}
                         placeholder="Password"
                         id="password"
-                        iconRender={(visible) =>
-                          visible ? (
-                            <EyeTwoTone onClick={togglePasswordVisibility} />
-                          ) : (
-                            <EyeInvisibleOutlined onClick={togglePasswordVisibility} />
-                          )
-                        }
-                        visibilityToggle
-                        autoComplete="new-password"
                       />
                     </Form.Item>
                   </div>
@@ -242,13 +230,6 @@ const CreateNewMember = () => {
                         marginLeft: '-140px',
                       }}
                       placeholder="Confirm password"
-                      iconRender={(visible) =>
-                        visible ? (
-                          <EyeTwoTone onClick={toggleConfirmPasswordVisibility} />
-                        ) : (
-                          <EyeInvisibleOutlined onClick={toggleConfirmPasswordVisibility} />
-                        )
-                      }
                       visibilityToggle
                       autoComplete="new-password"
                     />
@@ -312,6 +293,7 @@ const CreateNewMember = () => {
 
       </Card >
     </div >
+
   );
 };
 export default CreateNewMember;

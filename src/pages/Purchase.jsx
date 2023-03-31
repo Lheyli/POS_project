@@ -3,8 +3,9 @@ import { getProducts, addToCart, getOne  } from '../reducers/productSlice';
 import { Card, Row, Col, Button, Input, Drawer, Typography } from 'antd';
 import { LeftOutlined, RightOutlined, ShoppingCartOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const MakePurchase = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { products, loading, error } = useSelector(state => state.products);
   console.log({ products })
@@ -61,12 +62,9 @@ const MakePurchase = () => {
     setSelectedCategory(category);
   };
   const filteredProducts = products.filter((product) => {
-    // console.log({
-    //   selectedAll: selectedCategory === 'All',
-    //   selectedCategory: product.category === selectedCategory,
-    // })
-    return (selectedCategory === 'All' || product.category === selectedCategory?.toLowerCase()) &&
-      product.title.toLowerCase().includes(searchValue.toLowerCase())
+
+    return (selectedCategory === 'All' || product.product_category === selectedCategory?.toLowerCase()) &&
+      product.product_name.toLowerCase().includes(searchValue.toLowerCase())
   });
   const categories = ['All', "Men's Clothing", 'Jewelery', 'Electronics', "Women's Clothing"];
   if (loading) {
@@ -105,11 +103,11 @@ const MakePurchase = () => {
       <br></br> <br></br> 
       <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
       <Row justify="center">
-          {categories.map((category) => (
+          {categories.map((product_category) => (
             <Button
-              key={category}
-              type={selectedCategory === category}
-              onClick={() => handleCategoryClick(category)}
+              key={product_category}
+              type={selectedCategory === product_category}
+              onClick={() => handleCategoryClick(product_category)}
               style={{
                 marginRight: '10px',
                 borderStyle: 'none',
@@ -119,11 +117,11 @@ const MakePurchase = () => {
                 fontWeight: 'bold',
                 fontSize: '30px',
                 height: '50px',
-                backgroundColor: selectedCategory === category ? '#5250B4' : 'transparent',
+                backgroundColor: selectedCategory === product_category ? '#5250B4' : 'transparent',
                 cursor: 'pointer',
               }}
             >
-              {category}
+              {product_category}
             </Button>
           ))}
         </Row>
@@ -144,17 +142,17 @@ const MakePurchase = () => {
               >
                 <div>
                   <img
-                    src={product.image}
+                    src={product.image|| "https://picsum.photos/150/150/"}
                     className="img-fluid"
-                    width={90}
-                    height={90}
+                    width={150}
+                    height={150}
                     alt={product.name}
                     style={{ margin: 'auto', cursor: 'pointer' }}
                     onClick={() => showDrawer(product)}
                   />
                 </div>
-                <p style={{ fontWeight: 'bold', color: '#3B3A82', font: 'Poppins', fontSize: '14px' }}>{product.title}</p>
-                <p style={{ fontWeight: 'bold', color: '#3B3A82', font: 'Poppins', fontSize: '15px' }}>₱{product.price}</p>
+                <p style={{ fontWeight: 'bold', color: '#3B3A82', font: 'Poppins', fontSize: '14px' }}>{product.product_name}</p>
+                <p style={{ fontWeight: 'bold', color: '#3B3A82', font: 'Poppins', fontSize: '15px' }}>₱{product.markup_price}</p>
               </Card>
             </Col>
           ))}
@@ -169,7 +167,7 @@ const MakePurchase = () => {
             >
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '50px' }}>
                 <img
-                  src={selectedProduct.image}
+                  src={selectedProduct.image|| "https://picsum.photos/280/280/"}
                   className="img-fluid"
                   width={280}
                   height={280}
@@ -177,7 +175,7 @@ const MakePurchase = () => {
                   style={{ display: 'block', margin: 'auto' }}
                 />
                 <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3B3A82', font: 'Poppins', fontWeight: 'bold', marginLeft: '10px', fontSize: '23px', marginTop: '0px' }}>
-                  {selectedProduct.title}
+                  {selectedProduct.product_name}
                 </p>
                 <br></br>
                 <Button
@@ -189,7 +187,7 @@ const MakePurchase = () => {
                 </Button>
                 <br></br>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <p justify="start" style={{ color: '#30304D', marginRight: '200px', fontWeight: 'bold', font: 'Poppins', fontSize: '20px' }}>Price</p><p style={{ color: '#3B3A82', fontWeight: 'bold', font: 'Poppins', fontSize: '20px' }}>₱{selectedProduct.price}</p>
+                  <p justify="start" style={{ color: '#30304D', marginRight: '200px', fontWeight: 'bold', font: 'Poppins', fontSize: '20px' }}>Price</p><p style={{ color: '#3B3A82', fontWeight: 'bold', font: 'Poppins', fontSize: '20px' }}>₱{selectedProduct.markup_price}</p>
                 </div>
                 <div justify="end" style={{ display: 'flex', justifyContent: 'center', marginLeft: '220px' }}>
                   <Button className="btn btn-outline-dark" style={{ borderColor: 'gray' }} onClick={() => handleDecreaseCart(selectedProduct)}>
@@ -220,15 +218,15 @@ const MakePurchase = () => {
               {/* New content for the "View Details" drawer */}
               <Row justify="end">
                 <Col>
-                  <Link to="/edit" >
-                    <EditOutlined style={{ color: '#9494B2', fontSize: '30px' }} />
-                  </Link>
+                
+                    <EditOutlined onClick={()=> navigate(`/singleprod/${selectedProduct.product_id}`)} style={{ color: '#9494B2', fontSize: '30px' }} />
+                 
                   &nbsp;&nbsp;
                 </Col>
               </Row>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '50px' }}>
                 <img
-                  src={selectedProduct.image}
+                  src={selectedProduct.image|| "https://picsum.photos/250/250/"}
                   className="img-fluid"
                   width={250}
                   height={250}
@@ -237,41 +235,41 @@ const MakePurchase = () => {
                 />
               </div>
               <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3B3A82', font: 'Poppins', fontWeight: 'bold', marginLeft: '10px', fontSize: '23px', marginTop: '0px' }}>
-                {selectedProduct.title}
+                {selectedProduct.product_name}
               </p>
               <br></br>
-              <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Price</Typography.Text>
-                <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>₱{selectedProduct.price}</Typography.Text>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Category</Typography.Text>
-                <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.category}</Typography.Text>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Variation</Typography.Text>
-                <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Expiration Date</Typography.Text>
-                <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Quantity</Typography.Text>
-                <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Created At</Typography.Text>
-                <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Updated At</Typography.Text>
-                <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Updated By</Typography.Text>
-                <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ }</Typography.Text>
-              </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }} >Price</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>₱{selectedProduct.markup_price}</Typography.Text>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Category</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.product_category}</Typography.Text>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Variation</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.variation }</Typography.Text>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Expiration Date</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.expiration_date}</Typography.Text>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Quantity</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ selectedProduct.quantity}</Typography.Text>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Created At</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.createdAt }</Typography.Text>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Updated At</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.updatedAt }</Typography.Text>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Updated By</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ selectedProduct.updated_by}</Typography.Text>
+          </div>
               <br></br>
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Button style={{ borderRadius: '50px', borderColor: '#5250B4', color: '#5250B4', font: 'Poppins', fontWeight: 'bold', height: '55px', width: '205px' }} onClick={() => (selectedProduct)}>

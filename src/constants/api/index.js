@@ -6,8 +6,10 @@ export const API_PRODUCTS = {
     deleteOne: "/inventory/product/deleteOne",
     update: "/inventory/product/update",
     getAll: "/inventory/product/getAll",
-    getOne: "/inventory/product/getOne",
+    getCategory: "/inventory/product/getCategory",
+    getOne: (id) => `/inventory/product/getOne/${id}`,
     countProducts: "/inventory/product/countProducts",
+    upload_CSV: "/inventory/product/uploadCSV",
 }
 
 export const API_USERS = {
@@ -17,8 +19,10 @@ export const API_USERS = {
     getAll: "/inventory/user/getAll",
     getOne: "/inventory/user/getOne",
     countUsers: "/inventory/user/countUsers",
+    upload_CSV: "/inventory/user/uploadCSV",
 }
 
 export const API_LOGS = {
     getAll: "/inventory/userlogs/getAll",
 }
+

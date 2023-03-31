@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { API_USERS } from '../constants/api';
+import { API_USERS, API_LOGS } from '../constants/api';
 import { notification } from 'antd';
+import jwtDecode from 'jwt-decode';
 
 
 export const loginUser = createAsyncThunk(
@@ -10,11 +11,12 @@ export const loginUser = createAsyncThunk(
     console.log("🚀 ~ file: usersAPI.jsx:7 ~ userData:", userData)
     try {
       const response = await axios.post('/inventory/user/login', {
-        "username": "username2",
-        "password": "password"
+        username: userData.username, 
+        password: userData.password
       });
       axios.defaults.headers['auth'] = response.data?.token
       const { token } = response.data;
+      const decoded = jwtDecode(token);
       dispatch(usersAPI.actions.setToken(token));
       localStorage.setItem('token', response.data?.token)
       console.log("🚀 ~ file: usersAPI.jsx:10 ~ response:", response)
@@ -47,30 +49,34 @@ export const createUser = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
 export const getOneUser = createAsyncThunk(
-  'user/getOne/user_id',
+  'user/getOne/:user_id',
   async (user_id) => {
-    const response = await axios.get(`https://fakestoreapi.com/users/${user_id}`);
-    return response.data;
+    const response = await axios.get(API_USERS.getOne(user_id),{headers:{
+      auth: localStorage.getItem('token'),
+    }});
+    return response.data?.result;
+    
   }
+    
 );
 
-export const getUsers = createAsyncThunk(
-  '/user/getAll',
-  async (thunkAPI) => {
-    try{
+export const upload_CSV = createAsyncThunk(
+  'user/uploadCSV',
+  async (userData, thunkAPI) => {
+    try {
       const response = await axios({
-         method: 'get',
-        url: API_USERS.getAll,
+        method: 'post',
+        url: API_USERS.upload_CSV,
         headers: {
           auth: localStorage.getItem('token'),
-          'Content-Type': 'application/json'
-        }
+        },
+        data: userData
       });
       return response.data;
     } catch (error) {
@@ -79,12 +85,65 @@ export const getUsers = createAsyncThunk(
     }
   }
 );
+export const getUsers = createAsyncThunk(
+  '/user/getAll',
+  async (thunkAPI) => {
+    try {
+      const response = await axios({
+        method: 'get',
+        url: API_USERS.getAll,
+        headers: {
+          auth: localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data.result;
+    } catch (error) {
+      // return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const getUserlogs = createAsyncThunk(
+  '/userlogs/getAll',
+  async (thunkAPI) => {
+    try {
+      const response = await axios({
+        method: 'get',
+        url: API_LOGS.getAll,
+        headers: {
+          auth: localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data.result;
+    } catch (error) {
+      // return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+
+export const updateUser = createAsyncThunk(
+  'product/update',
+  async (updateUser) => {
+    const response = await axios.put(API_USERS.update, updateUser, {
+      headers: {
+        auth: localStorage.getItem('token'),
+      }
+    });
+    return response.data;
+  }
+);
+
 
 
 const usersAPI = createSlice({
   name: 'user',
   initialState: {
-    user: null,
+    user: [],
     isLoggedIn: false,
     loading: false,
     error: null,
@@ -112,10 +171,10 @@ const usersAPI = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         alert("loginUser.fulfilled")
-          notification.success({
-            title: "Success",
-            message: " Login Successfully.",
-          })
+        notification.success({
+          title: "Success",
+          message: " Login Successfully.",
+        })
         state.isLoggedIn = true;
         state.user = action.payload;
         state.loading = false;
@@ -160,6 +219,18 @@ const usersAPI = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      .addCase(getUserlogs.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getUserlogs.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+      })
+      .addCase(getUserlogs.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
       .addCase(getOneUser.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -172,6 +243,37 @@ const usersAPI = createSlice({
       .addCase(getOneUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(updateUser.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.user = action.payload;
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(upload_CSV.pending, (state) => {
+        alert("upload_CSV.pending")
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(upload_CSV.fulfilled, (state, action) => {
+        alert("upload_CSV.fulfilled")
+        notification.success({
+          title: "Success",
+          message: "CSV Uploaded.",
+        })
+
+        state.status = 'succeeded';
+        state.user.push(action.payload);
+      })
+      .addCase(upload_CSV.rejected, (state, action) => {
+        alert("upload_CSV.rejected")
+        state.status = 'failed';
+        state.error = action.payload;
       });
   },
 });

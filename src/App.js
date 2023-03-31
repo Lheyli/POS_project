@@ -47,13 +47,13 @@ function App() {
         <Route path="makeorders" element={<Layout><MakeOrders /></Layout>} />
         <Route path="payment" element={<Layout><Payment /></Layout>} />
         <Route path="receipt" element={<Layout><Receipt /></Layout>} />
-        <Route path="createnewmember" element={<CreateNewMember />} />
+        <Route path="createnewmember/:isUpdate?" element={<CreateNewMember />} />
         <Route path="createupload" element={<Layout><CreateUpload /></Layout>} />
         <Route path="batch" element={<Layout><Batch /></Layout>} />
         <Route path="netincome" element={<Layout><NetIncome /></Layout>} />
         <Route path="salesreport" element={<Layout><SalesReport /></Layout>} />
         <Route path="batch" element={<Batch />} />
-        <Route path="singleprod" element={<SingleProduct />} />
+        <Route path="singleprod/:isUpdate?" element={<SingleProduct />} />
         <Route path="multiple" element={<MultipleProduct />} />
 
 

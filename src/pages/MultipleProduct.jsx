@@ -1,12 +1,27 @@
 import { Card, Typography, Input, Form, Row, Col, Button, Divider, } from "antd";
 import {FileAddOutlined } from '@ant-design/icons';
 import { message, Upload } from 'antd';
-const { Text } = Typography;
+import { upload_CSV } from "../reducers/productSlice";
+import { useDispatch } from "react-redux";
+
+function MultipleProduct() {
+    const headingStyle = {
+        font: "Poppins",
+        fontStyle: "normal",
+        fontWeight: 700,
+        fontSize: "24px",
+        lineHeight: "48px",
+        textAlign: "center",
+        color: "#30304D",
+    };
+  
 function handleUpload(file) {
-    // const bodyFormData = new FormData();
-    // bodyFormData.append('csv', file);
-    // dispatch(chenes)
-}
+    if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        dispatch(upload_CSV(formData));
+      }
+    };
 const csvProps = {
     accept: '.csv',
     beforeUpload: (file) => {
@@ -19,16 +34,8 @@ const csvProps = {
         return false;
     },
 };
-function MultipleProduct() {
-    const headingStyle = {
-        font: "Poppins",
-        fontStyle: "normal",
-        fontWeight: 700,
-        fontSize: "24px",
-        lineHeight: "48px",
-        textAlign: "center",
-        color: "#30304D",
-    };
+
+    const dispatch = useDispatch()
     return (
         <Card style={{
             width: "1000px",
@@ -54,33 +61,6 @@ function MultipleProduct() {
                 }}>Upload CSV</Typography.Text>
             </Row>
             <Divider style={{ borderColor: '#D6D6E5', borderWidth: '.5px' }} />
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Text
-                    style={{
-                        font: "Poppins",
-                        fontStyle: "normal",
-                        fontWeight: 700,
-                        fontSize: "20px",
-                        lineHeight: "48px",
-                        textAlign: "center",
-                        color: "#30304D",
-                        marginLeft: "50px",
-                    }}
-                >
-                    BATCH
-                </Text>
-                <Input
-                    style={{
-                        marginLeft: '20px',
-                        boxSizing: 'border-box',
-                        border: '2px solid #A9A9CC',
-                        borderRadius: '30px',
-                        height: '50px',
-                        width: '795px'
-                    }}
-                />
-            </div>
-            <br />
             <Card
                 style={{ borderStyle: 'dashed', borderWidth: '1px', borderColor: '#53B8F1', width: '900px', height: '400px', marginLeft: '25px' }}
             >
@@ -139,6 +119,7 @@ function MultipleProduct() {
                         <Form style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', top: '10px' }}>
                             <Form.Item label="">
                                 <Input
+                                name="csv"
                                     style={{
                                         marginLeft: '45px',
                                         boxSizing: 'border-box',
@@ -154,6 +135,7 @@ function MultipleProduct() {
                             </Form.Item>
                             <Form.Item>
                                 <Button
+                                onClick={{handleUpload}}
                                     style={{
                                         background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
                                         borderRadius: '50px',
