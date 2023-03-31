@@ -17,12 +17,8 @@ export const createProduct = createAsyncThunk(
         headers: {
           auth: localStorage.getItem('token'),
         },
-<<<<<<< HEAD
         data: productData
 
-=======
-        data: productData 
->>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
       });
       return response.data;
     } catch (error) {
@@ -53,7 +49,6 @@ export const upload_CSV = createAsyncThunk(
 export const getProducts = createAsyncThunk(
   'product/getAll',
   async (thunkAPI) => {
-<<<<<<< HEAD
     try {
       const response = await axios({
         method: 'get',
@@ -68,23 +63,8 @@ export const getProducts = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
-=======
-  try {
-    const response = await axios({
-      method: 'get',
-      url: API_PRODUCTS.getAll,
-      headers: {
-        auth: localStorage.getItem('token'),
-        'Content-Type': 'application/json'
-      }
-    });
-    return response.data.result;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error);
->>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
   }
 );
-<<<<<<< HEAD
 
 export const getAllCategory = createAsyncThunk(
   'product/getAllCategory/product_category',
@@ -98,16 +78,6 @@ export const getAllCategory = createAsyncThunk(
 
   }
 
-=======
-export const getCategory = createAsyncThunk(
-  'product/getCategory/product_category', 
-  async (product_category ) => {
-    const response = await axios.get(API_PRODUCTS.getCategory(product_category),{headers:{
-      auth: localStorage.getItem('token'),
-    }});
-    return response.data?.result;
-  }
->>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
 );
 export const getOne = createAsyncThunk(
   'product/getOne/:product_id',
@@ -119,13 +89,9 @@ export const getOne = createAsyncThunk(
     });
     console.log("🚀 ~ file: productSlice.jsx:65 ~ response:", response)
     return response.data?.result;
-<<<<<<< HEAD
 
   }
 
-=======
-  } 
->>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
 );
 export const deleteOneProduct = createAsyncThunk(
   'product/deleteOne/:product_id',
@@ -147,10 +113,6 @@ export const deleteOneProduct = createAsyncThunk(
     }
 
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
 );
 export const updateProduct = createAsyncThunk(
   'product/update',
@@ -283,7 +245,6 @@ const productSlice = createSlice({
       state.loading = false;
     },
   },
-<<<<<<< HEAD
 
   extraReducers: (builder) => {
     builder
@@ -317,42 +278,6 @@ const productSlice = createSlice({
         notification.success({
           title: "Success",
           message: "CSV Uploaded.",
-=======
- extraReducers: (builder) => {
-      builder
-        .addCase(createProduct.pending, (state) => {
-          alert("createProduct.pending")
-          state.status = 'loading';
-          state.error = null;
-        })
-        .addCase(createProduct.fulfilled, (state, action) => {
-          alert("createProduct.fulfilled")
-          notification.success({
-            title: "Success",
-            message: "Product created.",
-          })
-          state.status = 'succeeded';
-          state.products.push(action.payload);
-        })
-        .addCase(createProduct.rejected, (state, action) => {
-          alert("createProduct.rejected")
-          state.status = 'failed';
-          state.error = action.payload;
-        })
-        .addCase(upload_CSV.pending, (state) => {
-          alert("upload_CSV.pending")
-          state.status = 'loading';
-          state.error = null;
-        })
-        .addCase(upload_CSV.fulfilled, (state, action) => {
-          alert("upload_CSV.fulfilled")
-          notification.success({
-            title: "Success",
-            message: "CSV Uploaded.",
-          })
-          state.status = 'succeeded';
-          state.products.push(action.payload);
->>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
         })
 
         state.status = 'succeeded';
