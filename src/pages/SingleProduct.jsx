@@ -1,4 +1,4 @@
-import { Card, Typography, Form, Row, Col, Button, Modal, Upload, Image } from "antd";
+import { Card, Typography, Form, Row, Col, Button, Modal, Upload} from "antd";
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { PlusOutlined } from '@ant-design/icons';

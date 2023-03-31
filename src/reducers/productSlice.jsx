@@ -3,12 +3,9 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 import { notification } from 'antd';
 import { API_PRODUCTS } from '../constants/api';
-
-
 // dispatch(createProduct({
 //   product_name
 // }))
-
 export const createProduct = createAsyncThunk(
   'product/create',
   async (productData, thunkAPI) => {
@@ -20,8 +17,12 @@ export const createProduct = createAsyncThunk(
         headers: {
           auth: localStorage.getItem('token'),
         },
+<<<<<<< HEAD
         data: productData
 
+=======
+        data: productData 
+>>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
       });
       return response.data;
     } catch (error) {
@@ -30,7 +31,6 @@ export const createProduct = createAsyncThunk(
     }
   }
 );
-
 export const upload_CSV = createAsyncThunk(
   'product/uploadCSV',
   async (productData, thunkAPI) => {
@@ -50,11 +50,10 @@ export const upload_CSV = createAsyncThunk(
     }
   }
 );
-
-
 export const getProducts = createAsyncThunk(
   'product/getAll',
   async (thunkAPI) => {
+<<<<<<< HEAD
     try {
       const response = await axios({
         method: 'get',
@@ -69,8 +68,23 @@ export const getProducts = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
+=======
+  try {
+    const response = await axios({
+      method: 'get',
+      url: API_PRODUCTS.getAll,
+      headers: {
+        auth: localStorage.getItem('token'),
+        'Content-Type': 'application/json'
+      }
+    });
+    return response.data.result;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+>>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
   }
 );
+<<<<<<< HEAD
 
 export const getAllCategory = createAsyncThunk(
   'product/getAllCategory/product_category',
@@ -84,8 +98,17 @@ export const getAllCategory = createAsyncThunk(
 
   }
 
+=======
+export const getCategory = createAsyncThunk(
+  'product/getCategory/product_category', 
+  async (product_category ) => {
+    const response = await axios.get(API_PRODUCTS.getCategory(product_category),{headers:{
+      auth: localStorage.getItem('token'),
+    }});
+    return response.data?.result;
+  }
+>>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
 );
-
 export const getOne = createAsyncThunk(
   'product/getOne/:product_id',
   async (product_id,) => {
@@ -96,12 +119,14 @@ export const getOne = createAsyncThunk(
     });
     console.log("🚀 ~ file: productSlice.jsx:65 ~ response:", response)
     return response.data?.result;
+<<<<<<< HEAD
 
   }
 
+=======
+  } 
+>>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
 );
-
-
 export const deleteOneProduct = createAsyncThunk(
   'product/deleteOne/:product_id',
   async (product_id, {dispatch}) => {
@@ -122,10 +147,11 @@ export const deleteOneProduct = createAsyncThunk(
     }
 
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
 );
-
-
 export const updateProduct = createAsyncThunk(
   'product/update',
   async (updatedProduct) => {
@@ -137,9 +163,6 @@ export const updateProduct = createAsyncThunk(
     return response.data;
   }
 );
-
-
-
 const productSlice = createSlice({
   name: 'products',
   initialState: {
@@ -168,13 +191,11 @@ const productSlice = createSlice({
     addToCart: (state, action) => {
       console.log("🚀 ~ file: productSlice.jsx:38 ~ action:", action)
       console.log({ state: state?.products })
-
       // check if existing in cart
       const existingIndex = state.cartItems.findIndex(
         (item) => item.product_id === action.payload.product_id
       );
       console.log("🚀 ~ file: productSlice.jsx:42 ~ existingIndex:", existingIndex)
-
       //if exisiting in cart increase quantity of item
       if (existingIndex >= 0) {
         alert("existing")
@@ -193,12 +214,10 @@ const productSlice = createSlice({
       }
       localStorage.setItem("cart", JSON.stringify(state.products));
     },
-
     increaseCart(state, action) {
       const existingIndex = state.cartItems.findIndex(
         (item) => item.id === action.payload.id
       );
-
       if (existingIndex >= 0) {
         state.cartItems[existingIndex].quantity += 1;
         toast.info("Increased product quantity", {
@@ -207,16 +226,13 @@ const productSlice = createSlice({
       }
       localStorage.setItem("cart", JSON.stringify(state.product));
     },
-
     decreaseCart(state, action) {
       const itemIndex = state.cartItems.findIndex(
         (item) => item.id === action.payload.id
       );
       console.log("🚀 ~ file: productSlice.jsx:82 ~ decreaseCart ~ itemIndex:", itemIndex)
-
       if (state.cartItems[itemIndex].quantity > 1) {
         state.cartItems[itemIndex].quantity -= 1;
-
         toast.info("Decreased product quantity", {
           position: "bottom-left",
         });
@@ -231,7 +247,6 @@ const productSlice = createSlice({
           position: "bottom-left",
         });
       }
-
       localStorage.setItem("cart", JSON.stringify(state.product));
     },
     removeFromCart: (state, action) => {
@@ -242,10 +257,8 @@ const productSlice = createSlice({
         (cartTotal, cartItem) => {
           const { price, cartQuantity } = cartItem;
           const itemTotal = price * cartQuantity;
-
           cartTotal.total += itemTotal;
           cartTotal.quantity += cartQuantity;
-
           return cartTotal;
         },
         {
@@ -270,6 +283,7 @@ const productSlice = createSlice({
       state.loading = false;
     },
   },
+<<<<<<< HEAD
 
   extraReducers: (builder) => {
     builder
@@ -303,6 +317,42 @@ const productSlice = createSlice({
         notification.success({
           title: "Success",
           message: "CSV Uploaded.",
+=======
+ extraReducers: (builder) => {
+      builder
+        .addCase(createProduct.pending, (state) => {
+          alert("createProduct.pending")
+          state.status = 'loading';
+          state.error = null;
+        })
+        .addCase(createProduct.fulfilled, (state, action) => {
+          alert("createProduct.fulfilled")
+          notification.success({
+            title: "Success",
+            message: "Product created.",
+          })
+          state.status = 'succeeded';
+          state.products.push(action.payload);
+        })
+        .addCase(createProduct.rejected, (state, action) => {
+          alert("createProduct.rejected")
+          state.status = 'failed';
+          state.error = action.payload;
+        })
+        .addCase(upload_CSV.pending, (state) => {
+          alert("upload_CSV.pending")
+          state.status = 'loading';
+          state.error = null;
+        })
+        .addCase(upload_CSV.fulfilled, (state, action) => {
+          alert("upload_CSV.fulfilled")
+          notification.success({
+            title: "Success",
+            message: "CSV Uploaded.",
+          })
+          state.status = 'succeeded';
+          state.products.push(action.payload);
+>>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
         })
 
         state.status = 'succeeded';
@@ -378,7 +428,6 @@ export const { fetchProductsStart,
   fetchProductsSuccess,
   fetchProductsFailure,
   addToCart, decreaseCart, removeFromCart, getTotals, increaseCart } = productSlice.actions;
-
 export const fetchProducts = () => async dispatch => {
   try {
     dispatch(fetchProductsStart());

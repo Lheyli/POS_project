@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Modal, Carousel } from 'antd';
+import { Modal, Carousel, Row, Col } from 'antd';
 import React, { useState } from "react";
 import v1 from './v1.png';
 import s1 from './s1.png';
@@ -141,6 +141,7 @@ function Sidebar() {
   };
   return (
     <>
+    <Row>
       <StyledToggle onClick={handleToggle}>
         {isOpen ? <MenuOutlined /> : <MenuOutlined />}
       </StyledToggle>
@@ -152,12 +153,13 @@ function Sidebar() {
         onCollapse={(collapsed, type) => {
           console.log(collapsed, type);
         }} isOpen={isOpen}>
+          
         <StyledMenu>
-          <StyledLink to="/dashboard" style={{ fontWeight: 'bold' }}>
+          <Col><StyledLink to="/dashboard" style={{ fontWeight: 'bold' }}>
             <HomeOutlined />
             &nbsp; Dashboard
-          </StyledLink>
-          <StyledLink to="/products" style={{ fontWeight: 'bold' }} onClick={handleSideClick}>
+          </StyledLink></Col>
+          <Col><StyledLink to="/products" style={{ fontWeight: 'bold' }} onClick={handleSideClick}>
             <TagOutlined />
             &nbsp; Products
           </StyledLink>
@@ -166,32 +168,35 @@ function Sidebar() {
             footer={null}
             onOk={handleModalOkay}
             onCancel={handleCancel}
-            width={800} height={1500}
+            width="40%"
+      height="40%"
+
           >
+             <div style={{ maxWidth: '750px', margin: 'auto' }}>
             <Carousel autoplay {...settings}>
               {images.map(image => (
                 <div key={image}>
-                  <img src={C1} alt={image} width={750} height={700} />
+                  <img src={C1} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={C2} alt={image} width={750} height={700} />
+                  <img src={C2} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={C3} alt={image} width={750} height={700} />
+                  <img src={C3} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={C4} alt={image} width={750} height={700} />
+                  <img src={C4} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
                 </div>
               ))}
-            </Carousel>
-          </Modal>
-          <StyledLink to="/purchase" style={{ fontWeight: 'bold' }} onClick={handleClick}>
+            </Carousel></div>
+          </Modal></Col>
+          <Col><StyledLink to="/purchase" style={{ fontWeight: 'bold' }} onClick={handleClick}>
             <ShoppingCartOutlined />
             &nbsp; Make Purchase
           </StyledLink>
@@ -200,82 +205,86 @@ function Sidebar() {
             footer={null}
             onOk={handleOk}
             onCancel={Cancel}
-            width={800} height={1500}
+            width="40%"
+            height="40%"
           >
+             <div style={{ maxWidth: '750px', margin: 'auto' }}>
             <Carousel autoplay {...settings}>
               {images.map(image => (
                 <div key={image}>
-                  <img src={i1} alt={image} width={750} height={700} />
+                  <img src={i1} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={i2} alt={image} width={750} height={700} />
+                  <img src={i2} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={i3} alt={image} width={750} height={700} />
+                  <img src={i3} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={i4} alt={image} width={750} height={700} />
+                  <img src={i4} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
                 </div>
               ))}
-            </Carousel>
-          </Modal>
-          <StyledLink to="/transactions" style={{ fontWeight: 'bold' }}>
+            </Carousel></div>
+          </Modal></Col>
+          <Col><StyledLink to="/transactions" style={{ fontWeight: 'bold' }}>
             <SwapOutlined />
             &nbsp; Transactions
-          </StyledLink>
-          <StyledLink to="/sales-report" style={{ fontWeight: 'bold' }}>
+          </StyledLink></Col>
+          <Col><StyledLink to="/sales-report" style={{ fontWeight: 'bold' }}>
             <FundOutlined />
             &nbsp; Sales Report
-          </StyledLink>
+          </StyledLink></Col>
           <StyledLink to="/accounting-report" style={{ fontWeight: 'bold' }}>
             <CalculatorOutlined />
             &nbsp; Accounting Report
           </StyledLink>
-          <StyledLink to="/user-logs" style={{ fontWeight: 'bold' }}>
+          <Col><StyledLink to="/user-logs" style={{ fontWeight: 'bold' }}>
             <UserOutlined />
             &nbsp; User Logs
-          </StyledLink>
-          <StyledLink to="/clients" style={{ fontWeight: 'bold' }} onClick={handleSidebarClick}>
+          </StyledLink></Col>
+          <Col><StyledLink to="/clients" style={{ fontWeight: 'bold' }} onClick={handleSidebarClick}>
             <UsergroupAddOutlined />
             &nbsp; Members/Clients
           </StyledLink>
+         
           <Modal
             visible={visible}
             footer={null}
             onOk={handleModalOk}
             onCancel={handleModalCancel}
-            width={800} height={1500}
-          >
+            width="40%"
+            height="40%"
+          > <div style={{ maxWidth: '750px', margin: 'auto' }}>
             <Carousel autoplay {...settings}>
               {images.map(image => (
                 <div key={image}>
-                  <img src={m1} alt={image} width={750} height={700} />
+                  <img src={m1} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={m2} alt={image} width={750} height={700} />
+                  <img src={m2} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={m3} alt={image} width={750} height={700} />
+                  <img src={m3} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={m4} alt={image} width={750} height={700} />
+                  <img src={m4} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
                 </div>
               ))}
-            </Carousel>
-          </Modal>
-          <StyledLink to="/qr" style={{ fontWeight: 'bold' }} onClick={handleC}>
+            </Carousel></div>
+          </Modal></Col>
+          <Col><StyledLink to="/qr" style={{ fontWeight: 'bold' }} onClick={handleC}>
             <QrcodeOutlined />&nbsp;
             Scan QR Code
           </StyledLink>
@@ -284,37 +293,39 @@ function Sidebar() {
             footer={null}
             onOk={handle}
             onCancel={cel}
-            width={800} height={1500}
+            width="40%"
+            height="40%"
           >
+            <div style={{ maxWidth: '750px', margin: 'auto' }}>
             <Carousel autoplay {...settings}>
               {images.map(image => (
                 <div key={image}>
-                  <img src={v1} alt={image} width={750} height={700} />
+                  <img src={v1} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
                 </div>
               ))}
 
               {images.map(image => (
                 <div key={image}>
-                  <img src={s1} alt={image} width={750} height={700} />
+                  <img src={s1} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={s2} alt={image} width={750} height={700} />
+                  <img src={s2} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
                 </div>
               ))}
               {images.map(image => (
                 <div key={image}>
-                  <img src={s3} alt={image} width={750} height={700} />
+                  <img src={s3} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
                 </div>
               ))}
 
-            </Carousel>
-          </Modal>
-          <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br><br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br><br></br>
+            </Carousel></div>
+          </Modal></Col>
+          
 
         </StyledMenu>
-      </StyledSider>
+      </StyledSider></Row>
     </>
   );
 }

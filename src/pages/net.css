@@ -12,25 +12,27 @@
     margin-right: 100;
 }
 .net-income-month {
-    margin: 0;
-    font: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 3px;
-    letter-spacing: 0.451506px;
-    text-transform: capitalize;
-    color: #D6D6E5;
-    text-align: center;
-}
-.net-income-amount {
-    font-size: 25px;
+    right: 50;
     margin: 10px 0;
     font: 'Poppins';
     font-style: normal;
     font-weight: 400;
+    font-size: 18px;
+    line-height: 3px;
+    letter-spacing: 0.451506px;
+    text-transform: capitalize;
     color: #D6D6E5;
     text-align: left;
+}
+.net-income-amount {
+    font-size: 30px;
+    margin: 10px 0;
+    font: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    color: #D6D6E5;
+    text-align: left;
+   
 }
 .net-income-description {
     font-size: 14px;
@@ -39,4 +41,17 @@
     font-style: normal;
     font-weight: 400;
     color: #D6D6E5;
+}
+.net-income-product {
+    right: 50;
+    margin: 1px 0;
+    font: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 3px;
+    letter-spacing: 0.451506px;
+    text-transform: capitalize;
+    color: #D6D6E5;
+    text-align: left;
 }

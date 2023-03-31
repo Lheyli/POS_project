@@ -24,13 +24,10 @@ import NetIncome from './pages/NetIncome';
 import SalesReport from './pages/SalesReport';
 import SingleProduct from './pages/SingleProduct';
 import MultipleProduct from './pages/MultipleProduct';
-
 function App() {
   return (
     <Router>
-
       <Routes>
-
         <Route path="/" element={<SignIn />} />
         <Route path="dashboard" element={<Layout><Dashboard /></Layout>} />
         <Route path="products" element={<Layout><Products /></Layout>} />
@@ -53,13 +50,15 @@ function App() {
         <Route path="netincome" element={<Layout><NetIncome /></Layout>} />
         <Route path="salesreport" element={<Layout><SalesReport /></Layout>} />
         <Route path="singleprod/:isUpdate?" element={<SingleProduct />} />
+<<<<<<< HEAD
         <Route path="multiple" element={<Layout><MultipleProduct /></Layout>} />
 
 
+=======
+        <Route path="multiple" element={<MultipleProduct />} />
+>>>>>>> d6df88b2c3a5d89571c8554ce4eb2e1c8ccf1830
       </Routes>
-
     </Router>
   );
 }
-
 export default App;

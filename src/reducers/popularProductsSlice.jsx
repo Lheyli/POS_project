@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
 const initialState = {
   Today: [],
   Week: [],
@@ -8,7 +7,6 @@ const initialState = {
   loading: false,
   error: null,
 };
-
 const popularProductsSlice = createSlice({
   name: "popularProducts",
   initialState,
@@ -28,21 +26,17 @@ const popularProductsSlice = createSlice({
     },
   },
 });
-
 export const {
   fetchPopularProductsStart,
   fetchPopularProductsSuccess,
   fetchPopularProductsFailure,
 } = popularProductsSlice.actions;
-
 export const fetchPopularProducts = (timePeriod) => async (dispatch) => {
   dispatch(fetchPopularProductsStart());
-
   try {
     const response = await axios.get(
       `https://fakestoreapi.com/products?sort=rating&limit=10`
     );
-
     let products;
     switch (timePeriod) {
       case "Today":
@@ -57,7 +51,6 @@ export const fetchPopularProducts = (timePeriod) => async (dispatch) => {
       default:
         products = response.data.slice(0, 3);
     }
-
     dispatch(fetchPopularProductsSuccess({ timePeriod, products }));
   } catch (error) {
     dispatch(fetchPopularProductsFailure(error.message));
@@ -65,6 +58,4 @@ export const fetchPopularProducts = (timePeriod) => async (dispatch) => {
 };
 export const selectPopularProductsForTimePeriod = (timePeriod) => (state) =>
   state.popularProducts[timePeriod];
-
-
 export default popularProductsSlice.reducer;

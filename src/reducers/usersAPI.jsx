@@ -62,11 +62,8 @@ export const getOneUser = createAsyncThunk(
       auth: localStorage.getItem('token'),
     }});
     return response.data?.result;
-    
   }
-    
 );
-
 export const getUsers = createAsyncThunk(
   '/user/getAll',
   async (thunkAPI) => {
@@ -244,7 +241,6 @@ const usersAPI = createSlice({
           title: "Success",
           message: "User successfully created.",
         })
-
         state.status = 'succeeded';
         state.user.push(action.payload);
       })
@@ -337,7 +333,6 @@ const usersAPI = createSlice({
           title: "Success",
           message: "CSV Uploaded.",
         })
-
         state.status = 'succeeded';
         state.user.push(action.payload);
       })
@@ -348,8 +343,5 @@ const usersAPI = createSlice({
       });
   },
 });
-
 export const { login, logout, } = usersAPI.actions;
-
-
 export default usersAPI.reducer;

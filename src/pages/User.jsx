@@ -1,8 +1,8 @@
 import { DatePicker, Card, Table, Button, Modal, Divider, Row, Col } from 'antd';
 import dayjs from 'dayjs';
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {BsArrowLeftRight } from "react-icons/bs";
+import { BsArrowLeftRight } from "react-icons/bs";
 import { CalendarOutlined, EyeOutlined } from '@ant-design/icons'
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import styles from './Transactions.module.css';
@@ -187,8 +187,26 @@ const Transactions = () => {
 
   return (
     <>
+    <div style={{
+      position: 'absolute',
+      left: '20%',
+      marginTop: '10px',
+      width: '100%',
+      font: 'Poppins',
+      fontStyle: 'normal',
+      fontWeight: '700',
+      fontSize: '35px',
+      color: '#3B3A82',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <span>
+        User Logs
+      </span>
+    </div>
       <div style={{
-        top: '15%',
+        top: '20%',
         width: '100%',
         font: 'Poppins',
         fontStyle: 'normal',
@@ -196,113 +214,112 @@ const Transactions = () => {
         fontSize: '28px',
         color: '#30304D',
         display: 'flex',
-        left: '22%',
+        left: '23%',
         position: 'absolute'
       }}>
         <span>
           {today}</span></div>
-       <Row justify="center">
-  <Col xs={24} lg={8}>
-    <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center', marginTop: '15%' }}>
-      <DatePicker
-        id={styles["input123"]}
-        style={{
-          left: '-225px',
-          width: '100%',
-          height: 48,
-          background: '#5250B4',
-          borderRadius: '10px',
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 500,
-          fontSize: 18,
-          lineHeight: 27,
-          display: 'flex',
-          alignItems: 'center',
-          textAlign: 'center',
-          color: '#FFFFFF',
-          justifyContent: 'center',
-        }}
-        suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
-        defaultValue={dayjs("01/01/2023", dateFormatList[0])}
-        format={dateFormatList[0]}
-      />
-     <BsArrowLeftRight style={{
-       left: 0,
-       font: 'Poppins',
-       fontStyle: 'normal',
-       fontWeight: 500,
-       fontSize: 25,
-       display: 'flex',
-       color: '#3B3A82',
-       position: 'absolute'
-     }} />
-      <DatePicker
-        id={styles["input123"]}
-        style={{
-          left: '-160px',
-          width: '100%',
-          height: 48,
-          background: '#5250B4',
-          borderRadius: '10px',
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 500,
-          fontSize: 18,
-          lineHeight: 27,
-          display: 'flex',
-          alignItems: 'center',
-          textAlign: 'center',
-          color: '#FFFFFF',
-          justifyContent: 'center'
-        }}
-        suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
-        defaultValue={dayjs("01/01/2023", dateFormatList[0])}
-        format={dateFormatList[0]}
-      />
-      <Button
-        onClick={handlePrint}
-        style={{
-          width: '100%',
-          height: 48,
-          background: '#5250B4',
-          borderRadius: '10px',
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 500,
-          fontSize: 18,
-          lineHeight: 27,
-          display: 'flex',
-          alignItems: 'center',
-          textAlign: 'center',
-          color: '#FFFFFF',
-          justifyContent: 'center',
-          right: '-200px'
-        }}
-      >
-        EXPORT
-      </Button>
-    </div>
-  </Col>
-</Row>
+      <Row justify="center">
+        <Col xs={24} lg={16}>
+          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '12%', marginLeft: 105 }}>
+            <DatePicker
+              id={styles["input123"]}
+              style={{
+                marginRight: '2%',
+                width: '50%',
+                height: 48,
+                background: '#5250B4',
+                borderRadius: '10px',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: 27,
+                display: 'flex',
+                alignItems: 'center',
+                textAlign: 'center',
+                color: '#FFFFFF',
+                justifyContent: 'center',
+              }}
+              suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
+              defaultValue={dayjs("01/01/2023", dateFormatList[0])}
+              format={dateFormatList[0]}
+            />
+            <BsArrowLeftRight style={{
 
-      
+              font: 'Poppins',
+              fontStyle: 'normal',
+              fontWeight: 500,
+              fontSize: 30,
+
+              color: '#3B3A82',
+
+            }} />
+            <DatePicker
+              id={styles["input123"]}
+              style={{
+                marginLeft: '2%',
+                width: '50%',
+                height: 48,
+                background: '#5250B4',
+                borderRadius: '10px',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: 27,
+                display: 'flex',
+                alignItems: 'center',
+                textAlign: 'center',
+                color: '#FFFFFF',
+                justifyContent: 'center'
+              }}
+              suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
+              defaultValue={dayjs("01/01/2023", dateFormatList[0])}
+              format={dateFormatList[0]}
+            />
+            <Button
+              onClick={handlePrint}
+              style={{
+                marginLeft: '10%',
+                width: '50%',
+                height: 48,
+                background: '#5250B4',
+                borderRadius: '10px',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: 27,
+                display: 'flex',
+                alignItems: 'center',
+                textAlign: 'center',
+                color: '#FFFFFF',
+                justifyContent: 'center',
+              }}
+            >
+              EXPORT
+            </Button>
+          </div>
+        </Col>
+      </Row>
       <br></br>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 30 }}>
         <Card id="receipt-info"
           style={{
             position: 'absolute',
-            justifyContent: 'center', 
-            maxWidth: '100%', 
-            alignItems: 'center' ,
-            width: 1100,
+            justifyContent: 'center',
+            maxWidth: '100%',
+            alignItems: 'center',
+            width: 1000,
+            height: 600,
             background: '#F9F9FF',
             boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
             borderRadius: 24,
           }}
         >
-          <div style={{  display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center'  }}>
-            <Table style={{ width: '90%' }} columns={columns} dataSource={user} />
+          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center' }}>
+            <Table style={{ width: '90%' }} columns={columns} />
           </div>
         </Card>
         <Modal

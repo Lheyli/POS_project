@@ -11,7 +11,7 @@ const Members = () => {
   const user = useSelector((state) => state.user?.user);
   const status = useSelector((state) => state.user?.status);
   const error = useSelector((state) => state.user?.error);
-  const [selectedBatch, setSelectedBatch] = useState('Batch 1');
+  const [selectedBatch] = useState('Batch 1');
   const batches = useSelector((state) => state.user?.batch);
 
   const CreateModal = () => {
@@ -34,9 +34,7 @@ const Members = () => {
     dispatch(getAllBatch());
   }, [dispatch]);
 
-  const handleBatchClick = (e) => {
-    setSelectedBatch(e.key);
-  };
+ 
 
   const menu = 
     // <Menu onClick={handleBatchClick}>

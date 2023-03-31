@@ -148,8 +148,26 @@ const Transactions = () => {
   };
   return (
     <>
+     <div style={{
+      position: 'absolute',
+      left: '20%',
+      marginTop: '10px',
+      width: '100%',
+      font: 'Poppins',
+      fontStyle: 'normal',
+      fontWeight: '700',
+      fontSize: '35px',
+      color: '#3B3A82',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <span>
+        Transactions
+      </span>
+    </div>
       <div style={{
-        top: '15%',
+        top: '18%',
         width: '100%',
         font: 'Poppins',
         fontStyle: 'normal',
@@ -157,58 +175,58 @@ const Transactions = () => {
         fontSize: '28px',
         color: '#30304D',
         display: 'flex',
-        left: '27%',
+        left: '26%',
         position: 'absolute'
       }}>
         <span>
           {today}</span></div>
-      <Row justify="center" align="middle" style={{ marginTop: '100px' }}>
-        <Col>
-          <DatePicker
-            id={styles["input123"]}
-            style={{
-              left: '-255px',
-              width: 191,
-              height: 48,
-              background: '#5250B4',
-              borderRadius: '10px',
-              font: 'Poppins',
-              fontStyle: 'normal',
-              fontWeight: 500,
-              fontSize: 18,
-              lineHeight: 27,
-              display: 'flex',
-              alignItems: 'center',
-              textAlign: 'center',
-              color: '#FFFFFF',
-            }}
-            suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
-            defaultValue={dayjs("01/01/2023", dateFormatList[0])}
-            format={dateFormatList[0]}
-          />
-        </Col>
-        <Col>
-          <Button
-            style={{
-              left: '-250px',
-              width: 191,
-              height: 48,
-              background: '#5250B4',
-              borderRadius: '10px',
-              font: 'Poppins',
-              fontStyle: 'normal',
-              fontWeight: 500,
-              fontSize: 18,
-              lineHeight: 27,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              textAlign: 'center',
-              color: '#FFFFFF',
-            }}
-          >
-            EXPORT
-          </Button>
+      <Row justify="center">
+        <Col xs={24} lg={16}>
+          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '10%', marginLeft: 155 }}>
+            <DatePicker
+              id={styles["input123"]}
+              style={{
+                width: '100%',
+                height: 48,
+                background: '#5250B4',
+                borderRadius: '10px',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: 27,
+                display: 'flex',
+                alignItems: 'center',
+                textAlign: 'center',
+                color: '#FFFFFF',
+                justifyContent: 'center',
+              }}
+              suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
+              defaultValue={dayjs("01/01/2023", dateFormatList[0])}
+              format={dateFormatList[0]}
+            />
+            <Button
+              style={{
+                marginLeft: '5%',
+                width: '100%',
+                height: 48,
+                background: '#5250B4',
+                borderRadius: '10px',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: 27,
+                display: 'flex',
+                alignItems: 'center',
+                textAlign: 'center',
+                color: '#FFFFFF',
+                justifyContent: 'center',
+              }}
+            >
+              EXPORT
+            </Button>
+          </div>
         </Col>
       </Row>
       <br></br>

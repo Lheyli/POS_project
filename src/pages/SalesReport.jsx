@@ -29,13 +29,14 @@ const config = {
   },
   color: '#3B3A82',
   columnStyle: {
-    height: 50, 
-    width: 10, 
-    borderRadius: 50, 
+    height: 50,
+    width: 10,
+    borderRadius: 50,
   },
 };
 const SalesReport = () => {
-  return <Column  {...config} />
+  return <Column {...config} style={{ width: '100%' }} />
+
 
 };
 export default SalesReport;
