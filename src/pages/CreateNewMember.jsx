@@ -21,8 +21,8 @@ const CreateNewMember = () => {
   return (
     
 
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <Card style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)', borderRadius: '10px', }}>
+  <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    <Card style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)', borderRadius: '10px', maxWidth: '1000px', margin: '0 auto' }}>
 
         <Form form={form}
           onFinish={(value) => {
@@ -293,6 +293,7 @@ const CreateNewMember = () => {
 
       </Card >
     </div >
+
 
   );
 };

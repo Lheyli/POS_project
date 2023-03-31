@@ -3,8 +3,6 @@ import axios from 'axios';
 import { API_USERS, API_LOGS } from '../constants/api';
 import { notification } from 'antd';
 import jwtDecode from 'jwt-decode';
-
-
 export const loginUser = createAsyncThunk(
   'user/login',
   async (userData, { rejectWithValue, dispatch }) => {
@@ -32,7 +30,6 @@ export const loginUser = createAsyncThunk(
     },
   }
 );
-
 export const createUser = createAsyncThunk(
   'user/create',
   async (userData, thunkAPI) => {
@@ -53,7 +50,6 @@ export const createUser = createAsyncThunk(
     }
   }
 );
-
 export const getOneUser = createAsyncThunk(
   'user/getOne/:user_id',
   async (user_id) => {
@@ -61,11 +57,8 @@ export const getOneUser = createAsyncThunk(
       auth: localStorage.getItem('token'),
     }});
     return response.data?.result;
-    
   }
-    
 );
-
 export const upload_CSV = createAsyncThunk(
   'user/uploadCSV',
   async (userData, thunkAPI) => {
@@ -104,7 +97,6 @@ export const getUsers = createAsyncThunk(
     }
   }
 );
-
 export const getUserlogs = createAsyncThunk(
   '/userlogs/getAll',
   async (thunkAPI) => {
@@ -124,8 +116,6 @@ export const getUserlogs = createAsyncThunk(
     }
   }
 );
-
-
 export const updateUser = createAsyncThunk(
   'product/update',
   async (updateUser) => {
@@ -137,9 +127,6 @@ export const updateUser = createAsyncThunk(
     return response.data;
   }
 );
-
-
-
 const usersAPI = createSlice({
   name: 'user',
   initialState: {
@@ -198,7 +185,6 @@ const usersAPI = createSlice({
           title: "Success",
           message: "User successfully created.",
         })
-
         state.status = 'succeeded';
         state.user.push(action.payload);
       })
@@ -266,7 +252,6 @@ const usersAPI = createSlice({
           title: "Success",
           message: "CSV Uploaded.",
         })
-
         state.status = 'succeeded';
         state.user.push(action.payload);
       })
@@ -277,8 +262,5 @@ const usersAPI = createSlice({
       });
   },
 });
-
 export const { login, logout, } = usersAPI.actions;
-
-
 export default usersAPI.reducer;

@@ -286,7 +286,7 @@ const Transactions = () => {
         </Col>
       </Row>
       <br></br>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 30 }}>
         <Card id="receipt-info"
           style={{
             position: 'absolute',

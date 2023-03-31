@@ -3,12 +3,9 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 import { notification } from 'antd';
 import { API_PRODUCTS } from '../constants/api';
-
-
 // dispatch(createProduct({
 //   product_name
 // }))
-
 export const createProduct = createAsyncThunk(
   'product/create',
   async (productData, thunkAPI) => {
@@ -20,8 +17,7 @@ export const createProduct = createAsyncThunk(
         headers: {
           auth: localStorage.getItem('token'),
         },
-        data: productData
-        
+        data: productData 
       });
       return response.data;
     } catch (error) {
@@ -30,7 +26,6 @@ export const createProduct = createAsyncThunk(
     }
   }
 );
-
 export const upload_CSV = createAsyncThunk(
   'product/uploadCSV',
   async (productData, thunkAPI) => {
@@ -50,8 +45,6 @@ export const upload_CSV = createAsyncThunk(
     }
   }
 );
-
-
 export const getProducts = createAsyncThunk(
   'product/getAll', 
   async (thunkAPI) => {
@@ -63,7 +56,6 @@ export const getProducts = createAsyncThunk(
         auth: localStorage.getItem('token'),
         'Content-Type': 'application/json'
       }
-      
     });
     return response.data.result;
   } catch (error) {
@@ -71,7 +63,6 @@ export const getProducts = createAsyncThunk(
   }
 }
 );
-
 export const getCategory = createAsyncThunk(
   'product/getCategory/product_category', 
   async (product_category ) => {
@@ -79,11 +70,8 @@ export const getCategory = createAsyncThunk(
       auth: localStorage.getItem('token'),
     }});
     return response.data?.result;
-    
   }
-    
 );
-
 export const getOne = createAsyncThunk(
   'product/getOne/:product_id',
   async (product_id, ) => {
@@ -92,12 +80,8 @@ export const getOne = createAsyncThunk(
     }});
     console.log("🚀 ~ file: productSlice.jsx:65 ~ response:", response)
     return response.data?.result;
-    
-  }
-    
+  } 
 );
-
-
 export const deleteOneProduct = createAsyncThunk(
   'product/deleteOne/:product_id',
   async (product_id) => {
@@ -109,10 +93,7 @@ export const deleteOneProduct = createAsyncThunk(
     console.log("🚀 ~ file: productSlice.jsx:80 ~ response:", response)
     return response.data?.result;
   }
-   
 );
-
-
 export const updateProduct = createAsyncThunk(
   'product/update',
   async (updatedProduct) => {
@@ -124,9 +105,6 @@ export const updateProduct = createAsyncThunk(
     return response.data;
   }
 );
-
-
-
 const productSlice = createSlice({
   name: 'products',
   initialState: {
@@ -155,13 +133,11 @@ const productSlice = createSlice({
     addToCart: (state, action) => {
       console.log("🚀 ~ file: productSlice.jsx:38 ~ action:", action)
       console.log({ state: state?.products })
-
       // check if existing in cart
       const existingIndex = state.cartItems.findIndex(
         (item) => item.id === action.payload.id
       );
       console.log("🚀 ~ file: productSlice.jsx:42 ~ existingIndex:", existingIndex)
-
       //if exisiting in cart increase quantity of item
       if (existingIndex >= 0) {
         state.cartItems[existingIndex].quantity += action?.payload?.quantity;
@@ -178,12 +154,10 @@ const productSlice = createSlice({
       }
       localStorage.setItem("cart", JSON.stringify(state.products));
     },
-
     increaseCart(state, action) {
       const existingIndex = state.cartItems.findIndex(
         (item) => item.id === action.payload.id
       );
-
       if (existingIndex >= 0) {
         state.cartItems[existingIndex].quantity += 1;
         toast.info("Increased product quantity", {
@@ -192,16 +166,13 @@ const productSlice = createSlice({
       }
       localStorage.setItem("cart", JSON.stringify(state.product));
     },
-
     decreaseCart(state, action) {
       const itemIndex = state.cartItems.findIndex(
         (item) => item.id === action.payload.id
       );
       console.log("🚀 ~ file: productSlice.jsx:82 ~ decreaseCart ~ itemIndex:", itemIndex)
-
       if (state.cartItems[itemIndex].quantity > 1) {
         state.cartItems[itemIndex].quantity -= 1;
-
         toast.info("Decreased product quantity", {
           position: "bottom-left",
         });
@@ -216,7 +187,6 @@ const productSlice = createSlice({
           position: "bottom-left",
         });
       }
-
       localStorage.setItem("cart", JSON.stringify(state.product));
     },
     removeFromCart: (state, action) => {
@@ -227,10 +197,8 @@ const productSlice = createSlice({
         (cartTotal, cartItem) => {
           const { price, cartQuantity } = cartItem;
           const itemTotal = price * cartQuantity;
-
           cartTotal.total += itemTotal;
           cartTotal.quantity += cartQuantity;
-
           return cartTotal;
         },
         {
@@ -255,7 +223,6 @@ const productSlice = createSlice({
       state.loading = false;
     },
   },
- 
  extraReducers: (builder) => {
       builder
         .addCase(createProduct.pending, (state) => {
@@ -269,7 +236,6 @@ const productSlice = createSlice({
             title: "Success",
             message: "Product created.",
           })
-
           state.status = 'succeeded';
           state.products.push(action.payload);
         })
@@ -289,7 +255,6 @@ const productSlice = createSlice({
             title: "Success",
             message: "CSV Uploaded.",
           })
-
           state.status = 'succeeded';
           state.products.push(action.payload);
         })
@@ -363,7 +328,6 @@ export const { fetchProductsStart,
   fetchProductsSuccess,
   fetchProductsFailure,
   addToCart, decreaseCart, removeFromCart, getTotals, increaseCart } = productSlice.actions;
-
 export const fetchProducts = () => async dispatch => {
   try {
     dispatch(fetchProductsStart());
