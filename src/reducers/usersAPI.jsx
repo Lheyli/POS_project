@@ -4,6 +4,27 @@ import { API_USERS, API_LOGS } from '../constants/api';
 import { notification } from 'antd';
 import jwtDecode from 'jwt-decode';
 
+export const createUser = createAsyncThunk(
+  'user/create',
+  async (userData, thunkAPI) => {
+    console.log("🚀 ~ file: usersAPI.jsx:37 ~ userData:", userData)
+    try {
+      //const response = await axios.post('https://fakestoreapi.com/users', {userData});
+      const response = await axios({
+        method: 'post',
+        url: API_USERS.create,
+        headers: {
+          auth: localStorage.getItem('token')
+        },
+        data: userData
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 
 export const loginUser = createAsyncThunk(
   'user/login',
@@ -33,26 +54,6 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-export const createUser = createAsyncThunk(
-  'user/create',
-  async (userData, thunkAPI) => {
-    console.log("🚀 ~ file: usersAPI.jsx:37 ~ userData:", userData)
-    try {
-      //const response = await axios.post('https://fakestoreapi.com/users', {userData});
-      const response = await axios({
-        method: 'post',
-        url: API_USERS.create,
-        headers: {
-          auth: localStorage.getItem('token')
-        },
-        data: userData
-      });
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
 
 export const getOneUser = createAsyncThunk(
   'user/getOne/:user_id',
@@ -66,25 +67,6 @@ export const getOneUser = createAsyncThunk(
     
 );
 
-export const upload_CSV = createAsyncThunk(
-  'user/uploadCSV',
-  async (userData, thunkAPI) => {
-    try {
-      const response = await axios({
-        method: 'post',
-        url: API_USERS.upload_CSV,
-        headers: {
-          auth: localStorage.getItem('token'),
-        },
-        data: userData
-      });
-      return response.data;
-    } catch (error) {
-      // return thunkAPI.rejectWithValue(error.response.data);
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
 export const getUsers = createAsyncThunk(
   '/user/getAll',
   async (thunkAPI) => {
@@ -104,6 +86,19 @@ export const getUsers = createAsyncThunk(
     }
   }
 );
+
+export const updateUser = createAsyncThunk(
+  'product/update',
+  async (updateUser) => {
+    const response = await axios.put(API_USERS.update, updateUser, {
+      headers: {
+        auth: localStorage.getItem('token'),
+      }
+    });
+    return response.data;
+  }
+);
+
 
 export const getUserlogs = createAsyncThunk(
   '/userlogs/getAll',
@@ -126,17 +121,67 @@ export const getUserlogs = createAsyncThunk(
 );
 
 
-export const updateUser = createAsyncThunk(
-  'product/update',
-  async (updateUser) => {
-    const response = await axios.put(API_USERS.update, updateUser, {
-      headers: {
-        auth: localStorage.getItem('token'),
-      }
-    });
-    return response.data;
+export const upload_CSV = createAsyncThunk(
+  'user/uploadCSV',
+  async (userData, thunkAPI) => {
+    try {
+      const response = await axios({
+        method: 'post',
+        url: API_USERS.upload_CSV,
+        headers: {
+          auth: localStorage.getItem('token'),
+        },
+        data: userData
+      });
+      return response.data;
+    } catch (error) {
+      // return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
+
+export const getUserlogsDate = createAsyncThunk(
+  '/userlogs/getDate/:start/:end',
+  async (thunkAPI) => {
+    try {
+      const response = await axios({
+        method: 'get',
+        url: API_LOGS.getUserlogsDate,
+        headers: {
+          auth: localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data.result;
+    } catch (error) {
+      // return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+
+export const getAllBatch = createAsyncThunk(
+  '/user/batch/:batch',
+  async (thunkAPI) => {
+    try {
+      const response = await axios({
+        method: 'get',
+        url: API_USERS.getAllBatch,
+        headers: {
+          auth: localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data.results;
+    } catch (error) {
+      // return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 
 
 
@@ -144,6 +189,7 @@ const usersAPI = createSlice({
   name: 'user',
   initialState: {
     user: [],
+    batch: [],
     isLoggedIn: false,
     loading: false,
     error: null,
@@ -219,6 +265,19 @@ const usersAPI = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      .addCase(getAllBatch.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getAllBatch.fulfilled, (state, action) => {
+        console.log("🚀 ~ file: usersAPI.jsx:273 ~ .addCase ~ action:", action)
+        state.loading = false;
+        state.batch = action.payload;
+      })
+      .addCase(getAllBatch.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
       .addCase(getUserlogs.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -228,6 +287,18 @@ const usersAPI = createSlice({
         state.user = action.payload;
       })
       .addCase(getUserlogs.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getUserlogsDate.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getUserlogsDate.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+      })
+      .addCase(getUserlogsDate.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })

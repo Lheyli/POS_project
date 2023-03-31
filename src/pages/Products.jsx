@@ -146,7 +146,7 @@ const Products = () => {
       )}
       <br></br>
       <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }} onClick={()=> navigate(`/singleprod/${selectedProduct.product_id}`) } >Edit {<RightOutlined />} </Button><br></br>
-      <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }} onClick={handleDeleteClick}>Delete {<RightOutlined />} </Button><br></br>
+      <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }} onClick={()=>handleDeleteClick(selectedProduct.product_id)}>Delete {<RightOutlined />} </Button><br></br>
       <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>Generate QR Code{<RightOutlined />} </Button>
     </Modal>
   );

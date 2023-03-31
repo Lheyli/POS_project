@@ -85,16 +85,32 @@ const CreateNewMember = () => {
 
 
           if (params?.isUpdate) {
-            dispatch(updateUser(bodyFormData));
+            dispatch(updateUser({
+              batch,
+              first_name,
+              middle_name,
+              last_name,
+              email,
+              username,
+              password
+            }));
 
           }
           else {
-            dispatch(createUser(bodyFormData));
+            dispatch(createUser({
+              batch,
+              first_name,
+              middle_name,
+              last_name,
+              email,
+              username,
+              password
+            }));
           }
         }}
       >
         <Form.Item>
-         
+
           <h2 style={headingStyle}>{(params?.isUpdate) ? "UPDATE MEMBER" : "CREATE NEW MEMBER"}</h2>
 
           <Row gutter={16}>

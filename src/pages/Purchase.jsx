@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { getProducts, addToCart, getOne  } from '../reducers/productSlice';
+import { getProducts, addToCart, getOne, getAllCategory  } from '../reducers/productSlice';
 import { Card, Row, Col, Button, Input, Drawer, Typography } from 'antd';
 import { LeftOutlined, RightOutlined, ShoppingCartOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const MakePurchase = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { products, loading, error } = useSelector(state => state.products);
+  const {categories,  products, loading, error } = useSelector(state => state.products);
   console.log({ products })
   const [quantity, setQuantity] = useState(1);
   const [searchValue, setSearchValue] = useState('');
@@ -21,7 +21,7 @@ const MakePurchase = () => {
   const cartItems = useSelector(state => state.products.cartItems);
   const totalItems = cartItems.reduce((total, item) => {
     console.log("🚀 ~ file: Purchase.jsx:26 ~ totalItems ~ item:", item)
-    return total + item.cartQuantity
+    return total + item.quantity
   }, 0);
   const showDrawer = (product) => {
     setSelectedProduct(product);
@@ -52,9 +52,7 @@ const MakePurchase = () => {
     setQuantity(quantity + 1);
     // dispatch(increaseCart(product));
   };
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
+ 
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
   };
@@ -66,13 +64,23 @@ const MakePurchase = () => {
     return (selectedCategory === 'All' || product.product_category === selectedCategory?.toLowerCase()) &&
       product.product_name.toLowerCase().includes(searchValue.toLowerCase())
   });
-  const categories = ['All', "Men's Clothing", 'Jewelery', 'Electronics', "Women's Clothing"];
+ 
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+  
+  useEffect(() => {
+    dispatch(getAllCategory());
+  }, [])
+
+
   if (loading) {
     return <div>Loading...</div>;
   }
   if (error) {
     return <div>{error}</div>;
   }
+
   return (
     <>
       <Row justify="start" style={{ marginTop: '50px', marginLeft: '130px' }}>
@@ -103,7 +111,7 @@ const MakePurchase = () => {
       <br></br> <br></br> 
       <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
       <Row justify="center">
-          {categories.map((product_category) => (
+          {categories?.map((product_category) => (
             <Button
               key={product_category}
               type={selectedCategory === product_category}

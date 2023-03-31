@@ -182,7 +182,7 @@ const SingleProduct = () => {
           bodyFormData.append('original_price', original_price);
           bodyFormData.append('markup_price', markup_price);
           bodyFormData.append('updated_by', updated_by);
-          bodyFormData.append('variations', Object.values(variations));
+          bodyFormData.append('variation', Object.values(variations));
           if (fileList.length > 0) bodyFormData.append('image', fileList[0]);
 
          
