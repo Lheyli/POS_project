@@ -10,6 +10,8 @@ export const API_PRODUCTS = {
     getOne: (id) => `/inventory/product/getOne/${id}`,
     countProducts: "/inventory/product/countProducts",
     upload_CSV: "/inventory/product/uploadCSV",
+    getProductDate: "/inventory/product/getProductDate",
+    
 }
 
 export const API_USERS = {

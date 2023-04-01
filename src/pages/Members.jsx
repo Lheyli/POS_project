@@ -11,7 +11,7 @@ const Members = () => {
   const user = useSelector((state) => state.user?.user);
   const status = useSelector((state) => state.user?.status);
   const error = useSelector((state) => state.user?.error);
-  const [selectedBatch] = useState('Batch 1');
+  const [selectedBatch,setSelectedBatch] = useState('Batch 1');
   const batches = useSelector((state) => state.user?.batch);
 
   const CreateModal = () => {
@@ -24,6 +24,9 @@ const Members = () => {
     display: 'flex',
     flexDirection: 'row',
     marginLeft: '50px'
+  };
+  const handleBatchClick = (batch) => {
+    setSelectedBatch(batch);
   };
 
   useEffect(() => {
@@ -41,11 +44,11 @@ const Members = () => {
       batches?.length > 0 ?batches?.map((batch, index) => (  {
         key: `${batch}_${index}`,
         label: (
-          <a target="#" rel="noopener noreferrer">
+          <a target="#" rel="noopener noreferrer" onClick={() => handleBatchClick(batch)}>
            {batch}
           </a>
         ),
-        disabled: true,
+        disabled: false,
       })) : [
         {
           key: '4',

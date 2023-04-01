@@ -2,8 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API_USERS, API_LOGS } from '../constants/api';
 import { notification } from 'antd';
-import jwtDecode from 'jwt-decode';
 
+
+
+//createUser
 export const createUser = createAsyncThunk(
   'user/create',
   async (userData, thunkAPI) => {
@@ -25,7 +27,7 @@ export const createUser = createAsyncThunk(
   }
 );
 
-
+//loginUser
 export const loginUser = createAsyncThunk(
   'user/login',
   async (userData, { rejectWithValue, dispatch }) => {
@@ -37,7 +39,6 @@ export const loginUser = createAsyncThunk(
       });
       axios.defaults.headers['auth'] = response.data?.token
       const { token } = response.data;
-      const decoded = jwtDecode(token);
       dispatch(usersAPI.actions.setToken(token));
       localStorage.setItem('token', response.data?.token)
       console.log("🚀 ~ file: usersAPI.jsx:10 ~ response:", response)
@@ -54,7 +55,7 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-
+//getOneUser
 export const getOneUser = createAsyncThunk(
   'user/getOne/:user_id',
   async (user_id) => {
@@ -64,6 +65,8 @@ export const getOneUser = createAsyncThunk(
     return response.data?.result;
   }
 );
+
+//getUser
 export const getUsers = createAsyncThunk(
   '/user/getAll',
   async (thunkAPI) => {
@@ -84,6 +87,7 @@ export const getUsers = createAsyncThunk(
   }
 );
 
+//updateUser
 export const updateUser = createAsyncThunk(
   'product/update',
   async (updateUser) => {
@@ -96,7 +100,7 @@ export const updateUser = createAsyncThunk(
   }
 );
 
-
+//getUserlogs
 export const getUserlogs = createAsyncThunk(
   '/userlogs/getAll',
   async (thunkAPI) => {
@@ -117,7 +121,7 @@ export const getUserlogs = createAsyncThunk(
   }
 );
 
-
+//upload_CSV
 export const upload_CSV = createAsyncThunk(
   'user/uploadCSV',
   async (userData, thunkAPI) => {
@@ -138,19 +142,18 @@ export const upload_CSV = createAsyncThunk(
   }
 );
 
+//getUserlogsDate
 export const getUserlogsDate = createAsyncThunk(
   '/userlogs/getDate/:start/:end',
-  async (thunkAPI) => {
+  async ({ start, end },thunkAPI) => {
     try {
-      const response = await axios({
-        method: 'get',
-        url: API_LOGS.getUserlogsDate,
+      const response = await axios.get(`${API_LOGS.getUserlogsDate}?start=${start}&end=${end}`, {
         headers: {
           auth: localStorage.getItem('token'),
           'Content-Type': 'application/json'
         }
       });
-      return response.data.result;
+      return response.data?.result;
     } catch (error) {
       // return thunkAPI.rejectWithValue(error.response.data);
       return thunkAPI.rejectWithValue(error);
@@ -158,7 +161,7 @@ export const getUserlogsDate = createAsyncThunk(
   }
 );
 
-
+//getAllBatch
 export const getAllBatch = createAsyncThunk(
   '/user/batch/:batch',
   async (thunkAPI) => {
@@ -186,7 +189,9 @@ const usersAPI = createSlice({
   name: 'user',
   initialState: {
     user: [],
+    userlogs: [],
     batch: [],
+    date: [],
     isLoggedIn: false,
     loading: false,
     error: null,
@@ -266,7 +271,6 @@ const usersAPI = createSlice({
         state.error = null;
       })
       .addCase(getAllBatch.fulfilled, (state, action) => {
-        console.log("🚀 ~ file: usersAPI.jsx:273 ~ .addCase ~ action:", action)
         state.loading = false;
         state.batch = action.payload;
       })
@@ -280,7 +284,7 @@ const usersAPI = createSlice({
       })
       .addCase(getUserlogs.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.userlogs = action.payload;
       })
       .addCase(getUserlogs.rejected, (state, action) => {
         state.loading = false;
@@ -292,7 +296,7 @@ const usersAPI = createSlice({
       })
       .addCase(getUserlogsDate.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.date = action.payload;
       })
       .addCase(getUserlogsDate.rejected, (state, action) => {
         state.loading = false;

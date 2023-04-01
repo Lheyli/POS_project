@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Table, Space, Button, Modal, DatePicker, Row, Col, Drawer, Typography } from 'antd';
-import { getProducts, getOne, deleteOneProduct } from '../reducers/productSlice';
+import { getProducts, getOne, deleteOneProduct, getProductDate } from '../reducers/productSlice';
 import { Link, useNavigate } from "react-router-dom";
-import { ShoppingCartOutlined, RightOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined, RightOutlined, EditOutlined, DeleteOutlined, CalendarOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import '../pages/DateRangePicker.css';
 import styles from './Transactions.module.css';
+const { RangePicker } = DatePicker;
+const dateFormatList = ['MM/DD/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
 const Products = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -15,13 +17,17 @@ const Products = () => {
   const error = useSelector((state) => state.products.error);
   const [showModal, setShowModal] = useState(false); // add state for controlling modal visibility
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
   const handleDeleteClick = (product_id) => {
     dispatch(deleteOneProduct(product_id));
   };
+
+  const handleDateChange = (date) => {
+    const [start, end] = date.map(date => date.format('YYYY-MM-DD'));
+    dispatch(getProductDate({ start, end }));
+  };
+
 
   const handleButtonClick = (product) => {
     setIsDrawerVisible(true);
@@ -45,17 +51,7 @@ const Products = () => {
   const handleModalCancel = () => {
     setShowModal(false);
   };
-  const handleStartDateChange = (date) => {
-    setStartDate(date);
-  };
 
-  const handleEndDateChange = (date) => {
-    setEndDate(date);
-  };
-
-  const disabledEndDate = (current) => {
-    return current && current < startDate;
-  };
   const modalContent = (
     <Modal
       open={showModal}
@@ -77,9 +73,9 @@ const Products = () => {
           {/* New content for the "View Details" drawer */}
           <Row justify="end">
             <Col>
-             
-                <EditOutlined  onClick={()=> navigate(`/singleprod/${selectedProduct.product_id}`) }  style={{ color: '#9494B2', fontSize: '30px' }} />
-             
+
+              <EditOutlined onClick={() => navigate(`/singleprod/${selectedProduct.product_id}`)} style={{ color: '#9494B2', fontSize: '30px' }} />
+
               &nbsp;&nbsp;
             </Col>
           </Row>
@@ -108,7 +104,7 @@ const Products = () => {
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Variation</Typography.Text>
-            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.variation }</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.variation}</Typography.Text>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Expiration Date</Typography.Text>
@@ -116,19 +112,19 @@ const Products = () => {
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Quantity</Typography.Text>
-            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ selectedProduct.quantity}</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.quantity}</Typography.Text>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Created At</Typography.Text>
-            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.createdAt }</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.createdAt}</Typography.Text>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Updated At</Typography.Text>
-            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.updatedAt }</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.updatedAt}</Typography.Text>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <Typography.Text style={{ font: 'Poppins', fontWeight: 'regular', color: '#30304D' }}>Updated By</Typography.Text>
-            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{ selectedProduct.updated_by}</Typography.Text>
+            <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.updated_by}</Typography.Text>
           </div>
           <br></br>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -145,13 +141,13 @@ const Products = () => {
         </Drawer>
       )}
       <br></br>
-      <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }} onClick={()=> navigate(`/singleprod/${selectedProduct.product_id}`) } >Edit {<RightOutlined />} </Button><br></br>
-      <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }} onClick={()=>handleDeleteClick(selectedProduct.product_id)}>Delete {<RightOutlined />} </Button><br></br>
+      <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }} onClick={() => navigate(`/singleprod/${selectedProduct.product_id}`)} >Edit {<RightOutlined />} </Button><br></br>
+      <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }} onClick={() => handleDeleteClick(selectedProduct.product_id)}>Delete {<RightOutlined />} </Button><br></br>
       <Button className="btn-arrow" style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>Generate QR Code{<RightOutlined />} </Button>
     </Modal>
   );
   const ActionsContent = ({ record }) => {
-    
+
     return (
       <Space>
         <Button onClick={() => {
@@ -249,36 +245,41 @@ const Products = () => {
     xxl: 12,
   }
   return (
-    
+
     <div style={{
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center'
     }}>
-      
+
       <Row gutter={[16, 16]} style={{ width: 'max-content', maxWidth: 1000 }}>
         <Col
           {...BREAKPOINTS}
           style={{ display: 'flex', marginBottom: '16px', justifyContent: 'flex-start' }}
         >
-          <DatePicker
-             id={styles["input123"]}
-            value={startDate}
-            onChange={handleStartDateChange}
-            placeholder="Start Date"
-            style={{ width: '150px', background: '#5250B4', color: '#ffffff', font: "Poppins" }}
-            format="YYYY-MM-DD"
-          />&nbsp;
-          <span style={{ color: '#3B3A82', font: "Poppins", fontWeight: 'bold' }}> to </span>&nbsp;
-          <DatePicker
-           id={styles["input123"]}
-            value={endDate}
-            onChange={handleEndDateChange}
-            placeholder="End Date"
-            disabledDate={disabledEndDate}
-            format="YYYY-MM-DD"
-            style={{ width: '150px', background: '#5250B4', color: '#ffffff', font: "Poppins" }}
+          <RangePicker
+            id={styles["input123"]}
+            style={{
+              left: '-225px',
+              width: '100%',
+              height: 48,
+              background: '#5250B4',
+              borderRadius: '10px',
+              font: 'Poppins',
+              fontStyle: 'normal',
+              fontWeight: 500,
+              fontSize: 18,
+              lineHeight: 27,
+              display: 'flex',
+              alignItems: 'center',
+              textAlign: 'center',
+              color: '#FFFFFF',
+              justifyContent: 'center',
+            }}
+            suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
+            format={dateFormatList[0]}
+            onChange={handleDateChange}
           />
         </Col>
         <Col

@@ -2,7 +2,7 @@ import { Card, Typography, Input, Form, Row, Col, Button, } from "antd";
 import React, { useEffect } from 'react';
 import { EyeTwoTone } from '@ant-design/icons';
 import { Link, useParams } from "react-router-dom";
-import { createUser, updateUser, getOneUser } from '../reducers/usersAPI';
+import { createUser} from '../reducers/usersAPI';
 import { useDispatch, useSelector } from 'react-redux';
 import TextInput from "../componets/TextInput";
 import TextInput2 from "../componets/TextInput2";
@@ -24,26 +24,7 @@ const CreateNewMember = () => {
     color: "#30304D",
   };
 
-  useEffect(() => {
 
-    if (params?.isUpdate) {
-      dispatch(getOneUser("05c942e4-540f-4ccd-a374-a6b7bfb81a1c"))
-    }
-  }, [params?.isUpdate])
-  useEffect(() => {
-
-    if (user) {
-      form.setFieldsValue({
-        batch: user.batch,
-        first_name: user.first_name,
-        middle_name: user.middle_name,
-        last_name: user.last_name,
-        email: user.email,
-        username: user.username,
-        password: user.password
-      })
-    }
-  }, [user])
   return (
     <Card style={{
       width: "950px",
@@ -60,55 +41,32 @@ const CreateNewMember = () => {
       alignItems: 'center',
     }}>
 
-      <Form form={form}
-        onFinish={({ confirmPassword, ...value }) => {
-          const bodyFormData = new FormData();
+<Form
+  form={form}
+  onFinish={({ confirmPassword, ...values }) => {
+    const {
+      batch,
+      first_name,
+      middle_name,
+      last_name,
+      email,
+      username,
+      password,
+    } = values;
+    dispatch(
+      createUser({
+        batch,
+        first_name,
+        middle_name,
+        last_name,
+        email,
+        username,
+        password,
+      })
+    );
+  }}
+>
 
-          const {
-            batch,
-            first_name,
-            middle_name,
-            last_name,
-            email,
-            username,
-            password } = value;
-
-
-          bodyFormData.append('batch', batch);
-          bodyFormData.append('first_name', first_name);
-          bodyFormData.append('middle_name', middle_name);
-          bodyFormData.append('last_name', last_name);
-          bodyFormData.append('email', email);
-          bodyFormData.append('username', username);
-          bodyFormData.append('password', password);
-
-
-
-          if (params?.isUpdate) {
-            dispatch(updateUser({
-              batch,
-              first_name,
-              middle_name,
-              last_name,
-              email,
-              username,
-              password
-            }));
-
-          }
-          else {
-            dispatch(createUser({
-              batch,
-              first_name,
-              middle_name,
-              last_name,
-              email,
-              username,
-              password
-            }));
-          }
-        }}
-      >
         <Form.Item>
          
           <h2 style={headingStyle}>{(params?.isUpdate) ? "UPDATE MEMBER" : "CREATE NEW MEMBER"}</h2>

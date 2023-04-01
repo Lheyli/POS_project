@@ -3,9 +3,8 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 import { notification } from 'antd';
 import { API_PRODUCTS } from '../constants/api';
-// dispatch(createProduct({
-//   product_name
-// }))
+
+//createProduct
 export const createProduct = createAsyncThunk(
   'product/create',
   async (productData, thunkAPI) => {
@@ -27,25 +26,7 @@ export const createProduct = createAsyncThunk(
     }
   }
 );
-export const upload_CSV = createAsyncThunk(
-  'product/uploadCSV',
-  async (productData, thunkAPI) => {
-    try {
-      const response = await axios({
-        method: 'post',
-        url: API_PRODUCTS.upload_CSV,
-        headers: {
-          auth: localStorage.getItem('token'),
-        },
-        data: productData
-      });
-      return response.data;
-    } catch (error) {
-      // return thunkAPI.rejectWithValue(error.response.data);
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
+//getProducts
 export const getProducts = createAsyncThunk(
   'product/getAll',
   async (thunkAPI) => {
@@ -66,19 +47,7 @@ export const getProducts = createAsyncThunk(
   }
 );
 
-export const getAllCategory = createAsyncThunk(
-  'product/getAllCategory/product_category',
-  async () => {
-    const response = await axios.get(API_PRODUCTS.getCategory, {
-      headers: {
-        auth: localStorage.getItem('token'),
-      }
-    });
-    return response.data?.results;
-
-  }
-
-);
+//getOne
 export const getOne = createAsyncThunk(
   'product/getOne/:product_id',
   async (product_id,) => {
@@ -93,6 +62,8 @@ export const getOne = createAsyncThunk(
   }
 
 );
+
+//deleteOneProduct
 export const deleteOneProduct = createAsyncThunk(
   'product/deleteOne/:product_id',
   async (product_id, {dispatch}) => {
@@ -114,6 +85,9 @@ export const deleteOneProduct = createAsyncThunk(
 
   }
 );
+
+
+//updateProduct
 export const updateProduct = createAsyncThunk(
   'product/update',
   async (updatedProduct) => {
@@ -122,9 +96,66 @@ export const updateProduct = createAsyncThunk(
         auth: localStorage.getItem('token'),
       }
     });
-    return response.data;
+    return response.data.result;
   }
 );
+
+//getProductDate
+export const getProductDate = createAsyncThunk(
+  '/product/getDate/:start/:end',
+  async ({ start, end },thunkAPI) => {
+    try {
+      const response = await axios.get(`${API_PRODUCTS.getProductDate}?start=${start}&end=${end}`, {
+        headers: {
+          auth: localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data?.result;
+    } catch (error) {
+      // return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+
+//getAllCategory
+export const getAllCategory = createAsyncThunk(
+  'product/getAllCategory/product_category',
+  async () => {
+    const response = await axios.get(API_PRODUCTS.getCategory, {
+      headers: {
+        auth: localStorage.getItem('token'),
+      }
+    });
+    return response.data?.results;
+
+  }
+
+);
+
+export const upload_CSV = createAsyncThunk(
+  'product/uploadCSV',
+  async (productData, thunkAPI) => {
+    try {
+      const response = await axios({
+        method: 'post',
+        url: API_PRODUCTS.upload_CSV,
+        headers: {
+          auth: localStorage.getItem('token'),
+        },
+        data: productData
+      });
+      return response.data;
+    } catch (error) {
+      // return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+
 const productSlice = createSlice({
   name: 'products',
   initialState: {
@@ -132,6 +163,7 @@ const productSlice = createSlice({
     cartItems: [],
     item: [],
     categories: [],
+    date: [],
     count: 0,
     product: [],
     loading: false,
@@ -320,6 +352,18 @@ const productSlice = createSlice({
         state.categories = action.payload;
       })
       .addCase(getAllCategory.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getProductDate.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getProductDate.fulfilled, (state, action) => {
+        state.loading = false;
+        state.date = action.payload;
+      })
+      .addCase(getProductDate.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })

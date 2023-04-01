@@ -2,21 +2,24 @@ import { DatePicker, Card, Table, Button, Modal, Divider, Row, Col } from 'antd'
 import dayjs from 'dayjs';
 import React, { useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {BsArrowLeftRight } from "react-icons/bs";
 import { CalendarOutlined, EyeOutlined } from '@ant-design/icons'
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import styles from './Transactions.module.css';
-import { getUserlogs } from '../reducers/usersAPI';
+import { getUserlogs, getUserlogsDate } from '../reducers/usersAPI';
 dayjs.extend(customParseFormat);
+const { RangePicker } = DatePicker;
 const dateFormatList = ['MM/DD/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
 const User = () => {
   const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   const [selectedRow, setSelectedRow] = useState(null);
   const [visible, setVisible] = useState(false);
    const dispatch = useDispatch();
-  const user = useSelector((state) => state.user?.user);
-  const status = useSelector((state) => state.user.status);
-  const error = useSelector((state) => state.user.error);
+  const user = useSelector((state) => state.user?.userlogs);
+
+  const handleDateChange = (date) => {
+    const [start, end] = date.map(date => date.format('YYYY-MM-DD'));
+    dispatch(getUserlogsDate({ start, end }));
+  };
 
   const showModal = (record) => {
     setSelectedRow(record);
@@ -204,62 +207,30 @@ const User = () => {
        <Row justify="center">
   <Col xs={24} lg={8}>
     <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center', marginTop: '15%' }}>
-      <DatePicker
-        id={styles["input123"]}
-        style={{
-          left: '-225px',
-          width: '100%',
-          height: 48,
-          background: '#5250B4',
-          borderRadius: '10px',
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 500,
-          fontSize: 18,
-          lineHeight: 27,
-          display: 'flex',
-          alignItems: 'center',
-          textAlign: 'center',
-          color: '#FFFFFF',
-          justifyContent: 'center',
-        }}
-        suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
-        defaultValue={dayjs("01/01/2023", dateFormatList[0])}
-        format={dateFormatList[0]}
-      />
-     <BsArrowLeftRight style={{
-       left: 0,
-       font: 'Poppins',
-       fontStyle: 'normal',
-       fontWeight: 500,
-       fontSize: 25,
-       display: 'flex',
-       color: '#3B3A82',
-       position: 'absolute'
-     }} />
-      <DatePicker
-        id={styles["input123"]}
-        style={{
-          left: '-160px',
-          width: '100%',
-          height: 48,
-          background: '#5250B4',
-          borderRadius: '10px',
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 500,
-          fontSize: 18,
-          lineHeight: 27,
-          display: 'flex',
-          alignItems: 'center',
-          textAlign: 'center',
-          color: '#FFFFFF',
-          justifyContent: 'center'
-        }}
-        suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
-        defaultValue={dayjs("01/01/2023", dateFormatList[0])}
-        format={dateFormatList[0]}
-      />
+    <RangePicker
+     id={styles["input123"]}
+      style={{
+        left: '-225px',
+        width: '100%',
+        height: 48,
+        background: '#5250B4',
+        borderRadius: '10px',
+        font: 'Poppins',
+        fontStyle: 'normal',
+        fontWeight: 500,
+        fontSize: 18,
+        lineHeight: 27,
+        display: 'flex',
+        alignItems: 'center',
+        textAlign: 'center',
+        color: '#FFFFFF',
+        justifyContent: 'center',
+      }}
+      suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
+      defaultValue={[dayjs('01/01/2023', dateFormatList[0]), dayjs('01/01/2023', dateFormatList[0])]}
+      format={dateFormatList[0]}
+      onChange={handleDateChange}
+    />
       <Button
         onClick={handlePrint}
         style={{
@@ -355,7 +326,7 @@ const User = () => {
               font: 'Poppins',
               fontStyle: 'normal',
               fontWeight: 600,
-              fontSize: '18px',
+              fontSize: '15px',
               lineHeight: '27px',
               display: 'flex',
               alignItems: 'center',
@@ -367,7 +338,7 @@ const User = () => {
               font: 'Poppins',
               fontStyle: 'normal',
               fontWeight: 600,
-              fontSize: '18px',
+              fontSize: '15px',
               lineHeight: '27px',
               display: 'flex',
               alignItems: 'center',
@@ -377,7 +348,7 @@ const User = () => {
               font: 'Poppins',
               fontStyle: 'normal',
               fontWeight: 600,
-              fontSize: '18px',
+              fontSize: '15px',
               lineHeight: '27px',
               display: 'flex',
               alignItems: 'center',
@@ -386,7 +357,7 @@ const User = () => {
             <p style={{
               font: 'Poppins',
               fontWeight: "bold",
-              fontSize: '18px',
+              fontSize: '15px',
               lineHeight: '27px',
               display: 'flex',
               alignItems: 'center',
