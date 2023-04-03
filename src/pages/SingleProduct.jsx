@@ -127,7 +127,7 @@ const SingleProduct = () => {
    useEffect(() => {
 
     if (params?.isUpdate) {
-      dispatch(getOne("05c942e4-540f-4ccd-a374-a6b7bfb81a1c"))
+      dispatch(getOne("0e7ca2dd-0bff-4d6c-b218-090c2d90effa"))
     }
    }, [params?.isUpdate])
    useEffect(() => {
@@ -182,7 +182,7 @@ const SingleProduct = () => {
           bodyFormData.append('original_price', original_price);
           bodyFormData.append('markup_price', markup_price);
           bodyFormData.append('updated_by', updated_by);
-          bodyFormData.append('variations', Object.values(variations));
+          bodyFormData.append('variation', Object.values(variations));
           if (fileList.length > 0) bodyFormData.append('image', fileList[0]);
 
          

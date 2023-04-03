@@ -3,9 +3,8 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 import { notification } from 'antd';
 import { API_PRODUCTS } from '../constants/api';
-// dispatch(createProduct({
-//   product_name
-// }))
+
+//createProduct
 export const createProduct = createAsyncThunk(
   'product/create',
   async (productData, thunkAPI) => {
@@ -17,7 +16,8 @@ export const createProduct = createAsyncThunk(
         headers: {
           auth: localStorage.getItem('token'),
         },
-        data: productData 
+        data: productData
+
       });
       return response.data;
     } catch (error) {
@@ -26,6 +26,115 @@ export const createProduct = createAsyncThunk(
     }
   }
 );
+//getProducts
+export const getProducts = createAsyncThunk(
+  'product/getAll',
+  async (thunkAPI) => {
+    try {
+      const response = await axios({
+        method: 'get',
+        url: API_PRODUCTS.getAll,
+        headers: {
+          auth: localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }
+
+      });
+      return response.data.result;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+//getOne
+export const getOne = createAsyncThunk(
+  'product/getOne/:product_id',
+  async (product_id,) => {
+    const response = await axios.get(API_PRODUCTS.getOne(product_id), {
+      headers: {
+        auth: localStorage.getItem('token'),
+      }
+    });
+    console.log("🚀 ~ file: productSlice.jsx:65 ~ response:", response)
+    return response.data?.result;
+
+  }
+
+);
+
+//deleteOneProduct
+export const deleteOneProduct = createAsyncThunk(
+  'product/deleteOne/:product_id',
+  async (product_id, {dispatch}) => {
+    console.log("🚀 ~ file: productSlice.jsx:108 ~ product_id:", product_id)
+    try {
+      const response = await axios.delete(`/inventory/product/deleteOne/${product_id}`, {
+        headers: {
+          auth: localStorage.getItem('token'),
+        },
+      });
+      console.log("🚀 ~ file: productSlice.jsx:80 ~ response:", response)
+      if (response) {
+       dispatch(getProducts())
+        return response.data?.result;
+      }
+    } catch (error) {
+
+    }
+
+  }
+);
+
+
+//updateProduct
+export const updateProduct = createAsyncThunk(
+  'product/update',
+  async (updatedProduct) => {
+    const response = await axios.put(`/inventory/product/update`, updatedProduct, {
+      headers: {
+        auth: localStorage.getItem('token'),
+      }
+    });
+    return response.data.result;
+  }
+);
+
+//getProductDate
+export const getProductDate = createAsyncThunk(
+  '/product/getDate/:start/:end',
+  async ({ start, end },thunkAPI) => {
+    try {
+      const response = await axios.get(`${API_PRODUCTS.getProductDate}?start=${start}&end=${end}`, {
+        headers: {
+          auth: localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data?.result;
+    } catch (error) {
+      // return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+
+//getAllCategory
+export const getAllCategory = createAsyncThunk(
+  'product/getAllCategory/product_category',
+  async () => {
+    const response = await axios.get(API_PRODUCTS.getCategory, {
+      headers: {
+        auth: localStorage.getItem('token'),
+      }
+    });
+    return response.data?.results;
+
+  }
+
+);
+
 export const upload_CSV = createAsyncThunk(
   'product/uploadCSV',
   async (productData, thunkAPI) => {
@@ -45,66 +154,8 @@ export const upload_CSV = createAsyncThunk(
     }
   }
 );
-export const getProducts = createAsyncThunk(
-  'product/getAll', 
-  async (thunkAPI) => {
-  try {
-    const response = await axios({
-      method: 'get',
-      url: API_PRODUCTS.getAll,
-      headers: {
-        auth: localStorage.getItem('token'),
-        'Content-Type': 'application/json'
-      }
-    });
-    return response.data.result;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error);
-  }
-}
-);
-export const getCategory = createAsyncThunk(
-  'product/getCategory/product_category', 
-  async (product_category ) => {
-    const response = await axios.get(API_PRODUCTS.getCategory(product_category),{headers:{
-      auth: localStorage.getItem('token'),
-    }});
-    return response.data?.result;
-  }
-);
-export const getOne = createAsyncThunk(
-  'product/getOne/:product_id',
-  async (product_id, ) => {
-    const response = await axios.get(API_PRODUCTS.getOne(product_id),{headers:{
-      auth: localStorage.getItem('token'),
-    }});
-    console.log("🚀 ~ file: productSlice.jsx:65 ~ response:", response)
-    return response.data?.result;
-  } 
-);
-export const deleteOneProduct = createAsyncThunk(
-  'product/deleteOne/:product_id',
-  async (product_id) => {
-    const response = await axios.delete(`/inventory/product/deleteOne/${product_id}`, {
-      headers: {
-        auth: localStorage.getItem('token'),
-      },
-    });
-    console.log("🚀 ~ file: productSlice.jsx:80 ~ response:", response)
-    return response.data?.result;
-  }
-);
-export const updateProduct = createAsyncThunk(
-  'product/update',
-  async (updatedProduct) => {
-    const response = await axios.put(`/inventory/product/update`, updatedProduct, {
-      headers: {
-        auth: localStorage.getItem('token'),
-      }
-    });
-    return response.data;
-  }
-);
+
+
 const productSlice = createSlice({
   name: 'products',
   initialState: {
@@ -112,6 +163,7 @@ const productSlice = createSlice({
     cartItems: [],
     item: [],
     categories: [],
+    date: [],
     count: 0,
     product: [],
     loading: false,
@@ -135,18 +187,20 @@ const productSlice = createSlice({
       console.log({ state: state?.products })
       // check if existing in cart
       const existingIndex = state.cartItems.findIndex(
-        (item) => item.id === action.payload.id
+        (item) => item.product_id === action.payload.product_id
       );
       console.log("🚀 ~ file: productSlice.jsx:42 ~ existingIndex:", existingIndex)
       //if exisiting in cart increase quantity of item
       if (existingIndex >= 0) {
+        alert("existing")
         state.cartItems[existingIndex].quantity += action?.payload?.quantity;
         toast.info("Increased product quantity", {
           position: "bottom-left",
         });
       } else {
         //else add new item
-        let tempProductItem = { ...action.payload, cartQuantity: 1 };
+        alert("new item")
+        let tempProductItem = { ...action.payload };
         state?.cartItems?.push(tempProductItem);
         toast.success("Product added to cart", {
           position: "bottom-left",
@@ -214,8 +268,8 @@ const productSlice = createSlice({
       state.loading = true;
     },
     setProduct: (state, action) => {
-    console.log("🚀 ~ file: productSlice.jsx:224 ~ action:", action)
-    state.product = action.payload;
+      console.log("🚀 ~ file: productSlice.jsx:224 ~ action:", action)
+      state.product = action.payload;
       state.loading = false;
     },
     setError: (state, action) => {
@@ -223,106 +277,121 @@ const productSlice = createSlice({
       state.loading = false;
     },
   },
- extraReducers: (builder) => {
-      builder
-        .addCase(createProduct.pending, (state) => {
-          alert("createProduct.pending")
-          state.status = 'loading';
-          state.error = null;
+
+  extraReducers: (builder) => {
+    builder
+      .addCase(createProduct.pending, (state) => {
+        alert("createProduct.pending")
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(createProduct.fulfilled, (state, action) => {
+        alert("createProduct.fulfilled")
+        notification.success({
+          title: "Success",
+          message: "Product created.",
         })
-        .addCase(createProduct.fulfilled, (state, action) => {
-          alert("createProduct.fulfilled")
-          notification.success({
-            title: "Success",
-            message: "Product created.",
-          })
-          state.status = 'succeeded';
-          state.products.push(action.payload);
+
+        state.status = 'succeeded';
+        state.products.push(action.payload);
+      })
+      .addCase(createProduct.rejected, (state, action) => {
+        alert("createProduct.rejected")
+        state.status = 'failed';
+        state.error = action.payload;
+      })
+      .addCase(upload_CSV.pending, (state) => {
+        alert("upload_CSV.pending")
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(upload_CSV.fulfilled, (state, action) => {
+        alert("upload_CSV.fulfilled")
+        notification.success({
+          title: "Success",
+          message: "CSV Uploaded.",
         })
-        .addCase(createProduct.rejected, (state, action) => {
-          alert("createProduct.rejected")
-          state.status = 'failed';
-          state.error = action.payload;
-        })
-        .addCase(upload_CSV.pending, (state) => {
-          alert("upload_CSV.pending")
-          state.status = 'loading';
-          state.error = null;
-        })
-        .addCase(upload_CSV.fulfilled, (state, action) => {
-          alert("upload_CSV.fulfilled")
-          notification.success({
-            title: "Success",
-            message: "CSV Uploaded.",
-          })
-          state.status = 'succeeded';
-          state.products.push(action.payload);
-        })
-        .addCase(upload_CSV.rejected, (state, action) => {
-          alert("upload_CSV.rejected")
-          state.status = 'failed';
-          state.error = action.payload;
-        })
-        .addCase(getProducts.pending, (state) => {
-            state.loading = true;
-            state.error = null;
-          })
-          .addCase(getProducts.fulfilled, (state, action) => {
-            state.loading = false;
-            state.products = action.payload;
-          })
-          .addCase(getProducts.rejected, (state, action) => {
-            state.loading = false;
-            state.error = action.payload;
-          })
-          .addCase(getOne.pending, (state) => {
-            state.status = 'loading';
-          })
-          .addCase(getOne.fulfilled, (state, action) => {
-            state.status = 'succeeded';
-            state.product = action.payload;
-          })
-          .addCase(getOne.rejected, (state, action) => {
-            state.status = 'failed';
-            state.error = action.error.message;
-          })
-          .addCase(getCategory.pending, (state) => {
-            state.loading = true;
-            state.error = null;
-          })
-          .addCase(getCategory.fulfilled, (state, action) => {
-            state.loading = false;
-            state.categories = action.payload;
-          })
-          .addCase(getCategory.rejected, (state, action) => {
-            state.loading = false;
-            state.error = action.payload;
-          })
-          .addCase(deleteOneProduct.pending, (state) => {
-            state.status = 'loading';
-          })
-          .addCase(deleteOneProduct.fulfilled, (state, action) => {
-            state.status = 'succeeded';
-            state.products = state.products.filter(
-              (product) => product.id !== action.payload
-            );
-          })
-          .addCase(deleteOneProduct.rejected, (state, action) => {
-            state.status = 'failed';
-            state.error = action.error.message;
-          })
-          .addCase(updateProduct.pending, (state) => {
-            state.status = 'loading';
-          })
-          .addCase(updateProduct.fulfilled, (state, action) => {
-            state.status = 'succeeded';
-            state.product = action.payload;
-          })
-          .addCase(updateProduct.rejected, (state, action) => {
-            state.status = 'failed';
-            state.error = action.error.message;
-          });
-           },
+
+        state.status = 'succeeded';
+        state.products.push(action.payload);
+      })
+      .addCase(upload_CSV.rejected, (state, action) => {
+        alert("upload_CSV.rejected")
+        state.status = 'failed';
+        state.error = action.payload;
+      })
+      .addCase(getProducts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.products = action.payload;
+      })
+      .addCase(getProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getOne.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getOne.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.product = action.payload;
+      })
+      .addCase(getOne.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(getAllCategory.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getAllCategory.fulfilled, (state, action) => {
+        state.loading = false;
+        state.categories = action.payload;
+      })
+      .addCase(getAllCategory.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getProductDate.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getProductDate.fulfilled, (state, action) => {
+        state.loading = false;
+        state.date = action.payload;
+      })
+      .addCase(getProductDate.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(deleteOneProduct.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(deleteOneProduct.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.products = state.products.filter(
+          (product) => product.id !== action.payload
+        );
+      })
+      .addCase(deleteOneProduct.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(updateProduct.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(updateProduct.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.product = action.payload;
+      })
+      .addCase(updateProduct.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      });
+  },
 });
 export const { fetchProductsStart,
   fetchProductsSuccess,

@@ -3,22 +3,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Table, Card, Button, Modal, Menu, Dropdown } from 'antd';
 import { PlusOutlined,DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import { getUsers } from '../reducers/usersAPI';
+import { getUsers, getAllBatch } from '../reducers/usersAPI';
 
 const Members = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user?.user);
-  const status = useSelector((state) => state.user.status);
-  const error = useSelector((state) => state.user.error);
+  const status = useSelector((state) => state.user?.status);
+  const error = useSelector((state) => state.user?.error);
+  const [selectedBatch,setSelectedBatch] = useState('Batch 1');
+  const batches = useSelector((state) => state.user?.batch);
 
-  const menu = (
-    <Menu>
-      <Menu.Item key="1">BATCH 1</Menu.Item>
-      <Menu.Item key="2">BATCH 2</Menu.Item>
-      <Menu.Item key="3">BATCH 3</Menu.Item>
-    </Menu>
-  );
   const CreateModal = () => {
     setIsModalVisible(true);
   };
@@ -30,10 +25,40 @@ const Members = () => {
     flexDirection: 'row',
     marginLeft: '50px'
   };
+  const handleBatchClick = (batch) => {
+    setSelectedBatch(batch);
+  };
 
   useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getAllBatch());
+  }, [dispatch]);
+
+ 
+
+  const menu = 
+    // <Menu onClick={handleBatchClick}>
+      batches?.length > 0 ?batches?.map((batch, index) => (  {
+        key: `${batch}_${index}`,
+        label: (
+          <a target="#" rel="noopener noreferrer" onClick={() => handleBatchClick(batch)}>
+           {batch}
+          </a>
+        ),
+        disabled: false,
+      })) : [
+        {
+          key: '4',
+          danger: true,
+          label: 'a danger item',
+        },
+      ]
+    // </Menu>
+  // );
+
 
   const columns = [
     {
@@ -245,37 +270,18 @@ const Members = () => {
   }
 
 
-
   return (
-    <><div style={{
-      position: 'absolute',
-      left: '20%',
-      marginTop: '10px',
-      width: '100%',
-      font: 'Poppins',
-      fontStyle: 'normal',
-      fontWeight: '700',
-      fontSize: '35px',
-      color: '#3B3A82',
+    <>
+      <div style={{
+      display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      alignItems: 'center',
+      alignItems: 'center'
     }}>
-      <span>
-        Members/Clients
-      </span>
-    </div>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        
-      }}>
         <Button
           onClick={CreateModal}
           style={{
-            top: '17%',
+            top: '12%',
             width: 191,
             height: 48,
             background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
@@ -291,7 +297,7 @@ const Members = () => {
             color: '#FFFFFF',
             justifyContent: 'center',
             right: '25%',
-           
+
             position: 'absolute'
           }}
         >
@@ -321,43 +327,53 @@ const Members = () => {
         </Modal>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Card
-          style={{
-            top: '170px',
-            backgroundColor: '#FFFFFF',
-            width: '1000px',
-            height: '700px',
-            background: '#F9F9FF',
-            boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
-            borderRadius: '24px',
-          }}
-        >    <div style={containerStyle}>
-            <Dropdown overlay={menu}>
-              <Button style={{
-                marginLeft: '10px',
-                borderRadius: '5px',
-                background: '#EEEEFF',
-                font: 'Poppins',
-                fontStyle: 'normal',
-                fontWeight: 700,
-                fontSize: '18px',
-                lineHeight: '28px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textAlign: 'center',
-                color: '#3B3A82',
-                width: '150px',
-                height: '40px',
-              }}>
-                BATCH 1 &nbsp; <DownOutlined style={{ fontSize: '14px' }} />
-              </Button>
-            </Dropdown>
-          </div>
-          <br />
-          <div style={{  justifyContent: 'center', maxWidth: '100%',  }}>
-          <Table columns={columns}  dataSource={user} style={{  justifyContent: 'center', maxWidth: '100%', }} /></div>
-        </Card>
+      <Card
+      style={{
+        top: '100px',
+        backgroundColor: '#FFFFFF',
+        width: '1000px',
+        background: '#F9F9FF',
+        boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
+        borderRadius: '24px',
+      }}
+    >
+      <div style={containerStyle}>
+        <Dropdown overlay={menu} menu={{
+          items: menu
+        }}>
+          <Button
+            style={{
+              marginLeft: '10px',
+              borderRadius: '5px',
+              background: '#EEEEFF',
+              font: 'Poppins',
+              fontStyle: 'normal',
+              fontWeight: 700,
+              fontSize: '18px',
+              lineHeight: '28px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              color: '#3B3A82',
+              width: '150px',
+              height: '40px',
+            }}
+          >
+            {selectedBatch} &nbsp;
+            <DownOutlined style={{ fontSize: '14px' }} />
+          </Button>
+        </Dropdown>
+      </div>
+      <br />
+      <div style={{ justifyContent: 'center', maxWidth: '100%' }}>
+        <Table
+          columns={columns}
+          dataSource={user}
+          style={{ justifyContent: 'center', maxWidth: '100%' }}
+        />
+      </div>
+    </Card>
       </div>
     </>
   );
