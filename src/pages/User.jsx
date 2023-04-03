@@ -1,6 +1,6 @@
 import { DatePicker, Card, Table, Button, Modal, Divider, Row, Col } from 'antd';
 import dayjs from 'dayjs';
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CalendarOutlined, EyeOutlined } from '@ant-design/icons'
 import customParseFormat from 'dayjs/plugin/customParseFormat';
@@ -13,7 +13,7 @@ const User = () => {
   const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   const [selectedRow, setSelectedRow] = useState(null);
   const [visible, setVisible] = useState(false);
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user?.userlogs);
   const [setUserlogs] = useState([]);
 
@@ -35,7 +35,7 @@ const User = () => {
     setVisible(false);
   };
 
-   useEffect(() => {
+  useEffect(() => {
     dispatch(getUserlogs());
   }, [dispatch]);
   const columns = [
@@ -193,7 +193,7 @@ const User = () => {
     <>
       <div style={{
         top: '15%',
-        width: '100%',
+        width: '50%',
         font: 'Poppins',
         fontStyle: 'normal',
         fontWeight: 'bold',
@@ -257,23 +257,21 @@ const User = () => {
   </Col>
 </Row>
 
-      
       <br></br>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Card id="receipt-info"
           style={{
-            position: 'absolute',
-            justifyContent: 'center', 
-            maxWidth: '100%', 
-            alignItems: 'center' ,
+            justifyContent: 'center',
+            maxWidth: '100%',
+            alignItems: 'center',
             width: 1100,
             background: '#F9F9FF',
             boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
             borderRadius: 24,
           }}
         >
-          <div style={{  display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center'  }}>
-            <Table style={{ width: '90%' }} columns={columns} dataSource={user} />
+          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center' }}>
+            <Table columns={columns} dataSource={user} scroll={{ x: 'max-content', y: 'auto' }} />
           </div>
         </Card>
         <Modal
@@ -309,7 +307,7 @@ const User = () => {
             alignItems: 'center',
             color: '#30304D',
             marginBottom: '0px'
-          }}>{selectedRow && selectedRow.first_name }  {selectedRow && selectedRow.last_name }</p>
+          }}>{selectedRow && selectedRow.first_name}  {selectedRow && selectedRow.last_name}</p>
           <p style={{
             font: 'Poppins',
             fontStyle: 'normal',

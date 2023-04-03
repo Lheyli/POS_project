@@ -33,24 +33,24 @@ const Sales = () => {
   const { Text } = Typography;
   return (
     <>
-     <div style={{
-      position: 'absolute',
-      left: '20%',
-      marginTop: '10px',
-      width: '100%',
-      font: 'Poppins',
-      fontStyle: 'normal',
-      fontWeight: '700',
-      fontSize: '35px',
-      color: '#3B3A82',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}>
-      <span>
-        Sales Report
-      </span>
-    </div>
+      <div style={{
+        position: 'absolute',
+        left: '20%',
+        marginTop: '10px',
+        width: '50%',
+        font: 'Poppins',
+        fontStyle: 'normal',
+        fontWeight: '700',
+        fontSize: '35px',
+        color: '#3B3A82',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <span>
+          Sales Report
+        </span>
+      </div>
       <Row justify="center">
         <Col xs={24} lg={16}>
           <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '8%', marginLeft: 125 }}>
@@ -103,15 +103,15 @@ const Sales = () => {
       <Card style={{
         alignItems: 'center',
         justifyContent: 'center',
-        top: '50px',
         backgroundColor: '#FFFFFF',
         background: '#F9F9FF',
         boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.15)',
         borderRadius: '24px',
-        width: '50%',
-        height: '80%',
-        marginLeft: '23%',
-
+        width: '60%',
+        height: 'auto',
+        margin: '50px auto',
+        padding: '30px',
+        boxSizing: 'border-box'
       }}>
         <Row justify="center" align="middle" gutter={[16, 16]}>
           <Col style={{ marginRight: '40px' }}>

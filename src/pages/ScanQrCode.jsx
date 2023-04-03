@@ -43,7 +43,7 @@ function ScanQrCode() {
         position: 'absolute',
         left: '20%',
         marginTop: '10px',
-        width: '100%',
+        width: '50%',
         font: 'Poppins',
         fontStyle: 'normal',
         fontWeight: '700',
@@ -109,8 +109,8 @@ function ScanQrCode() {
         open={isModalVisible}
         footer={null}
         onCancel={handleCancel}
-        
         width={900}
+        style={{  alignItems: 'center', justifyContent: 'center' }}
       >
 
         <div style={{
