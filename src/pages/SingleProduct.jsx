@@ -84,12 +84,15 @@ const SingleProduct = () => {
   const { product } = useSelector(state => state.products);
   const handleCancel = () => setPreviewOpen(false);
   const handlePreview = async (file) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj);
+    // if (!file.url && !file.preview) {
+    //   file.preview = await getBase64(file.originFileObj);
+    // }
+    if (product?.buffer_file) {
+      file.preview = product?.buffer_file;
     }
-    setPreviewImage(file.url || file.preview);
-    setPreviewOpen(true);
-    setPreviewTitle(file.id || file.url.substring(file.url.lastIndexOf('/') + 1));
+    // setPreviewImage(file.url || file.preview);
+    // setPreviewOpen(true);
+    // setPreviewTitle(file.id || file.url.substring(file.url.lastIndexOf('/') + 1));
   };
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
   const uploadButton = (
@@ -127,7 +130,7 @@ const SingleProduct = () => {
   useEffect(() => {
 
     if (params?.isUpdate) {
-      dispatch(getOne("27e6042f-f830-4daa-9f93-7d4cb666a2a4"))
+      dispatch(getOne("46a9d906-7059-4dae-8a7e-7e8a0d51fda4"))
     }
   }, [params?.isUpdate])
   useEffect(() => {
@@ -142,6 +145,12 @@ const SingleProduct = () => {
         markup_price: product.markup_price,
         updated_by: product.updated_by
       })
+      setFileList([{
+        uid: product.buffer_file,
+        name: product.image,
+        status: 'done',
+        url: product.buffer_file,
+      }])
     }
   }, [product])
   return (
@@ -220,6 +229,15 @@ const SingleProduct = () => {
         </Row>
         <Row gutter={16}>
           <Col span={12}>
+            {/* 
+
+            <div>
+
+              <img />
+
+              <button>add image</button>
+              </div>
+            */}
             <Upload
               action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
               listType="picture-card"
