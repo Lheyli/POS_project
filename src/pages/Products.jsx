@@ -12,6 +12,7 @@ const dateFormatList = ['MM/DD/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
 const Products = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [setProducts] = useState([]);
   const products = useSelector((state) => state.products?.products);
   const loading = useSelector((state) => state.products.loading);
   const error = useSelector((state) => state.products.error);
@@ -23,11 +24,16 @@ const Products = () => {
     dispatch(deleteOneProduct(product_id));
   };
 
-  const handleDateChange = (date) => {
+  const handleDateChange = async (date) => {
     const [start, end] = date.map(date => date.format('YYYY-MM-DD'));
-    dispatch(getProductDate({ start, end }));
+    try {
+      const response = await dispatch(getProductDate({ start, end }));
+      setProducts(response.payload); // update products state with the fetched data
+    } catch (error) {
+      console.log(error);
+    }
   };
-
+  
 
   const handleButtonClick = (product) => {
     setIsDrawerVisible(true);

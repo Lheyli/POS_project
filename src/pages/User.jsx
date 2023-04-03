@@ -15,9 +15,10 @@ const User = () => {
   const [visible, setVisible] = useState(false);
    const dispatch = useDispatch();
   const user = useSelector((state) => state.user?.userlogs);
+  const [setUserlogs] = useState([]);
 
   const handleDateChange = (date) => {
-    const [start, end] = date.map(date => date.format('YYYY-MM-DD'));
+    const [start, end] = date.map((date) => date.format("YYYY-MM-DD"));
     dispatch(getUserlogsDate({ start, end }));
   };
 
@@ -228,7 +229,6 @@ const User = () => {
       }}
       suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
       defaultValue={[dayjs('01/01/2023', dateFormatList[0]), dayjs('01/01/2023', dateFormatList[0])]}
-      format={dateFormatList[0]}
       onChange={handleDateChange}
     />
       <Button
@@ -314,55 +314,27 @@ const User = () => {
             font: 'Poppins',
             fontStyle: 'normal',
             fontWeight: 400,
-            fontSize: '16px',
+            fontSize: '14px',
             lineHeight: '27px',
             display: 'flex',
             alignItems: 'center',
             color: '#656565',
             marginTop: '0px'
-          }}>UserID: {selectedRow && selectedRow.user_id}</p>
+          }}>
+            <br>
+            </br>UserID: {selectedRow && selectedRow.user_id}</p>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <p style={{
               font: 'Poppins',
               fontStyle: 'normal',
-              fontWeight: 600,
-              fontSize: '15px',
+              fontSize: '14px',
               lineHeight: '27px',
               display: 'flex',
               alignItems: 'center',
               color: '#656565',
             }}>
-              {selectedRow && selectedRow.date}
+              {selectedRow && selectedRow.date} | {selectedRow && selectedRow.time} : {selectedRow && selectedRow.activity}
             </p>
-            <p style={{
-              font: 'Poppins',
-              fontStyle: 'normal',
-              fontWeight: 600,
-              fontSize: '15px',
-              lineHeight: '27px',
-              display: 'flex',
-              alignItems: 'center',
-              color: '#656565',
-            }}>&nbsp; | &nbsp;  </p>
-            <p style={{
-              font: 'Poppins',
-              fontStyle: 'normal',
-              fontWeight: 600,
-              fontSize: '15px',
-              lineHeight: '27px',
-              display: 'flex',
-              alignItems: 'center',
-              color: '#656565',
-            }}>{selectedRow && selectedRow.time} : </p> &nbsp; 
-            <p style={{
-              font: 'Poppins',
-              fontWeight: "bold",
-              fontSize: '15px',
-              lineHeight: '27px',
-              display: 'flex',
-              alignItems: 'center',
-              color: '#000000',
-            }}>{selectedRow && selectedRow.activity}</p>
           </div>
         </Modal>
       </div>
