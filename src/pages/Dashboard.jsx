@@ -108,12 +108,23 @@ function Dashboard() {
     },
   };
   return (
-    <>
-      <div style={{
-        position: 'absolute',
-        left: '20%',
+    <div
+      style={{
+        paddingLeft: "20%",
         marginTop: '10px',
         width: '100%',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        overflow: 'scroll',
+        width: '100%',
+        // overflow:'scroll'
+        // backgroundColor:'red'
+        // zIndex:
+      }}
+    >
+      <div style={{
+        marginTop: '10px',
         font: 'Poppins',
         fontStyle: 'normal',
         fontWeight: '700',
@@ -121,14 +132,21 @@ function Dashboard() {
         color: '#3B3A82',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        // overflow: 'scroll',
       }}>
         <span>
           Dashboard
         </span>
       </div>
-      <Row justify={'center'} style={{ marginTop: 30 }}>
-        <Col xs={24} md={16} style={{ margin: '50px 0' }}>
+      <Row justify={'center'} style={{ marginTop: 30, width: 'max-content', marginLeft: 'auto', marginRight: 'auto' }} gutter={[25, 25]}>
+        <Col xs={24} sm={24} md={24} lg={24} xl={12} style={{
+          display: 'flex',
+          margin: '50px 0',
+          alignItems: 'center',
+          justifyContent: 'center',
+          maxWidth: '90vw'
+        }}>
           <Card style={{
             background: 'linear-gradient(258.36deg, #9695E8 1.29%, #5250B4 97.24%)',
             boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.25)',
@@ -147,74 +165,79 @@ function Dashboard() {
                   <Option value="monthly" style={{ color: '#7170CF' }} >Monthly Sales</Option>
                 </Select>
               </Col>
-              <Col xs={24}>
-                <Line {...chartConfig} style={{ color: 'none', strokeWidth: 0 }} />
-              </Col>
             </Row>
+            <Line {...chartConfig} style={{ color: 'none', strokeWidth: 0 }} />
           </Card>
-          <Col xs={24} md={16} style={{ margin: '50px 0' }}>
-            <Card style={{
-              width: 500,
-              height: 400,
-              background: '#EEEEFF',
-              border: '0.5px solid #E8E8E8',
-              boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.25)',
-              borderRadius: '20px',
-             
+        </Col>
+        <Col xs={24} sm={24} md={24} lg={24} xl={12} style={{
+          display: 'flex',
+          margin: '50px 0',
+          alignItems: 'center',
+          justifyContent: 'center',
+          maxWidth: '90vw'
+        }}
+        >
+          <Card style={{
+            width: 500,
+            height: 400,
+            background: '#EEEEFF',
+            border: '0.5px solid #E8E8E8',
+            boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.25)',
+            borderRadius: '20px',
 
-            }}>
-              <h1 style={{ color: '#30304D', font: 'Poppins', fontStyle: 'normal', fontWeight: '700', fontSize: '21px', lineHeight: '38px' }}>Calendar</h1>
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Tabs defaultActiveKey="1" tabBarStyle={{ color: '#3B3A82', fontWeight: '700', font: 'Poppins', display: 'flex', justifyContent: 'center' }}>
-                  <TabPane style={{ color: '#30304D', font: 'Poppins', fontStyle: 'normal', fontWeight: '700', fontSize: '15px', lineHeight: '38px' }} tab="Today" key="1">
-                    <h2 style={{ marginBottom: '0px', marginTop: '0px', color: '#3B3A82' }}><CalendarOutlined /> {moment().format('MMM ')}</h2>
-                    <h2 style={{ marginBottom: '0px', marginTop: '0px', color: '#3B3A82', marginLeft: '12px' }}> {moment().format(' D ')}</h2>
-                    <div style={{
-                      position: 'absolute',
-                      backgroundColor: '#7170CF',
-                      border: '1px solid #dddddd',
-                      padding: 20,
-                      textAlign: 'center',
-                      background: '#7170CF',
-                      borderRadius: 10,
-                      marginLeft: '-50px', /* Updated marginLeft to marginRight */
-                      width: 200,
-                      height: 40,
-                      left: 135, /* Added right property */
-                      top: 10,
-                    }}>
-                      <h2 className="net-income-product">Product 1 expires </h2>
-                    </div>
-                    <div style={{
-                      position: 'absolute',
-                      backgroundColor: '#7170CF',
-                      border: '1px solid #dddddd',
-                      padding: 20,
-                      textAlign: 'center',
-                      background: '#7170CF',
-                      borderRadius: 10,
-                      marginLeft: '-50px', /* Updated marginLeft to marginRight */
-                      width: 200,
-                      height: 40,
-                      left: 135, /* Added right property */
-                      top: 70,
-                    }}>
-                      <h2 className="net-income-product">Product 2 low stock</h2>
-                    </div>
-                  </TabPane>
-                  <TabPane style={{ color: '#30304D', font: 'Poppins', fontStyle: 'normal', fontWeight: '700', fontSize: '15px', lineHeight: '38px' }} tab="Next Week" key="2">
-                    <h2 style={{ marginBottom: '0px', marginTop: '0px', font: 'Poppins', color: '#3B3A82' }}><CalendarOutlined /> {moment().startOf('day').add(7, 'days').format('MMM ')}</h2>
-                    <h2 style={{ marginBottom: '0px', marginTop: '0px', font: 'Poppins', color: '#3B3A82', marginLeft: '12px' }}> {moment().startOf('day').add(7, 'days').format(' D')}</h2>
-                  </TabPane>
-                  <TabPane style={{ color: '#30304D', font: 'Poppins', fontStyle: 'normal', fontWeight: '700', fontSize: '15px', lineHeight: '38px' }} tab="This Month" key="3">
-                    <h2 style={{ marginBottom: '0px', marginTop: '0px', color: '#3B3A82' }}><CalendarOutlined /> {moment().format('MMM ')}</h2>
-                    <h2 style={{ marginBottom: '0px', marginTop: '0px', color: '#3B3A82', marginLeft: '8px' }}> {moment().format(' YYYY ')}</h2>
-                  </TabPane>
-                </Tabs>
-              </div>
-            </Card>
-          </Col>
-          </Col>
+
+          }}>
+            <h1 style={{ color: '#30304D', font: 'Poppins', fontStyle: 'normal', fontWeight: '700', fontSize: '21px', lineHeight: '38px' }}>Calendar</h1>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Tabs defaultActiveKey="1" tabBarStyle={{ color: '#3B3A82', fontWeight: '700', font: 'Poppins', display: 'flex', justifyContent: 'center' }}>
+                <TabPane style={{ color: '#30304D', font: 'Poppins', fontStyle: 'normal', fontWeight: '700', fontSize: '15px', lineHeight: '38px' }} tab="Today" key="1">
+                  <h2 style={{ marginBottom: '0px', marginTop: '0px', color: '#3B3A82' }}><CalendarOutlined /> {moment().format('MMM ')}</h2>
+                  <h2 style={{ marginBottom: '0px', marginTop: '0px', color: '#3B3A82', marginLeft: '12px' }}> {moment().format(' D ')}</h2>
+                  <div style={{
+                    position: 'absolute',
+                    backgroundColor: '#7170CF',
+                    border: '1px solid #dddddd',
+                    padding: 20,
+                    textAlign: 'center',
+                    background: '#7170CF',
+                    borderRadius: 10,
+                    marginLeft: '-50px', /* Updated marginLeft to marginRight */
+                    width: 200,
+                    height: 40,
+                    left: 135, /* Added right property */
+                    top: 10,
+                  }}>
+                    <h2 className="net-income-product">Product 1 expires </h2>
+                  </div>
+                  <div style={{
+                    position: 'absolute',
+                    backgroundColor: '#7170CF',
+                    border: '1px solid #dddddd',
+                    padding: 20,
+                    textAlign: 'center',
+                    background: '#7170CF',
+                    borderRadius: 10,
+                    marginLeft: '-50px', /* Updated marginLeft to marginRight */
+                    width: 200,
+                    height: 40,
+                    left: 135, /* Added right property */
+                    top: 70,
+                  }}>
+                    <h2 className="net-income-product">Product 2 low stock</h2>
+                  </div>
+                </TabPane>
+                <TabPane style={{ color: '#30304D', font: 'Poppins', fontStyle: 'normal', fontWeight: '700', fontSize: '15px', lineHeight: '38px' }} tab="Next Week" key="2">
+                  <h2 style={{ marginBottom: '0px', marginTop: '0px', font: 'Poppins', color: '#3B3A82' }}><CalendarOutlined /> {moment().startOf('day').add(7, 'days').format('MMM ')}</h2>
+                  <h2 style={{ marginBottom: '0px', marginTop: '0px', font: 'Poppins', color: '#3B3A82', marginLeft: '12px' }}> {moment().startOf('day').add(7, 'days').format(' D')}</h2>
+                </TabPane>
+                <TabPane style={{ color: '#30304D', font: 'Poppins', fontStyle: 'normal', fontWeight: '700', fontSize: '15px', lineHeight: '38px' }} tab="This Month" key="3">
+                  <h2 style={{ marginBottom: '0px', marginTop: '0px', color: '#3B3A82' }}><CalendarOutlined /> {moment().format('MMM ')}</h2>
+                  <h2 style={{ marginBottom: '0px', marginTop: '0px', color: '#3B3A82', marginLeft: '8px' }}> {moment().format(' YYYY ')}</h2>
+                </TabPane>
+              </Tabs>
+            </div>
+          </Card>
+        </Col>
       </Row >
 
       <Row justify="center" style={{ marginTop: '30px' }}>
@@ -317,7 +340,7 @@ function Dashboard() {
         </Col>
       </Row>
 
-    </>
+    </div>
   );
 }
 
