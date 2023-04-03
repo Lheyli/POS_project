@@ -152,7 +152,7 @@ const Transactions = () => {
       position: 'absolute',
       left: '20%',
       marginTop: '10px',
-      width: '100%',
+      width: '50%',
       font: 'Poppins',
       fontStyle: 'normal',
       fontWeight: '700',
@@ -168,7 +168,7 @@ const Transactions = () => {
     </div>
       <div style={{
         top: '18%',
-        width: '100%',
+        width: '50%',
         font: 'Poppins',
         fontStyle: 'normal',
         fontWeight: 'bold',
@@ -234,8 +234,8 @@ const Transactions = () => {
         id="receipt-info"
         style={{
           backgroundColor: '#FFFFFF',
-          width: '50%',
-          height: '500px',
+          maxWidth: '100%',
+          width: 1100,
           background: '#F9F9FF',
           boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
           borderRadius: '24px',
@@ -248,6 +248,7 @@ const Transactions = () => {
           <Table
             columns={columns}
             rowKey="id"
+            scroll={{ x: 'max-content', y: 'auto' }}
             style={{ justifyContent: 'center', maxWidth: '100%', margin: 'auto', background: '#F9F9FF' }}
           />
         </div>

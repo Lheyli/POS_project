@@ -1,6 +1,6 @@
 import { DatePicker, Card, Table, Button, Modal, Divider, Row, Col } from 'antd';
 import dayjs from 'dayjs';
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CalendarOutlined, EyeOutlined } from '@ant-design/icons'
 import customParseFormat from 'dayjs/plugin/customParseFormat';
@@ -13,7 +13,7 @@ const User = () => {
   const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   const [selectedRow, setSelectedRow] = useState(null);
   const [visible, setVisible] = useState(false);
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user?.userlogs);
 
   const handleDateChange = (date) => {
@@ -34,7 +34,7 @@ const User = () => {
     setVisible(false);
   };
 
-   useEffect(() => {
+  useEffect(() => {
     dispatch(getUserlogs());
   }, [dispatch]);
   const columns = [
@@ -192,7 +192,7 @@ const User = () => {
     <>
       <div style={{
         top: '15%',
-        width: '100%',
+        width: '50%',
         font: 'Poppins',
         fontStyle: 'normal',
         fontWeight: 'bold',
@@ -204,76 +204,75 @@ const User = () => {
       }}>
         <span>
           {today}</span></div>
-       <Row justify="center">
-  <Col xs={24} lg={8}>
-    <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center', marginTop: '15%' }}>
-    <RangePicker
-     id={styles["input123"]}
-      style={{
-        left: '-225px',
-        width: '100%',
-        height: 48,
-        background: '#5250B4',
-        borderRadius: '10px',
-        font: 'Poppins',
-        fontStyle: 'normal',
-        fontWeight: 500,
-        fontSize: 18,
-        lineHeight: 27,
-        display: 'flex',
-        alignItems: 'center',
-        textAlign: 'center',
-        color: '#FFFFFF',
-        justifyContent: 'center',
-      }}
-      suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
-      defaultValue={[dayjs('01/01/2023', dateFormatList[0]), dayjs('01/01/2023', dateFormatList[0])]}
-      format={dateFormatList[0]}
-      onChange={handleDateChange}
-    />
-      <Button
-        onClick={handlePrint}
-        style={{
-          width: '100%',
-          height: 48,
-          background: '#5250B4',
-          borderRadius: '10px',
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 500,
-          fontSize: 18,
-          lineHeight: 27,
-          display: 'flex',
-          alignItems: 'center',
-          textAlign: 'center',
-          color: '#FFFFFF',
-          justifyContent: 'center',
-          right: '-200px'
-        }}
-      >
-        EXPORT
-      </Button>
-    </div>
-  </Col>
-</Row>
+      <Row justify="center" >
+        <Col xs={24} lg={16}>
+          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '8%', marginLeft: 85 }} >
+            <RangePicker
+              id={styles["input123"]}
+              style={{
+                width: '100%',
+                height: 48,
+                background: '#5250B4',
+                borderRadius: '10px',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: 27,
+                display: 'flex',
+                alignItems: 'center',
+                textAlign: 'center',
+                color: '#FFFFFF',
+                justifyContent: 'center',
+                marginRight: 10,
+              }}
+              suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
+              defaultValue={[dayjs('01/01/2023', dateFormatList[0]), dayjs('01/01/2023', dateFormatList[0])]}
+              format={dateFormatList[0]}
+              onChange={handleDateChange}
+            />
+            <Button
+              onClick={handlePrint}
+              style={{
+                width: '100%',
+                height: 48,
+                background: '#5250B4',
+                borderRadius: '10px',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: 27,
+                display: 'flex',
+                alignItems: 'center',
+                textAlign: 'center',
+                color: '#FFFFFF',
+                justifyContent: 'center',
+              }}
+            >
+              EXPORT
+            </Button>
+          </div>
+        </Col>
+      </Row>
 
-      
+
+
       <br></br>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Card id="receipt-info"
           style={{
-            position: 'absolute',
-            justifyContent: 'center', 
-            maxWidth: '100%', 
-            alignItems: 'center' ,
+            justifyContent: 'center',
+            maxWidth: '100%',
+            alignItems: 'center',
             width: 1100,
             background: '#F9F9FF',
             boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
             borderRadius: 24,
           }}
         >
-          <div style={{  display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center'  }}>
-            <Table style={{ width: '90%' }} columns={columns} dataSource={user} />
+          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center' }}>
+            <Table columns={columns} dataSource={user} scroll={{ x: 'max-content', y: 'auto' }} />
           </div>
         </Card>
         <Modal
@@ -309,7 +308,7 @@ const User = () => {
             alignItems: 'center',
             color: '#30304D',
             marginBottom: '0px'
-          }}>{selectedRow && selectedRow.first_name }  {selectedRow && selectedRow.last_name }</p>
+          }}>{selectedRow && selectedRow.first_name}  {selectedRow && selectedRow.last_name}</p>
           <p style={{
             font: 'Poppins',
             fontStyle: 'normal',
@@ -353,7 +352,7 @@ const User = () => {
               display: 'flex',
               alignItems: 'center',
               color: '#656565',
-            }}>{selectedRow && selectedRow.time} : </p> &nbsp; 
+            }}>{selectedRow && selectedRow.time} : </p> &nbsp;
             <p style={{
               font: 'Poppins',
               fontWeight: "bold",

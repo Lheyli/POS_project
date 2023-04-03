@@ -139,7 +139,7 @@ function Dashboard() {
           Dashboard
         </span>
       </div>
-      <Row justify={'center'} style={{ marginTop: 30, width: 'max-content', marginLeft: 'auto', marginRight: 'auto' }} gutter={[25, 25]}>
+      <Row justify={'center'} style={{ marginTop: 30, width: 'max-content', }} gutter={[25, 25]}>
         <Col xs={24} sm={24} md={24} lg={24} xl={12} style={{
           display: 'flex',
           margin: '50px 0',
@@ -240,9 +240,9 @@ function Dashboard() {
         </Col>
       </Row >
 
-      <Row justify="center" style={{ marginTop: '30px' }}>
+      <Row justify="start" style={{ marginTop: '30px' }}>
         <Col xs={22} sm={20} md={16} lg={14} xl={12}>
-          <Card style={{ borderRadius: '20px', marginLeft: 70 }}>
+          <Card style={{ borderRadius: '20px', marginLeft: 70, width: 'max-content'}}>
             <Row justify="space-between" align="middle">
               <Col>
                 <Title level={2} style={{ margin: '0', color: '#30304D', font: 'Poppins', fontWeight: 'bold', fontSize: 20 }}>Most Popular Products</Title>

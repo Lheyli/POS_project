@@ -15,7 +15,7 @@ const Accounting = () => {
       position: 'absolute',
       left: '20%',
       marginTop: '10px',
-      width: '100%',
+      width: '50%',
       font: 'Poppins',
       fontStyle: 'normal',
       fontWeight: '700',
