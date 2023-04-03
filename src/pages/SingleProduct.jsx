@@ -1,4 +1,4 @@
-import { Card, Typography, Form, Row, Col, Button, Modal, Upload} from "antd";
+import { Card, Typography, Form, Row, Col, Button, Modal, Upload } from "antd";
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { PlusOutlined } from '@ant-design/icons';
@@ -73,7 +73,7 @@ create 2 state arrays
 */
 
 const SingleProduct = () => {
-  const params = useParams()
+  const params = useParams();
   const dispatch = useDispatch()
   const [form] = Form.useForm();
   const [variations, setVariations] = useState(['']); // state to store all variations
@@ -124,26 +124,26 @@ const SingleProduct = () => {
 
 
   //set default values 
-   useEffect(() => {
+  useEffect(() => {
 
     if (params?.isUpdate) {
-      dispatch(getOne("0e7ca2dd-0bff-4d6c-b218-090c2d90effa"))
+      dispatch(getOne("27e6042f-f830-4daa-9f93-7d4cb666a2a4"))
     }
-   }, [params?.isUpdate])
-   useEffect(() => {
+  }, [params?.isUpdate])
+  useEffect(() => {
 
     if (product) {
       form.setFieldsValue({
         product_name: product.product_name,
         product_category: product.product_category,
         quantity: product.quantity,
-       // expiration_date: product.expiration_date,
+        // expiration_date: product.expiration_date,
         original_price: product.original_price,
         markup_price: product.markup_price,
         updated_by: product.updated_by
       })
     }
-   }, [product])
+  }, [product])
   return (
     <Card style={{
       width: "950px",
@@ -175,6 +175,7 @@ const SingleProduct = () => {
             , ...variations } = value;
 
 
+          if (params.isUpdate) bodyFormData.append('product_id', product.product_id);
           bodyFormData.append('product_name', product_name);
           bodyFormData.append('product_category', product_category);
           bodyFormData.append('quantity', quantity);
@@ -185,27 +186,27 @@ const SingleProduct = () => {
           bodyFormData.append('variation', Object.values(variations));
           if (fileList.length > 0) bodyFormData.append('image', fileList[0]);
 
-         
+
           if (params?.isUpdate) {
             dispatch(updateProduct(bodyFormData));
-          
+
           }
-          else {  dispatch(createProduct(bodyFormData));}
+          else { dispatch(createProduct(bodyFormData)); }
         }}
 
-        //set default values 
-        // initialValues={params?.isUpdate && {
-        //   product_name: "product_name",
-        //   product_category: "product_category",
-        //   quantity: "15",
-        //   // expiration_date: new Date("2023-03-28"),
-        //   original_price: "12",
-        //   markup_price: "15",
-        //   updated_by: "updated_by"
-        // }}
+      //set default values 
+      // initialValues={params?.isUpdate && {
+      //   product_name: "product_name",
+      //   product_category: "product_category",
+      //   quantity: "15",
+      //   // expiration_date: new Date("2023-03-28"),
+      //   original_price: "12",
+      //   markup_price: "15",
+      //   updated_by: "updated_by"
+      // }}
 
       >
-        <h2 style={headingStyle}>{(params?.isUpdate)?"UPDATE PRODUCT":"CREATE NEW PRODUCT" }</h2>
+        <h2 style={headingStyle}>{(params?.isUpdate) ? "UPDATE PRODUCT" : "CREATE NEW PRODUCT"}</h2>
         <Row gutter={16}>
           <Typography.Text style={{
             font: 'Poppins',

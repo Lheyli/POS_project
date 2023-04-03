@@ -10,9 +10,8 @@ export const API_PRODUCTS = {
     getOne: (id) => `/inventory/product/getOne/${id}`,
     countProducts: "/inventory/product/countProducts",
     upload_CSV: "/inventory/product/uploadCSV",
-    getProductDate: "/inventory/product/getProductDate",
-    
-}
+    getDate: ({ start, end }) => `/inventory/product/getDate/${start}/${end}`
+};
 
 export const API_USERS = {
     create: "/inventory/user/create",
@@ -22,10 +21,10 @@ export const API_USERS = {
     getOne: "/inventory/user/getOne",
     countUsers: "/inventory/user/countUsers",
     upload_CSV: "/inventory/user/uploadCSV",
-}
+};
 
 export const API_LOGS = {
     getAll: "/inventory/userlogs/getAll",
-    getUserlogsDate: "/inventory/userlogs/getUserlogsDate",
-}
+    getUserlogsDate: ({ start, end }) => `/inventory/userlogs/getUserlogsDate/${start}/${end}`,
+};
 

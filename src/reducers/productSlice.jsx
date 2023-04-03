@@ -103,9 +103,9 @@ export const updateProduct = createAsyncThunk(
 //getProductDate
 export const getProductDate = createAsyncThunk(
   '/product/getDate/:start/:end',
-  async ({ start, end },thunkAPI) => {
+  async ({ start, end }, thunkAPI) => {
     try {
-      const response = await axios.get(`${API_PRODUCTS.getProductDate}?start=${start}&end=${end}`, {
+      const response = await axios.get(API_PRODUCTS.getDate({ start: start, end: end }), {
         headers: {
           auth: localStorage.getItem('token'),
           'Content-Type': 'application/json'
@@ -113,12 +113,10 @@ export const getProductDate = createAsyncThunk(
       });
       return response.data?.result;
     } catch (error) {
-      // return thunkAPI.rejectWithValue(error.response.data);
       return thunkAPI.rejectWithValue(error);
     }
   }
 );
-
 
 //getAllCategory
 export const getAllCategory = createAsyncThunk(
@@ -362,7 +360,9 @@ const productSlice = createSlice({
       .addCase(getProductDate.fulfilled, (state, action) => {
         state.loading = false;
         state.date = action.payload;
+        state.products = action.payload; // update products field
       })
+      
       .addCase(getProductDate.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;

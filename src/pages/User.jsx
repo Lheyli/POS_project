@@ -15,9 +15,10 @@ const User = () => {
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user?.userlogs);
+  const [setUserlogs] = useState([]);
 
   const handleDateChange = (date) => {
-    const [start, end] = date.map(date => date.format('YYYY-MM-DD'));
+    const [start, end] = date.map((date) => date.format("YYYY-MM-DD"));
     dispatch(getUserlogsDate({ start, end }));
   };
 
@@ -204,60 +205,57 @@ const User = () => {
       }}>
         <span>
           {today}</span></div>
-          <br />
-      <Row justify="center" >
-        <Col xs={24} lg={16}>
-          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '8%', marginLeft: 85 }} >
-            <RangePicker
-              id={styles["input123"]}
-              style={{
-                width: '100%',
-                height: 48,
-                background: '#5250B4',
-                borderRadius: '10px',
-                font: 'Poppins',
-                fontStyle: 'normal',
-                fontWeight: 500,
-                fontSize: 18,
-                lineHeight: 27,
-                display: 'flex',
-                alignItems: 'center',
-                textAlign: 'center',
-                color: '#FFFFFF',
-                justifyContent: 'center',
-                marginRight: 10,
-              }}
-              suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
-              defaultValue={[dayjs('01/01/2023', dateFormatList[0]), dayjs('01/01/2023', dateFormatList[0])]}
-              format={dateFormatList[0]}
-              onChange={handleDateChange}
-            />
-            <Button
-              onClick={handlePrint}
-              style={{
-                width: '100%',
-                height: 48,
-                background: '#5250B4',
-                borderRadius: '10px',
-                font: 'Poppins',
-                fontStyle: 'normal',
-                fontWeight: 500,
-                fontSize: 18,
-                lineHeight: 27,
-                display: 'flex',
-                alignItems: 'center',
-                textAlign: 'center',
-                color: '#FFFFFF',
-                justifyContent: 'center',
-              }}
-            >
-              EXPORT
-            </Button>
-          </div>
-        </Col>
-      </Row>
-
-
+       <Row justify="center">
+  <Col xs={24} lg={8}>
+    <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center', marginTop: '15%' }}>
+    <RangePicker
+     id={styles["input123"]}
+      style={{
+        left: '-225px',
+        width: '100%',
+        height: 48,
+        background: '#5250B4',
+        borderRadius: '10px',
+        font: 'Poppins',
+        fontStyle: 'normal',
+        fontWeight: 500,
+        fontSize: 18,
+        lineHeight: 27,
+        display: 'flex',
+        alignItems: 'center',
+        textAlign: 'center',
+        color: '#FFFFFF',
+        justifyContent: 'center',
+      }}
+      suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
+      defaultValue={[dayjs('01/01/2023', dateFormatList[0]), dayjs('01/01/2023', dateFormatList[0])]}
+      onChange={handleDateChange}
+    />
+      <Button
+        onClick={handlePrint}
+        style={{
+          width: '100%',
+          height: 48,
+          background: '#5250B4',
+          borderRadius: '10px',
+          font: 'Poppins',
+          fontStyle: 'normal',
+          fontWeight: 500,
+          fontSize: 18,
+          lineHeight: 27,
+          display: 'flex',
+          alignItems: 'center',
+          textAlign: 'center',
+          color: '#FFFFFF',
+          justifyContent: 'center',
+          right: '-200px'
+        }}
+      >
+        EXPORT
+      </Button>
+    </div>
+  </Col>
+</Row>
 
       <br></br>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -314,55 +312,27 @@ const User = () => {
             font: 'Poppins',
             fontStyle: 'normal',
             fontWeight: 400,
-            fontSize: '16px',
+            fontSize: '14px',
             lineHeight: '27px',
             display: 'flex',
             alignItems: 'center',
             color: '#656565',
             marginTop: '0px'
-          }}>UserID: {selectedRow && selectedRow.user_id}</p>
+          }}>
+            <br>
+            </br>UserID: {selectedRow && selectedRow.user_id}</p>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <p style={{
               font: 'Poppins',
               fontStyle: 'normal',
-              fontWeight: 600,
-              fontSize: '15px',
+              fontSize: '14px',
               lineHeight: '27px',
               display: 'flex',
               alignItems: 'center',
               color: '#656565',
             }}>
-              {selectedRow && selectedRow.date}
+              {selectedRow && selectedRow.date} | {selectedRow && selectedRow.time} : {selectedRow && selectedRow.activity}
             </p>
-            <p style={{
-              font: 'Poppins',
-              fontStyle: 'normal',
-              fontWeight: 600,
-              fontSize: '15px',
-              lineHeight: '27px',
-              display: 'flex',
-              alignItems: 'center',
-              color: '#656565',
-            }}>&nbsp; | &nbsp;  </p>
-            <p style={{
-              font: 'Poppins',
-              fontStyle: 'normal',
-              fontWeight: 600,
-              fontSize: '15px',
-              lineHeight: '27px',
-              display: 'flex',
-              alignItems: 'center',
-              color: '#656565',
-            }}>{selectedRow && selectedRow.time} : </p> &nbsp;
-            <p style={{
-              font: 'Poppins',
-              fontWeight: "bold",
-              fontSize: '15px',
-              lineHeight: '27px',
-              display: 'flex',
-              alignItems: 'center',
-              color: '#000000',
-            }}>{selectedRow && selectedRow.activity}</p>
           </div>
         </Modal>
       </div>

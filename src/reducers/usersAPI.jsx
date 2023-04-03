@@ -145,9 +145,9 @@ export const upload_CSV = createAsyncThunk(
 //getUserlogsDate
 export const getUserlogsDate = createAsyncThunk(
   '/userlogs/getDate/:start/:end',
-  async ({ start, end },thunkAPI) => {
+  async ({ start, end }, thunkAPI) => {
     try {
-      const response = await axios.get(`${API_LOGS.getUserlogsDate}?start=${start}&end=${end}`, {
+      const response = await axios.get(API_LOGS.getUserlogsDate({ start, end }), {
         headers: {
           auth: localStorage.getItem('token'),
           'Content-Type': 'application/json'
@@ -155,7 +155,6 @@ export const getUserlogsDate = createAsyncThunk(
       });
       return response.data?.result;
     } catch (error) {
-      // return thunkAPI.rejectWithValue(error.response.data);
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -189,6 +188,7 @@ const usersAPI = createSlice({
   name: 'user',
   initialState: {
     user: [],
+    data: [],
     userlogs: [],
     batch: [],
     date: [],
@@ -297,6 +297,7 @@ const usersAPI = createSlice({
       .addCase(getUserlogsDate.fulfilled, (state, action) => {
         state.loading = false;
         state.date = action.payload;
+        state.userlogs = action.payload;  // set the userlogs state variable
       })
       .addCase(getUserlogsDate.rejected, (state, action) => {
         state.loading = false;

@@ -8,12 +8,13 @@ import { getUsers, getAllBatch } from '../reducers/usersAPI';
 const Members = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user?.user);
   const status = useSelector((state) => state.user?.status);
   const error = useSelector((state) => state.user?.error);
   const [selectedBatch,setSelectedBatch] = useState('Batch 1');
   const batches = useSelector((state) => state.user?.batch);
-
+  const user = useSelector((state) => state.user?.user);
+  const filteredUsers = user.filter(user => user.batch === selectedBatch);
+  
   const CreateModal = () => {
     setIsModalVisible(true);
   };
@@ -30,9 +31,11 @@ const Members = () => {
   };
 
   useEffect(() => {
-    dispatch(getUsers());
-  }, [dispatch]);
-
+    if (selectedBatch) {
+      dispatch(getUsers(selectedBatch));
+    }
+  }, [selectedBatch]);
+  
   useEffect(() => {
     dispatch(getAllBatch());
   }, [dispatch]);
@@ -360,7 +363,7 @@ const Members = () => {
               height: '40px',
             }}
           >
-            {selectedBatch} &nbsp;
+            {selectedBatch || 'Select batch'} &nbsp;
             <DownOutlined style={{ fontSize: '14px' }} />
           </Button>
         </Dropdown>
@@ -369,7 +372,7 @@ const Members = () => {
       <div style={{ justifyContent: 'center', maxWidth: '100%' }}>
         <Table
           columns={columns}
-          dataSource={user}
+          dataSource={filteredUsers}
           style={{ justifyContent: 'center', maxWidth: '100%' }}
         />
       </div>
