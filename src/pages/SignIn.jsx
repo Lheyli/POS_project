@@ -4,7 +4,7 @@ import { Card, Form, Input, Button, Checkbox, Row } from 'antd';
 import logo from "../pages/logo.png";
 import signin from "../pages/signin.jpg";
 import { EyeTwoTone } from '@ant-design/icons';
-import { loginUser, login } from '../reducers/usersAPI';
+import { loginUser } from '../reducers/usersAPI';
 
 const SignInPage = () => {
   const dispatch = useDispatch();

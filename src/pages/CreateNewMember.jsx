@@ -1,15 +1,14 @@
 import { Card, Typography, Input, Form, Row, Col, Button, } from "antd";
-import React, { useEffect } from 'react';
+import React from 'react';
 import { EyeTwoTone } from '@ant-design/icons';
 import { Link, useParams } from "react-router-dom";
 import { createUser } from '../reducers/usersAPI';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import TextInput from "../componets/TextInput";
 import TextInput2 from "../componets/TextInput2";
 const CreateNewMember = () => {
   const params = useParams()
   const { Text } = Typography;
-  const { user } = useSelector(state => state.user);
   const [form] = Form.useForm();
 
   const dispatch = useDispatch();

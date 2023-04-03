@@ -52,19 +52,8 @@ const MakePurchase = () => {
     setQuantity(quantity + 1);
     // dispatch(increaseCart(product));
   };
- 
-  const handleSearch = (e) => {
-    setSearchValue(e.target.value);
-  };
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-  };
-  const filteredProducts = products.filter((product) => {
 
-    return (selectedCategory === 'All' || product.product_category === selectedCategory?.toLowerCase()) &&
-      product.product_name.toLowerCase().includes(searchValue.toLowerCase())
-  });
- 
+   
   useEffect(() => {
     dispatch(getProducts());
   }, []);
@@ -80,6 +69,19 @@ const MakePurchase = () => {
   if (error) {
     return <div>{error}</div>;
   }
+ 
+  const handleSearch = (e) => {
+    setSearchValue(e.target.value);
+  };
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
+  const filteredProducts = products.filter((product) => {
+
+    return (selectedCategory === 'All' || product.product_category === selectedCategory?.toLowerCase()) &&
+      product.product_name.toLowerCase().includes(searchValue.toLowerCase())
+  });
+
 
   return (
     <>

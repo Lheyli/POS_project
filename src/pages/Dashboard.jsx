@@ -10,29 +10,8 @@ import moment from 'moment';
 import './net.css'
 const { TabPane } = Tabs;
 const { Title } = Typography;
-const events = [
-  {
-    date: moment().startOf('day').add(6, 'hours').toISOString(),
-    title: 'Meeting with John',
-    description: 'Discuss the new project',
-    type: 'success',
-  },
-  {
-    date: moment().startOf('day').add(12, 'hours').toISOString(),
-    title: 'Lunch with Mary',
-    description: 'Try the new restaurant',
-    type: 'warning',
-  },
-  {
-    date: moment().startOf('day').add(18, 'hours').toISOString(),
-    title: 'Call with Sarah',
-    description: 'Follow up on the sales report',
-    type: 'error',
-  },
-];
-function getEventsForDay(date) {
-  return events.filter(event => moment(event.date).isSame(date, 'day'));
-}
+
+
 const { Option } = Select;
 const dailyData = [
   { date: '9:00AM', sales: 300 },
@@ -117,7 +96,6 @@ function Dashboard() {
         justifyContent: 'center',
         alignItems: 'center',
         overflow: 'scroll',
-        width: '100%',
         // overflow:'scroll'
         // backgroundColor:'red'
         // zIndex:

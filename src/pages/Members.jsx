@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Table, Card, Button, Modal, Menu, Dropdown } from 'antd';
+import { Table, Card, Button, Modal, Dropdown } from 'antd';
 import { PlusOutlined,DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { getUsers, getAllBatch } from '../reducers/usersAPI';

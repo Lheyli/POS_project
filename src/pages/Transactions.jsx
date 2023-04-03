@@ -137,15 +137,7 @@ const Transactions = () => {
       ),
     },
   ];
-  const handlePrint = () => {
-    const receiptElement = document.getElementById('receipt-info');
-    const printWindow = window.open('', 'Print', 'height=600,width=800');
-    printWindow.document.write(receiptElement.innerHTML);
-    printWindow.document.close();
-    printWindow.focus();
-    printWindow.print();
-    printWindow.close();
-  };
+
   return (
     <>
      <div style={{
