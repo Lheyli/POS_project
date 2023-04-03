@@ -204,6 +204,7 @@ const User = () => {
       }}>
         <span>
           {today}</span></div>
+          <br />
       <Row justify="center" >
         <Col xs={24} lg={16}>
           <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '8%', marginLeft: 85 }} >

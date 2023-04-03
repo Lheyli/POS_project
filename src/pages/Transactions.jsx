@@ -148,26 +148,9 @@ const Transactions = () => {
   };
   return (
     <>
-     <div style={{
-      position: 'absolute',
-      left: '20%',
-      marginTop: '10px',
-      width: '50%',
-      font: 'Poppins',
-      fontStyle: 'normal',
-      fontWeight: '700',
-      fontSize: '35px',
-      color: '#3B3A82',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}>
-      <span>
-        Transactions
-      </span>
-    </div>
+
       <div style={{
-        top: '18%',
+        top: '15%',
         width: '50%',
         font: 'Poppins',
         fontStyle: 'normal',
@@ -175,14 +158,15 @@ const Transactions = () => {
         fontSize: '28px',
         color: '#30304D',
         display: 'flex',
-        left: '26%',
+        left: '22%',
         position: 'absolute'
       }}>
         <span>
           {today}</span></div>
+      <br />
       <Row justify="center">
         <Col xs={24} lg={16}>
-          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '10%', marginLeft: 155 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '8%', marginLeft: 85 }}>
             <DatePicker
               id={styles["input123"]}
               style={{
@@ -207,7 +191,7 @@ const Transactions = () => {
             />
             <Button
               style={{
-                marginLeft: '5%',
+
                 width: '100%',
                 height: 48,
                 background: '#5250B4',
@@ -244,12 +228,12 @@ const Transactions = () => {
           margin: 'auto'
         }}
       >
-        <div style={{ justifyContent: 'center', maxWidth: '100%', }}>
+        <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center' }}>
           <Table
             columns={columns}
             rowKey="id"
             scroll={{ x: 'max-content', y: 'auto' }}
-            style={{ justifyContent: 'center', maxWidth: '100%', margin: 'auto', background: '#F9F9FF' }}
+
           />
         </div>
       </Card>
