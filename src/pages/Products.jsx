@@ -247,7 +247,7 @@ const Products = () => {
   return (
     <>
       <Row justify="space-between" align="middle" >
-        <Col xs={24} sm={12} md={8} lg={6} style={{ textAlign: 'right' }}>
+        <Col xs={24} sm={12} md={8} lg={6} >
           <RangePicker
             id={styles["input123"]}
             style={{
@@ -267,10 +267,9 @@ const Products = () => {
             onChange={handleDateChange}
           />
         </Col>
-
-        <Col xs={24} sm={12} md={16} lg={18} xl={20} >
+        <Col xs={24} sm={12} md={16} lg={18} xl={20} style={{  marginLeft: 100 }}>
           <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-            <Button onClick={CreateModal} style={{ borderColor: '#5250B4', borderRadius: '50px', display: 'flex', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', }}>
+            <Button onClick={CreateModal} style={{ borderColor: '#5250B4', borderRadius: '50px', display: 'flex', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', marginRight: 16 }}>
               CREATE NEW
             </Button>
             <Button

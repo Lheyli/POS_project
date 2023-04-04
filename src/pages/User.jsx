@@ -15,7 +15,7 @@ const User = () => {
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user?.userlogs);
-  const [setUserlogs] = useState([]);
+
 
   const handleDateChange = (date) => {
     const [start, end] = date.map((date) => date.format("YYYY-MM-DD"));
