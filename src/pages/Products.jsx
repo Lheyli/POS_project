@@ -12,7 +12,6 @@ const dateFormatList = ['MM/DD/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
 const Products = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [setProducts] = useState([]);
   const products = useSelector((state) => state.products?.products);
   const loading = useSelector((state) => state.products.loading);
   const error = useSelector((state) => state.products.error);
@@ -24,16 +23,11 @@ const Products = () => {
     dispatch(deleteOneProduct(product_id));
   };
 
-  const handleDateChange = async (date) => {
+  const handleDateChange = (date) => {
     const [start, end] = date.map(date => date.format('YYYY-MM-DD'));
-    try {
-      const response = await dispatch(getProductDate({ start, end }));
-      setProducts(response.payload); // update products state with the fetched data
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(getProductDate({ start, end }));
   };
-  
+
 
   const handleButtonClick = (product) => {
     setIsDrawerVisible(true);
@@ -242,11 +236,18 @@ const Products = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
-
+  const BREAKPOINTS = {
+    xs: 24,
+    sm: 24,
+    md: 12,
+    lg: 12,
+    xl: 12,
+    xxl: 12,
+  }
   return (
     <>
-      <Row justify="space-between" align="middle" style={{ marginBottom: '24px' }}>
-        <Col xs={24} sm={12} md={8} lg={6} style={{marginLeft: 400}}>
+      <Row justify="space-between" align="middle" >
+        <Col xs={24} sm={12} md={8} lg={6} style={{ textAlign: 'right' }}>
           <RangePicker
             id={styles["input123"]}
             style={{
@@ -256,18 +257,20 @@ const Products = () => {
               fontStyle: 'normal',
               fontWeight: 500,
               height: '48px',
+              borderRadius: '10px',
               fontSize: '18px',
               color: '#FFFFFF',
-              lineHeight: 27, 
+              lineHeight: 27,
             }}
             suffixIcon={<CalendarOutlined />}
             format={dateFormatList[0]}
             onChange={handleDateChange}
           />
         </Col>
-        <Col xs={24} sm={12} md={16} lg={18} xl={20} style={{ textAlign: 'right', marginLeft: -150 }}>
+
+        <Col xs={24} sm={12} md={16} lg={18} xl={20} >
           <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-            <Button onClick={CreateModal} style={{ borderColor: '#5250B4', borderRadius: '50px', display: 'flex', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', marginRight: 16 }}>
+            <Button onClick={CreateModal} style={{ borderColor: '#5250B4', borderRadius: '50px', display: 'flex', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', }}>
               CREATE NEW
             </Button>
             <Button
@@ -287,33 +290,42 @@ const Products = () => {
       </Row>
       <Row justify="center">
         <Col xs={24}>
-          <StyledTable columns={columns} dataSource={products} rowKey="id" />
+          <StyledTable
+            columns={columns}
+            dataSource={products}
+            rowKey="id"
+            responsive="true"
+            scroll={{ x: 'max-content' }}
+          />
         </Col>
       </Row>
+
       <Modal
         visible={isModalVisible}
         onCancel={handleCancel}
         footer={null}
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
       >
-        <p style={{  display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#30304D', font: "Poppins", fontWeight: 'bold' }}>CREATE NEW PRODUCT</p>
+        <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#30304D', font: "Poppins", fontWeight: 'bold' }}>CREATE NEW PRODUCT</p>
         <Row justify="center">
           <Col xs={24} sm={12} style={{ marginBottom: '16px' }}>
             <Link to='/singleprod'>
-              <Button style={{borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', width: '150px'}}>
+              <Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', width: '150px' }}>
                 SINGLE
               </Button>
             </Link>
           </Col>
           <Col xs={24} sm={12} style={{ marginBottom: '16px' }}>
             <Link to='/multiple'>
-              <Button style={{  background: '#5250B4',
-              borderRadius: '50px',
-              display: 'inline-block',
-              color: '#ffffff',
-              font: "Poppins",
-              fontWeight: 'bold',
-              width: '150px' }}>
+              <Button style={{
+                background: '#5250B4',
+                borderRadius: '50px',
+                display: 'inline-block',
+                color: '#ffffff',
+                font: "Poppins",
+                fontWeight: 'bold',
+                width: '150px'
+              }}>
                 MULTIPLE
               </Button>
             </Link>

@@ -205,66 +205,69 @@ const User = () => {
       }}>
         <span>
           {today}</span></div>
-       <Row justify="center">
-  <Col xs={24} lg={8}>
-    <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center', marginTop: '15%' }}>
-    <RangePicker
-     id={styles["input123"]}
-      style={{
-        left: '-225px',
-        width: '100%',
-        height: 48,
-        background: '#5250B4',
-        borderRadius: '10px',
-        font: 'Poppins',
-        fontStyle: 'normal',
-        fontWeight: 500,
-        fontSize: 18,
-        lineHeight: 27,
-        display: 'flex',
-        alignItems: 'center',
-        textAlign: 'center',
-        color: '#FFFFFF',
-        justifyContent: 'center',
-      }}
-      suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
-      defaultValue={[dayjs('01/01/2023', dateFormatList[0]), dayjs('01/01/2023', dateFormatList[0])]}
-      onChange={handleDateChange}
-    />
-      <Button
-        onClick={handlePrint}
-        style={{
-          width: '100%',
-          height: 48,
-          background: '#5250B4',
-          borderRadius: '10px',
-          font: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: 500,
-          fontSize: 18,
-          lineHeight: 27,
-          display: 'flex',
-          alignItems: 'center',
-          textAlign: 'center',
-          color: '#FFFFFF',
-          justifyContent: 'center',
-          right: '-200px'
-        }}
-      >
-        EXPORT
-      </Button>
-    </div>
-  </Col>
-</Row>
-
+      <Row justify="center">
+        <Col xs={24} lg={12}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10%', marginRight: 50}}>
+            <RangePicker
+              id="input123"
+              style={{
+                width: '50%',
+                maxWidth: 400,
+                height: 48,
+                background: '#5250B4',
+                borderRadius: '10px',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: 27,
+                display: 'flex',
+                alignItems: 'center',
+                textAlign: 'center',
+                color: '#FFFFFF',
+                justifyContent: 'center',
+              }}
+              suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
+              defaultValue={[dayjs('01/01/2023', dateFormatList[0]), dayjs('01/01/2023', dateFormatList[0])]}
+              onChange={handleDateChange}
+            />
+          </div>
+        </Col>
+        <Col xs={24} lg={8}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '15%', marginRight: 150 }}>
+            <Button
+              onClick={handlePrint}
+              style={{
+                width: '41%',
+                height: 48,
+                background: '#5250B4',
+                borderRadius: '10px',
+                font: 'Poppins',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: 27,
+                display: 'flex',
+                alignItems: 'center',
+                textAlign: 'center',
+                color: '#FFFFFF',
+                justifyContent: 'center',
+              }}
+            >
+              EXPORT
+            </Button>
+          </div>
+        </Col>
+      </Row>
       <br></br>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center',  }}>
         <Card id="receipt-info"
           style={{
+            
             justifyContent: 'center',
             maxWidth: '100%',
             alignItems: 'center',
-            width: 1100,
+            width: 1000,
             background: '#F9F9FF',
             boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
             borderRadius: 24,
