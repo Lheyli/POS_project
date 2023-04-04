@@ -1,112 +1,41 @@
 import { Card, Typography, Form, Row, Col, Button, Modal, Upload } from "antd";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link, useParams } from "react-router-dom";
-import { PlusOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct, updateProduct, getOne } from "../reducers/productSlice";
 import TextInput from "../componets/TextInput";
 import TextInput2 from "../componets/TextInput2";
 import DateInput from "../componets/DateInput";
-const getBase64 = (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-  });
+import { bold } from "fontawesome";
 
 
-/*
-
-//display component
-const VariationComponent = ({
-  index,
-  title="VARIATION X",
-  placeholder = "Variation X",
-  onChange
-}) => (
-  <Row key={`variation_${index}`} gutter={16} style={{ marginBottom: '16px' }}>
-      <Col span={12}>
-        <Typography.Text
-          style={{
-            font: 'Poppins',
-            fontStyle: 'normal',
-            fontWeight: 600,
-            fontSize: 15,
-            display: 'flex',
-            color: '#1A2163',
-          }}
-        >
-          VARIATION {index}
-        </Typography.Text>
-        < TextInput2
-          name={`variation.${index}`}// variation.0
-          placeholder={placeholder}
-          onChange={onChange}
-        />
-      </Col>
-    </Row>
-)
-
-// state
-create 2 state arrays 
-   - values - for passing to backend
-       onFinish = (values) => {
-
-        dispatch(createProduct({
-          variation: variationValues
-          ...value
-        }));
-
-       }
-   - display 
-       - for display 
-       - required for onChange
-          - modify values state
-       - *kung gusto maremove ung specific variation
-            kailangan unique ID
-          - else pwede Array.pop
-
-
-  
-
-*/
 
 const SingleProduct = () => {
   const params = useParams();
   const dispatch = useDispatch()
   const [form] = Form.useForm();
   const [variations, setVariations] = useState(['']); // state to store all variations
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState('');
-  const [previewTitle, setPreviewTitle] = useState('');
   const [fileList, setFileList] = useState([]);
   const { product } = useSelector(state => state.products);
-  const handleCancel = () => setPreviewOpen(false);
-  const handlePreview = async (file) => {
-    // if (!file.url && !file.preview) {
-    //   file.preview = await getBase64(file.originFileObj);
-    // }
-    if (product?.buffer_file) {
-      file.preview = product?.buffer_file;
-    }
-    // setPreviewImage(file.url || file.preview);
-    // setPreviewOpen(true);
-    // setPreviewTitle(file.id || file.url.substring(file.url.lastIndexOf('/') + 1));
+  const [display, setDispaly] = useState(null);
+  const [image, setImage] = useState(null);
+  console.log("🚀 ~ file: SingleProduct.jsx:21 ~ SingleProduct ~ image:", image)
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+     setImage(file);
+    const reader = new FileReader();
+    reader.onload = () => {
+      setDispaly(reader.result);
+    };
+    reader.readAsDataURL(file);
   };
-  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
-  const uploadButton = (
-    <div>
-      <PlusOutlined />
-      <div
-        style={{
-          marginTop: 8,
-        }}
-      >
-        Upload
-      </div>
-    </div>
-  );
+
+  const handleSquareClick = () => {
+    document.getElementById('imageInput').click();
+  };
+
+
   const addVariation = () => {
     setVariations([...variations, '']); // add an empty string to the variations array
   };
@@ -145,12 +74,6 @@ const SingleProduct = () => {
         markup_price: product.markup_price,
         updated_by: product.updated_by
       })
-      setFileList([{
-        uid: product.buffer_file,
-        name: product.image,
-        status: 'done',
-        url: product.buffer_file,
-      }])
     }
   }, [product])
   return (
@@ -193,7 +116,7 @@ const SingleProduct = () => {
           bodyFormData.append('markup_price', markup_price);
           bodyFormData.append('updated_by', updated_by);
           bodyFormData.append('variation', Object.values(variations));
-          if (fileList.length > 0) bodyFormData.append('image', fileList[0]);
+          if (image) bodyFormData.append('image', image);
 
 
           if (params?.isUpdate) {
@@ -229,33 +152,34 @@ const SingleProduct = () => {
         </Row>
         <Row gutter={16}>
           <Col span={12}>
-            {/* 
-
-            <div>
-
-              <img />
-
-              <button>add image</button>
-              </div>
-            */}
-            <Upload
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-              listType="picture-card"
-              fileList={fileList}
-              onPreview={handlePreview}
-              onChange={handleChange}
-            >
-              {fileList.length >= 1 ? null : uploadButton}
-            </Upload>
-            <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
-              <img
-                alt="example"
-                style={{
-                  width: '100%',
-                }}
-                src={previewImage}
+            <div style={{ position: 'relative', width: '150px', height: '150px', border: '2px solid #A9A9CC', borderRadius: '5px' }}>
+              <img src={display ? display : (`data:image/jpeg;base64, ${product.buffer_file}`) || "https://picsum.photos/50/50/"} alt="" style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: '5px' }} />
+              {!display && (
+                <div style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={handleSquareClick}>
+                  <span style={{ fontSize: '24px', color: 'gray', color: '#A9A9CC' }}>+</span>
+                </div>
+              )}
+              <input
+                type="file"
+                id="imageInput"
+                accept="image/*"
+                onChange={handleImageChange}
+                style={{ display: 'none' }}
               />
-            </Modal>
+
+            </div>
+            <br></br>
+            <Button style={{
+              width: '150px',
+              font: 'Poppins',
+              fontWeight: 'bold',
+              fontSize: 15,
+              display: 'flex',
+              color: '#F9F9FF',
+              justifyContent: 'center',
+              alignItems: 'center',
+              background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
+            }} disabled={!image}>Add Image</Button>
           </Col>
           <Col span={12}>
             <Typography.Text style={{
