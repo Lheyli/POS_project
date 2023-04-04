@@ -12,7 +12,6 @@ const dateFormatList = ['MM/DD/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
 const Products = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [setProducts] = useState([]);
   const products = useSelector((state) => state.products?.products);
   const loading = useSelector((state) => state.products.loading);
   const error = useSelector((state) => state.products.error);
@@ -24,16 +23,11 @@ const Products = () => {
     dispatch(deleteOneProduct(product_id));
   };
 
-  const handleDateChange = async (date) => {
+  const handleDateChange = (date) => {
     const [start, end] = date.map(date => date.format('YYYY-MM-DD'));
-    try {
-      const response = await dispatch(getProductDate({ start, end }));
-      setProducts(response.payload); // update products state with the fetched data
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(getProductDate({ start, end }));
   };
-  
+
 
   const handleButtonClick = (product) => {
     setIsDrawerVisible(true);
@@ -166,9 +160,9 @@ const Products = () => {
   const columns = [
     {
       title: '',
-      dataIndex: 'buffer_file',
-      key: 'buffer_file',
-      render: (text) => <img src={`data:image/jpeg;base64, ${text}` || "https://picsum.photos/50/50/"} alt="product" style={{ height: '50px', width: '50px' }} />,
+      dataIndex: 'image',
+      key: 'image',
+      render: (text) => <img src={text || "https://picsum.photos/50/50/"} alt="product" style={{ height: '50px', width: '50px' }} />,
     },
     {
       title: <span style={{ fontWeight: 'bold', color: '#3B3A82', fontSize: '18px', font: 'Poppins' }}>Products</span>,
@@ -251,91 +245,95 @@ const Products = () => {
     xxl: 12,
   }
   return (
-
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center'
-    }}>
-
-      <Row gutter={[16, 16]} style={{ width: 'max-content', maxWidth: 1000 }}>
-        <Col
-          {...BREAKPOINTS}
-          style={{ display: 'flex', marginBottom: '16px', justifyContent: 'flex-start' }}
-        >
+    <>
+      <Row justify="space-between" align="middle" >
+        <Col xs={24} sm={12} md={8} lg={6} >
           <RangePicker
             id={styles["input123"]}
             style={{
-              left: '-225px',
-              width: '100%',
-              height: 48,
               background: '#5250B4',
               borderRadius: '10px',
               font: 'Poppins',
               fontStyle: 'normal',
               fontWeight: 500,
-              fontSize: 18,
-              lineHeight: 27,
-              display: 'flex',
-              alignItems: 'center',
-              textAlign: 'center',
+              height: '48px',
+              borderRadius: '10px',
+              fontSize: '18px',
               color: '#FFFFFF',
-              justifyContent: 'center',
+              lineHeight: 27,
             }}
-            suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
+            suffixIcon={<CalendarOutlined />}
             format={dateFormatList[0]}
             onChange={handleDateChange}
           />
         </Col>
-        <Col
-          {...BREAKPOINTS}
-          style={{ display: 'flex', marginBottom: '16px', justifyContent: 'flex-end' }}>
-          <Button onClick={CreateModal} style={{ borderColor: '#5250B4', borderRadius: '50px', display: 'inline-block', color: '#3B3A82', font: "Poppins", fontWeight: 'bold' }}>
-            CREATE NEW
-          </Button>
-          <Modal
-            open={isModalVisible}
-            onCancel={handleCancel}
-            footer={null}
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          >
-            <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#30304D', font: "Poppins", fontWeight: 'bold' }}>CREATE NEW PRODUCT</p>
-            <Link to='/singleprod'><Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', width: '150px' }}>
-              SINGLE
-            </Button></Link>
-            &nbsp;&nbsp;
-            <Link to='/multiple'><Button style={{
-              background: '#5250B4',
-              borderRadius: '50px',
-              display: 'inline-block',
-              color: '#ffffff',
-              font: "Poppins",
-              fontWeight: 'bold',
-              width: '150px'
-            }}>
-              MULTIPLE
-            </Button></Link>
-          </Modal>
-          &nbsp; &nbsp;
-          <Button
-            style={{
-              background: '#5250B4',
-              borderRadius: '50px',
-              display: 'inline-block',
-              color: '#ffffff',
-              font: "Poppins",
-              fontWeight: 'bold'
-            }}
-            icon={<ShoppingCartOutlined />}
-          > &nbsp;
-            <Link to="/make">MAKE PURCHASE</Link>
-          </Button>
+        <Col xs={24} sm={12} md={16} lg={18} xl={20} style={{  marginLeft: 100 }}>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+            <Button onClick={CreateModal} style={{ borderColor: '#5250B4', borderRadius: '50px', display: 'flex', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', marginRight: 16 }}>
+              CREATE NEW
+            </Button>
+            <Button
+              style={{
+                background: '#5250B4',
+                borderRadius: '50px',
+                display: 'inline-block',
+                color: '#ffffff',
+                fontWeight: 'bold',
+              }}
+              icon={<ShoppingCartOutlined />}
+            >
+              <Link to="/make"> MAKE PURCHASE</Link>
+            </Button>
+          </div>
         </Col>
       </Row>
-      <StyledTable columns={columns} dataSource={products} rowKey="id" />
-      {modalContent}
-    </div>
+      <Row justify="center">
+        <Col xs={24}>
+          <StyledTable
+            columns={columns}
+            dataSource={products}
+            rowKey="id"
+            responsive="true"
+            scroll={{ x: 'max-content' }}
+          />
+        </Col>
+      </Row>
+
+      <Modal
+        visible={isModalVisible}
+        onCancel={handleCancel}
+        footer={null}
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
+        <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#30304D', font: "Poppins", fontWeight: 'bold' }}>CREATE NEW PRODUCT</p>
+        <Row justify="center">
+          <Col xs={24} sm={12} style={{ marginBottom: '16px' }}>
+            <Link to='/singleprod'>
+              <Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', width: '150px' }}>
+                SINGLE
+              </Button>
+            </Link>
+          </Col>
+          <Col xs={24} sm={12} style={{ marginBottom: '16px' }}>
+            <Link to='/multiple'>
+              <Button style={{
+                background: '#5250B4',
+                borderRadius: '50px',
+                display: 'inline-block',
+                color: '#ffffff',
+                font: "Poppins",
+                fontWeight: 'bold',
+                width: '150px'
+              }}>
+                MULTIPLE
+              </Button>
+            </Link>
+          </Col>
+        </Row>
+        {modalContent}
+      </Modal>
+
+    </>
   );
 };
 export default Products;
