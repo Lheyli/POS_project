@@ -96,9 +96,6 @@ function Dashboard() {
         justifyContent: 'center',
         alignItems: 'center',
         overflow: 'scroll',
-        // overflow:'scroll'
-        // backgroundColor:'red'
-        // zIndex:
       }}
     >
       <div style={{
@@ -111,7 +108,6 @@ function Dashboard() {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        // overflow: 'scroll',
       }}>
         <span>
           Dashboard
@@ -137,7 +133,7 @@ function Dashboard() {
                 <h1 style={{ color: '#F9F9FF', font: 'Poppins', fontWeight: 'bold', fontSize: '18px' }}>Summary of Sales Report</h1>
               </Col>
               <Col xs={24} md={8}>
-                <Select defaultValue="daily" style={{ width: '100%', border: '#7170CF' }} onChange={handleTimeFrameChange}>
+                <Select defaultValue="daily" style={{ position: 'absolute', width: '100%', border: '#7170CF' }} onChange={handleTimeFrameChange}>
                   <Option value="daily" style={{ color: '#7170CF' }} >Daily Sales</Option>
                   <Option value="weekly" style={{ color: '#7170CF' }} >Weekly Sales</Option>
                   <Option value="monthly" style={{ color: '#7170CF' }} >Monthly Sales</Option>
