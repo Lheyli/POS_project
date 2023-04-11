@@ -56,11 +56,11 @@ const MakePurchase = () => {
    
   useEffect(() => {
     dispatch(getProducts());
-  }, []);
+  }, [dispatch]);
   
   useEffect(() => {
     dispatch(getAllCategory());
-  }, [])
+  }, [dispatch])
 
 
   if (loading) {

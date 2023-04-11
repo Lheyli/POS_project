@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CalendarOutlined, EyeOutlined } from '@ant-design/icons'
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import styles from './Transactions.module.css';
+
 import { getUserlogs, getUserlogsDate } from '../reducers/usersAPI';
 dayjs.extend(customParseFormat);
 const { RangePicker } = DatePicker;

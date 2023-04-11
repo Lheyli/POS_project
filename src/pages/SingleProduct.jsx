@@ -1,12 +1,11 @@
-import { Card, Typography, Form, Row, Col, Button, Modal, Upload } from "antd";
-import React, { useEffect, useState, useRef } from 'react';
+import { Card, Typography, Form, Row, Col, Button } from "antd";
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct, updateProduct, getOne } from "../reducers/productSlice";
 import TextInput from "../componets/TextInput";
 import TextInput2 from "../componets/TextInput2";
 import DateInput from "../componets/DateInput";
-import { bold } from "fontawesome";
 
 
 
@@ -15,12 +14,9 @@ const SingleProduct = () => {
   const dispatch = useDispatch()
   const [form] = Form.useForm();
   const [variations, setVariations] = useState(['']); // state to store all variations
-  const [fileList, setFileList] = useState([]);
   const { product } = useSelector(state => state.products);
   const [display, setDispaly] = useState(null);
   const [image, setImage] = useState(null);
-  console.log("🚀 ~ file: SingleProduct.jsx:21 ~ SingleProduct ~ image:", image)
-
   const handleImageChange = (event) => {
     const file = event.target.files[0];
      setImage(file);
@@ -61,7 +57,7 @@ const SingleProduct = () => {
     if (params?.isUpdate) {
       dispatch(getOne("46a9d906-7059-4dae-8a7e-7e8a0d51fda4"))
     }
-  }, [params?.isUpdate])
+  }, [dispatch,params?.isUpdate])
   useEffect(() => {
 
     if (product) {
@@ -75,7 +71,7 @@ const SingleProduct = () => {
         updated_by: product.updated_by
       })
     }
-  }, [product])
+  }, [form,product])
   return (
     <Card style={{
       width: "950px",
@@ -156,7 +152,7 @@ const SingleProduct = () => {
               <img src={display ? display : (`data:image/jpeg;base64, ${product.buffer_file}`) || "https://picsum.photos/50/50/"} alt="" style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: '5px' }} />
               {!display && (
                 <div style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={handleSquareClick}>
-                  <span style={{ fontSize: '24px', color: 'gray', color: '#A9A9CC' }}>+</span>
+                  <span style={{ fontSize: '24px',color: '#A9A9CC' }}>+</span>
                 </div>
               )}
               <input

@@ -34,7 +34,7 @@ const Members = () => {
     if (selectedBatch) {
       dispatch(getUsers(selectedBatch));
     }
-  }, [selectedBatch]);
+  }, [dispatch,selectedBatch]);
   
   useEffect(() => {
     dispatch(getAllBatch());
@@ -47,9 +47,9 @@ const Members = () => {
       batches?.length > 0 ?batches?.map((batch, index) => (  {
         key: `${batch}_${index}`,
         label: (
-          <a target="#" rel="noopener noreferrer" onClick={() => handleBatchClick(batch)}>
+          <Button  onClick={() => handleBatchClick(batch)}>
            {batch}
-          </a>
+          </Button>
         ),
         disabled: false,
       })) : [
