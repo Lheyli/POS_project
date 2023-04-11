@@ -1,7 +1,7 @@
 import React from 'react';
 import { DatePicker, Card, Table, Button, Row, Col } from 'antd';
 import dayjs from 'dayjs';
-import { CalendarOutlined, RightOutlined, CaretDownOutlined } from '@ant-design/icons'
+import { CalendarOutlined, RightOutlined } from '@ant-design/icons'
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import styles from './Transactions.module.css';
 dayjs.extend(customParseFormat);
@@ -41,7 +41,7 @@ const Transactions = () => {
         display: 'flex',
         alignItems: 'center',
         color: '#3B3A82'
-      }}>Orders</span>,
+      }}>Order</span>,
       dataIndex: 'title',
       key: 'productname',
       render: (text, record) => (
@@ -65,7 +65,7 @@ const Transactions = () => {
         display: 'flex',
         alignItems: 'center',
         color: '#3B3A82'
-      }}>Price <CaretDownOutlined /></span>,
+      }}>Price </span>,
       dataIndex: 'price',
       key: 'price',
       render: (text) => (
@@ -142,7 +142,6 @@ const Transactions = () => {
     <>
 
       <div style={{
-        top: '15%',
         width: '50%',
         font: 'Poppins',
         fontStyle: 'normal',
@@ -150,26 +149,27 @@ const Transactions = () => {
         fontSize: '28px',
         color: '#30304D',
         display: 'flex',
-        left: '22%',
-        position: 'absolute'
+        justifyContent: 'center',
+        marginTop: '10px',
       }}>
         <span>
           {today}</span></div>
       <br />
       <Row justify="center">
         <Col xs={24} lg={16}>
-          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '8%', marginLeft: 85 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '10px',  }}>
+           
             <DatePicker
               id={styles["input123"]}
               style={{
-                width: '100%',
+                width: '150px',
                 height: 48,
                 background: '#5250B4',
                 borderRadius: '10px',
                 font: 'Poppins',
                 fontStyle: 'normal',
                 fontWeight: 500,
-                fontSize: 18,
+                fontSize: 13,
                 lineHeight: 27,
                 display: 'flex',
                 alignItems: 'center',
@@ -184,14 +184,14 @@ const Transactions = () => {
             <Button
               style={{
 
-                width: '100%',
+                width: '150px',
                 height: 48,
                 background: '#5250B4',
                 borderRadius: '10px',
                 font: 'Poppins',
                 fontStyle: 'normal',
                 fontWeight: 500,
-                fontSize: 18,
+                fontSize: 15,
                 lineHeight: 27,
                 display: 'flex',
                 alignItems: 'center',
@@ -206,29 +206,28 @@ const Transactions = () => {
         </Col>
       </Row>
       <br></br>
-      <Card
+
+          <Table
         id="receipt-info"
         style={{
           backgroundColor: '#FFFFFF',
           maxWidth: '100%',
-          width: 1100,
+          width: 1000,
           background: '#F9F9FF',
           boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
-          borderRadius: '24px',
+          borderRadius: '50px',
           justifyContent: 'center',
           alignItems: 'center',
           margin: 'auto'
         }}
-      >
-        <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center' }}>
-          <Table
             columns={columns}
             rowKey="id"
-            scroll={{ x: 'max-content', y: 'auto' }}
-
+            pagination={false}
+            scroll={false}
           />
-        </div>
-      </Card>
+
+ 
+
     </>
   );
 };

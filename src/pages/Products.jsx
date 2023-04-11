@@ -225,12 +225,27 @@ const Products = () => {
     },
   ];
   const StyledTable = styled(Table)`
-    background-color: #F9F9FF;
-    border-color: #E8E8E8;
-    max-width: 1000px;
-    margin: auto;
-    border-radius: 20px;
-  `;
+  background-color: #F9F9FF;
+  border-color: #E8E8E8;
+  max-width: 768px;
+  margin: auto;
+  border-radius: 20px;
+
+  @media (max-width: 768px) {
+    .ant-table-cell {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ant-table-thead > tr > th,
+    .ant-table-tbody > tr > td {
+      padding: 2px 1px;
+    }
+  }
+`;
+
+
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
