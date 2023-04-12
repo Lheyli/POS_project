@@ -99,11 +99,11 @@ function Dashboard() {
       }}
     >
       <div style={{
-        marginTop: '10px',
+        marginTop: '16px',
         font: 'Poppins',
         fontStyle: 'normal',
         fontWeight: '700',
-        fontSize: '35px',
+        fontSize: '30px',
         color: '#3B3A82',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -113,52 +113,47 @@ function Dashboard() {
           Dashboard
         </span>
       </div>
-      <Row justify={'center'} style={{ marginTop: 30, width: 'max-content', }} gutter={[25, 25]}>
-        <Col xs={24} sm={24} md={24} lg={24} xl={12} style={{
-          display: 'flex',
-          margin: '50px 0',
-          alignItems: 'center',
-          justifyContent: 'center',
-          maxWidth: '90vw'
-        }}>
+      <Row justify="center" gutter={[16, 16]}>
+
+
           <Card style={{
             background: 'linear-gradient(258.36deg, #9695E8 1.29%, #5250B4 97.24%)',
             boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.25)',
             borderRadius: '20px',
-            width: 500,
-            height: 400,
+            width: '100%',
+            maxWidth: 500,
+            marginTop: '16px',
+            height: '400px', // Set an initial height
           }}>
             <Row gutter={[16, 16]} justify="space-between" align="middle">
               <Col xs={24} md={12}>
-                <h1 style={{ color: '#F9F9FF', font: 'Poppins', fontWeight: 'bold', fontSize: '18px' }}>Summary of Sales Report</h1>
+                <h1 style={{ color: '#F9F9FF', font: 'Poppins', fontWeight: 'bold', fontSize: '15px' }}>Summary of Sales Report</h1>
               </Col>
               <Col xs={24} md={8}>
-                <Select defaultValue="daily" style={{ position: 'absolute', width: '100%', border: '#7170CF' }} onChange={handleTimeFrameChange}>
+                <Select defaultValue="daily" style={{ border: '#7170CF' }} onChange={handleTimeFrameChange}>
                   <Option value="daily" style={{ color: '#7170CF' }} >Daily Sales</Option>
                   <Option value="weekly" style={{ color: '#7170CF' }} >Weekly Sales</Option>
                   <Option value="monthly" style={{ color: '#7170CF' }} >Monthly Sales</Option>
                 </Select>
               </Col>
             </Row>
-            <Line {...chartConfig} style={{ color: 'none', strokeWidth: 0 }} />
+
+            <div style={{ width: '100%', height: '100%' }}>
+              <Line {...chartConfig} style={{ color: 'none', strokeWidth: 0 }} />
+            </div>
           </Card>
-        </Col>
-        <Col xs={24} sm={24} md={24} lg={24} xl={12} style={{
-          display: 'flex',
-          margin: '50px 0',
-          alignItems: 'center',
-          justifyContent: 'center',
-          maxWidth: '90vw'
-        }}
-        >
+
+     
+        <Col xs={24} md={12}>
           <Card style={{
-            width: 500,
-            height: 400,
+                width: '100%',
+                marginTop: '16px',
+                maxWidth: 500, // Set initial width to 100% so that it stretches to the container
+            height: '400px', // Set an initial height
             background: '#EEEEFF',
             border: '0.5px solid #E8E8E8',
             boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.25)',
-            borderRadius: '20px',
-
+            borderRadius: 20,
 
           }}>
             <h1 style={{ color: '#30304D', font: 'Poppins', fontStyle: 'normal', fontWeight: '700', fontSize: '21px', lineHeight: '38px' }}>Calendar</h1>
@@ -216,7 +211,7 @@ function Dashboard() {
 
       <Row justify="start" style={{ marginTop: '30px' }}>
         <Col xs={22} sm={20} md={16} lg={14} xl={12}>
-          <Card style={{ borderRadius: '20px', marginLeft: 70, width: 'max-content'}}>
+          <Card style={{ borderRadius: '20px', marginLeft: 70, width: 'max-content' }}>
             <Row justify="space-between" align="middle">
               <Col>
                 <Title level={2} style={{ margin: '0', color: '#30304D', font: 'Poppins', fontWeight: 'bold', fontSize: 20 }}>Most Popular Products</Title>

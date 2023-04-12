@@ -274,80 +274,80 @@ const Products = () => {
       alignItems: 'center'
     }}>
 
-      <Row gutter={[16, 16]} style={{ width: 'max-content', maxWidth: 1000 }}>
-        <Col
-          {...BREAKPOINTS}
-          style={{ display: 'flex', marginBottom: '16px', justifyContent: 'flex-start' }}
-        >
-          <RangePicker
-            id={styles["input123"]}
-            style={{
-              left: '-225px',
-              width: '100%',
-              height: 48,
-              background: '#5250B4',
-              borderRadius: '10px',
-              font: 'Poppins',
-              fontStyle: 'normal',
-              fontWeight: 500,
-              fontSize: 18,
-              lineHeight: 27,
-              display: 'flex',
-              alignItems: 'center',
-              textAlign: 'center',
-              color: '#FFFFFF',
-              justifyContent: 'center',
-            }}
-            suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
-            format={dateFormatList[0]}
-            onChange={handleDateChange}
-          />
-        </Col>
-        <Col
-          {...BREAKPOINTS}
-          style={{ display: 'flex', marginBottom: '16px', justifyContent: 'flex-end' }}>
-          <Button onClick={CreateModal} style={{ borderColor: '#5250B4', borderRadius: '50px', display: 'inline-block', color: '#3B3A82', font: "Poppins", fontWeight: 'bold' }}>
-            CREATE NEW
-          </Button>
-          <Modal
-            open={isModalVisible}
-            onCancel={handleCancel}
-            footer={null}
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          >
-            <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#30304D', font: "Poppins", fontWeight: 'bold' }}>CREATE NEW PRODUCT</p>
-            <Link to='/singleprod'><Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', width: '150px' }}>
-              SINGLE
-            </Button></Link>
-            &nbsp;&nbsp;
-            <Link to='/multiple'><Button style={{
-              background: '#5250B4',
-              borderRadius: '50px',
-              display: 'inline-block',
-              color: '#ffffff',
-              font: "Poppins",
-              fontWeight: 'bold',
-              width: '150px'
-            }}>
-              MULTIPLE
-            </Button></Link>
-          </Modal>
-          &nbsp; &nbsp;
-          <Button
-            style={{
-              background: '#5250B4',
-              borderRadius: '50px',
-              display: 'inline-block',
-              color: '#ffffff',
-              font: "Poppins",
-              fontWeight: 'bold'
-            }}
-            icon={<ShoppingCartOutlined />}
-          > &nbsp;
-            <Link to="/make">MAKE PURCHASE</Link>
-          </Button>
-        </Col>
-      </Row>
+<Row gutter={[16, 16]} justify="center" style={{ maxWidth: 1000, margin: "0 auto" }}>
+  <Col xs={24} md={12} lg={14} style={{ marginBottom: '16px' }}>
+    <RangePicker
+      id={styles["input123"]}
+      style={{
+        width: '90%',
+        height: 48,
+        background: '#5250B4',
+        borderRadius: '10px',
+        font: 'Poppins',
+        fontStyle: 'normal',
+        fontWeight: 500,
+        fontSize: 18,
+        lineHeight: 27,
+        display: 'flex',
+        alignItems: 'center',
+        textAlign: 'center',
+        color: '#FFFFFF',
+        justifyContent: 'center',
+      }}
+      suffixIcon={<CalendarOutlined style={{ color: '#FFFFFF' }} />}
+      format={dateFormatList[0]}
+      onChange={handleDateChange}
+    />
+  </Col>
+  <Col xs={24} md={12} lg={10} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+  <Button onClick={CreateModal} style={{ borderColor: '#5250B4', borderRadius: '50px', display: 'inline-block', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', marginBottom: '16px', marginRight: '16px' }}>
+    CREATE NEW
+  </Button>
+  <Button
+    style={{
+      background: '#5250B4',
+      borderRadius: '50px',
+      display: 'inline-block',
+      color: '#ffffff',
+      font: "Poppins",
+      fontWeight: 'bold',
+      marginBottom: '16px'
+    }}
+    icon={<ShoppingCartOutlined />}
+  >
+    <Link to="/make">MAKE PURCHASE</Link>
+  </Button>
+</Col>
+
+  <Modal
+    open={isModalVisible}
+    onCancel={handleCancel}
+    footer={null}
+    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+  >
+    <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#30304D', font: "Poppins", fontWeight: 'bold' }}>CREATE NEW PRODUCT</p>
+    <Link to='/singleprod'>
+      <Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', width: '100%', marginBottom: '16px' }}>
+        SINGLE
+      </Button>
+    </Link>
+    <Link to='/multiple'>
+      <Button style={{
+        background: '#5250B4',
+        borderRadius: '50px',
+        display: 'inline-block',
+        color: '#ffffff',
+        font: "Poppins",
+        fontWeight: 'bold',
+        width: '100%',
+        marginBottom: '16px'
+      }}>
+        MULTIPLE
+      </Button>
+    </Link>
+  </Modal>
+</Row>
+
       <StyledTable columns={columns} dataSource={products} rowKey="id" />
       {modalContent}
     </div>
