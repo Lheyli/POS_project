@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Table, Card, Button, Modal, Dropdown } from 'antd';
+import { Table, Card, Button, Modal, Dropdown, Row, Col } from 'antd';
 import { PlusOutlined,DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { getUsers, getAllBatch } from '../reducers/usersAPI';
@@ -275,109 +275,107 @@ const Members = () => {
 
   return (
     <>
-      <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center'
-    }}>
+<div>
+  <Row justify="end" align="middle">
+    <Col xs={24} sm={12} md={8}>
+      <Button
+        onClick={CreateModal}
+        style={{
+          width: '60%',
+          height: 48,
+          background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
+          borderRadius: '50px',
+          font: 'Poppins',
+          fontStyle: 'normal',
+          fontWeight: 500,
+          fontSize: 18,
+          lineHeight: 27,
+          display: 'flex',
+          alignItems: 'center',
+          textAlign: 'center',
+          color: '#FFFFFF',
+          justifyContent: 'center',
+          marginBottom: 16
+        }}
+      >
+        <PlusOutlined /> &nbsp; &nbsp;CREATE NEW &nbsp;
+      </Button>
+    </Col>
+  </Row>
+  <Modal
+    visible={isModalVisible}
+    onCancel={handleCancel}
+    footer={null}
+  >
+    <p style={{ textAlign: 'center', color: '#30304D', font: "Poppins", fontWeight: 'bold' }}>CREATE NEW MEMBER</p>
+    <Row justify="center" gutter={[16, 16]}>
+      <Col xs={24} sm={12}>
+        <Link to='/createnewmember'><Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', width: '100%' }}>
+          SINGLE
+        </Button></Link>
+      </Col>
+      <Col xs={24} sm={12}>
+        <Link to='/batch'><Button style={{
+          background: '#5250B4',
+          borderRadius: '50px',
+          display: 'inline-block',
+          color: '#ffffff',
+          font: "Poppins",
+          fontWeight: 'bold',
+          width: '100%'
+        }}>
+          BATCH
+        </Button></Link>
+      </Col>
+    </Row>
+  </Modal>
+</div>
+
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+  <Card
+    style={{
+      margin: '20px',
+      backgroundColor: '#FFFFFF',
+      width: '100%',
+      maxWidth: '900px',
+      boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
+      borderRadius: '24px',
+    }}
+  >
+    <div style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', padding: '10px' }}>
+      <Dropdown overlay={menu} menu={{ items: menu }}>
         <Button
-          onClick={CreateModal}
           style={{
-            top: '12%',
-            width: 191,
-            height: 48,
-            background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
-            borderRadius: '50px',
+            borderRadius: '5px',
+            background: '#EEEEFF',
             font: 'Poppins',
             fontStyle: 'normal',
-            fontWeight: 500,
-            fontSize: 18,
-            lineHeight: 27,
+            fontWeight: 700,
+            fontSize: '14px',
+            lineHeight: '22px',
             display: 'flex',
             alignItems: 'center',
-            textAlign: 'center',
-            color: '#FFFFFF',
             justifyContent: 'center',
-            right: '25%',
-
-            position: 'absolute'
+            textAlign: 'center',
+            color: '#3B3A82',
+            width: '35%',
           }}
         >
-          <PlusOutlined /> &nbsp; &nbsp;CREATE NEW &nbsp;
+          {selectedBatch || 'Select batch'} &nbsp;
+          <DownOutlined style={{ fontSize: '14px' }} />
         </Button>
-        <Modal
-          open={isModalVisible}
-          onCancel={handleCancel}
-          footer={null}
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-        >
-          <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#30304D', font: "Poppins", fontWeight: 'bold' }}>CREATE NEW MEMBER</p>
-          <Link to='/createnewmember'><Button style={{ borderColor: '#5250B4', borderRadius: '50px', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', width: '150px' }}>
-            SINGLE
-          </Button></Link>&nbsp;&nbsp;
-          <Link to='/batch'><Button style={{
-            background: '#5250B4',
-            borderRadius: '50px',
-            display: 'inline-block',
-            color: '#ffffff',
-            font: "Poppins",
-            fontWeight: 'bold',
-            width: '150px'
-          }}>
-            BATCH
-          </Button></Link>
-        </Modal>
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Card
-      style={{
-        top: '100px',
-        backgroundColor: '#FFFFFF',
-        width: '1000px',
-        background: '#F9F9FF',
-        boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
-        borderRadius: '24px',
-      }}
-    >
-      <div style={containerStyle}>
-        <Dropdown overlay={menu} menu={{
-          items: menu
-        }}>
-          <Button
-            style={{
-              marginLeft: '10px',
-              borderRadius: '5px',
-              background: '#EEEEFF',
-              font: 'Poppins',
-              fontStyle: 'normal',
-              fontWeight: 700,
-              fontSize: '18px',
-              lineHeight: '28px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              textAlign: 'center',
-              color: '#3B3A82',
-              width: '150px',
-              height: '40px',
-            }}
-          >
-            {selectedBatch || 'Select batch'} &nbsp;
-            <DownOutlined style={{ fontSize: '14px' }} />
-          </Button>
-        </Dropdown>
-      </div>
-      <br />
-      <div style={{ justifyContent: 'center', maxWidth: '100%' }}>
-        <Table
-          columns={columns}
-          dataSource={filteredUsers}
-          style={{ justifyContent: 'center', maxWidth: '100%' }}
-        />
-      </div>
-    </Card>
-      </div>
+      </Dropdown>
+    </div>
+    <div style={{ overflowX: 'auto', maxWidth: '100%' }}>
+      <Table
+        columns={columns}
+        dataSource={filteredUsers}
+        style={{ justifyContent: 'center', maxWidth: '100%' }}
+      />
+    </div>
+  </Card>
+</div>
+
     </>
   );
 };

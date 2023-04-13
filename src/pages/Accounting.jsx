@@ -11,33 +11,16 @@ const dateFormatList = ['MM/DD/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
 const Accounting = () => {
   return (
     <>
-    <div style={{
-  position: 'absolute',
-  left: '20%',
-  marginTop: '10px',
-  width: '50%',
-  font: 'Poppins',
-  fontStyle: 'normal',
-  fontWeight: '700',
-  fontSize: '35px',
-  color: '#3B3A82',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-}}>
-  <span>
-    Accounting Report
-  </span>
-</div>
+
 
 <Row justify="center">
-  <Col xs={24} lg={16}>
-    <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '8%', marginLeft: 5, marginRight: 5 }}>
+  <Col xs={24}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',  }}>
       <DatePicker
         id={styles["input123"]}
         style={{
           marginRight: '2%',
-          width: '50%',
+          width: '45%',
           height: 48,
           background: '#5250B4',
           borderRadius: '10px',
@@ -67,7 +50,7 @@ const Accounting = () => {
         id={styles["input123"]}
         style={{
           marginLeft: '2%',
-          width: '50%',
+          width: '45%',
           height: 48,
           background: '#5250B4',
           borderRadius: '10px',
@@ -88,8 +71,8 @@ const Accounting = () => {
       />
       <Button
         style={{
-          marginLeft: '10%',
-          width: '50%',
+          marginLeft: '5%',
+          width: '30%',
           height: 48,
           background: '#5250B4',
           borderRadius: '10px',
@@ -110,6 +93,7 @@ const Accounting = () => {
     </div>
   </Col>
 </Row>
+
 
 <NetIncome />
 

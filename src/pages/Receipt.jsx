@@ -43,39 +43,62 @@ const Receipt = () => {
 
         return (
             <>
-                <Row
-                    gutter={{ xs: 8, sm: 16, md: 24 }}
-                    justify="center"
-                    align="middle"
-                >
-                    <Col>
-                        <Link to="/makeorders">
-                            <h3 style={{ display: 'flex', alignItems: 'center' }}>
-                                <TbCircle1Filled style={{ color: '#D6D6E5' }} /> Make orders
-                            </h3>
-                        </Link>
-                    </Col>
-                    <Col>
-                        <TbChevronRight style={{ fontSize: '25px', color: '#D6D6E5' }} />
-                    </Col>
-                    <Col>
-                        <Link to="/payment">
-                            <h3 style={{ display: 'flex', alignItems: 'center' }}>
-                                <TbCircle2Filled style={{ color: '#D6D6E5' }} /> Payment
-                            </h3>
-                        </Link>
-                    </Col>
-                    <Col>
-                        <TbChevronRight style={{ fontSize: '25px', color: '#D6D6E5' }} />
-                    </Col>
-                    <Col>
-                        <Link to="/receipt">
-                            <h3 style={{ display: 'flex', alignItems: 'center' }}>
-                                <TbCircle3Filled style={{ color: '#3B3A82' }} /> Receipt
-                            </h3>
-                        </Link>
-                    </Col>
-                </Row>
+                 <Row gutter={[16, 16]} justify="center" align="middle">
+      <Col>
+        <Link to='/makeorders'>
+          <h3 style={{
+            display: 'flex',
+            alignItems: 'center',
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: 500,
+            fontSize: '25px',
+            lineHeight: '50px',
+            color: '#3B3A82'
+          }}>
+            <TbCircle1Filled style={{ color: '#3B3A82' }} /> &nbsp; Make orders
+          </h3>
+        </Link>
+      </Col>
+      <Col>
+        <TbChevronRight style={{ fontSize: '25px', color: '#D6D6E5' }} />
+      </Col>
+      <Col>
+        <Link to='/payment'>
+          <h3 style={{
+            display: 'flex',
+            alignItems: 'center',
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: 500,
+            fontSize: '25px',
+            lineHeight: '50px',
+            color: '#D6D6E5'
+          }}>
+            <TbCircle2Filled style={{ color: '#D6D6E5' }} /> &nbsp; Payment
+          </h3>
+        </Link>
+      </Col>
+      <Col>
+        <TbChevronRight style={{ fontSize: '25px', color: '#D6D6E5' }} />
+      </Col>
+      <Col>
+        <Link to='/receipt'>
+          <h3 style={{
+            display: 'flex',
+            alignItems: 'center',
+            font: 'Poppins',
+            fontStyle: 'normal',
+            fontWeight: 500,
+            fontSize: '25px',
+            lineHeight: '50px',
+            color: '#D6D6E5'
+          }}>
+            <TbCircle3Filled style={{ color: '#D6D6E5' }} /> &nbsp; Receipt
+          </h3>
+        </Link>
+      </Col>
+    </Row>
                 <Row align="middle" gutter={[16, 16]}>
                     <Col style={{ marginLeft: '35%' }}>
                         <div style={{

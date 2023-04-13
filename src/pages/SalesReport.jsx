@@ -35,7 +35,8 @@ const config = {
   },
 };
 const SalesReport = () => {
-  return <Column {...config} style={{ width: '100%' }} />
+  return <Column {...config} xs={24} />
+
 
 
 };
