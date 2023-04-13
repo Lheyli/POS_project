@@ -54,11 +54,10 @@ const SingleProduct = () => {
 
   //set default values 
   useEffect(() => {
-
     if (params?.isUpdate) {
-      dispatch(getOne("eeae5172-3631-4975-8055-0e5dd574f36b"))
+      dispatch(getOne(params?.isUpdate));
     }
-  }, [dispatch,params?.isUpdate])
+  }, [dispatch, params, params?.isUpdate]);
   useEffect(() => {
 
     if (product) {
