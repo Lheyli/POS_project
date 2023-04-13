@@ -40,6 +40,7 @@ const StyledSider = styled.div`
   transform: ${({ isOpen }) =>
     isOpen ? "translateX(0)" : "translateX(-200px)"};
   transition: transform 0.3s ease-in-out;
+  z-index:10000;
 `;
 const StyledMenu = styled.ul`
   list-style: none;
@@ -141,7 +142,7 @@ function Sidebar() {
   };
   return (
     <>
-    <Row>
+    {/* <Row> */}
       <StyledToggle onClick={handleToggle}>
         {isOpen ? <MenuOutlined /> : <MenuOutlined />}
       </StyledToggle>
@@ -325,7 +326,8 @@ function Sidebar() {
           
 
         </StyledMenu>
-      </StyledSider></Row>
+      </StyledSider>
+      {/* </Row> */}
     </>
   );
 }
