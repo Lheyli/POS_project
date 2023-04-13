@@ -32,9 +32,11 @@ const StyledHeader = styled.header`
     outline: none;
     border-color: #9494b2;
     box-shadow: 0 0 0 2px #e6f7ff;
+  }
 `;
 const StyledSearch = styled.input`
-  width: 200px;
+  width: 100%;
+  max-width: 200px;
   border: 1px solid #9494b2;
   padding: 8px 12px;
   border-radius: 10px;
@@ -48,14 +50,15 @@ const StyledSearch = styled.input`
     box-shadow: 0 0 0 0.5px #3B3A82;
   }
 `;
+
 const StyledBadge = styled.span`
   display: inline-block;
-  margin-right: 16px;
+  margin-right: 8px;
   position: relative;
   &:hover {
     cursor: pointer;
   }
-  .badge-count {
+  .ant-badge-count {
     background-color: #30304d;
     color: #fff;
     font-size: 12px;
