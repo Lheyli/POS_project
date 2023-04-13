@@ -140,7 +140,7 @@ const Products = () => {
           </div>
           <Row justify="end">
             <Col>
-              <DeleteOutlined style={{ color: '#9494B2', fontSize: '30px' }} />
+              <DeleteOutlined  onClick={() => handleDeleteClick(selectedProduct.product_id)} style={{ color: '#9494B2', fontSize: '30px' }} />
               &nbsp;&nbsp;
             </Col>
           </Row>

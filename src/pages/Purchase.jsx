@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { getProducts, addToCart, getOne, getAllCategory } from '../reducers/productSlice';
+import { getProducts,deleteOneProduct, addToCart, getOne, getAllCategory } from '../reducers/productSlice';
 import { Card, Row, Col, Button, Input, Drawer, Typography } from 'antd';
 import { LeftOutlined, RightOutlined, ShoppingCartOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
@@ -33,6 +33,9 @@ const MakePurchase = () => {
   const onDetailsClose = () => {
     setIsDetailsVisible(false);
 
+  };
+  const handleDeleteClick = (product_id) => {
+    dispatch(deleteOneProduct(product_id));
   };
   const onClose = () => {
     setSelectedProduct(null);
@@ -292,7 +295,7 @@ const MakePurchase = () => {
                 </div>
                 <Row justify="end">
                   <Col>
-                    <DeleteOutlined style={{ color: '#9494B2', fontSize: '30px' }} />
+                    <DeleteOutlined onClick={() => handleDeleteClick(selectedProduct.product_id)} style={{ color: '#9494B2', fontSize: '30px' }} />
                     &nbsp;&nbsp;
                   </Col>
                 </Row>
