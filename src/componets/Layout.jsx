@@ -8,6 +8,7 @@ const StyledLayout = styled(Layout)`
   height: 100vh;
 `;
 const StyledContent = styled(Content)`
+zIndex:3000;
   margin: 24px;
 `;
 function LayoutComponent({ children }) {
