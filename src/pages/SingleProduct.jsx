@@ -71,7 +71,7 @@ const SingleProduct = () => {
         original_price: product.original_price,
         markup_price: product.markup_price,
         updated_by: product.updated_by,
-
+        variation: product.variation
         
       })
     }

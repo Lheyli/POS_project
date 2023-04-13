@@ -195,6 +195,7 @@ const Receipt = () => {
                         </div>
                         
                     </Card>
+                    <br/>
                     <Row justify="space-between" align={'middle'}>
                         <Col span={6}>
                             <Button

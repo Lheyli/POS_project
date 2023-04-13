@@ -200,31 +200,27 @@ const Payment = () => {
                                 </Col>
                             </Row>
                        
-                        <Row justify="end" style={{ marginTop: '50px' }}>
-                            <Col xs={24} sm={12} md={8} lg={6} xl={4}>
-                                <Link to='/receipt'>
-                                    <Button
-                                        style={{
-                                            right: 10,
-                                            background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
-                                            borderRadius: '50px',
-                                            font: 'Poppins',
-                                            fontStyle: 'normal',
-                                            fontWeight: 700,
-                                            fontSize: '15px',
-                                            lineHeight: '25px',
-                                            textAlign: 'center',
-                                            color: '#E8E8E8',
-                                            height: '40px',
-                                            width: '120%'
-                                        }}
-                                        type="primary"
-                                    >
-                                        CONFIRM
-                                    </Button>
-                                </Link>
-                            </Col>
-                        </Row>
+                            <div style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              marginTop: '20px',
+            }}>
+              <Link to='/receipt'>
+                <Button style={{
+                  background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
+                  borderRadius: '50px',
+                  font: 'Poppins',
+                  fontStyle: 'normal',
+                  fontWeight: 700,
+                  fontSize: '15px',
+                  lineHeight: '25px',
+                  textAlign: 'center',
+                  color: '#E8E8E8',
+                  height: '40px',
+                  width: '135px'
+                }} type="primary">CONFIRM</Button>
+              </Link>
+            </div>
                     </Card>
                 </Col>
             </Row>
