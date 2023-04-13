@@ -76,7 +76,7 @@ const Products = () => {
           width={500}
           style={{ borderRadius: '40px 0px 0px 40px' }} // Add border radius of 20px
         >
-          {/* New content for the "View Details" drawer */}
+         
           <Row justify="end">
             <Col>
 
@@ -224,14 +224,15 @@ const Products = () => {
       render: (text, record,) => <ActionsContent record={record} />,
     },
   ];
-  const StyledTable = styled(Table)`
+const StyledTable = styled(Table)`
   background-color: #F9F9FF;
   border-color: #E8E8E8;
-  max-width: 768px;
+  max-width: 100%;
   margin: auto;
-  border-radius: 20px;
+  border-radius: 15px;
 
   @media (max-width: 768px) {
+    overflow-x: auto;
     .ant-table-cell {
       white-space: nowrap;
       overflow: hidden;
@@ -267,8 +268,8 @@ const Products = () => {
       alignItems: 'center'
     }}>
 
-      <Row gutter={[16, 16]} justify="center" style={{ maxWidth: 1000, margin: "0 auto" }}>
-        <Col xs={24} md={12} lg={14} style={{ marginBottom: '16px' }}>
+      <Row gutter={[16, 16]} justify="center" >
+        <Col xs={24} md={12} lg={14} >
           <RangePicker
             id={styles["input123"]}
             style={{
@@ -304,7 +305,7 @@ const Products = () => {
               color: '#ffffff',
               font: "Poppins",
               fontWeight: 'bold',
-              marginBottom: '16px'
+              marginBottom: '14px'
             }}
             icon={<ShoppingCartOutlined />}
           >

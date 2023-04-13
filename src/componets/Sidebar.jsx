@@ -33,14 +33,22 @@ import {
 } from "@ant-design/icons";
 const StyledSider = styled.div`
   background-color: #eeeeff;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: fixed;
-  width: 205px;
+  left: 0;
+  z-index: 999;;
+  transition: all 0.3s ease;
+  transform: translateX(${({ isOpen }) => (isOpen ? '0' : '-100%')});
   box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
-  transform: ${({ isOpen }) =>
-    isOpen ? "translateX(0)" : "translateX(-200px)"};
-  transition: transform 0.3s ease-in-out;
-  z-index:10000;
+
+  @media (min-width: 768px) {
+    width: 25%;
+    max-width: 205px;
+    transform: translateX(0);
+  }
+
+
 `;
 const StyledMenu = styled.ul`
   list-style: none;

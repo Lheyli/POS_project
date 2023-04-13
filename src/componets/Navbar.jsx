@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BellOutlined, QuestionCircleOutlined, RightOutlined, PoweroffOutlined } from "@ant-design/icons";
+import { BellOutlined, QuestionCircleOutlined, RightOutlined, LogoutOutlined } from "@ant-design/icons";
 import logo from "./logo.png";
 import { notification } from 'antd';
 import { Modal, Divider, Carousel } from 'antd';
@@ -28,12 +28,20 @@ const StyledHeader = styled.header`
   height: 70px;
   padding: 0 24px;
   border: 0.5px solid #9494b2;
+
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+    height: auto;
+    padding: 24px;
+  }
+
   &:focus {
     outline: none;
     border-color: #9494b2;
     box-shadow: 0 0 0 2px #e6f7ff;
   }
 `;
+
 const StyledSearch = styled.input`
   width: 100%;
   max-width: 200px;
@@ -44,6 +52,11 @@ const StyledSearch = styled.input`
   color: #30304d;
   background-color: #fff;
   transition: all 0.3s;
+
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 24px;
+  }
+
   &:focus {
     outline: none;
     border-color: #1890ff;
@@ -55,9 +68,16 @@ const StyledBadge = styled.span`
   display: inline-block;
   margin-right: 8px;
   position: relative;
+
+  @media only screen and (max-width: 768px) {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+
   &:hover {
     cursor: pointer;
   }
+
   .ant-badge-count {
     background-color: #30304d;
     color: #fff;
@@ -70,12 +90,19 @@ const StyledBadge = styled.span`
     right: -8px;
   }
 `;
+
 const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: right;
   width: 100%;
+
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
+
 const Navbar = () => {
   const handleCli = () => {
     notification.open({
@@ -162,6 +189,10 @@ const Navbar = () => {
     <StyledHeader >
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img className="i" src={logo} alt="logo" height={50} width={80} />
       <StyledContainer>
+      <StyledSearch
+        placeholder="Search..." style={{ font: "Poppins" }}
+      />
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <StyledBadge onClick={showModal}>
           <QuestionCircleOutlined style={{ fontSize: "24px", color: "#30304D" }} />
         </StyledBadge>
@@ -456,18 +487,17 @@ const Navbar = () => {
           </div>
           <Divider style={{ borderColor: '#9494B2', borderWidth: '0.5px', marginBottom: '30px', marginTop: '0px' }} />
         </Modal>
+        &nbsp;&nbsp;&nbsp;
         <StyledBadge onClick={handleCli} >
           <BellOutlined style={{ fontSize: "24px", color: "#30304D" }} />
         </StyledBadge>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </StyledContainer>
-      <StyledSearch
-        placeholder="Search..." style={{ font: "Poppins" }}
-      />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;
         <StyledBadge >
-          <PoweroffOutlined to="/out"  style={{ fontSize: "24px", color: "#30304D" }} />
+          <LogoutOutlined to="/out"  style={{ fontSize: "24px", color: "#30304D" }} />
         </StyledBadge>
+      </StyledContainer>
+     
+     
     </StyledHeader>
   );
 };
