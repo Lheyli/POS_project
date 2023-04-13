@@ -54,6 +54,7 @@ const StyledSearch = styled.input`
   transition: all 0.3s;
 
   @media only screen and (max-width: 768px) {
+    margin: 0 auto;
     margin-bottom: 24px;
   }
 
@@ -68,11 +69,6 @@ const StyledBadge = styled.span`
   display: inline-block;
   margin-right: 8px;
   position: relative;
-
-  @media only screen and (max-width: 768px) {
-    margin-right: 0;
-    margin-bottom: 8px;
-  }
 
   &:hover {
     cursor: pointer;
@@ -95,12 +91,22 @@ const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: right;
-  width: 100%;
 
   @media only screen and (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
   }
+`;
+
+const StyledRowContainer = styled.div`
+display: flex;
+align-items: center;
+justify-content: right;
+
+@media only screen and (max-width: 768px) {
+  flex-direction: row;
+  align-items: flex-start;
+}
 `;
 
 const Navbar = () => {
@@ -121,7 +127,15 @@ const Navbar = () => {
   };
   const images = [''];
   const [visible, setVisible] = useState(false);
-  const [isvis, issetVis] = useState(false);
+ 
+  const hasShownModal1 = localStorage.getItem('hasShownModal1');
+
+  // If the modal has not been shown before, set its visibility to true
+  if (!hasShownModal1) {
+    setVisible(true);
+    // Store in local storage that the modal has been shown
+    localStorage.setItem('hasShownModal1', true);
+  }
   const handleSidebarClick = () => {
     setVisible(true);
   };
@@ -131,6 +145,18 @@ const Navbar = () => {
   const handleModalCancel = () => {
     setVisible(false);
   };
+
+   const [isvis, issetVis] = useState(false);
+
+   const hasShownModal2 = localStorage.getItem('hasShownModal2');
+
+   // If the modal has not been shown before, set its visibility to true
+   if (!hasShownModal2) {
+    issetVis(true);
+     // Store in local storage that the modal has been shown
+     localStorage.setItem('hasShownModal2', true);
+   }
+
   const handleClick = () => {
     issetVis(true);
   };
@@ -141,6 +167,17 @@ const Navbar = () => {
     issetVis(false);
   };
   const [isvisible, issetVisible] = useState(false);
+
+  const hasShownModal3 = localStorage.getItem('hasShownModal3');
+
+  // If the modal has not been shown before, set its visibility to true
+  if (!hasShownModal3) {
+    issetVisible(true);
+    // Store in local storage that the modal has been shown
+    localStorage.setItem('hasShownModal3', true);
+  }
+
+
   const handleSideClick = () => {
     issetVisible(true);
   };
@@ -152,6 +189,15 @@ const Navbar = () => {
   };
 
   const [vis, setVis] = useState(false);
+
+  const hasShownModal4 = localStorage.getItem('hasShownModal4');
+
+  // If the modal has not been shown before, set its visibility to true
+  if (!hasShownModal4) {
+    setVis(true);
+    // Store in local storage that the modal has been shown
+    localStorage.setItem('hasShownModal4', true);
+  }
   const handleC = () => {
     setVis(true);
   };
@@ -162,6 +208,14 @@ const Navbar = () => {
     setVis(false);
   };
   const [is, set] = useState(false);
+  const hasShownModal5 = localStorage.getItem('hasShownModal5');
+
+  // If the modal has not been shown before, set its visibility to true
+  if (!hasShownModal5) {
+    set(true);
+    // Store in local storage that the modal has been shown
+    localStorage.setItem('hasShownModal5', true);
+  }
   const hand = () => {
     set(true);
   };
@@ -189,9 +243,9 @@ const Navbar = () => {
     <StyledHeader >
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img className="i" src={logo} alt="logo" height={50} width={80} />
       <StyledContainer>
-      <StyledSearch
-        placeholder="Search..." style={{ font: "Poppins" }}
-      />
+        <StyledSearch placeholder="Search..." />
+      </StyledContainer>
+      <StyledRowContainer>
        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <StyledBadge onClick={showModal}>
           <QuestionCircleOutlined style={{ fontSize: "24px", color: "#30304D" }} />
@@ -495,7 +549,7 @@ const Navbar = () => {
         <StyledBadge >
           <LogoutOutlined to="/out"  style={{ fontSize: "24px", color: "#30304D" }} />
         </StyledBadge>
-      </StyledContainer>
+      </StyledRowContainer>
      
      
     </StyledHeader>

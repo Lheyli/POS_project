@@ -45,7 +45,7 @@ const StyledSider = styled.div`
   @media (min-width: 768px) {
     width: 25%;
     max-width: 205px;
-    transform: translateX(0);
+
   }
 
 
@@ -92,7 +92,15 @@ function Sidebar() {
   };
   const images = [''];
   const [visible, setVisible] = useState(false);
-  const [isvis, issetVis] = useState(false);
+ 
+  const hasShownModal1 = localStorage.getItem('hasShownModal1');
+
+  // If the modal has not been shown before, set its visibility to true
+  if (!hasShownModal1) {
+    setVisible(true);
+    // Store in local storage that the modal has been shown
+    localStorage.setItem('hasShownModal1', true);
+  }
   const handleSidebarClick = () => {
     setVisible(true);
   };
@@ -102,6 +110,18 @@ function Sidebar() {
   const handleModalCancel = () => {
     setVisible(false);
   };
+
+   const [isvis, issetVis] = useState(false);
+
+   const hasShownModal2 = localStorage.getItem('hasShownModal2');
+
+   // If the modal has not been shown before, set its visibility to true
+   if (!hasShownModal2) {
+    issetVis(true);
+     // Store in local storage that the modal has been shown
+     localStorage.setItem('hasShownModal2', true);
+   }
+
   const handleClick = () => {
     issetVis(true);
   };
@@ -112,6 +132,16 @@ function Sidebar() {
     issetVis(false);
   };
   const [isvisible, issetVisible] = useState(false);
+
+  const hasShownModal3 = localStorage.getItem('hasShownModal3');
+
+  // If the modal has not been shown before, set its visibility to true
+  if (!hasShownModal3) {
+    issetVisible(true);
+    // Store in local storage that the modal has been shown
+    localStorage.setItem('hasShownModal3', true);
+  }
+
 
   const handleSideClick = () => {
     issetVisible(true);
@@ -124,6 +154,15 @@ function Sidebar() {
   };
 
   const [vis, setVis] = useState(false);
+
+  const hasShownModal4 = localStorage.getItem('hasShownModal4');
+
+  // If the modal has not been shown before, set its visibility to true
+  if (!hasShownModal4) {
+    setVis(true);
+    // Store in local storage that the modal has been shown
+    localStorage.setItem('hasShownModal4', true);
+  }
   const handleC = () => {
     setVis(true);
   };
