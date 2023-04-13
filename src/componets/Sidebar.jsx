@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Modal, Carousel, Row, Col } from 'antd';
+import { Modal, Carousel, Col } from 'antd';
 import React, { useState } from "react";
 import v1 from './v1.png';
 import s1 from './s1.png';
