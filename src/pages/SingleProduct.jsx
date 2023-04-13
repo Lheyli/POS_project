@@ -66,10 +66,10 @@ const SingleProduct = () => {
         product_name: product.product_name,
         product_category: product.product_category,
         quantity: product.quantity,
-        // expiration_date: product.expiration_date,
         original_price: product.original_price,
         markup_price: product.markup_price,
-        updated_by: product.updated_by
+        updated_by: product.updated_by,
+        
       })
     }
   }, [form,product])
