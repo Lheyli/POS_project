@@ -55,7 +55,7 @@ const SingleProduct = () => {
   useEffect(() => {
 
     if (params?.isUpdate) {
-      dispatch(getOne("46a9d906-7059-4dae-8a7e-7e8a0d51fda4"))
+      dispatch(getOne("eeae5172-3631-4975-8055-0e5dd574f36b"))
     }
   }, [dispatch,params?.isUpdate])
   useEffect(() => {
