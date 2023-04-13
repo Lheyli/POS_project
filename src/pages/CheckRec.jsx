@@ -118,7 +118,7 @@ const CheckRec = () => {
                         <Typography.Title level={1} style={{ color: "black", textAlign: "left" }} > ₱{totalPrice.toFixed(2)} Payment</Typography.Title>
                         <Table dataSource={cartItems || [{}]} style={{ maxWidth: "900px", marginTop: "20px" }}>
                             <Table.Column title="" key="image" render={(text, record) => (
-                                <img alt={record.image} src={record.image || "https://picsum.photos/50/50/"} width={50} height={50} />
+                                <img alt={record.image} src={ (`data:image/jpeg;base64, ${record.buffer_file}`) || "https://picsum.photos/50/50/"} width={50} height={50} />
                             )} />
                             <Table.Column title="" dataIndex="product_name" key="title" />
                             <Table.Column

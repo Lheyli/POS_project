@@ -130,7 +130,7 @@ const Checkout = () => {
           render={(text, record) => (
             <img
               alt={record.image}
-              src={record.image || "https://picsum.photos/50/50/"}
+              src={ (`data:image/jpeg;base64, ${record.buffer_file}`) || "https://picsum.photos/50/50/"}
               width={50}
               height={50}
             />
