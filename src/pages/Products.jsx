@@ -240,7 +240,7 @@ const Products = () => {
 
     .ant-table-thead > tr > th,
     .ant-table-tbody > tr > td {
-      padding: 2px 1px;
+      padding: 8px 4px;
     }
   }
 `;
