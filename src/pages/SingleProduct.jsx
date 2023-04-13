@@ -6,6 +6,7 @@ import { createProduct, updateProduct, getOne } from "../reducers/productSlice";
 import TextInput from "../componets/TextInput";
 import TextInput2 from "../componets/TextInput2";
 import DateInput from "../componets/DateInput";
+import moment from 'moment';
 
 
 
@@ -65,10 +66,12 @@ const SingleProduct = () => {
         image: product.image,
         product_name: product.product_name,
         product_category: product.product_category,
+        expiration_date: moment(product.expiration_date),
         quantity: product.quantity,
         original_price: product.original_price,
         markup_price: product.markup_price,
         updated_by: product.updated_by,
+        variation: product.variations
         
       })
     }
@@ -150,7 +153,7 @@ const SingleProduct = () => {
         <Row gutter={16}>
           <Col span={12}>
             <div style={{ position: 'relative', width: '150px', height: '150px', border: '2px solid #A9A9CC', borderRadius: '5px' }}>
-              <img src={display ? display : (`data:image/jpeg;base64, ${product.buffer_file}`) || "https://picsum.photos/50/50/"} alt="" style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: '5px' }} />
+              <img src={display ? display : (`data:image/jpeg;base64, ${product?.buffer_file}`) || "https://picsum.photos/50/50/"} alt="" style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: '5px' }} />
               {!display && (
                 <div style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={handleSquareClick}>
                   <span style={{ fontSize: '24px',color: '#A9A9CC' }}>+</span>
