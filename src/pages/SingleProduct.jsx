@@ -62,6 +62,7 @@ const SingleProduct = () => {
 
     if (product) {
       form.setFieldsValue({
+        image: product.image,
         product_name: product.product_name,
         product_category: product.product_category,
         quantity: product.quantity,
