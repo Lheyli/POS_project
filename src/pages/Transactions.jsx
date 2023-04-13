@@ -1,5 +1,5 @@
 import React from 'react';
-import { DatePicker, Card, Table, Button, Row, Col } from 'antd';
+import { DatePicker, Table, Button, Row, Col } from 'antd';
 import dayjs from 'dayjs';
 import { CalendarOutlined, RightOutlined } from '@ant-design/icons'
 import customParseFormat from 'dayjs/plugin/customParseFormat';
