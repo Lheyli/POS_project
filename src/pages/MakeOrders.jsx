@@ -84,122 +84,117 @@ const MakeOrders = () => {
       </Col>
     </Row>
 
-      <Row align="middle" gutter={[16, 16]}>
-        <Col style={{ marginLeft: '35%' }}>
-          <div style={{
-            textAlign: 'center',
-            font: 'Poppins',
-            fontStyle: 'normal',
-            fontWeight: 400,
-            fontSize: '14px',
-            lineHeight: '32px',
-            color: '#9494B3',
+    <Row justify="center">
+  <Col xs={20} sm={16} md={12} lg={8} xl={6}>
+    <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+      <div style={{ fontSize: '14px', lineHeight: '1.5', color: '#9494B3' }}>
+        Please scan product to make orders
+      </div>
+      <div style={{ fontSize: '18px', fontWeight: 600, lineHeight: '1.33', color: '#6A6A80' }}>
+        {today}
+      </div>
+    </div>
+  </Col>
+</Row>
 
-          }}>
-            Please scan product to make orders <br />
-          </div>
-          <div style={{
-            textAlign: 'left',
-            font: 'Poppins',
-            fontStyle: 'normal',
-            fontWeight: 600,
-            fontSize: '18px',
-            lineHeight: '48px',
-            color: '#6A6A80',
-          }}>
-            {`${today}`}
-          </div>
-        </Col>
-      </Row>
+<Row justify="center">
+  <Col xs={24} md={16} lg={12} xl={8}>
+    <Card style={{ backgroundColor: '#FFFFFF' }}>
+      <Table dataSource={cartItems} style={{ margin: '20px 0' }}>
+        <Table.Column
+          title=""
+          key="image"
+          render={(text, record) => (
+            <img alt={record.time} src={record.image} width={50} />
+          )}
+        />
+        <Table.Column title="" dataIndex="title" key="title" />
+        <Table.Column
+          title=""
+          dataIndex="price"
+          key="price"
+          style={{ fontWeight: 'bold' }}
+          render={(text) => <span>₱{text}</span>}
+        />
+        <Table.Column
+          title=""
+          key="cartQuantity"
+          render={(text, record) => (
+            <>
+              x{record.quantity}
+            </>
+          )}
+        />
+        <Table.Column
+          title=""
+          key="cartTotal"
+          render={(text, record) => (
+            <>
+              &#8369;{record.quantity * record.price}
+            </>
+          )}
+        />
+        <Table.Column
+          key="action"
+          render={(text, record) => (
+            <Button
+              style={{ color: '#3B3A82' }}
+              type="link"
+              danger
+              onClick={() => handleDelete(record.id)}
+            >
+              <DeleteOutlined />
+            </Button>
+          )}
+        />
+      </Table>
+      <Divider />
+      <div
+        style={{
+          font: 'Poppins',
+          fontStyle: 'normal',
+          fontWeight: 600,
+          fontSize: '18px',
+          lineHeight: '48px',
+          color: '#38384D',
+          textAlign: 'right', // align text to the right
+        }}
+      >
+        TOTAL: ₱{totalPrice.toFixed(2)}
+      </div>
 
-      <Row justify="center">
-        <Col xs={24} sm={24} md={16} lg={12} xl={8}>
-          <Card style={{ backgroundColor: '#FFFFFF' }}>
-            <Table dataSource={cartItems} style={{ margin: '20px 0' }}>
-              <Table.Column title="" key="image" render={(text, record) => (
-                <img alt={record.time} src={record.image} width={50} />
-              )} />
-              <Table.Column title="" dataIndex="title" key="title" />
-              <Table.Column
-                title=""
-                dataIndex="price"
-                key="price"
-                style={{ fontWeight: 'bold' }}
-                render={(text) => (
-                  <span>
-                    ₱{text}
-                  </span>
-                )}
-              />
-              <Table.Column
-                title=""
-                key="cartQuantity"
-                render={(text, record) => (
-                  <>
-                    x{record.quantity}
-                  </>
-                )}
-              />
-              <Table.Column
-                title=""
-                key="cartTotal"
-                render={(text, record) => (
-                  <>
-                    &#8369;{record.quantity * record.price}
-                  </>
-                )}
-              />
-              <Table.Column
-                key='action'
-                render={(text, record) => (
-                  <Button
-                    style={{ color: '#3B3A82' }}
-                    type='link'
-                    danger
-                    onClick={() => handleDelete(record.id)}
-                  >
-                    <DeleteOutlined />
-                  </Button>
-                )}
-              />
-            </Table>
-            <Divider />
-            <div style={{
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          marginTop: '20px',
+        }}
+      >
+        <Link to="/payment">
+          <Button
+            style={{
+              background:
+                'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
+              borderRadius: '50px',
               font: 'Poppins',
               fontStyle: 'normal',
-              fontWeight: 600,
-              fontSize: '18px',
-              lineHeight: '48px',
-              color: '#38384D',
-              textAlign: 'right' // align text to the right
-            }}>
-              TOTAL:  ₱{totalPrice.toFixed(2)}
-            </div>
-
-            <div style={{
-              display: 'flex',
-              justifyContent: 'flex-end',
-              marginTop: '20px',
-            }}>
-              <Link to='/payment'>
-                <Button style={{
-                  background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
-                  borderRadius: '50px',
-                  font: 'Poppins',
-                  fontStyle: 'normal',
-                  fontWeight: 700,
-                  fontSize: '15px',
-                  lineHeight: '25px',
-                  textAlign: 'center',
-                  color: '#E8E8E8',
-                  height: '40px',
-                  width: '135px'
-                }} type="primary">CHECKOUT</Button>
-              </Link>
-            </div>
-          </Card>
-        </Col>
-      </Row>
+              fontWeight: 700,
+              fontSize: '15px',
+              lineHeight: '25px',
+              textAlign: 'center',
+              color: '#E8E8E8',
+              height: '40px',
+              width: '135px',
+            }}
+            type="primary"
+          >
+            CHECKOUT
+          </Button>
+        </Link>
+      </div>
+    </Card>
+  </Col>
+</Row>
 
     </>
   );
