@@ -65,10 +65,16 @@ const StyledSearch = styled.input`
   }
 `;
 
+
 const StyledBadge = styled.span`
   display: inline-block;
   margin-right: 8px;
   position: relative;
+
+  @media only screen and (max-width: 768px) {
+  margin: 0 auto;
+    margin-bottom: 8px;
+  }
 
   &:hover {
     cursor: pointer;
@@ -91,6 +97,7 @@ const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: right;
+  width: 100%;
 
   @media only screen and (max-width: 768px) {
     flex-direction: column;
