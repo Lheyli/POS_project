@@ -80,7 +80,11 @@ const Products = () => {
           <Row justify="end">
             <Col>
 
-              <EditOutlined onClick={() => navigate(`/singleprod/${selectedProduct.product_id}`)} style={{ color: '#9494B2', fontSize: '30px' }} />
+            <EditOutlined
+  onClick={() => navigate(`/singleprod/${selectedProduct.product_id}`)}
+  style={{ color: '#9494B2', fontSize: '30px' }}
+/>
+
 
               &nbsp;&nbsp;
             </Col>
@@ -257,14 +261,7 @@ const Products = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
-  const BREAKPOINTS = {
-    xs: 24,
-    sm: 24,
-    md: 12,
-    lg: 12,
-    xl: 12,
-    xxl: 12,
-  }
+
   return (
 
     <div style={{
