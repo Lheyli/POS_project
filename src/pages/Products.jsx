@@ -80,11 +80,7 @@ const Products = () => {
           <Row justify="end">
             <Col>
 
-            <EditOutlined
-  onClick={() => navigate(`/singleprod/${selectedProduct.product_id}`)}
-  style={{ color: '#9494B2', fontSize: '30px' }}
-/>
-
+              <EditOutlined onClick={() => navigate(`/singleprod/${selectedProduct.product_id}`)} style={{ color: '#9494B2', fontSize: '30px' }} />
 
               &nbsp;&nbsp;
             </Col>
