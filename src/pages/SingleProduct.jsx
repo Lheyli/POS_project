@@ -71,7 +71,7 @@ const SingleProduct = () => {
         original_price: product.original_price,
         markup_price: product.markup_price,
         updated_by: product.updated_by,
-        variation: product.variations
+
         
       })
     }
@@ -168,18 +168,7 @@ const SingleProduct = () => {
               />
 
             </div>
-            <br></br>
-            <Button style={{
-              width: '150px',
-              font: 'Poppins',
-              fontWeight: 'bold',
-              fontSize: 15,
-              display: 'flex',
-              color: '#F9F9FF',
-              justifyContent: 'center',
-              alignItems: 'center',
-              background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
-            }} disabled={!image}>Add Image</Button>
+
           </Col>
           <Col span={12}>
             <Typography.Text style={{
