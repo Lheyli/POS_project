@@ -14,7 +14,7 @@ const Accounting = () => {
 
 
 <Row justify="center">
-  <Col xs={24}>
+  <Col xs={24} lg={12}>
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',  }}>
       <DatePicker
         id={styles["input123"]}
