@@ -33,7 +33,7 @@ import {
 } from "@ant-design/icons";
 const StyledSider = styled.div`
   background-color: #eeeeff;
-  width: 100%;
+  width: max-content;
   height: 100%;
   position: fixed;
   left: 0;
@@ -216,7 +216,7 @@ function Sidebar() {
             footer={null}
             onOk={handleModalOkay}
             onCancel={handleCancel}
-            width="40%"
+            width="max-context"
       height="40%"
 
           >
