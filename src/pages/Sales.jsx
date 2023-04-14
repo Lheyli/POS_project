@@ -106,7 +106,7 @@ const Sales = () => {
               style={{
                 display: 'flex',
                 height: '40px',
-                width: '70%',
+                width: '100%',
                 textAlign: 'center',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -130,7 +130,7 @@ const Sales = () => {
               style={{
                 display: 'flex',
                 height: '40px',
-                width: '70%',
+                width: '100%',
                 textAlign: 'center',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -154,7 +154,7 @@ const Sales = () => {
               style={{
                 display: 'flex',
                 height: '40px',
-                width: '70%',
+                width: '100%',
                 textAlign: 'center',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -173,7 +173,8 @@ const Sales = () => {
             </Button>
           </Col>
         </Row>
-        <Row gutter={[16, 16]} align="middle">
+        <Row gutter={[16, 16]} justify="center
+" align="middle">
           <Col span={24} md={12}>
             <div style={{
               marginTop: '30px',
@@ -199,7 +200,7 @@ const Sales = () => {
             </div>
           </Col>
         </Row>
-        <Row>
+        <Row justify="center">
           <Col xs={24} md={12} style={{ marginTop: 40 }}>
             <SalesReport />
           </Col>

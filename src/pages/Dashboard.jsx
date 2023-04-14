@@ -156,45 +156,47 @@ function Dashboard() {
             borderRadius: 20,
 
           }}>
-            <h1 style={{ color: '#30304D', font: 'Poppins', fontStyle: 'normal', fontWeight: '700', fontSize: '21px', lineHeight: '38px' }}>Calendar</h1>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Tabs defaultActiveKey="1" tabBarStyle={{ color: '#3B3A82', fontWeight: '700', font: 'Poppins', display: 'flex', justifyContent: 'center' }}>
-                <TabPane style={{ color: '#30304D', font: 'Poppins', fontStyle: 'normal', fontWeight: '700', fontSize: '15px', lineHeight: '38px' }} tab="Today" key="1">
-                  <h2 style={{ marginBottom: '0px', marginTop: '0px', color: '#3B3A82' }}><CalendarOutlined /> {moment().format('MMM ')}</h2>
-                  <h2 style={{ marginBottom: '0px', marginTop: '0px', color: '#3B3A82', marginLeft: '12px' }}> {moment().format(' D ')}</h2>
-                  <div style={{
-                    position: 'absolute',
-                    backgroundColor: '#7170CF',
-                    border: '1px solid #dddddd',
-                    padding: 20,
-                    textAlign: 'center',
-                    background: '#7170CF',
-                    borderRadius: 10,
-                    marginLeft: '-50px', /* Updated marginLeft to marginRight */
-                    width: 200,
-                    height: 40,
-                    left: 135, /* Added right property */
-                    top: 10,
-                  }}>
-                    <h2 className="net-income-product">Product 1 expires </h2>
-                  </div>
-                  <div style={{
-                    position: 'absolute',
-                    backgroundColor: '#7170CF',
-                    border: '1px solid #dddddd',
-                    padding: 20,
-                    textAlign: 'center',
-                    background: '#7170CF',
-                    borderRadius: 10,
-                    marginLeft: '-50px', /* Updated marginLeft to marginRight */
-                    width: 200,
-                    height: 40,
-                    left: 135, /* Added right property */
-                    top: 70,
-                  }}>
-                    <h2 className="net-income-product">Product 2 low stock</h2>
-                  </div>
-                </TabPane>
+             <div>
+      <h1 style={{ color: '#30304D', font: 'Poppins', fontStyle: 'normal', fontWeight: '700', fontSize: '21px', lineHeight: '38px' }}>Calendar</h1>
+      
+      <Tabs defaultActiveKey="1" tabBarStyle={{ color: '#3B3A82', fontWeight: '700', font: 'Poppins', display: 'flex', justifyContent: 'center' }}>
+        <TabPane style={{ color: '#30304D', font: 'Poppins', fontStyle: 'normal', fontWeight: '700', fontSize: '15px', lineHeight: '38px' }} tab="Today" key="1">
+          <Row gutter={[16, 16]} justify="center" align="middle">
+            <Col xs={24} sm={12} md={8} lg={6}>
+              <h2 style={{ marginBottom: '0px', marginTop: '0px', color: '#3B3A82' }}><CalendarOutlined /> {moment().format('MMM ')}</h2>
+              <h2 style={{ marginBottom: '0px', marginTop: '0px', color: '#3B3A82', marginLeft: '12px' }}> {moment().format(' D ')}</h2>
+            </Col>
+            <Col xs={24} sm={12} md={8} lg={6}>
+              <div style={{
+                backgroundColor: '#7170CF',
+                border: '1px solid #dddddd',
+                padding: 10,
+                textAlign: 'center',
+                background: '#7170CF',
+                borderRadius: 10,
+                width: '100%',
+                height: 60,
+              }}>
+                <h2 className="net-income-product">Product 1 expires </h2>
+              </div>
+            </Col>
+            <Col xs={24} sm={12} md={8} lg={6}>
+              <div style={{
+                backgroundColor: '#7170CF',
+                border: '1px solid #dddddd',
+                padding: 10,
+                textAlign: 'center',
+                background: '#7170CF',
+                borderRadius: 10,
+                width: '100%',
+                height: 60,
+              }}>
+                <h2 className="net-income-product">Product 2 low stock</h2>
+              </div>
+            </Col>
+          </Row>
+        </TabPane>
+   
                 <TabPane style={{ color: '#30304D', font: 'Poppins', fontStyle: 'normal', fontWeight: '700', fontSize: '15px', lineHeight: '38px' }} tab="Next Week" key="2">
                   <h2 style={{ marginBottom: '0px', marginTop: '0px', font: 'Poppins', color: '#3B3A82' }}><CalendarOutlined /> {moment().startOf('day').add(7, 'days').format('MMM ')}</h2>
                   <h2 style={{ marginBottom: '0px', marginTop: '0px', font: 'Poppins', color: '#3B3A82', marginLeft: '12px' }}> {moment().startOf('day').add(7, 'days').format(' D')}</h2>
