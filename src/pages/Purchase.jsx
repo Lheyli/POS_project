@@ -180,8 +180,15 @@ const MakePurchase = () => {
                 closable={false}
                 onClose={onClose}
                 open={isDrawerVisible}
-                width={500}
-                style={{ borderRadius: '40px 0px 0px 40px' }} // Add border radius of 20px
+                width={300}
+                style={{
+                  borderRadius: '40px 0px 0px 40px',
+                  // Add styles for smaller screens
+                  '@media screen and (max-width: 768px)': {
+                    width: '30%',
+                    borderRadius: 0,
+                  },
+                }}
               >
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '50px' }}>
                   <img
