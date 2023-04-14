@@ -206,7 +206,7 @@ const User = () => {
       </div>
 
       <Row justify="center">
-  <Col xs={24} lg={12}>
+  <Col xs={24} lg={8}>
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <RangePicker
         id="input123"
