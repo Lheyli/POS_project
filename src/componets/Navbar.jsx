@@ -308,7 +308,7 @@ const Navbar = () => {
                 footer={null}
                 onOk={handleModalOk}
                 onCancel={handleModalCancel}
-                width="max-context"
+                width="320px"
                 height="40%"
               > <div style={{ maxWidth: '750px', margin: 'auto' }}>
                   <Carousel autoplay {...settings}>
@@ -368,7 +368,7 @@ const Navbar = () => {
                 footer={null}
                 onOk={handleOk}
                 onCancel={Cancel}
-                width="max-context"
+                width="320px"
                 height="40%"
               >
                 <div style={{ maxWidth: '750px', margin: 'auto' }}>
@@ -428,7 +428,7 @@ const Navbar = () => {
                 footer={null}
                 onOk={handleModalOkay}
                 onCancel={handleCancel}
-                width="max-context"
+                width="320px"
                 height="40%"
 
               >
@@ -489,7 +489,7 @@ const Navbar = () => {
             footer={null}
             onOk={handle}
             onCancel={cel}
-            width="max-context"
+            width="320px"
             height="40%"
           >
             <div style={{ maxWidth: '750px', margin: 'auto' }}>
@@ -535,7 +535,7 @@ const Navbar = () => {
                 footer={null}
                 onOk={han}
                 onCancel={c}
-                width="max-context"
+                width="320px"
                 height="40%"
               >
                 <div style={{ maxWidth: '750px', margin: 'auto' }}>
