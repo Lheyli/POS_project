@@ -72,12 +72,12 @@ const Products = () => {
        closable={false}
        open={isDrawerVisible}
        onClose={onDetailsClose}
-       width={500}
+       width={300}
        style={{
          borderRadius: '40px 0px 0px 40px',
          // Add styles for smaller screens
          '@media screen and (max-width: 768px)': {
-           width: '100%',
+           width: '30%',
            borderRadius: 0,
          },
        }}
