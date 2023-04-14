@@ -39,13 +39,13 @@ const NetIncome = () => {
                 background: '#F9F9FF',
                 boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
                 borderRadius: '24px',
-                width: '80%',
+                width: '60%',
+                marginTop: '1%',
                 textAlign: 'center'
             }}>
                 <Row justify="center" align="middle">
                     <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                         <Card style={{
-                            right: 30,
                             backgroundColor: '#FFFFFF',
                             background: '#F9F9FF',
                             boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
@@ -53,7 +53,8 @@ const NetIncome = () => {
                             width: '100%',
                             textAlign: 'center',
                             justifyContent: 'center',
-                            alignItems: 'center'
+                            alignItems: 'center',
+                            padding: '20px 10px' // added padding to adjust for mobile screens
                         }}>
                             <Typography.Text
                                 style={{
@@ -70,9 +71,21 @@ const NetIncome = () => {
                             >
                                 NET Income
                             </Typography.Text>
-                            <Line style={{ justifyContent: 'center', marginTop: 50 }} {...config} />
+                            <Line
+                                style={{
+                                    width: '100%',
+                                    height: 'auto',
+                                    margin: '0 auto',
+                                    maxWidth: '500px', // added max-width to limit chart size on large screens
+                                    justifyContent: 'center',
+                                    marginTop: 50,
+                                }}
+                                {...config}
+                            />
+
                         </Card>
                     </Col>
+
                     <Col xs={24} sm={24} md={6} lg={6} xl={6}>
                         <div style={{
                             marginTop: 50,
