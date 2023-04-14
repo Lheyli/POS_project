@@ -237,8 +237,15 @@ const MakePurchase = () => {
                 closable={false}
                 onClose={onDetailsClose}
                 open={isDetailsVisible}
-                width={500}
-                style={{ borderRadius: '40px 0px 0px 40px' }} // Add border radius of 20px
+                width={300}
+                style={{
+                  borderRadius: '40px 0px 0px 40px',
+                  // Add styles for smaller screens
+                  '@media screen and (max-width: 768px)': {
+                    width: '30%',
+                    borderRadius: 0,
+                  },
+                }}
               >
                 {/* New content for the "View Details" drawer */}
                 <Row justify="end">
@@ -296,17 +303,13 @@ const MakePurchase = () => {
                   <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.updated_by}</Typography.Text>
                 </div>
                 <br></br>
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <Button style={{ borderRadius: '50px', borderColor: '#5250B4', color: '#5250B4', font: 'Poppins', fontWeight: 'bold', height: '55px', width: '205px' }} onClick={() => (selectedProduct)}>
                     GENERATE QR CODE
                   </Button>
+                  <DeleteOutlined onClick={() => handleDeleteClick(selectedProduct.product_id)} style={{ color: '#9494B2', fontSize: '30px' }} />
                 </div>
-                <Row justify="end">
-                  <Col>
-                    <DeleteOutlined onClick={() => handleDeleteClick(selectedProduct.product_id)} style={{ color: '#9494B2', fontSize: '30px' }} />
-                    &nbsp;&nbsp;
-                  </Col>
-                </Row>
+
               </Drawer>
             )}
           </Row>

@@ -138,17 +138,13 @@ const Products = () => {
             <Typography.Text style={{ font: 'Poppins', fontWeight: 'bold', color: '#3B3A82' }}>{selectedProduct.updated_by}</Typography.Text>
           </div>
           <br></br>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Button style={{ borderRadius: '50px', borderColor: '#5250B4', color: '#5250B4', font: 'Poppins', fontWeight: 'bold', height: '55px', width: '205px' }} onClick={() => (selectedProduct)}>
-              GENERATE QR CODE
-            </Button>
-          </div>
-          <Row justify="end">
-            <Col>
-              <DeleteOutlined onClick={() => handleDeleteClick(selectedProduct.product_id)} style={{ color: '#9494B2', fontSize: '30px' }} />
-              &nbsp;&nbsp;
-            </Col>
-          </Row>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Button style={{ borderRadius: '50px', borderColor: '#5250B4', color: '#5250B4', font: 'Poppins', fontWeight: 'bold', height: '55px', width: '205px' }} onClick={() => (selectedProduct)}>
+                    GENERATE QR CODE
+                  </Button>
+                  <DeleteOutlined onClick={() => handleDeleteClick(selectedProduct.product_id)} style={{ color: '#9494B2', fontSize: '30px' }} />
+                </div>
+
         </Drawer>
       )}
       <br></br>
