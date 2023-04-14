@@ -253,7 +253,7 @@ function Sidebar() {
             footer={null}
             onOk={handleOk}
             onCancel={Cancel}
-            width="40%"
+            width="max-context"
             height="40%"
           >
              <div style={{ maxWidth: '750px', margin: 'auto' }}>
@@ -306,7 +306,7 @@ function Sidebar() {
             footer={null}
             onOk={handleModalOk}
             onCancel={handleModalCancel}
-            width="40%"
+            width="max-context"
             height="40%"
           > <div style={{ maxWidth: '750px', margin: 'auto' }}>
             <Carousel autoplay {...settings}>
@@ -341,7 +341,7 @@ function Sidebar() {
             footer={null}
             onOk={handle}
             onCancel={cel}
-            width="40%"
+            width="max-context"
             height="40%"
           >
             <div style={{ maxWidth: '750px', margin: 'auto' }}>
