@@ -85,13 +85,37 @@ const StyledToggle = styled.button`
   padding: 8px 16px;
   cursor: pointer;
 
+
   @media (max-width: 768px) {
     .ant-modal-content {
       height: 80vh;
+      width: 100vw;
     }
   
     .ant-carousel .slick-slide img {
       max-height: 60vh;
+    }
+  }
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .ant-modal-content {
+      height: 80vh;
+      width: 320px;
+    }
+  
+    .ant-carousel .slick-slide img {
+      max-height: 70vh;
+    }
+  }
+  
+  @media (min-width: 1025px) {
+    .ant-modal-content {
+      height: max-content;
+      width: 320px;
+    }
+  
+    .ant-carousel .slick-slide img {
+      max-height: 80vh;
     }
   }
   
@@ -223,53 +247,54 @@ function Sidebar() {
             &nbsp; Products
           </StyledLink>
             <Modal
-              open={isvisible}
+              visible={isvisible}
               footer={null}
               onOk={handleModalOkay}
               onCancel={handleCancel}
-              width={320}
->
-  <div style={{ textAlign: 'center' }}>
-    <Carousel autoplay {...settings} dots={false}>
-      {images.map((image) => (
-        <div key={image}>
-          <img
-            src={C1}
-            alt={image}
-            style={{ maxWidth: '100%', height: 'auto' }}
-          />
-        </div>
-      ))}
-      {images.map((image) => (
-        <div key={image}>
-          <img
-            src={C2}
-            alt={image}
-            style={{ maxWidth: '100%', height: 'auto' }}
-          />
-        </div>
-      ))}
-      {images.map((image) => (
-        <div key={image}>
-          <img
-            src={C3}
-            alt={image}
-            style={{ maxWidth: '100%', height: 'auto' }}
-          />
-        </div>
-      ))}
-      {images.map((image) => (
-        <div key={image}>
-          <img
-            src={C4}
-            alt={image}
-            style={{ maxWidth: '100%', height: 'auto' }}
-          />
-        </div>
-      ))}
-    </Carousel>
-  </div>
-</Modal></Col>
+              width={500}
+            >
+              <div style={{ textAlign: 'center' }}>
+                <Carousel autoplay {...settings} dots={false}>
+                  {images.map((image) => (
+                    <div key={image}>
+                      <img
+                        src={C1}
+                        alt={image}
+                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                      />
+                    </div>
+                  ))}
+                  {images.map((image) => (
+                    <div key={image}>
+                      <img
+                        src={C2}
+                        alt={image}
+                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                      />
+                    </div>
+                  ))}
+                  {images.map((image) => (
+                    <div key={image}>
+                      <img
+                        src={C3}
+                        alt={image}
+                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                      />
+                    </div>
+                  ))}
+                  {images.map((image) => (
+                    <div key={image}>
+                      <img
+                        src={C4}
+                        alt={image}
+                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                      />
+                    </div>
+                  ))}
+                </Carousel>
+              </div>
+            </Modal>
+          </Col>
           <Col><StyledLink to="/purchase" style={{ fontWeight: 'bold' }} onClick={handleClick}>
             <ShoppingCartOutlined />
             &nbsp; Make Purchase
