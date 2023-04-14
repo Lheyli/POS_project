@@ -47,7 +47,7 @@ const Checkout = () => {
   return (
     <>
       <StyledHeader>
-        <Row justify="start" style={{ marginTop: '10px', marginLeft: '30px' }}>
+        <Row justify="start" style={{ marginTop: '10px', marginLeft: '5px' }}>
           <Button style={{ background: '#DBDFFD' }}>
             <Link to="/purchase">
               <LeftOutlined style={{ color: '#1A2163' }} />
@@ -56,7 +56,7 @@ const Checkout = () => {
           <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ffffff', font: "Poppins", fontWeight: 'bold', marginLeft: '10px', fontSize: '20px', marginTop: '1px' }}>MAKE PURCHASE</p>
         </Row>
       </StyledHeader>
-      <Row justify='start' style={{ marginLeft: '50px' }}>
+      <Row justify='start' style={{ marginLeft: '25px' }}>
   <Col xs={24} sm={12} md={12} lg={12} xl={8} xxl={6}>
     <div style={{
       display: 'flex',
@@ -96,9 +96,10 @@ const Checkout = () => {
       </Link>
     </div>
   </Col>
- </Row>
+</Row>
+
     <div style={{
-      marginLeft: '50px',
+      marginLeft: '25px',
       textAlign: 'left',
       font: 'Poppins',
       fontStyle: 'normal',
@@ -110,7 +111,6 @@ const Checkout = () => {
       {`${today}`}
     </div>
  
-
 
     <Row justify="center" style={{ marginTop: "30px" }}>
   <Col xs={24} sm={24} md={18} lg={18} xl={18}>
@@ -185,7 +185,7 @@ const Checkout = () => {
           <Typography.Text style={{ fontWeight: "bold" }}>
             Tendered Amount:
           </Typography.Text>
-          <InputNumber min={0} onChange={handleTenderedAmountChange} style={{ width: "200px" }} />
+          <InputNumber min={0} onChange={handleTenderedAmountChange} style={{ width: "160px" }} />
         </div>
         <Typography.Text style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
           Please enter customer tendered amount

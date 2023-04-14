@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { getProducts,deleteOneProduct, addToCart, getOne, getAllCategory } from '../reducers/productSlice';
+import { getProducts, deleteOneProduct, addToCart, getOne, getAllCategory } from '../reducers/productSlice';
 import { Card, Row, Col, Button, Input, Drawer, Typography } from 'antd';
 import { LeftOutlined, RightOutlined, ShoppingCartOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
@@ -87,12 +87,12 @@ const MakePurchase = () => {
       name.includes(searchValue.toLowerCase())
     );
   });
-  
+
 
 
   return (
     <>
-      <Row justify="start" style={{ marginTop: '50px', marginLeft: '130px' }}>
+      <Row justify="start" style={{ marginTop: '50px', padding: '0px 20px' }}>
         <Button style={{ background: '#DBDFFD' }}>
           <Link to="/products">
             <LeftOutlined style={{ color: '#1A2163' }} />
@@ -100,23 +100,24 @@ const MakePurchase = () => {
         </Button>
         <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', marginLeft: '10px', fontSize: '20px', marginTop: '0px' }}>MAKE PURCHASE</p>
       </Row>
-      <Row justify="end" style={{ marginTop: '50px', marginRight: '130px' }}>
+
+      <Row justify="end" style={{ padding: '0px 20px' }}>
         <Col>
           <Link to="/cart" >
             <ShoppingCartOutlined style={{ color: '#5250B4', fontSize: '30px' }} />
             {totalItems}
           </Link>
-          &nbsp;&nbsp;
         </Col>
         <Col>
           <Input
             placeholder="Search..."
             value={searchValue}
             onChange={handleSearch}
-            style={{ width: 200, borderRadius: '15px' }}
+            style={{ width: '100%', maxWidth: '200px', borderRadius: '15px' }}
           />
         </Col>
       </Row>
+
       <br></br> <br></br>
       <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
         <Row justify="center">
@@ -243,7 +244,7 @@ const MakePurchase = () => {
                 </Row>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '50px' }}>
                   <img
-                     src={(`data:image/jpeg;base64, ${selectedProduct.buffer_file}`) || "https://picsum.photos/250/250/"}
+                    src={(`data:image/jpeg;base64, ${selectedProduct.buffer_file}`) || "https://picsum.photos/250/250/"}
                     className="img-fluid"
                     width={250}
                     height={250}

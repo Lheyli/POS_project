@@ -67,16 +67,21 @@ const Products = () => {
     >
       <Button className="btn-arrow" onClick={handleButtonClick} style={{ color: '#3B3A82', borderStyle: 'none', fontWeight: 'medium', font: 'Poppins' }}>View Details {<RightOutlined />} </Button>
       {selectedProduct && (
-        <Drawer
-          placement="right"
-          closable={false}
-          open={isDrawerVisible}
-          onClose={onDetailsClose}
-
-          width={500}
-          style={{ borderRadius: '40px 0px 0px 40px' }} // Add border radius of 20px
-        >
-         
+       <Drawer
+       placement="right"
+       closable={false}
+       open={isDrawerVisible}
+       onClose={onDetailsClose}
+       width={500}
+       style={{
+         borderRadius: '40px 0px 0px 40px',
+         // Add styles for smaller screens
+         '@media screen and (max-width: 768px)': {
+           width: '100%',
+           borderRadius: 0,
+         },
+       }}
+     >
           <Row justify="end">
             <Col>
 
@@ -87,7 +92,7 @@ const Products = () => {
           </Row>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '50px' }}>
             <img
-              src={ (`data:image/jpeg;base64, ${selectedProduct.buffer_file}`) || "https://picsum.photos/230/230/"}
+              src={(`data:image/jpeg;base64, ${selectedProduct.buffer_file}`) || "https://picsum.photos/230/230/"}
               className="img-fluid"
               width={230}
               height={230}
@@ -140,7 +145,7 @@ const Products = () => {
           </div>
           <Row justify="end">
             <Col>
-              <DeleteOutlined  onClick={() => handleDeleteClick(selectedProduct.product_id)} style={{ color: '#9494B2', fontSize: '30px' }} />
+              <DeleteOutlined onClick={() => handleDeleteClick(selectedProduct.product_id)} style={{ color: '#9494B2', fontSize: '30px' }} />
               &nbsp;&nbsp;
             </Col>
           </Row>
@@ -224,7 +229,7 @@ const Products = () => {
       render: (text, record,) => <ActionsContent record={record} />,
     },
   ];
-const StyledTable = styled(Table)`
+  const StyledTable = styled(Table)`
   background-color: #F9F9FF;
   border-color: #E8E8E8;
   max-width: 100%;
@@ -294,7 +299,7 @@ const StyledTable = styled(Table)`
           />
         </Col>
         <Col xs={24} md={12} lg={10} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-          <Button onClick={CreateModal} style={{ borderColor: '#5250B4', borderRadius: '50px', display: 'inline-block', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', marginBottom: '16px', marginRight: '16px' }}>
+          <Button onClick={CreateModal} style={{ borderColor: '#5250B4', borderRadius: '50px', display: 'inline-block', color: '#3B3A82', font: "Poppins", fontWeight: 'bold', marginRight: '16px' }}>
             CREATE NEW
           </Button>
           <Button
@@ -305,11 +310,11 @@ const StyledTable = styled(Table)`
               color: '#ffffff',
               font: "Poppins",
               fontWeight: 'bold',
-              marginBottom: '14px'
+
             }}
             icon={<ShoppingCartOutlined />}
           >
-            <Link to="/make">MAKE PURCHASE</Link>
+            <Link to="/make"> MAKE PURCHASE</Link>
           </Button>
         </Col>
 
@@ -342,8 +347,12 @@ const StyledTable = styled(Table)`
         </Modal>
       </Row>
 
-      <StyledTable columns={columns} dataSource={products} rowKey="id" />
-      {modalContent}
+
+      <div style={{ maxWidth: '100%', margin: '0 auto' }}>
+        <StyledTable columns={columns} dataSource={products} rowKey="id" />
+        {modalContent}
+      </div>
+
     </div>
   );
 };

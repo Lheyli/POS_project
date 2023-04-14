@@ -49,16 +49,16 @@ const CheckRec = () => {
     return (
         <>
             <StyledHeader>
-                <Row justify="start" style={{ marginTop: '10px', marginLeft: '30px' }}>
+                <Row justify="start" style={{ marginTop: '10px', marginLeft: '5px' }}>
                     <Button style={{ background: '#DBDFFD' }}>
                         <Link to="/purchase">
                             <LeftOutlined style={{ color: '#1A2163' }} />
                         </Link>
                     </Button>
-                    <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ffffff', font: "Poppins", fontWeight: 'bold', marginLeft: '10px', fontSize: '20px', marginTop: '0px' }}>MAKE PURCHASE</p>
+                    <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ffffff', font: "Poppins", fontWeight: 'bold', marginLeft: '10px', fontSize: '20px', marginTop: '1px' }}>MAKE PURCHASE</p>
                 </Row>
             </StyledHeader>
-            <Row justify='start' style={{ marginLeft: '50px' }}>
+            <Row justify='start' style={{ marginLeft: '25px' }}>
                 <Col xs={24} sm={12} md={12} lg={12} xl={8} xxl={6}>
                     <div style={{
                         display: 'flex',
@@ -100,7 +100,7 @@ const CheckRec = () => {
                 </Col>
             </Row>
             <div style={{
-                marginLeft: '50px',
+                marginLeft: '25px',
                 textAlign: 'left',
                 font: 'Poppins',
                 fontStyle: 'normal',
@@ -118,7 +118,7 @@ const CheckRec = () => {
                         <Typography.Title level={1} style={{ color: "black", textAlign: "left" }} > ₱{totalPrice.toFixed(2)} Payment</Typography.Title>
                         <Table dataSource={cartItems || [{}]} style={{ maxWidth: "900px", marginTop: "20px" }}>
                             <Table.Column title="" key="image" render={(text, record) => (
-                                <img alt={record.image} src={ (`data:image/jpeg;base64, ${record.buffer_file}`) || "https://picsum.photos/50/50/"} width={50} height={50} />
+                                <img alt={record.image} src={(`data:image/jpeg;base64, ${record.buffer_file}`) || "https://picsum.photos/50/50/"} width={50} height={50} />
                             )} />
                             <Table.Column title="" dataIndex="product_name" key="title" />
                             <Table.Column
@@ -173,46 +173,47 @@ const CheckRec = () => {
                         </div>
                         <br />
                         <br />
-                        <Row justify="space-between" >
-                            <Col xs={{ span: 24 }} sm={{ span: 12 }}>
+                        <Row justify="space-between" align="middle">
+                            <Col xs={12} sm={12} md={8}>
                                 <Button
                                     onClick={handlePrint}
                                     style={{
-                                        background: '#FFFFFF',
-                                        border: '4px solid #5250B4',
-                                        borderRadius: '50px',
-                                        font: 'Poppins',
-                                        fontStyle: 'normal',
-                                        fontWeight: 'bold',
-                                        fontSize: '15px',
-                                        textAlign: 'center',
-                                        color: '#5250B4',
-                                        height: '40px',
-                                        width: '100%',
-                                        maxWidth: '145px',
-                                        marginBottom: '10px',
+                                        background: "#FFFFFF",
+                                        border: "4px solid #5250B4",
+                                        borderRadius: "50px",
+                                        font: "Poppins",
+                                        fontStyle: "normal",
+                                        fontWeight: "bold",
+                                        fontSize: "15px",
+                                        textAlign: "center",
+                                        color: "#5250B4",
+                                        height: "40px",
+                                        width: "100%",
+                                        maxWidth: "145px",
+                                        marginBottom: "10px",
                                     }}
                                 >
                                     PRINT
                                 </Button>
                             </Col>
-                            <Col xs={{ span: 24 }} sm={{ span: 12 }}>
+                            <Col xs={12} sm={12} md={8} style={{ textAlign: "right" }}>
                                 <Button
                                     style={{
-                                        background: 'linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)',
-                                        borderRadius: '50px',
-                                        font: 'Poppins',
-                                        fontStyle: 'normal',
+                                        background:
+                                            "linear-gradient(258.36deg, #3B3A82 1.29%, #5250B4 97.24%)",
+                                        borderRadius: "50px",
+                                        font: "Poppins",
+                                        fontStyle: "normal",
                                         fontWeight: 700,
-                                        fontSize: '15px',
-                                        lineHeight: '25px',
-                                        textAlign: 'center',
-                                        color: '#E8E8E8',
-                                        height: '40px',
-                                        width: '100%',
-                                        maxWidth: '135px',
-                                        marginBottom: '10px',
-                                        right: -350
+                                        fontSize: "15px",
+                                        lineHeight: "25px",
+                                        textAlign: "center",
+                                        color: "#E8E8E8",
+                                        height: "40px",
+                                        width: "100%",
+                                        maxWidth: "135px",
+                                        marginBottom: "10px",
+
                                     }}
                                     type="primary"
                                 >
@@ -220,6 +221,8 @@ const CheckRec = () => {
                                 </Button>
                             </Col>
                         </Row>
+
+
 
                     </Card>
                 </Col></Row>

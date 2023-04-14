@@ -142,27 +142,29 @@ const Transactions = () => {
     <>
 
       <div style={{
-        width: '50%',
+        width: '100%', // Updated width for mobile screens
         font: 'Poppins',
         fontStyle: 'normal',
         fontWeight: 'bold',
-        fontSize: '28px',
+        fontSize: '2em', // Updated font size using relative unit
         color: '#30304D',
         display: 'flex',
         justifyContent: 'center',
         marginTop: '10px',
       }}>
         <span>
-          {today}</span></div>
+          {today}
+        </span>
+      </div>
+
       <br />
       <Row justify="center">
         <Col xs={24} lg={16}>
-          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '50%', alignItems: 'center', marginTop: '10px',  }}>
-           
+          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '100%', alignItems: 'center', marginTop: '10px' }}>
             <DatePicker
               id={styles["input123"]}
               style={{
-                width: '150px',
+                width: '50%', // Updated width for mobile screens
                 height: 48,
                 background: '#5250B4',
                 borderRadius: '10px',
@@ -183,8 +185,7 @@ const Transactions = () => {
             />
             <Button
               style={{
-
-                width: '150px',
+                width: '50%', // Updated width for mobile screens
                 height: 48,
                 background: '#5250B4',
                 borderRadius: '10px',
@@ -198,6 +199,7 @@ const Transactions = () => {
                 textAlign: 'center',
                 color: '#FFFFFF',
                 justifyContent: 'center',
+
               }}
             >
               EXPORT
@@ -205,28 +207,29 @@ const Transactions = () => {
           </div>
         </Col>
       </Row>
+
       <br></br>
 
-          <Table
-        id="receipt-info"
-        style={{
-          backgroundColor: '#FFFFFF',
-          maxWidth: '100%',
-          width: 1000,
-          background: '#F9F9FF',
-          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
-          borderRadius: '50px',
-          justifyContent: 'center',
-          alignItems: 'center',
-          margin: 'auto'
-        }}
-            columns={columns}
-            rowKey="id"
-            pagination={false}
-            scroll={false}
-          />
+      <Table
+  id="receipt-info"
+  style={{
+    backgroundColor: '#FFFFFF',
+    width: '75%', // Updated width for mobile screens
+    background: '#F9F9FF',
+    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
+    borderRadius: '50px',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 'auto',
+  }}
+  columns={columns}
+  rowKey="id"
+  pagination={false}
+  scroll={{ x: true }} // Added horizontal scrolling on small screens
+/>
 
- 
+
+
 
     </>
   );
