@@ -35,7 +35,17 @@ const config = {
   },
 };
 const SalesReport = () => {
-  return <Column {...config} xs={24} />
+  return <Column
+    style={{
+      width: '100%',
+      height: 'auto',
+      margin: '0 auto',
+      maxWidth: '500px', // added max-width to limit chart size on large screens
+    }}
+    {...config}
+    xs={24}
+  />
+
 
 
 

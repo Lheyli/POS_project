@@ -93,7 +93,7 @@ const Sales = () => {
         background: '#F9F9FF',
         boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.15)',
         borderRadius: '24px',
-        width: '90%',
+        width: '80%',
         height: 'auto',
         margin: '50px auto',
         padding: '30px',
@@ -173,8 +173,7 @@ const Sales = () => {
             </Button>
           </Col>
         </Row>
-        <Row gutter={[16, 16]} justify="center
-" align="middle">
+        <Row gutter={[16, 16]}  align="middle">
           <Col span={24} md={12}>
             <div style={{
               marginTop: '30px',
@@ -213,7 +212,7 @@ const Sales = () => {
               marginBottom: 5
             }}>Details</h2>
             
-              <Col xs={18} md={8} style={{ marginLeft: 50, marginBottom: 10 }}>
+              <Col xs={20} md={10} style={{ marginLeft: 50, marginBottom: 10 }}>
                 <div style={{
                   backgroundColor: '#ffffff',
                   border: '1px solid #dddddd',
@@ -228,7 +227,7 @@ const Sales = () => {
                   <p className="net-income-amount">₱1,327</p>
                 </div>
               </Col>
-              <Col xs={18} md={8} style={{ marginLeft: 50,  marginBottom: 10 }}>
+              <Col xs={20} md={10} style={{ marginLeft: 50,  marginBottom: 10 }}>
                 <div style={{
                   backgroundColor: '#ffffff',
                   border: '1px solid #dddddd',
@@ -242,7 +241,7 @@ const Sales = () => {
                   <p className="net-income-amount">7</p>
                 </div>
               </Col>
-              <Col xs={18} md={8} style={{ marginLeft: 50,  marginBottom: 10 }}>
+              <Col xs={20} md={10} style={{ marginLeft: 50,  marginBottom: 10 }}>
                 <div style={{
                   backgroundColor: '#ffffff',
                   border: '1px solid #dddddd',
