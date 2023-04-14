@@ -142,6 +142,27 @@ const MakePurchase = () => {
               {product_category}
             </Button>
           ))}
+          <Button
+            key="All"
+            type={selectedCategory === "All"}
+            onClick={() => handleCategoryClick("All")}
+            style={{
+              marginRight: "10px",
+              borderStyle: "none",
+              borderRadius: "50px",
+              color: "#A9A9CC",
+              font: "Poppins",
+              fontWeight: "bold",
+              fontSize: "30px",
+              height: "50px",
+              backgroundColor:
+                selectedCategory === "All" ? "#5250B4" : "transparent",
+              cursor: "pointer"
+            }}
+          >
+            All
+          </Button>
+
         </Row>
         <br></br> <br></br> <br></br>
         <div justify="center" align="middle">
