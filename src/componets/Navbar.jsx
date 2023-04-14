@@ -29,7 +29,7 @@ const StyledHeader = styled.header`
   padding: 0 24px;
   border: 0.5px solid #9494b2;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 320px) {
     flex-direction: column;
     height: auto;
     padding: 24px;
@@ -53,7 +53,7 @@ const StyledSearch = styled.input`
   background-color: #fff;
   transition: all 0.3s;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 320px) {
     margin: 0 auto;
     margin-bottom: 24px;
   }
@@ -99,7 +99,7 @@ const StyledContainer = styled.div`
   justify-content: right;
   width: 100%;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 320px) {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -110,11 +110,13 @@ display: flex;
 align-items: center;
 justify-content: right;
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 320px) {
   flex-direction: row;
   align-items: flex-start;
 }
+
 `;
+
 
 const Navbar = () => {
   const handleCli = () => {
