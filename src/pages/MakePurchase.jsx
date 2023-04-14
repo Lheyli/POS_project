@@ -31,7 +31,7 @@ function MakePurchase() {
             maxWidth: '100%',
             marginTop: '110px',
             marginBottom: '20px',
-            width: '665px', height: '450px', left: '50%', 
+            width: '665px', height: 'auto', left: '50%', 
           }}
         />
       </div>
