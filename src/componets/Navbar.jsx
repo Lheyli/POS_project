@@ -136,7 +136,7 @@ const Navbar = () => {
   };
   const images = [''];
   const [visible, setVisible] = useState(false);
- 
+
   const hasShownModal1 = localStorage.getItem('hasShownModal1');
 
   // If the modal has not been shown before, set its visibility to true
@@ -155,16 +155,16 @@ const Navbar = () => {
     setVisible(false);
   };
 
-   const [isvis, issetVis] = useState(false);
+  const [isvis, issetVis] = useState(false);
 
-   const hasShownModal2 = localStorage.getItem('hasShownModal2');
+  const hasShownModal2 = localStorage.getItem('hasShownModal2');
 
-   // If the modal has not been shown before, set its visibility to true
-   if (!hasShownModal2) {
+  // If the modal has not been shown before, set its visibility to true
+  if (!hasShownModal2) {
     issetVis(true);
-     // Store in local storage that the modal has been shown
-     localStorage.setItem('hasShownModal2', true);
-   }
+    // Store in local storage that the modal has been shown
+    localStorage.setItem('hasShownModal2', true);
+  }
 
   const handleClick = () => {
     issetVis(true);
@@ -255,7 +255,7 @@ const Navbar = () => {
         <StyledSearch placeholder="Search..." />
       </StyledContainer>
       <StyledRowContainer>
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <StyledBadge onClick={showModal}>
           <QuestionCircleOutlined style={{ fontSize: "24px", color: "#30304D" }} />
         </StyledBadge>
@@ -308,30 +308,31 @@ const Navbar = () => {
                 footer={null}
                 onOk={handleModalOk}
                 onCancel={handleModalCancel}
-                width={800} height={1500}
-              >
-                <Carousel autoplay {...settings}>
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={C1} alt={image} width={750} height={700} />
-                    </div>
-                  ))}
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={C2} alt={image} width={750} height={700} />
-                    </div>
-                  ))}
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={C3} alt={image} width={750} height={700} />
-                    </div>
-                  ))}
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={C4} alt={image} width={750} height={700} />
-                    </div>
-                  ))}
-                </Carousel>
+                width="max-context"
+                height="40%"
+              > <div style={{ maxWidth: '750px', margin: 'auto' }}>
+                  <Carousel autoplay {...settings}>
+                    {images.map(image => (
+                      <div key={image}>
+                        <img src={C1} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      </div>
+                    ))}
+                    {images.map(image => (
+                      <div key={image}>
+                        <img src={C2} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      </div>
+                    ))}
+                    {images.map(image => (
+                      <div key={image}>
+                        <img src={C3} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      </div>
+                    ))}
+                    {images.map(image => (
+                      <div key={image}>
+                        <img src={C4} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      </div>
+                    ))}
+                  </Carousel></div>
               </Modal>
             </h1>
           </div>
@@ -367,30 +368,32 @@ const Navbar = () => {
                 footer={null}
                 onOk={handleOk}
                 onCancel={Cancel}
-                width={800} height={1500}
+                width="max-context"
+                height="40%"
               >
-                <Carousel autoplay {...settings}>
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={i1} alt={image} width={750} height={700} />
-                    </div>
-                  ))}
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={i2} alt={image} width={750} height={700} />
-                    </div>
-                  ))}
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={i3} alt={image} width={750} height={700} />
-                    </div>
-                  ))}
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={i4} alt={image} width={750} height={700} />
-                    </div>
-                  ))}
-                </Carousel>
+                <div style={{ maxWidth: '750px', margin: 'auto' }}>
+                  <Carousel autoplay {...settings}>
+                    {images.map(image => (
+                      <div key={image}>
+                        <img src={i1} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      </div>
+                    ))}
+                    {images.map(image => (
+                      <div key={image}>
+                        <img src={i2} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      </div>
+                    ))}
+                    {images.map(image => (
+                      <div key={image}>
+                        <img src={i3} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      </div>
+                    ))}
+                    {images.map(image => (
+                      <div key={image}>
+                        <img src={i4} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      </div>
+                    ))}
+                  </Carousel></div>
               </Modal>
             </h1>
           </div>
@@ -425,30 +428,33 @@ const Navbar = () => {
                 footer={null}
                 onOk={handleModalOkay}
                 onCancel={handleCancel}
-                width={800} height={1500}
+                width="max-context"
+                height="40%"
+
               >
-                <Carousel autoplay {...settings}>
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={m1} alt={image} width={750} height={700} />
-                    </div>
-                  ))}
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={m2} alt={image} width={750} height={700} />
-                    </div>
-                  ))}
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={m3} alt={image} width={750} height={700} />
-                    </div>
-                  ))}
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={m4} alt={image} width={750} height={700} />
-                    </div>
-                  ))}
-                </Carousel>
+                <div style={{ maxWidth: '750px', margin: 'auto' }}>
+                  <Carousel autoplay {...settings}>
+                    {images.map(image => (
+                      <div key={image}>
+                        <img src={m1} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      </div>
+                    ))}
+                    {images.map(image => (
+                      <div key={image}>
+                        <img src={m2} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      </div>
+                    ))}
+                    {images.map(image => (
+                      <div key={image}>
+                        <img src={m3} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      </div>
+                    ))}
+                    {images.map(image => (
+                      <div key={image}>
+                        <img src={m4} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      </div>
+                    ))}
+                  </Carousel></div>
               </Modal>
             </h1>
           </div>
@@ -479,19 +485,22 @@ const Navbar = () => {
               fontSize: '20px'
             }} />
               <Modal
-                open={vis}
-                footer={null}
-                onOk={handle}
-                onCancel={cel}
-                width={800} height={1500}
-              >
-                <Carousel autoplay {...settings}>
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={v1} alt={image} width={750} height={700} />
-                    </div>
-                  ))}
+            open={vis}
+            footer={null}
+            onOk={handle}
+            onCancel={cel}
+            width="max-context"
+            height="40%"
+          >
+            <div style={{ maxWidth: '750px', margin: 'auto' }}>
+            <Carousel autoplay {...settings}>
+              {images.map(image => (
+                <div key={image}>
+                  <img src={v1} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
+                </div>
+              ))}
                 </Carousel>
+                </div>
               </Modal>
             </h1>
           </div>
@@ -526,25 +535,29 @@ const Navbar = () => {
                 footer={null}
                 onOk={han}
                 onCancel={c}
-                width={800} height={1500}
+                width="max-context"
+                height="40%"
               >
+                <div style={{ maxWidth: '750px', margin: 'auto' }}>
                 <Carousel autoplay {...settings}>
+    
                   {images.map(image => (
                     <div key={image}>
-                      <img src={s1} alt={image} width={750} height={700} />
+                      <img src={s1} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
                     </div>
                   ))}
                   {images.map(image => (
                     <div key={image}>
-                      <img src={s2} alt={image} width={750} height={700} />
+                      <img src={s2} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
                     </div>
                   ))}
                   {images.map(image => (
                     <div key={image}>
-                      <img src={s3} alt={image} width={750} height={700} />
+                      <img src={s3} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
                     </div>
                   ))}
-                </Carousel>
+    
+                </Carousel></div>
               </Modal>
             </h1>
           </div>
@@ -556,11 +569,11 @@ const Navbar = () => {
         </StyledBadge>
         &nbsp;&nbsp;&nbsp;
         <StyledBadge >
-          <LogoutOutlined to="/out"  style={{ fontSize: "24px", color: "#30304D" }} />
+          <LogoutOutlined to="/out" style={{ fontSize: "24px", color: "#30304D" }} />
         </StyledBadge>
       </StyledRowContainer>
-     
-     
+
+
     </StyledHeader>
   );
 };
