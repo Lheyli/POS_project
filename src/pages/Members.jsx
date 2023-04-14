@@ -298,7 +298,7 @@ const Members = () => {
           marginBottom: 16
         }}
       >
-        <PlusOutlined /> &nbsp; &nbsp;CREATE NEW &nbsp;
+        <PlusOutlined /> CREATE NEW &nbsp;
       </Button>
     </Col>
   </Row>
@@ -358,7 +358,7 @@ const Members = () => {
             justifyContent: 'center',
             textAlign: 'center',
             color: '#3B3A82',
-            width: '35%',
+            width: '45%',
           }}
         >
           {selectedBatch || 'Select batch'} &nbsp;
