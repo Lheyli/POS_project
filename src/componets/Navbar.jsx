@@ -114,7 +114,38 @@ justify-content: right;
   flex-direction: row;
   align-items: flex-start;
 }
+@media (max-width: 768px) {
+  .ant-modal-content {
+    height: 80vh;
+    width: 100vw;
+  }
 
+  .ant-carousel .slick-slide img {
+    max-height: 60vh;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .ant-modal-content {
+    height: 80vh;
+    width: 320px;
+  }
+
+  .ant-carousel .slick-slide img {
+    max-height: 70vh;
+  }
+}
+
+@media (min-width: 1025px) {
+  .ant-modal-content {
+    height: max-content;
+    width: 320px;
+  }
+
+  .ant-carousel .slick-slide img {
+    max-height: 80vh;
+  }
+}
 `;
 
 
@@ -308,32 +339,49 @@ const Navbar = () => {
                 footer={null}
                 onOk={handleModalOk}
                 onCancel={handleModalCancel}
-                width="320px"
-                height="40%"
-              > <div style={{ maxWidth: '750px', margin: 'auto' }}>
-                  <Carousel autoplay {...settings}>
-                    {images.map(image => (
-                      <div key={image}>
-                        <img src={C1} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
-                      </div>
-                    ))}
-                    {images.map(image => (
-                      <div key={image}>
-                        <img src={C2} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
-                      </div>
-                    ))}
-                    {images.map(image => (
-                      <div key={image}>
-                        <img src={C3} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
-                      </div>
-                    ))}
-                    {images.map(image => (
-                      <div key={image}>
-                        <img src={C4} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
-                      </div>
-                    ))}
-                  </Carousel></div>
-              </Modal>
+                width={500}
+                >
+                  <div style={{ textAlign: 'center' }}>
+                    <Carousel autoplay {...settings} dots={false}>
+                      {images.map((image) => (
+                        <div key={image}>
+                          <img
+                            src={C1}
+                            alt={image}
+                            style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                          />
+                        </div>
+                      ))}
+                      {images.map((image) => (
+                        <div key={image}>
+                          <img
+                            src={C2}
+                            alt={image}
+                            style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                          />
+                        </div>
+                      ))}
+                      {images.map((image) => (
+                        <div key={image}>
+                          <img
+                            src={C3}
+                            alt={image}
+                            style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                          />
+                        </div>
+                      ))}
+                      {images.map((image) => (
+                        <div key={image}>
+                          <img
+                            src={C4}
+                            alt={image}
+                            style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                          />
+                        </div>
+                      ))}
+                    </Carousel>
+                  </div>
+                </Modal>
             </h1>
           </div>
           <Divider style={{ borderColor: '#9494B2', borderWidth: '0.5px', marginBottom: '0px', marginTop: '0px' }} />
@@ -368,33 +416,49 @@ const Navbar = () => {
                 footer={null}
                 onOk={handleOk}
                 onCancel={Cancel}
-                width="320px"
-                height="40%"
-              >
-                <div style={{ maxWidth: '750px', margin: 'auto' }}>
-                  <Carousel autoplay {...settings}>
-                    {images.map(image => (
-                      <div key={image}>
-                        <img src={i1} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
-                      </div>
-                    ))}
-                    {images.map(image => (
-                      <div key={image}>
-                        <img src={i2} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
-                      </div>
-                    ))}
-                    {images.map(image => (
-                      <div key={image}>
-                        <img src={i3} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
-                      </div>
-                    ))}
-                    {images.map(image => (
-                      <div key={image}>
-                        <img src={i4} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
-                      </div>
-                    ))}
-                  </Carousel></div>
-              </Modal>
+                width={500}
+                >
+                  <div style={{ textAlign: 'center' }}>
+                    <Carousel autoplay {...settings} dots={false}>
+                      {images.map((image) => (
+                        <div key={image}>
+                          <img
+                            src={i1}
+                            alt={image}
+                            style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                          />
+                        </div>
+                      ))}
+                      {images.map((image) => (
+                        <div key={image}>
+                          <img
+                            src={i2}
+                            alt={image}
+                            style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                          />
+                        </div>
+                      ))}
+                      {images.map((image) => (
+                        <div key={image}>
+                          <img
+                            src={i3}
+                            alt={image}
+                            style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                          />
+                        </div>
+                      ))}
+                      {images.map((image) => (
+                        <div key={image}>
+                          <img
+                            src={i4}
+                            alt={image}
+                            style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                          />
+                        </div>
+                      ))}
+                    </Carousel>
+                  </div>
+                </Modal>
             </h1>
           </div>
           <Divider style={{ borderColor: '#9494B2', borderWidth: '0.5px', marginBottom: '0px', marginTop: '0px' }} />
@@ -428,34 +492,49 @@ const Navbar = () => {
                 footer={null}
                 onOk={handleModalOkay}
                 onCancel={handleCancel}
-                width="320px"
-                height="40%"
-
-              >
-                <div style={{ maxWidth: '750px', margin: 'auto' }}>
-                  <Carousel autoplay {...settings}>
-                    {images.map(image => (
-                      <div key={image}>
-                        <img src={m1} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
-                      </div>
-                    ))}
-                    {images.map(image => (
-                      <div key={image}>
-                        <img src={m2} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
-                      </div>
-                    ))}
-                    {images.map(image => (
-                      <div key={image}>
-                        <img src={m3} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
-                      </div>
-                    ))}
-                    {images.map(image => (
-                      <div key={image}>
-                        <img src={m4} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
-                      </div>
-                    ))}
-                  </Carousel></div>
-              </Modal>
+                width={500}
+                >
+                  <div style={{ textAlign: 'center' }}>
+                    <Carousel autoplay {...settings} dots={false}>
+                      {images.map((image) => (
+                        <div key={image}>
+                          <img
+                            src={m1}
+                            alt={image}
+                            style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                          />
+                        </div>
+                      ))}
+                      {images.map((image) => (
+                        <div key={image}>
+                          <img
+                            src={m2}
+                            alt={image}
+                            style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                          />
+                        </div>
+                      ))}
+                      {images.map((image) => (
+                        <div key={image}>
+                          <img
+                            src={m3}
+                            alt={image}
+                            style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                          />
+                        </div>
+                      ))}
+                      {images.map((image) => (
+                        <div key={image}>
+                          <img
+                            src={m4}
+                            alt={image}
+                            style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                          />
+                        </div>
+                      ))}
+                    </Carousel>
+                  </div>
+                </Modal>
             </h1>
           </div>
           <Divider style={{ borderColor: '#9494B2', borderWidth: '0.5px', marginBottom: '0px', marginTop: '0px' }} />
@@ -489,19 +568,23 @@ const Navbar = () => {
             footer={null}
             onOk={handle}
             onCancel={cel}
-            width="320px"
-            height="40%"
-          >
-            <div style={{ maxWidth: '750px', margin: 'auto' }}>
-            <Carousel autoplay {...settings}>
-              {images.map(image => (
-                <div key={image}>
-                  <img src={v1} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
-                </div>
-              ))}
+            width={500}
+            >
+              <div style={{ textAlign: 'center' }}>
+                <Carousel autoplay {...settings} dots={false}>
+                  {images.map((image) => (
+                    <div key={image}>
+                      <img
+                        src={v1}
+                        alt={image}
+                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                      />
+                    </div>
+                  ))}
+                  
                 </Carousel>
-                </div>
-              </Modal>
+              </div>
+            </Modal>
             </h1>
           </div>
           <Divider style={{ borderColor: '#9494B2', borderWidth: '0.5px', marginBottom: '0px', marginTop: '0px' }} />
@@ -535,30 +618,41 @@ const Navbar = () => {
                 footer={null}
                 onOk={han}
                 onCancel={c}
-                width="320px"
-                height="40%"
-              >
-                <div style={{ maxWidth: '750px', margin: 'auto' }}>
-                <Carousel autoplay {...settings}>
-    
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={s1} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
-                    </div>
-                  ))}
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={s2} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
-                    </div>
-                  ))}
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={s3} alt={image} style={{ maxWidth: '100%', height: 'auto'}} />
-                    </div>
-                  ))}
-    
-                </Carousel></div>
-              </Modal>
+                width={500}
+                >
+                  <div style={{ textAlign: 'center' }}>
+                    <Carousel autoplay {...settings} dots={false}>
+                      {images.map((image) => (
+                        <div key={image}>
+                          <img
+                            src={s1}
+                            alt={image}
+                            style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                          />
+                        </div>
+                      ))}
+                      {images.map((image) => (
+                        <div key={image}>
+                          <img
+                            src={s2}
+                            alt={image}
+                            style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                          />
+                        </div>
+                      ))}
+                      {images.map((image) => (
+                        <div key={image}>
+                          <img
+                            src={s3}
+                            alt={image}
+                            style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                          />
+                        </div>
+                      ))}
+                   
+                    </Carousel>
+                  </div>
+                </Modal>
             </h1>
           </div>
           <Divider style={{ borderColor: '#9494B2', borderWidth: '0.5px', marginBottom: '30px', marginTop: '0px' }} />

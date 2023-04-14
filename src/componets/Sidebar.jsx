@@ -304,32 +304,48 @@ function Sidebar() {
               footer={null}
               onOk={handleOk}
               onCancel={Cancel}
-              width="320px"
-              height="40%"
+              width={500}
             >
-              <div style={{ maxWidth: '750px', margin: 'auto' }}>
-                <Carousel autoplay {...settings}>
-                  {images.map(image => (
+              <div style={{ textAlign: 'center' }}>
+                <Carousel autoplay {...settings} dots={false}>
+                  {images.map((image) => (
                     <div key={image}>
-                      <img src={i1} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      <img
+                        src={i1}
+                        alt={image}
+                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                      />
                     </div>
                   ))}
-                  {images.map(image => (
+                  {images.map((image) => (
                     <div key={image}>
-                      <img src={i2} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      <img
+                        src={i2}
+                        alt={image}
+                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                      />
                     </div>
                   ))}
-                  {images.map(image => (
+                  {images.map((image) => (
                     <div key={image}>
-                      <img src={i3} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      <img
+                        src={i3}
+                        alt={image}
+                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                      />
                     </div>
                   ))}
-                  {images.map(image => (
+                  {images.map((image) => (
                     <div key={image}>
-                      <img src={i4} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      <img
+                        src={i4}
+                        alt={image}
+                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                      />
                     </div>
                   ))}
-                </Carousel></div>
+                </Carousel>
+              </div>
             </Modal></Col>
           <Col><StyledLink to="/transactions" style={{ fontWeight: 'bold' }}>
             <SwapOutlined />
@@ -357,32 +373,49 @@ function Sidebar() {
               footer={null}
               onOk={handleModalOk}
               onCancel={handleModalCancel}
-              width="320px"
-              height="40%"
-            > <div style={{ maxWidth: '750px', margin: 'auto' }}>
-                <Carousel autoplay {...settings}>
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={m1} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
-                    </div>
-                  ))}
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={m2} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
-                    </div>
-                  ))}
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={m3} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
-                    </div>
-                  ))}
-                  {images.map(image => (
-                    <div key={image}>
-                      <img src={m4} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
-                    </div>
-                  ))}
-                </Carousel></div>
-            </Modal></Col>
+              width={500}
+              >
+                <div style={{ textAlign: 'center' }}>
+                  <Carousel autoplay {...settings} dots={false}>
+                    {images.map((image) => (
+                      <div key={image}>
+                        <img
+                          src={m1}
+                          alt={image}
+                          style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                        />
+                      </div>
+                    ))}
+                    {images.map((image) => (
+                      <div key={image}>
+                        <img
+                          src={m2}
+                          alt={image}
+                          style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                        />
+                      </div>
+                    ))}
+                    {images.map((image) => (
+                      <div key={image}>
+                        <img
+                          src={m3}
+                          alt={image}
+                          style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                        />
+                      </div>
+                    ))}
+                    {images.map((image) => (
+                      <div key={image}>
+                        <img
+                          src={m4}
+                          alt={image}
+                          style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                        />
+                      </div>
+                    ))}
+                  </Carousel>
+                </div>
+              </Modal></Col>
           <Col><StyledLink to="/qr" style={{ fontWeight: 'bold' }} onClick={handleC}>
             <QrcodeOutlined />&nbsp;
             Scan QR Code
@@ -392,34 +425,48 @@ function Sidebar() {
               footer={null}
               onOk={handle}
               onCancel={cel}
-              width="320px"
-              height="40%"
+               width={500}
             >
-              <div style={{ maxWidth: '750px', margin: 'auto' }}>
-                <Carousel autoplay {...settings}>
-                  {images.map(image => (
+              <div style={{ textAlign: 'center' }}>
+                <Carousel autoplay {...settings} dots={false}>
+                  {images.map((image) => (
                     <div key={image}>
-                      <img src={v1} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      <img
+                        src={v1}
+                        alt={image}
+                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                      />
                     </div>
                   ))}
-
-                  {images.map(image => (
+                  {images.map((image) => (
                     <div key={image}>
-                      <img src={s1} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      <img
+                        src={s1}
+                        alt={image}
+                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                      />
                     </div>
                   ))}
-                  {images.map(image => (
+                  {images.map((image) => (
                     <div key={image}>
-                      <img src={s2} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      <img
+                        src={s2}
+                        alt={image}
+                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                      />
                     </div>
                   ))}
-                  {images.map(image => (
+                  {images.map((image) => (
                     <div key={image}>
-                      <img src={s3} alt={image} style={{ maxWidth: '100%', height: 'auto' }} />
+                      <img
+                        src={s3}
+                        alt={image}
+                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
+                      />
                     </div>
                   ))}
-
-                </Carousel></div>
+                </Carousel>
+              </div>
             </Modal></Col>
 
 
