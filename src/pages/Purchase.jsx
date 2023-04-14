@@ -121,6 +121,26 @@ const MakePurchase = () => {
       <br></br> <br></br>
       <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
         <Row justify="center">
+          <Button
+            key="All"
+            type={selectedCategory === "All"}
+            onClick={() => handleCategoryClick("All")}
+            style={{
+              marginRight: "10px",
+              borderStyle: "none",
+              borderRadius: "50px",
+              color: "#A9A9CC",
+              font: "Poppins",
+              fontWeight: "bold",
+              fontSize: "30px",
+              height: "50px",
+              backgroundColor:
+                selectedCategory === "All" ? "#5250B4" : "transparent",
+              cursor: "pointer"
+            }}
+          >
+            All
+          </Button>
           {categories?.map((product_category) => (
             <Button
               key={product_category}
@@ -142,28 +162,8 @@ const MakePurchase = () => {
               {product_category}
             </Button>
           ))}
-          <Button
-            key="All"
-            type={selectedCategory === "All"}
-            onClick={() => handleCategoryClick("All")}
-            style={{
-              marginRight: "10px",
-              borderStyle: "none",
-              borderRadius: "50px",
-              color: "#A9A9CC",
-              font: "Poppins",
-              fontWeight: "bold",
-              fontSize: "30px",
-              height: "50px",
-              backgroundColor:
-                selectedCategory === "All" ? "#5250B4" : "transparent",
-              cursor: "pointer"
-            }}
-          >
-            All
-          </Button>
-
         </Row>
+
         <br></br> <br></br> <br></br>
         <div justify="center" align="middle">
           <Row justify="center">
