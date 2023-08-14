@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout } from "antd";
-import Navbar from '../componets/Navbar';
+//import Navbar from '../componets/Navbar';
 import Sidebar from '../componets/Sidebar';
 import styled from "styled-components";
 const { Content } = Layout;
@@ -14,7 +14,7 @@ zIndex:3000;
 function LayoutComponent({ children }) {
   return (
     <StyledLayout>
-      <Navbar />
+   
       <Layout>
         <Sidebar />
         <StyledContent>{children}</StyledContent>

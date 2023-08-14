@@ -19,6 +19,7 @@ import m1 from './m1.png';
 import m2 from './m2.png';
 import m3 from './m3.png';
 import m4 from './m4.png';
+import { BiUserCircle } from "react-icons/bi";
 import {
   HomeOutlined,
   CalculatorOutlined,
@@ -27,13 +28,13 @@ import {
   SwapOutlined,
   UserOutlined,
   TagOutlined,
-  MenuOutlined,
+  LeftOutlined,
   ShoppingCartOutlined,
   UsergroupAddOutlined,
 } from "@ant-design/icons";
 const StyledSider = styled.div`
-  background-color: #eeeeff;
-  width: max-content;
+  background-color: #A9A9CC;
+  width: 393px;
   height: 100%;
   position: fixed;
   left: 0;
@@ -226,7 +227,7 @@ function Sidebar() {
     <>
       {/* <Row> */}
       <StyledToggle onClick={handleToggle}>
-        {isOpen ? <MenuOutlined /> : <MenuOutlined />}
+        {isOpen ? <LeftOutlined /> : <LeftOutlined />}
       </StyledToggle>
       <StyledSider breakpoint="lg"
         collapsedWidth="0"
@@ -236,238 +237,25 @@ function Sidebar() {
         onCollapse={(collapsed, type) => {
           console.log(collapsed, type);
         }} isOpen={isOpen}>
-
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '50px'}}>
+          <BiUserCircle style={{ fontSize: '100px', }} />
+        </div>
+        ADMIN
         <StyledMenu>
           <Col><StyledLink to="/dashboard" style={{ fontWeight: 'bold' }}>
             <HomeOutlined />
             &nbsp; Dashboard
           </StyledLink></Col>
-          <Col><StyledLink to="/products" style={{ fontWeight: 'bold' }} onClick={handleSideClick}>
-            <TagOutlined />
-            &nbsp; Products
-          </StyledLink>
-            <Modal
-              visible={isvisible}
-              footer={null}
-              onOk={handleModalOkay}
-              onCancel={handleCancel}
-              width={500}
-            >
-              <div style={{ textAlign: 'center' }}>
-                <Carousel autoplay {...settings} dots={false}>
-                  {images.map((image) => (
-                    <div key={image}>
-                      <img
-                        src={C1}
-                        alt={image}
-                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
-                      />
-                    </div>
-                  ))}
-                  {images.map((image) => (
-                    <div key={image}>
-                      <img
-                        src={C2}
-                        alt={image}
-                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
-                      />
-                    </div>
-                  ))}
-                  {images.map((image) => (
-                    <div key={image}>
-                      <img
-                        src={C3}
-                        alt={image}
-                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
-                      />
-                    </div>
-                  ))}
-                  {images.map((image) => (
-                    <div key={image}>
-                      <img
-                        src={C4}
-                        alt={image}
-                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
-                      />
-                    </div>
-                  ))}
-                </Carousel>
-              </div>
-            </Modal>
-          </Col>
           <Col><StyledLink to="/purchase" style={{ fontWeight: 'bold' }} onClick={handleClick}>
             <ShoppingCartOutlined />
-            &nbsp; Make Purchase
+            &nbsp; Members
           </StyledLink>
-            <Modal
-              open={isvis}
-              footer={null}
-              onOk={handleOk}
-              onCancel={Cancel}
-              width={500}
-            >
-              <div style={{ textAlign: 'center' }}>
-                <Carousel autoplay {...settings} dots={false}>
-                  {images.map((image) => (
-                    <div key={image}>
-                      <img
-                        src={i1}
-                        alt={image}
-                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
-                      />
-                    </div>
-                  ))}
-                  {images.map((image) => (
-                    <div key={image}>
-                      <img
-                        src={i2}
-                        alt={image}
-                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
-                      />
-                    </div>
-                  ))}
-                  {images.map((image) => (
-                    <div key={image}>
-                      <img
-                        src={i3}
-                        alt={image}
-                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
-                      />
-                    </div>
-                  ))}
-                  {images.map((image) => (
-                    <div key={image}>
-                      <img
-                        src={i4}
-                        alt={image}
-                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
-                      />
-                    </div>
-                  ))}
-                </Carousel>
-              </div>
-            </Modal></Col>
+          </Col>
           <Col><StyledLink to="/transactions" style={{ fontWeight: 'bold' }}>
             <SwapOutlined />
-            &nbsp; Transactions
+            &nbsp; Settings
           </StyledLink></Col>
-          <Col><StyledLink to="/sales-report" style={{ fontWeight: 'bold' }}>
-            <FundOutlined />
-            &nbsp; Sales Report
-          </StyledLink></Col>
-          <StyledLink to="/accounting-report" style={{ fontWeight: 'bold' }}>
-            <CalculatorOutlined />
-            &nbsp; Accounting Report
-          </StyledLink>
-          <Col><StyledLink to="/user-logs" style={{ fontWeight: 'bold' }}>
-            <UserOutlined />
-            &nbsp; User Logs
-          </StyledLink></Col>
-          <Col><StyledLink to="/clients" style={{ fontWeight: 'bold' }} onClick={handleSidebarClick}>
-            <UsergroupAddOutlined />
-            &nbsp; Members/Clients
-          </StyledLink>
 
-            <Modal
-              visible={visible}
-              footer={null}
-              onOk={handleModalOk}
-              onCancel={handleModalCancel}
-              width={500}
-              >
-                <div style={{ textAlign: 'center' }}>
-                  <Carousel autoplay {...settings} dots={false}>
-                    {images.map((image) => (
-                      <div key={image}>
-                        <img
-                          src={m1}
-                          alt={image}
-                          style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
-                        />
-                      </div>
-                    ))}
-                    {images.map((image) => (
-                      <div key={image}>
-                        <img
-                          src={m2}
-                          alt={image}
-                          style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
-                        />
-                      </div>
-                    ))}
-                    {images.map((image) => (
-                      <div key={image}>
-                        <img
-                          src={m3}
-                          alt={image}
-                          style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
-                        />
-                      </div>
-                    ))}
-                    {images.map((image) => (
-                      <div key={image}>
-                        <img
-                          src={m4}
-                          alt={image}
-                          style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
-                        />
-                      </div>
-                    ))}
-                  </Carousel>
-                </div>
-              </Modal></Col>
-          <Col><StyledLink to="/qr" style={{ fontWeight: 'bold' }} onClick={handleC}>
-            <QrcodeOutlined />&nbsp;
-            Scan QR Code
-          </StyledLink>
-            <Modal
-              open={vis}
-              footer={null}
-              onOk={handle}
-              onCancel={cel}
-               width={500}
-            >
-              <div style={{ textAlign: 'center' }}>
-                <Carousel autoplay {...settings} dots={false}>
-                  {images.map((image) => (
-                    <div key={image}>
-                      <img
-                        src={v1}
-                        alt={image}
-                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
-                      />
-                    </div>
-                  ))}
-                  {images.map((image) => (
-                    <div key={image}>
-                      <img
-                        src={s1}
-                        alt={image}
-                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
-                      />
-                    </div>
-                  ))}
-                  {images.map((image) => (
-                    <div key={image}>
-                      <img
-                        src={s2}
-                        alt={image}
-                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
-                      />
-                    </div>
-                  ))}
-                  {images.map((image) => (
-                    <div key={image}>
-                      <img
-                        src={s3}
-                        alt={image}
-                        style={{ width: '100%', maxHeight: '80vh', height: 'auto' }}
-                      />
-                    </div>
-                  ))}
-                </Carousel>
-              </div>
-            </Modal></Col>
 
 
         </StyledMenu>
